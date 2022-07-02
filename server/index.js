@@ -1,9 +1,14 @@
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+
+const PORT = config.get('port') || 5000;
 
 const app = express();
-const PORT = config.get('port') || 5000;
+app.use(cors());
+app.use(express.json());
 
 async function start(){
   try{
