@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const User = require('../models/User');
+const { validationResult } = require('express-validator');
 
 const generateJwt = (id, login) => {
   return jwt.sign(
@@ -14,6 +15,11 @@ const generateJwt = (id, login) => {
 
 class UserController {
   async registration(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()){
+      return next(ApiError.badRequest("Incorrect login or password"));
+    }
+
     const { login, password } = req.body;
     const candidate = await User.findOne({ login });
 
@@ -30,11 +36,16 @@ class UserController {
   }
 
   async login(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()){
+      return next(ApiError.badRequest("Incorrect login or password"));
+    }
+    
     const { login, password } = req.body;
     const user = await User.findOne({ login });
 
     if (!user) {
-      return next(ApiError.internals(`User ${login} not found`));
+      return next(ApiError.internals(`User ${ login } not found`));
     }
 
     let comparePassword = bcrypt.compareSync(password, user.password);
