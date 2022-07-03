@@ -29,8 +29,21 @@ class UserController {
     res.status(201).json({ token });
   }
 
-  async login(req, res) {
-    
+  async login(req, res, next) {
+    const { login, password } = req.body;
+    const user = await User.findOne({ login });
+
+    if (!user) {
+      return next(ApiError.internals(`User ${login} not found`));
+    }
+
+    let comparePassword = bcrypt.compareSync(password, user.password);
+    if(!comparePassword) {
+      return next(ApiError.internals('Invalid password'));
+    }
+
+    const token = generateJwt(user._id, login);
+    res.status(200).json({ token });
   }
 
   async check(req, res, next) {
