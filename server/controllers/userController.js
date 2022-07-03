@@ -1,28 +1,40 @@
 const ApiError = require('../error/ApiError');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const User = require('../models/User');
+
+const generateJwt = (id, login) => {
+  return jwt.sign(
+    { id, login },
+    config.get('seckretKey'),
+    {expiresIn: '24h'}
+  );
+}
 
 class UserController {
-  async registration(req, res) {
+  async registration(req, res, next) {
+    const { login, password } = req.body;
+    const candidate = await User.findOne({ login });
 
+    if(candidate) {
+      return next(ApiError.badRequest("Incorrect login or password"));
+    }
+
+    const hashPassword = await bcrypt.hash(password, 12);
+    const user = new User({ login, password: hashPassword });
+    await user.save();
+
+    const token = generateJwt(user._id, login);
+    res.status(201).json({ token });
   }
 
   async login(req, res) {
-    const { id } = req.query;
     
-    if(!id) {
-      return next(ApiError.badRequest('Не задано id'));
-    }
-
-    res.json(id);
   }
 
   async check(req, res, next) {
-    const { id } = req.query;
     
-    if(!id) {
-      return next(ApiError.badRequest('Не задано id'));
-    }
-
-    res.json(id);
   }
 }
 

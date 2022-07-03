@@ -1,4 +1,5 @@
 {
   "port": 5000,
-  "mongoUri": "mongodb+srv://andrey:db-123@cluster0.dclvn.mongodb.net/app?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://andrey:db-123@cluster0.dclvn.mongodb.net/app?retryWrites=true&w=majority",
+  "seckretKey": "some string seckret key"
 }
