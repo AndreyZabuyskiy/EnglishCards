@@ -8,7 +8,7 @@ class UserController {
   }
 
   async check(req, res) {
-    res.json({ Message: "Check" });
+    
   }
 }
 
