@@ -3,7 +3,7 @@ const config = require('config');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const router = require('./routes/index');
-
+const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 
 const PORT = config.get('port') || 5000;
 
@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api', router);
+app.use(errorHandler);
 
 async function start(){
   try{
