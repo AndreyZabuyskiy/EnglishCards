@@ -1,0 +1,82 @@
+.container__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.title {
+  font-size: 32px;
+  margin: 20px;
+}
+
+.login {
+  width: 75%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.password {
+  width: 75%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.button {
+  width: 75%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+  .form {
+    width: 537px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .form {
+    width: 537px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .form {
+    width: 537px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (max-width: 767px) {
+  .form {
+    width: 436px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .form {
+    width: 336px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (max-width: 320px) {
+  .form {
+    width: 224px;
+    border: 2px black solid;
+    margin: 0 auto;
+    text-align: center;
+  }
+}/*# sourceMappingURL=Login.module.css.map */

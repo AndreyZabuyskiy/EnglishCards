@@ -1,4 +1,4 @@
-import Login from './pages/Login';
+import { Login } from './pages/Login';
 import Registration from './pages/Register';
 import Home from './pages/Home'
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from './utils/consts';
