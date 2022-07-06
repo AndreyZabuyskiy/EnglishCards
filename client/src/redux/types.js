@@ -1,2 +1,7 @@
-export const REGISTRATION = 'REGISTRATION';
+export const REGISTER = 'REGISTER';
+export const LOADER_REGISTER_ON = 'LOADER_REGISTER_ON';
+export const LOADER_REGISTER_OFF = 'LOADER_REGISTER_OFF';
 export const LOGIN = 'LOGIN';
+export const LOADER_LOGIN_ON = 'LOADER_LOGIN_ON';
+export const LOADER_LOGIN_OFF = 'LOADER_LOGIN_OFF';
+export const CHECK_AUTH = 'CHECK_AUTH';
