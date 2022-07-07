@@ -2,11 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 1200px;
 }
 
 .img {
@@ -24,16 +20,7 @@
   color: #8c8d8a;
 }
 
-.login {
-  width: 75%;
-  height: 40px;
-  margin-bottom: 20px;
-  background-color: #f2f2f2;
-  padding: 0px 10px;
-  border-radius: 5px;
-}
-
-.password {
+.input {
   width: 75%;
   height: 40px;
   margin-bottom: 20px;
