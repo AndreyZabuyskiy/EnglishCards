@@ -11,8 +11,8 @@ const AppRouter = () => {
     const { auth } = state;
     return auth.user;
   });
-  const defaultPage = user !== undefined ? <Home /> : <Login />;
 
+  const defaultPage = user !== undefined ? <Home /> : <Login />;
   const dispatch = useDispatch();
 
   useEffect(() => {

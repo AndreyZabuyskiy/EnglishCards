@@ -1,9 +1,9 @@
-const ApiError = require('../error/ApiError');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const User = require('../models/User');
-const { validationResult } = require('express-validator');
+import ApiError from '../error/ApiError.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import config from 'config';
+import User from '../models/User.js';
+import { validationResult } from 'express-validator';
 
 const generateJwt = (id, login) => {
   return jwt.sign(
@@ -63,4 +63,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+export default new UserController();

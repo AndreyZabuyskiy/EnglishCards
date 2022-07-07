@@ -1,9 +1,9 @@
-const express = require('express');
-const config = require('config');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const router = require('./routes/index');
-const errorHandler = require('./middleware/ErrorHandlingMiddleware');
+import express from 'express';
+import config from 'config';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import router from './routes/index.js';
+import errorHandler from './middleware/ErrorHandlingMiddleware.js';
 
 const PORT = config.get('port') || 5000;
 
