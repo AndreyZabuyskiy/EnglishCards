@@ -10,22 +10,21 @@ export const Register = () => {
   
   const dispatch = useDispatch();
 
-  const click_register = () => {
+  const clickRegister = () => {
     dispatch(register(login, password));
   }
 
   return (
     <div className={style.container__form}>
       <div className={style.form}>
+        <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="" className={style.img} />
+
         <div className={style.title}>Register</div>
-
-        <input className={style.login} type="text" name="login" placeholder='login...'
-          value={login} onChange={e => setLogin(e.target.value)} />
-
-        <input className={style.password} type="password" name="password" placeholder='password...'
-          value={password} onChange={e => setPassword(e.target.value)} />
-
-        <Link to="/home" className={style.button} onClick={() => click_register()}>Register</Link>
+        <input className={style.input} type="text" name="login" placeholder='login...'
+          value={login} onChange={(e) => setLogin(e.target.value)} />
+        <input className={style.input} type="password" name="password" placeholder='password...'
+         value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button onClick={() => clickRegister()} className={style.button}>Register</button>
       </div>
     </div>
   );

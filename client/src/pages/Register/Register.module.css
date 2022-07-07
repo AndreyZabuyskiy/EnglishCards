@@ -2,81 +2,102 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 1200px;
+}
+
+.img {
+  width: 20%;
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {
   font-size: 32px;
-  margin: 20px;
+  margin-top: 15%;
+  margin-bottom: 20px;
+  color: #8c8d8a;
 }
 
-.login {
+.input {
   width: 75%;
   height: 40px;
   margin-bottom: 20px;
-}
-
-.password {
-  width: 75%;
-  height: 40px;
-  margin-bottom: 20px;
+  background-color: #f2f2f2;
+  color: #b2b2b0;
+  padding: 0px 10px;
+  border-radius: 5px;
 }
 
 .button {
   width: 75%;
   height: 40px;
   margin-bottom: 20px;
+  background-color: #3a7fc3;
+  color: #ffffff;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
 }
 
 @media (min-width: 1200px) {
   .form {
     width: 537px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .form {
     width: 537px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .form {
     width: 537px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }
 @media (max-width: 767px) {
   .form {
     width: 436px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }
 @media (max-width: 480px) {
   .form {
     width: 336px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }
 @media (max-width: 320px) {
   .form {
     width: 224px;
-    border: 2px black solid;
     margin: 0 auto;
     text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
   }
 }/*# sourceMappingURL=Register.module.css.map */

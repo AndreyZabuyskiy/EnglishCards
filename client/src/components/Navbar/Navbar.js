@@ -7,10 +7,10 @@ export const Navbar = () => {
     <div className={style.container__navbar}>
       <div className={style.content}>
         <div className={style.main}>
-          <Link to={ HOME_ROUTE }>Main</Link>
+          <Link to={HOME_ROUTE}>Main</Link>
         </div>
         <div className={style.links}>
-          <Link to={ REGISTRATION_ROUTE }>Register</Link>
+          <Link to={REGISTRATION_ROUTE}>Register</Link>
         </div>
       </div>
     </div>
