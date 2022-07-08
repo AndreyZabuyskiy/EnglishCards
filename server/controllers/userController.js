@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import User from '../models/User.js';
 import { validationResult } from 'express-validator';
-import { registerValidation } from '../validations/auth.js';
 
 const generateJwt = (id, login) => {
   return jwt.sign(
