@@ -6,5 +6,6 @@ const router = Router();
 
 router.post("/", authMiddleware, moduleController.createModule);
 router.get("/", authMiddleware, moduleController.getModules);
+router.get("/:id", moduleController.viewModule);
 
 export default router;

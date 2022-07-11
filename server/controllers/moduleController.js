@@ -13,6 +13,18 @@ class ModuleController {
     }
   }
 
+  async viewModule (req, res, next) {
+    try {
+      const { id } = req.params;
+      const module = await StudyModule.find({ _id: id });
+      const words = await Word.find({ module: id });
+
+      res.status(200).json({ module, words });
+    } catch (e) {
+      next(ApiError.badRequest('Error view module'));
+    }
+  }
+
   async createModule (req, res, next) {
     try {
       const words = req.body.words;
