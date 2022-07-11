@@ -1,8 +1,18 @@
 import Word from '../models/Word.js';
 import StudyModule from '../models/StudyModule.js';
 import ApiError from '../error/ApiError.js';
+import mongoose from 'mongoose';
 
 class ModuleController {
+  async getModules (req, res, next) {
+    try{
+      const modules = await StudyModule.find({ user: req.user.id });
+      res.status(200).json(modules);
+    } catch(e) {
+      next(ApiError.badRequest('Error get all modules by id'));
+    }
+  }
+
   async createModule (req, res, next) {
     try {
       const words = req.body.words;
