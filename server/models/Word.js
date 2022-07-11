@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 
-const schema = ({
+const schema = new mongoose.Schema({
   value: {
     type: String,
     required: true
   },
   translate: {
+    type: String
+  },
+  imgUrl: {
     type: String
   },
   module: {
