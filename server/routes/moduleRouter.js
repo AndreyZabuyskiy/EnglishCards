@@ -4,9 +4,10 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = Router();
 
-router.post("/", authMiddleware, moduleController.createModule);
 router.get("/", authMiddleware, moduleController.getModules);
 router.get("/:id", moduleController.viewModule);
+router.post("/", authMiddleware, moduleController.createModule);
 router.put("/:id", authMiddleware, moduleController.updateModule);
+router.delete("/:id", authMiddleware, moduleController.deleteModule);
 
 export default router;
