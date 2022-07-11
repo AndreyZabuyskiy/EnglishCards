@@ -1,7 +1,6 @@
 import Word from '../models/Word.js';
 import StudyModule from '../models/StudyModule.js';
 import ApiError from '../error/ApiError.js';
-import mongoose from 'mongoose';
 
 class ModuleController {
   async getModules (req, res, next) {
@@ -51,6 +50,42 @@ class ModuleController {
     }
     catch (e) {
       next(ApiError.badRequest('Error create module'));
+    }
+  }
+
+  async updateModule (req, res, next) {
+    try {
+      const { id } = req.params;
+      const { title } = req.body;
+      const module = {
+        _id: id,
+        title,
+        user: req.user.id
+      };
+
+      const updateModule = await StudyModule.findByIdAndUpdate(id, module, { new: true });
+
+      const words = await Word.find({ module: id });
+      words.map(async (word) => {
+        await Word.findByIdAndDelete(word._id);
+      });
+
+      const updateWords = req.body.words;
+
+      updateWords.map(async (word) => {
+        const wordDoc = new Word({
+          value: word.value,
+          translate: word.translate,
+          imgUrl: word.imgUrl,
+          module: id
+        });
+  
+        await wordDoc.save();
+      });
+
+      return res.status(200).json(updateModule);
+    } catch (e) {
+      next(ApiError.badRequest('Error update module'));
     }
   }
 }
