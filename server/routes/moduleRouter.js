@@ -10,4 +10,6 @@ router.post("/", authMiddleware, moduleController.createModule);
 router.put("/:id", authMiddleware, moduleController.updateModule);
 router.delete("/:id", authMiddleware, moduleController.deleteModule);
 
+router.post("/upload-image", authMiddleware, moduleController.uploadImage);
+
 export default router;

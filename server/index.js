@@ -4,12 +4,14 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import router from './routes/index.js';
 import errorHandler from './middleware/ErrorHandlingMiddleware.js';
+import fileUpload from 'express-fileupload';
 
 const PORT = config.get('port') || 5000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload({}));
 app.use('/api', router);
 app.use(errorHandler);
 

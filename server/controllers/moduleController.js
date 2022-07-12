@@ -1,5 +1,6 @@
 import ApiError from '../error/ApiError.js';
 import moduleService from '../services/moduleService.js';
+import fileService from '../services/fileService.js';
 
 class ModuleController {
   async getModules (req, res, next) {
@@ -55,6 +56,16 @@ class ModuleController {
       res.status(200).json(deletedModule);
     } catch(e) {
       next(ApiError.badRequest('Error delete module'));
+    }
+  }
+
+  async uploadImage (req, res, next) {
+    try {
+      const { files, user } = req;
+      const fileName = fileService.saveImage(files, user);
+      return res.status(200).json(fileName);
+    } catch (e) {
+      next(ApiError.badRequest(e.message))
     }
   }
 }
