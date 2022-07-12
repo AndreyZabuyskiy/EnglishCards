@@ -1,11 +1,10 @@
-import Word from '../models/Word.js';
-import StudyModule from '../models/StudyModule.js';
 import ApiError from '../error/ApiError.js';
+import moduleService from '../services/moduleService.js';
 
 class ModuleController {
   async getModules (req, res, next) {
     try{
-      const modules = await StudyModule.find({ user: req.user.id });
+      const modules = await moduleService.getModulesByUser(req.user.id);
       res.status(200).json(modules);
     } catch(e) {
       next(ApiError.badRequest('Error get all modules by id'));
@@ -15,9 +14,7 @@ class ModuleController {
   async viewModule (req, res, next) {
     try {
       const { id } = req.params;
-      const module = await StudyModule.find({ _id: id });
-      const words = await Word.find({ module: id });
-
+      const { module, words } = await moduleService.viewModule(id);
       res.status(200).json({ module, words });
     } catch (e) {
       next(ApiError.badRequest('Error view module'));
@@ -26,27 +23,11 @@ class ModuleController {
 
   async createModule (req, res, next) {
     try {
-      const words = req.body.words;
+      const { title, words } = req.body;
+      const userId = req.user.id;
 
-      const moduleDoc = new StudyModule({
-        title: req.body.title,
-        user: req.user.id
-      });
-  
-      const module = await moduleDoc.save();
-  
-      words.map(async (word) => {
-        const wordDoc = new Word({
-          value: word.value,
-          translate: word.translate,
-          imgUrl: word.imgUrl,
-          module: module._id
-        });
-  
-        await wordDoc.save();
-      });
-      
-      return res.status(200).json(module);
+      const { createdModule } = await moduleService.createModule(title, userId, words);
+      return res.status(200).json(createdModule);
     }
     catch (e) {
       next(ApiError.badRequest('Error create module'));
@@ -56,43 +37,21 @@ class ModuleController {
   async updateModule (req, res, next) {
     try {
       const { id } = req.params;
-      const { title } = req.body;
-      const module = {
-        _id: id,
-        title,
-        user: req.user.id
-      };
+      const { title, words } = req.body;
+      const userId = req.user.id;
 
-      const updateModule = await StudyModule.findByIdAndUpdate(id, module, { new: true });
-
-      const words = await Word.find({ module: id });
-      words.map(async (word) => {
-        await Word.findByIdAndDelete(word._id);
-      });
-
-      const updateWords = req.body.words;
-
-      updateWords.map(async (word) => {
-        const wordDoc = new Word({
-          value: word.value,
-          translate: word.translate,
-          imgUrl: word.imgUrl,
-          module: id
-        });
-  
-        await wordDoc.save();
-      });
-
-      return res.status(200).json(updateModule);
+      const module = await moduleService.updateModule(userId, id, title, words);
+      return res.status(200).json(module);
     } catch (e) {
-      next(ApiError.badRequest('Error update module'));
+      next(ApiError.badRequest(e.message));
     }
   }
 
   async deleteModule (req, res, next) {
     try {
       const { id } = req.params;
-      const deletedModule = await StudyModule.findByIdAndDelete(id);
+      const deletedModule = await moduleService.deleteModule(id);
+      
       res.status(200).json(deletedModule);
     } catch(e) {
       next(ApiError.badRequest('Error delete module'));
