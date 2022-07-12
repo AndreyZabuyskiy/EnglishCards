@@ -1,65 +1,46 @@
 import ApiError from '../error/ApiError.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import config from 'config';
-import User from '../models/User.js';
 import { validationResult } from 'express-validator';
-
-const generateJwt = (id, login) => {
-  return jwt.sign(
-    { id, login },
-    config.get('seckretKey'),
-    {expiresIn: '24h'}
-  );
-}
+import userService from '../services/userService.js';
 
 class UserController {
-  async registration(req, res, next) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-      return next(ApiError.badRequest("Incorrect login or password"));
+  async register(req, res, next) {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()){
+        return next(ApiError.badRequest("Incorrect login or password"));
+      }
+  
+      const { login, password } = req.body;
+      const token = await userService.register(login, password);
+      res.status(201).json({ token });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
     }
-
-    const { login, password } = req.body;
-    const candidate = await User.findOne({ login });
-
-    if(candidate) {
-      return next(ApiError.badRequest("Incorrect login or password"));
-    }
-
-    const hashPassword = await bcrypt.hash(password, 12);
-    const user = new User({ login, password: hashPassword });
-    await user.save();
-
-    const token = generateJwt(user._id, login);
-    res.status(201).json({ token });
   }
 
   async login(req, res, next) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()){
-      return next(ApiError.badRequest("Incorrect login or password"));
+    try{
+      const errors = validationResult(req);
+      if (!errors.isEmpty()){
+        return next(ApiError.badRequest("Incorrect login or password"));
+      }
+      
+      const { login, password } = req.body;
+      const token = await userService.login(login, password);
+      res.status(200).json({ token }); 
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
     }
-    
-    const { login, password } = req.body;
-    const user = await User.findOne({ login });
-
-    if (!user) {
-      return next(ApiError.internals(`User ${ login } not found`));
-    }
-
-    let comparePassword = bcrypt.compareSync(password, user.password);
-    if(!comparePassword) {
-      return next(ApiError.internals('Invalid password'));
-    }
-
-    const token = generateJwt(user._id, login);
-    res.status(200).json({ token });
   }
 
   async check(req, res, next) {
-    const token = generateJwt(req.user._id, req.user.login);
-    return res.status(200).json({ token });
+    try {
+      const { _id, login } = req.user;
+      const token = await userService.check(_id, login);
+      return res.status(200).json({ token });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
   }
 }
 
