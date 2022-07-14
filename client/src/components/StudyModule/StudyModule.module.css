@@ -1,0 +1,22 @@
+.module {
+  background-color: #2E3856;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.count__words {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #f6f7fb;
+}
+
+.login {
+  color: #3ccfcf;
+}
+
+.title {
+  color: #f6f7fb;
+  font-size: 20px;
+}/*# sourceMappingURL=StudyModule.module.css.map */

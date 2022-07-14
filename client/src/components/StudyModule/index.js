@@ -1,0 +1,1 @@
+export { StudyModule } from './StudyModule'

@@ -12,7 +12,6 @@ const $authHost = axios.create({
 
 const authInterceptor = config => {
   config.headers.authorization = `Bearer ${Cookies.get('token')}`
-  console.log("cookie --> ", Cookies.get('token'));
   return config;
 }
 

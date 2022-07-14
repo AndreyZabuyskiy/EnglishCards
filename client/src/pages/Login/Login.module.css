@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
   width: 1200px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  padding-top: 50px;
 }
 
 .img {

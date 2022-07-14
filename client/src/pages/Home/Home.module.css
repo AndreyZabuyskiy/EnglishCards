@@ -1,0 +1,8 @@
+.container {
+  width: 1200px;
+  min-height: 94vh;
+  background-color: #0A092D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=Home.module.css.map */

@@ -6,15 +6,14 @@ class FileService {
   saveImage (file, user) {
     const pathFolder = `./static/${user.login}`;
     fs.mkdir(pathFolder, { recursive: true }, err => {
-    if(err) throw err; // не удалось создать папки
-    console.log('Все папки успешно созданы');
+      if(err) throw err;
     });
 
     const fileName = uuid.v4() + '.jpg';
     const filePath = path.resolve(pathFolder, fileName);
     console.log('file path --> ', filePath);
     file.picture.mv(filePath);
-    return fileName;
+    return filePath;
   }
 }
 

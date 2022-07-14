@@ -10,9 +10,7 @@ export const Navbar = () => {
     return auth.state;
   });
 
-  useEffect(() => {
-    console.log('navbar render');
-  }, [user]);
+  useEffect(() => { }, [user]);
 
   let links = [
     <Link to={HOME_ROUTE}>Login</Link>,

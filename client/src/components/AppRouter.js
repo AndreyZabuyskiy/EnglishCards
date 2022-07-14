@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
-import Home from '../pages/Home';
+import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { checkAuth } from '../redux/actions';
 import { authRoutes, publicRoutes } from '../routers';
