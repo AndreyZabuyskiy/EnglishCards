@@ -1,8 +1,12 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { StudyModule } from '../../components/StudyModule';
+import { fetchModules } from "../../redux/actions";
 import style from './Home.module.css';
 
 export const Home = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector(state => {
     const { auth } = state;
     return auth.user;
@@ -12,6 +16,10 @@ export const Home = () => {
     const { module } = state;
     return module.modules;
   });
+
+  useEffect(() => {
+    dispatch(fetchModules());
+  }, []);
 
   return (
     <div className={style.container}>

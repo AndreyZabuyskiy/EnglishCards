@@ -1,22 +1,16 @@
+import { FETCH_MODULES } from "../types";
+
 const initialState = {
-  modules: [
-    {
-      title: "module 1",
-      countWords: 18
-    },
-    {
-      title: "module 2",
-      countWords: 54
-    },
-    {
-      title: "module 3",
-      countWords: 21
-    }
-  ]
+  modules: []
 }
 
 export const moduleReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_MODULES:
+      return {
+        ...state,
+        modules: action.data
+      }
     
     default:
       return state;

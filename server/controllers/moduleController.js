@@ -4,11 +4,12 @@ import fileService from '../services/fileService.js';
 
 class ModuleController {
   async getModules (req, res, next) {
-    try{
+    try {
       const modules = await moduleService.getModulesByUser(req.user.id);
+      console.log('modules -->', modules);
       res.status(200).json(modules);
-    } catch(e) {
-      next(ApiError.badRequest('Error get all modules by id'));
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
     }
   }
 

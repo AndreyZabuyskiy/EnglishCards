@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Navbar />
-     
+      
       <div className="container">
         <AppRouter />
       </div>

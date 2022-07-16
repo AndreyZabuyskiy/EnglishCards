@@ -3,8 +3,21 @@ import Word from '../models/Word.js';
 
 class ModuleService {
   async getModulesByUser (userId) {
+    let data = [];
     const modules = await StudyModule.find({ userId });
-    return modules;
+
+    for(let mod of modules) {
+      const words = await Word.find({ module: mod._id });
+
+      const obj = {
+        ...mod._doc,
+        countWords: words.length
+      }
+
+      data.push(obj);
+    }
+
+    return data;
   }
 
   async viewModule (moduleId) {
