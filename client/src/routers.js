@@ -1,6 +1,7 @@
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Home } from './pages/Home'
+import { Module } from './pages/Module';
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from './utils/consts';
 
 export const authRoutes = [
@@ -18,5 +19,9 @@ export const publicRoutes = [
   {
     path: LOGIN_ROUTE,
     Component: Login
+  },
+  {
+    path: HOME_ROUTE + '/:id',
+    Component: Module
   }
 ]

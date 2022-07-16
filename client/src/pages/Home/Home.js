@@ -8,13 +8,13 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => {
-    const { auth } = state;
-    return auth.user;
+    const { authReducer } = state;
+    return authReducer.user;
   });
 
   const modules = useSelector(state => {
-    const { module } = state;
-    return module.modules;
+    const { modulesReducer } = state;
+    return modulesReducer.modules;
   });
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export const Home = () => {
           title={module.title}
           countWords={module.countWords}
           login={user.login}
+          id={module._id}
         />
       ))}
     </div>

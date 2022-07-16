@@ -6,3 +6,4 @@ export const LOADER_LOGIN_ON = 'LOADER_LOGIN_ON';
 export const LOADER_LOGIN_OFF = 'LOADER_LOGIN_OFF';
 export const CHECK_AUTH = 'CHECK_AUTH';
 export const FETCH_MODULES = 'FETCH_MODULES';
+export const FETCH_MODULE = 'FETCH_MODULE';

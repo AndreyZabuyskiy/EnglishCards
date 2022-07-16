@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 
 export const Navbar = () => {
   const user = useSelector(state => {
-    const { auth } = state;
-    return auth.state;
+    const { authReducer } = state;
+    return authReducer.state;
   });
 
   useEffect(() => { }, [user]);

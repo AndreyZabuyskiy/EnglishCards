@@ -8,7 +8,7 @@ class ModuleService {
 
     for(let mod of modules) {
       const words = await Word.find({ module: mod._id });
-
+      
       const obj = {
         ...mod._doc,
         countWords: words.length

@@ -8,8 +8,8 @@ import { authRoutes, publicRoutes } from '../routers';
 
 const AppRouter = () => {
   const user = useSelector(state => {
-    const { auth } = state;
-    return auth.user;
+    const { authReducer } = state;
+    return authReducer.user;
   });
 
   const defaultPage = user !== undefined ? <Home /> : <Login />;

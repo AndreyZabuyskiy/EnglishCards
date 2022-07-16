@@ -1,15 +1,15 @@
-import { FETCH_MODULES } from "../types";
+import { FETCH_MODULE } from "../types";
 
 const initialState = {
-  modules: []
+  module: null
 }
 
 export const moduleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_MODULES:
+    case FETCH_MODULE:
       return {
         ...state,
-        modules: action.data
+        module: action.data
       }
     
     default:
