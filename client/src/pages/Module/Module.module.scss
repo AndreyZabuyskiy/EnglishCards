@@ -1,0 +1,15 @@
+.container {
+  width: 1200px;
+  min-height: 94vh;
+}
+
+.title {
+  font-size: 32px;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

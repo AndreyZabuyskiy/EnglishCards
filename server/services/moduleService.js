@@ -21,9 +21,9 @@ class ModuleService {
   }
 
   async viewModule (moduleId) {
-    const module = await StudyModule.find({ _id: moduleId });
+    const module = await StudyModule.findById({ _id: moduleId });
     const words = await Word.find({ module: moduleId });
-
+    
     return { module, words };
   }
 

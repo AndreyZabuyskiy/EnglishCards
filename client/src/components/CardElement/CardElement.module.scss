@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: #2E3856;
+  color: white;
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.card__translate {
+  position: absolute;
+  top: 0;
+  left: 40%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  height: 100%;
+}
+
+.card__img {
+  width: 75px;
+  height: 75px;
+}
