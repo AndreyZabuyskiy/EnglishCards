@@ -1,7 +1,7 @@
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Home } from './pages/Home'
-import { Module } from './pages/Module';
+import { ViewModule } from './pages/ViewModule';
 import { ScreenCards } from './pages/ScreenCards';
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS } from './utils/consts';
 
@@ -23,7 +23,7 @@ export const publicRoutes = [
   },
   {
     path: HOME_ROUTE + '/:id',
-    Component: Module
+    Component: ViewModule
   },
   {
     path: SCREEN_CARDS + '/:id',

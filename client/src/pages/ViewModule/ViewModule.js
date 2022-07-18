@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModuleBy } from "../../redux/actions";
-import style from './Module.module.scss';
+import style from './ViewModule.module.scss';
 import { CardElement } from "../../components/CardElement";
 import { Navbar } from "../../components/Navbar";
 import { Link } from 'react-router-dom';
 import { SCREEN_CARDS } from '../../utils/consts';
 
-export const Module = () => {
+export const ViewModule = () => {
   const [cardItemIndex, setCardItemIndex] = useState(0);
 
   const { id } = useParams();
