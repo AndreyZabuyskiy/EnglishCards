@@ -1,18 +1,20 @@
-.container {
-  max-width: 800px;
-  width: 80%;
-  min-height: 94vh;
-}
-
 .title {
   font-size: 32px;
-  color: white;
+  color: #f6f7fb;
+  margin: 30px 0px 20px;
 }
 
 .cards__items__buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 20px 0px;
+}
+
+.button__card__item {
+  background-color: #0A092D;
+  color: white;
+  font-size: 24px;
 }
 
 .counter__cards {
@@ -22,7 +24,24 @@
   margin: 0px 20px;
 }
 
+.UI__single__row {
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+.count__words {
+  font-size: 28px;
+  color: #f6f7fb;
+  margin: 30px 0px;
+}
+
 @media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+    width: 80%;
+    min-height: 94vh;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -34,7 +53,7 @@
     width: 75%;
   }
 
-  .UIRow {
+  .UI__rows {
     width: 25%;
     color: white;
   }
@@ -42,7 +61,7 @@
   .card__item {
     background-color: #2e3856;
     width: 100%;
-    height: 30vh;
+    height: 50vh;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -53,6 +72,11 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    width: 80%;
+    min-height: 94vh;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +84,7 @@
     margin-bottom: 20px;
   }
 
-  .UIRow {
+  .UI__rows {
     width: 25%;
     color: white;
   }
@@ -75,7 +99,7 @@
     align-items: center;
     width: 100%;
     background-color: #2e3856;
-    height: 30vh;
+    height: 50vh;
     border-radius: 15px;
     font-size: 30px;
     color: white;
@@ -83,15 +107,21 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    width: 80%;
+    min-height: 94vh;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
     flex-direction: column-reverse;
-    flex-wrap: wrap;
   }
 
-  .UIRow {
+  .UI__rows {
     color: white;
+    display: flex;
+    flex-direction: row;
   }
 
   .card__item__container {
@@ -113,6 +143,11 @@
 }
 
 @media (max-width: 767px) {
+  .container {
+    width: 80%;
+    min-height: 94vh;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -120,8 +155,47 @@
     flex-wrap: wrap;
   }
 
-  .UIRow {
+  .UI__rows {
     color: white;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card__item__container {
+    width: 100%;
+  }
+
+  .card__item {
+    background-color: #2e3856;
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 80%;
+    min-height: 94vh;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+  .UI__rows {
+    color: white;
+    display: flex;
+    flex-direction: row;
   }
 
   .card__item__container {
@@ -142,37 +216,12 @@
   }
 }
 
-@media (max-width: 480px) {
-  .header {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
-  }
-
-  .UIRow {
-    color: white;
-  }
-
-  .card__item__container {
-    width: 100%;
-  }
-
-  .card__item {
-    background-color: #2e3856;
-    width: 100%;
-    height: 50vh;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: white;
-  }
-}
-
 @media (max-width: 320px) {
+  .container {
+    width: 80%;
+    min-height: 94vh;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -180,8 +229,10 @@
     flex-wrap: wrap;
   }
 
-  .UIRow {
+  .UI__rows {
     color: white;
+    display: flex;
+    flex-direction: row;
   }
 
   .card__item__container {
@@ -191,7 +242,7 @@
   .card__item {
     background-color: #2e3856;
     width: 100%;
-    height: 50vh;
+    height: 30vh;
     margin-bottom: 20px;
     border-radius: 15px;
     display: flex;

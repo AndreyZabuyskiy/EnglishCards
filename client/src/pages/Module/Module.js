@@ -34,15 +34,23 @@ export const Module = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.title}> { moduleData?.module?.title } </div>
+      <h1 className={style.title}> { moduleData?.module?.title } </h1>
 
       <div className={style.header}>
-        <div className={style.UIRow}>
-          <div>Карточки</div>
-          <div>Заучивание</div>
-          <div>Письмо</div>
-          <div>Правописание</div>
-          <div>Тест</div>
+        <div className={style.UI__rows}>
+          <div>
+            <div className={style.UI__single__row}>Изучать</div>
+            <div className={style.UI__single__row}>Карточки</div>
+            <div className={style.UI__single__row}>Заучивание</div>
+            <div className={style.UI__single__row}>Письмо</div>
+            <div className={style.UI__single__row}>Правописание</div>
+            <div className={style.UI__single__row}>Тест</div>
+          </div>
+          <div>
+            <div className={style.UI__single__row}>Играть</div>
+            <div className={style.UI__single__row}>Подбор</div>
+            <div className={style.UI__single__row}>Гравитация</div>
+          </div>
         </div>
         
         <div className={style.card__item__container}>
@@ -50,11 +58,29 @@ export const Module = () => {
             { moduleData?.words?.[cardItemIndex].value }
           </div>
           <div className={style.cards__items__buttons}>
-            <button onClick={() => clickBack()}>Назад</button>
-            <div className={ style.counter__cards } >{ cardItemIndex }</div>
-            <button onClick={() => clickForward()}>Вперед</button>
+            <button
+              className={style.button__card__item}
+              onClick={() => clickBack()}
+            >
+              ←
+            </button>
+
+            <div className={ style.counter__cards }>
+              { cardItemIndex + 1 }
+            </div>
+            
+            <button
+              className={style.button__card__item}
+              onClick={() => clickForward()}
+            >
+              →
+            </button>
           </div>
         </div>
+      </div>
+
+      <div className={style.count__words}>
+        Термины в модуле ({ moduleData?.words.length })
       </div>
 
       <div>
