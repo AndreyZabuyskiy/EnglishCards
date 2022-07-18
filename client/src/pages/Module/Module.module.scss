@@ -9,12 +9,18 @@
   justify-content: center;
   align-items: center;
   margin: 20px 0px;
+  position: relative;
 }
 
 .button__card__item {
   background-color: #0A092D;
   color: white;
   font-size: 24px;
+}
+
+.link__screen__cards {
+  position: absolute;
+  right: 0;
 }
 
 .counter__cards {
@@ -40,6 +46,7 @@
     max-width: 900px;
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
   }
 
   .header {
@@ -75,6 +82,7 @@
   .container {
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
   }
 
   .header {
@@ -110,6 +118,8 @@
   .container {
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
+    margin-top: 6vh;
   }
 
   .header {
@@ -146,6 +156,8 @@
   .container {
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
+    margin-top: 6vh;
   }
 
   .header {
@@ -183,6 +195,8 @@
   .container {
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
+    margin-top: 6vh;
   }
 
   .header {
@@ -220,6 +234,8 @@
   .container {
     width: 80%;
     min-height: 94vh;
+    margin: 0 auto;
+    margin-top: 6vh;
   }
 
   .header {

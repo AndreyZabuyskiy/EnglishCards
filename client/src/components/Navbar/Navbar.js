@@ -13,7 +13,7 @@ export const Navbar = () => {
   useEffect(() => { }, [user]);
 
   let links = [
-    <Link to={HOME_ROUTE}>Login</Link>,
+    <Link className={style.login} to={HOME_ROUTE}>Login</Link>,
     <Link to={HOME_ROUTE}>Register</Link>
   ]
 
