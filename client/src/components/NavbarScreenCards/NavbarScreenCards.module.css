@@ -1,12 +1,35 @@
 .container {
-  background-color: white;
+  background-color: #0a092d;
   height: 9vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 5px 5px 5px #111033;
 }
 
 .content {
   width: 1200px;
-  background-color: aqua;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f6f7fb;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.count__cards {
+  display: flex;
+  justify-content: center;
+}
+
+.button__exit {
+  color: #f6f7fb;
+  padding: 11px;
+  border: 1px solid #f6f7fb;
+  border-radius: 5px;
+}
+
+.button__exit:hover {
+  background-color: #2e3856;
 }/*# sourceMappingURL=NavbarScreenCards.module.css.map */

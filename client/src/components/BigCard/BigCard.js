@@ -1,8 +1,6 @@
 import style from './BigCard.module.css';
 
 export const BigCard = (props) => {
-  console.log('big card -->', props);
-
   return (
     <div className={style.card}>
       <div className={style.card__header}>

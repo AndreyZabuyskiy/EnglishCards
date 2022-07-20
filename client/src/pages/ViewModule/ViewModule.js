@@ -1,8 +1,8 @@
+import style from './ViewModule.module.scss';
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModuleById } from "../../redux/actions";
-import style from './ViewModule.module.scss';
 import { CardElement } from "../../components/CardElement";
 import { Navbar } from "../../components/Navbar";
 import { Link } from 'react-router-dom';
