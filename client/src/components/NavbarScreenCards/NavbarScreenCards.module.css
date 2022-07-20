@@ -1,0 +1,12 @@
+.container {
+  background-color: white;
+  height: 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 1200px;
+  background-color: aqua;
+}/*# sourceMappingURL=NavbarScreenCards.module.css.map */

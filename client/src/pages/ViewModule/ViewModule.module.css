@@ -15,7 +15,12 @@
 .button__card__item {
   background-color: #0A092D;
   color: white;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.button__card__item:hover {
+  color: yellow;
 }
 
 .link__screen__cards {
@@ -24,10 +29,10 @@
 }
 
 .counter__cards {
-  margin: 0px 30px;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
   color: white;
-  margin: 0px 20px;
+  margin: 0px 40px;
 }
 
 .UI__single__row {
@@ -39,6 +44,29 @@
   font-size: 28px;
   color: #f6f7fb;
   margin: 30px 0px;
+}
+
+.login {
+  margin-top: 10px;
+}
+
+.page__information__buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.page__information__button {
+  border-radius: 100%;
+  border: 1px solid white;
+  font-size: 12px;
+  margin-right: 10px;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 1200px) {
@@ -53,6 +81,18 @@
     justify-content: space-between;
     margin-bottom: 20px;
     flex-direction: row;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
   }
   .card__item__container {
     width: 75%;
@@ -84,6 +124,18 @@
     justify-content: space-between;
     flex-direction: row;
     margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
   }
   .UI__rows {
     width: 25%;
@@ -115,6 +167,18 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column-reverse;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0px;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
   }
   .UI__rows {
     color: white;
@@ -149,6 +213,19 @@
     justify-content: space-between;
     flex-direction: column-reverse;
     flex-wrap: wrap;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    padding: 30px 0px;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
+    margin-bottom: 20px;
   }
   .UI__rows {
     color: white;
@@ -183,6 +260,19 @@
     justify-content: space-between;
     flex-direction: column-reverse;
     flex-wrap: wrap;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    padding: 30px 0px;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
+    margin-bottom: 20px;
   }
   .UI__rows {
     color: white;
@@ -217,6 +307,25 @@
     justify-content: space-between;
     flex-direction: column-reverse;
     flex-wrap: wrap;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+  .page__information {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+  .user__info {
+    color: #f6f7fb;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .page__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 0px;
   }
   .UI__rows {
     color: white;

@@ -44,7 +44,7 @@ export function fetchModules() {
   }
 }
 
-export function fetchModuleBy(id) {
+export function fetchModuleById(id) {
   return async dispatch => {
     const response = await fetchModuleByIdApi(id);
 
