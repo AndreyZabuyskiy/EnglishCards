@@ -3,12 +3,17 @@ import { Register } from './pages/Register';
 import { Home } from './pages/Home'
 import { ViewModule } from './pages/ViewModule';
 import { ScreenCards } from './pages/ScreenCards';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS } from './utils/consts';
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE } from './utils/consts';
+import { ModuleForm } from './pages/ModuleForm/ModuleForm';
 
 export const authRoutes = [
   {
     path: HOME_ROUTE,
     Component: Home
+  },
+  {
+    path: CREATE_MODULE,
+    Component: ModuleForm
   }
 ]
 

@@ -1,8 +1,9 @@
 import style from './NavbarScreenCards.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { HOME_ROUTE } from '../../utils/consts';
 
 export const NavbarScreenCards = (props) => {
-  console.log('Navbar -->', props);
+  const { id } = useParams();
 
   return (
     <div className={style.container}>
@@ -13,7 +14,7 @@ export const NavbarScreenCards = (props) => {
           <div>{props.title}</div>
         </div>
         <div>
-          <Link className={style.button__exit} to={``}>✕</Link>
+          <Link className={style.button__exit}  to={`${HOME_ROUTE}/${id}`}>✕</Link>
         </div>
       </div>
     </div>

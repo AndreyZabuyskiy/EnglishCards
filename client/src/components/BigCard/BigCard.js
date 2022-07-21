@@ -17,8 +17,8 @@ export const BigCard = (props) => {
       </div>
 
       <div className={style.card__footer}>
-        <div className={style.card__footer__left}>←</div>  
-        <div className={style.card__footer__right}>→</div>
+        <div className={style.card__footer__left} onClick={props.clickBack}>←</div>  
+        <div className={style.card__footer__right} onClick={props.clickForward}>→</div>
       </div>
     </div>
   );

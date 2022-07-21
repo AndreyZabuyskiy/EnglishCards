@@ -1,0 +1,65 @@
+.navbar {
+  height: 10vh;
+  color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    width: 1200px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 0px 15px;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 0px 15px;
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 0px 15px;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 0px 15px;
+    width: 100%;
+  }
+}
+@media (max-width: 320px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 0px 15px;
+    width: 100%;
+  }
+}/*# sourceMappingURL=NavbarModuleForm.module.css.map */

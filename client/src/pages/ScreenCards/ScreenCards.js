@@ -26,7 +26,17 @@ export const ScreenCards = () => {
     return authReducer.user;
   });
 
-  console.log(moduleData);
+  const clickBack = () => {
+    if(cardIndex > 0) { 
+      setCardIndex(cardIndex - 1);
+    }
+  }
+
+  const clickForward = () => {
+    if(cardIndex < moduleData.words.length - 1) {
+      setCardIndex(cardIndex + 1);
+    }
+  }
 
   return (
     <>
@@ -38,9 +48,11 @@ export const ScreenCards = () => {
 
       <div className={style.container}>
         <BigCard
-          value={moduleData?.words?.[0].value}
-          translate={moduleData?.words?.[0].translate}
-          img={moduleData?.words?.[0].imgUrl}
+          value={moduleData?.words?.[cardIndex].value}
+          translate={moduleData?.words?.[cardIndex].translate}
+          img={moduleData?.words?.[cardIndex].imgUrl}
+          clickForward={clickForward}
+          clickBack={clickBack}
         />
         
         <div className={style.footer__text}>

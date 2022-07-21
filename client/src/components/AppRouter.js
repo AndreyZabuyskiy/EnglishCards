@@ -14,7 +14,7 @@ const AppRouter = () => {
 
   const defaultPage = user !== undefined ? <Home /> : <Login />;
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
