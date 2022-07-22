@@ -8,7 +8,7 @@ export const NavbarModuleForm = () => {
           Создать новый учебный модуль
         </div>
         <div>
-          <button type="">Создать</button>
+          <button className={style.button}>Создать</button>
         </div>
       </div>
     </div>

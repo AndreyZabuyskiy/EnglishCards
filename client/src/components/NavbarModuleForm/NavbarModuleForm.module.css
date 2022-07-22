@@ -1,65 +1,76 @@
 .navbar {
+  background-color: #0A092D;
   height: 10vh;
+  width: 100%;
   color: white;
+  font-size: 20px;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.button {
+  color: white;
+  padding: 10px 15px;
+  background-color: blue;
+  border-radius: 10px;
+  font-weight: 700px;
 }
 
 @media (min-width: 1200px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
+    align-items: center;
     width: 1200px;
+    height: 100%;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
-    padding: 0px 15px;
+    align-items: center;
     width: 100%;
+    height: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
-    padding: 0px 15px;
+    align-items: center;
     width: 100%;
+    height: 100%;
   }
 }
 @media (max-width: 767px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
-    padding: 0px 15px;
+    align-items: center;
     width: 100%;
+    height: 100%;
   }
 }
 @media (max-width: 480px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
-    padding: 0px 15px;
+    align-items: center;
     width: 100%;
+    height: 100%;
   }
 }
 @media (max-width: 320px) {
   .container {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
-    padding: 0px 15px;
+    align-items: center;
     width: 100%;
+    height: 100%;
   }
 }/*# sourceMappingURL=NavbarModuleForm.module.css.map */

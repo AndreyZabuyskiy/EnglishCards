@@ -1,11 +1,129 @@
-.container {
-  min-height: 94vh;
-  height: 5000px;
-  position: relative;
-  background-color: aquamarine;
-}
-
 .content {
   min-height: 100%;
-  background-color: red;
+  padding-bottom: 10vh;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.label {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.label:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  .text__input {
+    width: 50%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .text__input {
+    width: 50%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .text__input {
+    width: 100%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .text__input {
+    width: 100%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .text__input {
+    width: 100%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
+}
+@media (max-width: 320px) {
+  .container {
+    min-height: 94vh;
+    position: relative;
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .text__input {
+    width: 100%;
+    margin: 10px 0px;
+    background-color: #0A092D;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: white;
+  }
 }/*# sourceMappingURL=ModuleForm.module.css.map */

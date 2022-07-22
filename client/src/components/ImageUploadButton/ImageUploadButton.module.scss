@@ -1,0 +1,28 @@
+.file[type='file']{
+  display: none;
+}
+
+@media (min-width: 920px) {
+  .label{
+    margin: 20px 0px;
+    border: 1px dashed white;
+    color: white;
+    width: 100%;
+    padding: 40px 0px;
+    background-color: #2e3856;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .label:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 919px) {
+  .label{
+    display: none;
+  }
+}
