@@ -84,6 +84,10 @@ export const ModuleForm = () => {
           }
 
           <AddCardButton index={cards.length} />
+
+          <div className={style.button__create__module}>
+            <button>Создать</button>
+          </div>
         </div>
       </div>
     </div>

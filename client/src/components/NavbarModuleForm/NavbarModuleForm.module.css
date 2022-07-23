@@ -15,9 +15,12 @@
 .button {
   color: white;
   padding: 10px 15px;
-  background-color: blue;
+  background-color: #4255ff;
   border-radius: 10px;
   font-weight: 700px;
+}
+.button:hover {
+  background-color: #4d5dee;
 }
 
 @media (min-width: 1200px) {
