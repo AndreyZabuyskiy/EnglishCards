@@ -41,63 +41,41 @@
   border-radius: 5px;
 }
 
+.form {
+  margin: 0 auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+}
+
 @media (min-width: 1200px) {
   .form {
     width: 537px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .form {
     width: 537px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .form {
     width: 537px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }
 @media (max-width: 767px) {
   .form {
     width: 436px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }
 @media (max-width: 480px) {
   .form {
     width: 336px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }
 @media (max-width: 320px) {
   .form {
     width: 224px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
   }
 }

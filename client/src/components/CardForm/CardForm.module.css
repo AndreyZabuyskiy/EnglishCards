@@ -84,310 +84,70 @@
   color: yellow;
 }
 
-@media (min-width: 1200px) {
-  .inputs {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 0px 20px;
-  }
-  .input__value {
-    width: 50%;
-    margin-right: 20px;
-  }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .input__translate {
-    width: 50%;
-    margin-left: 20px;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
+.inputs {
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 20px;
 }
-@media (min-width: 992px) and (max-width: 1199px) {
-  .inputs {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 0px 20px;
-  }
-  .input__value {
-    width: 50%;
-    margin-right: 20px;
-  }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .input__translate {
-    width: 50%;
-    margin-left: 20px;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .input__translate:focus {
-    border-bottom: 3px solid yellow;
-  }
+
+.input__value input {
+  background-color: #2e3856;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 25px;
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
 }
-@media (min-width: 768px) and (max-width: 991px) {
+.input__value input:focus {
+  border-bottom: 3px solid yellow;
+}
+.input__value p {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.input__translate input {
+  background-color: #2e3856;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+  height: 25px;
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
+}
+.input__translate input:focus {
+  border-bottom: 3px solid yellow;
+}
+.input__translate p {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
   .inputs {
-    display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding: 0px 20px;
   }
   .input__value {
     width: 50%;
     margin-right: 20px;
   }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
   .input__translate {
     width: 50%;
     margin-left: 20px;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
   }
 }
 @media (max-width: 767px) {
   .inputs {
-    display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: 0px 20px;
   }
   .input__value {
     width: 100%;
   }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
   .input__translate {
     width: 100%;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .add__image {
-    display: none;
-  }
-}
-@media (max-width: 480px) {
-  .inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0px 20px;
-  }
-  .input__value {
-    width: 100%;
-  }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .input__value .add__image {
-    display: none;
-  }
-  .input__translate {
-    width: 100%;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .add__image {
-    display: none;
-  }
-}
-@media (max-width: 320px) {
-  .inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0px 20px;
-  }
-  .input__value {
-    width: 100%;
-  }
-  .input__value input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__value input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__value p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  .input__translate {
-    width: 100%;
-  }
-  .input__translate input {
-    background-color: #2e3856;
-    font-size: 20px;
-    color: white;
-    width: 100%;
-    height: 25px;
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-  }
-  .input__translate input:focus {
-    border-bottom: 3px solid yellow;
-  }
-  .input__translate p {
-    color: white;
-    font-size: 14px;
-    text-transform: uppercase;
   }
   .add__image {
     display: none;

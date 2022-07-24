@@ -57,12 +57,10 @@ export const ModuleForm = () => {
         
         <div className={style.content}>
           <div className={style.header__content}>
-            <div className={style.input}>
-              <input id="title"
-                className={style.text__input}
-                type="text" placeholder='Введите название' />
-              <label for="title" className={style.label}>Название</label>
-            </div>
+            <input id="title"
+              className={style.text__input}
+              type="text" placeholder='Введите название' />
+            <label for="title" className={style.label}>Название</label>
             <input id={"description"}
               className={style.text__input}
               type="text"

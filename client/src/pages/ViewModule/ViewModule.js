@@ -65,7 +65,7 @@ export const ViewModule = () => {
           </div>
         
           <div className={style.card__item__container}>
-            <div className={style.card__item}>
+            <div className={style.cards__item}>
               { moduleData?.words?.[cardItemIndex].value }
             </div>
             <div className={style.cards__items__buttons}>
