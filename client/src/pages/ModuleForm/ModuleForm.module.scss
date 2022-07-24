@@ -3,7 +3,7 @@
   padding-bottom: 10vh;
 }
 
-.inputs {
+.header__content {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
@@ -19,10 +19,65 @@
   color: white;
   font-size: 14px;
   text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.label:hover{
-  cursor: pointer;
+.container__permissions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0px;
+}
+
+.permissions {
+  display: flex;
+  justify-content: center;
+
+  .permission {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+
+    span {
+      color: #f6f7fb;
+      font-size: 16px;
+    }
+
+    div {
+      display: flex;
+      justify-content: right;
+    }
+
+    button {
+      background-color: #0A092D;
+      color: #A8B1FF;
+      font-size: 18px;
+      display: flex;
+      justify-content: right;
+
+      &:hover {
+        color: #4255ff
+      }
+    }
+  }
+}
+
+.wrapper {
+  button {
+    background-color: aqua;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    color: black;
+    font-size: 20px;
+
+    &:hover {
+      background-color: rgb(154, 237, 237);
+    }
+  }
 }
 
 .button__create__module {
@@ -61,6 +116,10 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }
 
@@ -80,6 +139,10 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }
 
@@ -99,6 +162,10 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }
 
@@ -118,6 +185,10 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }
 
@@ -137,6 +208,10 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }
 
@@ -156,5 +231,9 @@
     padding-bottom: 10px;
     font-size: 18px;
     color: white;
+    
+    &:focus {
+      border-bottom: 3px solid yellow;
+    }
   }
 }

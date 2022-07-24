@@ -56,7 +56,7 @@ export const ModuleForm = () => {
         <NavbarModuleForm />
         
         <div className={style.content}>
-          <div className={style.inputs}>
+          <div className={style.header__content}>
             <div className={style.input}>
               <input id="title"
                 className={style.text__input}
@@ -68,6 +68,30 @@ export const ModuleForm = () => {
               type="text"
               placeholder='Добавьте описание...' />
             <label for="description" className={style.label}>Описание</label>
+          </div>
+
+          <div className={style.container__permissions}>
+            <div className={style.permissions}>
+              <div className={style.permission}>
+                <div>
+                  <span>Видно всем</span>
+                </div>
+                <div>
+                  <button>Изменить</button>
+                </div>
+              </div>
+              <div className={style.permission}>
+                <div>
+                  <span>Редактируется только мной</span>
+                </div>
+                <div>
+                  <button>Изменить</button>
+                </div>
+              </div>
+            </div>
+            <div className={style.wrapper}>
+              <button>⇆</button>
+            </div>
           </div>
 
           <ImageUploadButton />

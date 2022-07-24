@@ -26,16 +26,69 @@
   align-items: center;
   padding: 0px 20px;
   font-size: 20px;
+  cursor: all-scroll;
+}
+.header button {
+  background-color: #2e3856;
+  color: white;
+  font-size: 20px;
+  margin-left: 30px;
+}
+.header button:hover {
+  color: yellow;
+}
+.header span:hover {
+  color: yellow;
 }
 
 .index {
   font-size: 20px;
 }
 
+.add__image {
+  border: 2px dashed white;
+  width: 84px;
+  height: 60px;
+  padding: 10px;
+  margin-left: 25px;
+}
+.add__image input {
+  display: none;
+}
+.add__image label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+}
+.add__image label span {
+  width: 64px;
+  word-wrap: break-word;
+  text-align: center;
+}
+.add__image label .icon__img {
+  font-size: 20px;
+}
+.add__image label:hover {
+  cursor: pointer;
+}
+.add__image label:hover .icon__img {
+  color: yellow;
+}
+.add__image:hover {
+  cursor: pointer;
+}
+.add__image:hover .icon__img {
+  color: yellow;
+}
+
 @media (min-width: 1200px) {
   .inputs {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -50,6 +103,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__value p {
     color: white;
@@ -68,6 +124,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__translate p {
     color: white;
@@ -79,6 +138,7 @@
   .inputs {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -93,6 +153,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__value p {
     color: white;
@@ -111,17 +174,24 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__translate p {
     color: white;
     font-size: 14px;
     text-transform: uppercase;
   }
+  .input__translate:focus {
+    border-bottom: 3px solid yellow;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .inputs {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -136,6 +206,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__value p {
     color: white;
@@ -154,6 +227,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__translate p {
     color: white;
@@ -165,6 +241,7 @@
   .inputs {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -178,6 +255,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__value p {
     color: white;
@@ -196,16 +276,23 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
   }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
+  }
   .input__translate p {
     color: white;
     font-size: 14px;
     text-transform: uppercase;
+  }
+  .add__image {
+    display: none;
   }
 }
 @media (max-width: 480px) {
   .inputs {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -220,10 +307,16 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
   }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
+  }
   .input__value p {
     color: white;
     font-size: 14px;
     text-transform: uppercase;
+  }
+  .input__value .add__image {
+    display: none;
   }
   .input__translate {
     width: 100%;
@@ -237,16 +330,23 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
   }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
+  }
   .input__translate p {
     color: white;
     font-size: 14px;
     text-transform: uppercase;
+  }
+  .add__image {
+    display: none;
   }
 }
 @media (max-width: 320px) {
   .inputs {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     padding: 0px 20px;
   }
   .input__value {
@@ -260,6 +360,9 @@
     height: 25px;
     border-bottom: 2px solid white;
     margin-bottom: 10px;
+  }
+  .input__value input:focus {
+    border-bottom: 3px solid yellow;
   }
   .input__value p {
     color: white;
@@ -278,9 +381,15 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
   }
+  .input__translate input:focus {
+    border-bottom: 3px solid yellow;
+  }
   .input__translate p {
     color: white;
     font-size: 14px;
     text-transform: uppercase;
+  }
+  .add__image {
+    display: none;
   }
 }/*# sourceMappingURL=CardForm.module.css.map */
