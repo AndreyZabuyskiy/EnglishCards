@@ -21,21 +21,23 @@ export const ScreenCards = () => {
     return moduleReducer.module;
   });
 
-  const user = useSelector(state => {
+  /*const user = useSelector(state => {
     const { authReducer } = state;
     return authReducer.user;
-  });
+  });*/
 
-  const clickBack = () => {
+  const clickBack = (e) => {
     if(cardIndex > 0) { 
       setCardIndex(cardIndex - 1);
     }
+    e.stopPropagation();
   }
 
-  const clickForward = () => {
+  const clickForward = (e) => {
     if(cardIndex < moduleData.words.length - 1) {
       setCardIndex(cardIndex + 1);
     }
+    e.stopPropagation();
   }
 
   return (
