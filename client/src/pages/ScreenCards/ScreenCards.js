@@ -21,11 +21,6 @@ export const ScreenCards = () => {
     return moduleReducer.module;
   });
 
-  /*const user = useSelector(state => {
-    const { authReducer } = state;
-    return authReducer.user;
-  });*/
-
   const clickBack = (e) => {
     if(cardIndex > 0) { 
       setCardIndex(cardIndex - 1);

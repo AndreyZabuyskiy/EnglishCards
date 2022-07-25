@@ -1,0 +1,21 @@
+.UI__rows {
+  width: 25%;
+  color: white;
+}
+
+.UI__single__row {
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+@media (max-width: 991px) {
+  .UI__rows {
+    color: white;
+    display: flex;
+    flex-direction: row;
+
+    div {
+      margin-right: 40px;
+    }
+  }
+}
