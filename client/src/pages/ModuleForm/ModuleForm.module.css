@@ -10,73 +10,6 @@
   padding-bottom: 15vh;
 }
 
-.header__content {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-.header__content div {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0px;
-}
-.header__content label {
-  color: white;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.header__content label:hover {
-  cursor: pointer;
-}
-
-.container__permissions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.permissions {
-  display: flex;
-  justify-content: center;
-}
-.permissions .permission {
-  display: flex;
-  flex-direction: column;
-  margin-right: 30px;
-}
-.permissions .permission span {
-  color: #f6f7fb;
-  font-size: 16px;
-}
-.permissions .permission div {
-  display: flex;
-  justify-content: right;
-}
-.permissions .permission button {
-  background-color: #0A092D;
-  color: #A8B1FF;
-  font-size: 18px;
-  display: flex;
-  justify-content: right;
-}
-.permissions .permission button:hover {
-  color: #4255ff;
-}
-
-.wrapper button {
-  background-color: aqua;
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-  color: black;
-  font-size: 20px;
-}
-.wrapper button:hover {
-  background-color: rgb(154, 237, 237);
-}
-
 .button__create__module {
   width: 100%;
   display: flex;
@@ -95,19 +28,6 @@
   background-color: #4d5dee;
 }
 
-.text__input {
-  width: 50%;
-  margin: 10px 0px;
-  background-color: #0A092D;
-  border-bottom: 2px solid white;
-  padding-bottom: 10px;
-  font-size: 18px;
-  color: white;
-}
-.text__input:focus {
-  border-bottom: 3px solid yellow;
-}
-
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
     width: 100%;
@@ -118,8 +38,5 @@
   .container {
     width: 100%;
     padding: 0px 20px;
-  }
-  .text__input {
-    width: 100%;
   }
 }/*# sourceMappingURL=ModuleForm.module.css.map */

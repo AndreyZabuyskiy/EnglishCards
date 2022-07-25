@@ -39,11 +39,6 @@
   .header {
     flex-direction: column-reverse;
   }
-  .UI__rows {
-    color: white;
-    display: flex;
-    flex-direction: row;
-  }
 }
 @media (max-width: 767px) {
   .container {
@@ -52,11 +47,6 @@
   .header {
     flex-direction: column-reverse;
     flex-wrap: wrap;
-  }
-  .UI__rows {
-    color: white;
-    display: flex;
-    flex-direction: row;
   }
 }
 @media (max-width: 480px) {
@@ -67,11 +57,6 @@
     flex-direction: column-reverse;
     flex-wrap: wrap;
   }
-  .UI__rows {
-    color: white;
-    display: flex;
-    flex-direction: row;
-  }
 }
 @media (max-width: 320px) {
   .container {
@@ -80,10 +65,5 @@
   .header {
     flex-direction: column-reverse;
     flex-wrap: wrap;
-  }
-  .UI__rows {
-    color: white;
-    display: flex;
-    flex-direction: row;
   }
 }/*# sourceMappingURL=ViewModule.module.css.map */

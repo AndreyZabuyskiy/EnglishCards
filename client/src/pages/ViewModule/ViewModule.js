@@ -40,7 +40,6 @@ export const ViewModule = () => {
         </div>
 
         <SetPageInfo user={user} />
-        
         <ListCardElement moduleData={moduleData} />
       </div>
     </>
