@@ -1,11 +1,9 @@
 import style from './ModuleForm.module.css';
 import { Navbar } from '../../components/Navbar';
 import { NavbarModuleForm } from '../../components/NavbarModuleForm';
-import { CardForm } from '../../components/CardForm/CardForm';
 import { useState } from 'react';
-import { AddCardButton } from '../../components/AddCardButton/AddCardButton';
-import { ImageUploadButton } from '../../components/ImageUploadButton';
 import { HeaderModuleForm } from '../../components/HeaderModuleForm';
+import { ListCreateCards } from '../../components/ListCreateCards';
 
 export const ModuleForm = () => {
   const initialState = [
@@ -58,22 +56,8 @@ export const ModuleForm = () => {
         
         <div className={style.content}>
           <HeaderModuleForm />
-
-          <ImageUploadButton />
-
-          {
-            cards.map((card, index) => (
-              <CardForm index={index}
-                id={card.id}
-                value={card.value}
-                translate={card.translate}
-                imgUrl={card.imgUrl}
-              />
-            ))
-          }
-
-          <AddCardButton index={cards.length} />
-
+          <ListCreateCards cards={cards} />
+          
           <div className={style.button__create__module}>
             <button>Создать</button>
           </div>
