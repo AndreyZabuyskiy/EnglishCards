@@ -35,7 +35,7 @@ export const ViewModule = () => {
         <h1 className={style.title}> { moduleData?.module?.title } </h1>
 
         <div className={style.header}>
-          <UIMenuModule />
+          <UIMenuModule id={id} />
           <CardItemInner id={id} moduleData={moduleData} user={user} />
         </div>
 

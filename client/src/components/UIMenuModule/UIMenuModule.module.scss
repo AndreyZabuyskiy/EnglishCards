@@ -1,16 +1,28 @@
 .UI__rows {
   width: 25%;
   color: white;
+  margin-right: 30px;
 }
 
 .UI__single__row {
   font-size: 20px;
-  margin: 20px 0px;
+  margin: 10px 0px;
+}
+
+.link {
+  display: inline-block;
+  color: white;
+  padding: 10px;
+  width: 100%;
+
+  &:hover {
+    background-color: orange;
+    border-radius: 5px;
+  }
 }
 
 @media (max-width: 991px) {
   .UI__rows {
-    color: white;
     display: flex;
     flex-direction: row;
 

@@ -1,11 +1,13 @@
-import style from './CardForm.module.scss';
+import style from './CardForm.module.css';
 
 export const CardForm = (props) => {
+  console.log('card form -->', props);
+
   return (
     <div className={style.container}>
       <div className={style.header__container}>
         <div className={style.header}>
-          <div className={style.index}>{props.index + 1}</div>
+          <div className={style.index}>{props.id + 1}</div>
           <div>
             <span>═</span>
             <button>🗑</button>

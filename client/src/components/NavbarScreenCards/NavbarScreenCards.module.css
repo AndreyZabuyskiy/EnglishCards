@@ -4,7 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   box-shadow: 0px 5px 5px 5px #111033;
+  position: relative;
 }
 
 .content {
@@ -33,4 +35,13 @@
 
 .button__exit:hover {
   background-color: #2e3856;
+}
+
+.load {
+  height: 2px;
+  width: 100%;
+  background-color: #7B89C9;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }/*# sourceMappingURL=NavbarScreenCards.module.css.map */

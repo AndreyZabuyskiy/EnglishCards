@@ -4,7 +4,7 @@ import { HOME_ROUTE } from '../../utils/consts';
 
 export const NavbarScreenCards = (props) => {
   const { id } = useParams();
-
+  
   return (
     <div className={style.container}>
       <div className={style.content}>
@@ -17,6 +17,7 @@ export const NavbarScreenCards = (props) => {
           <Link className={style.button__exit}  to={`${HOME_ROUTE}/${id}`}>✕</Link>
         </div>
       </div>
+      <div className={style.load}></div>
     </div>
   );
 }
