@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"TestModule.module.css"}
+{"version":3,"sources":["TestModule.module.scss","TestModule.module.css"],"names":[],"mappings":"AAAA;EACE,gBAAA;EACA,WAAA;EACA,cAAA;EACA,aAAA;ACCF","file":"TestModule.module.css"}
