@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchModuleById } from "../../redux/actions";
-import { NavbarScreenCards } from "../../components/NavbarScreenCards";
-import { BigCard } from "../../components/BigCard";
+import { NavbarScreenCards, BigCard } from '../../components';
 
 export const ScreenCards = () => {
   const [cardIndex, setCardIndex] = useState(0);

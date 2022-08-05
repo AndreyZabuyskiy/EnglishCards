@@ -3,11 +3,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModuleById } from "../../redux/actions";
-import { Navbar } from "../../components/Navbar";
-import { CardItemInner } from '../../components/CardItemInner';
-import { UIMenuModule } from '../../components/UIMenuModule/UIMenuModule';
-import { SetPageInfo } from '../../components/SetPageInfo';
-import { ListCardElement } from '../../components/ListCardElement';
+import { Navbar, CardItemInner, UIMenuModule, SetPageInfo, ListCardElement } from '../../components';
 
 export const ViewModule = () => {
   const { id } = useParams();

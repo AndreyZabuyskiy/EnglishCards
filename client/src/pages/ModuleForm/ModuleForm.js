@@ -1,9 +1,6 @@
-import style from './ModuleForm.module.css';
-import { Navbar } from '../../components/Navbar';
-import { NavbarModuleForm } from '../../components/NavbarModuleForm';
 import { useState } from 'react';
-import { HeaderModuleForm } from '../../components/HeaderModuleForm';
-import { ListCreateCards } from '../../components/ListCreateCards';
+import style from './ModuleForm.module.css';
+import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
 
 export const ModuleForm = () => {
   const initialState = [

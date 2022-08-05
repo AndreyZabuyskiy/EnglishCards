@@ -1,1 +1,1 @@
-import { CardWordsSelection } from "./CardWordsSelection";
+export { CardWordsSelection } from "./CardWordsSelection";
