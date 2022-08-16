@@ -1,31 +1,24 @@
-.UI__rows {
-  width: 25%;
-  color: white;
-  margin-right: 30px;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-
-.UI__single__row {
-  font-size: 20px;
-  margin: 10px 0px;
+.container li {
+  width: 191.5px;
+  height: 52px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: #2e3856;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-
-.link {
-  display: inline-block;
-  color: white;
-  padding: 10px;
-  width: 100%;
+.container li p {
+  color: #F6F7FB;
+  font-size: 16px;
 }
-.link:hover {
-  background-color: orange;
-  border-radius: 5px;
-}
-
-@media (max-width: 991px) {
-  .UI__rows {
-    display: flex;
-    flex-direction: row;
-  }
-  .UI__rows div {
-    margin-right: 40px;
-  }
+.container li:hover {
+  border-bottom: 5px solid #a8b1ff;
+  padding-bottom: 3px;
 }/*# sourceMappingURL=UIMenuModule.module.css.map */

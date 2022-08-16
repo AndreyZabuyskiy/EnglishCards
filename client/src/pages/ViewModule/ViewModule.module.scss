@@ -1,5 +1,6 @@
 .container {
-  width: 80%;
+  width: 100%;
+  max-width: 814px;
   min-height: 94vh;
   margin: 0 auto;
 }
@@ -11,37 +12,20 @@
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid black;
-  padding-bottom: 30px;
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 900px;
-  }
-
-  .header {
-    flex-direction: row;
-    margin-bottom: 20px;
+    max-width: 814px;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .header {
-    flex-direction: row;
-    margin-bottom: 20px;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .container {
     margin-top: 6vh;
-  }
-
-  .header {
-    flex-direction: column-reverse;
   }
 }
 
@@ -49,31 +33,16 @@
   .container {
     margin-top: 6vh;
   }
-
-  .header {
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
-  }
 }
 
 @media (max-width: 480px) {
   .container {
     margin-top: 6vh;
   }
-
-  .header {
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
-  }
 }
 
 @media (max-width: 320px) {
   .container {
     margin-top: 6vh;
-  }
-
-  .header {
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
   }
 }
