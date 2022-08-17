@@ -42,13 +42,41 @@ export const CardItemInner = (props) => {
       <div className={style.wrapper__card}>
         <div className={cardStyle} onClick={() => onClickCard()}>
           <div className={style.card__front}>
-            { props.moduleData?.words?.[cardItemIndex].value }
+            <div className={style.card__header}>
+              <div className={style.card__header__column_1}>Термин</div>
+              <div className={style.card__header__column_2}>6/19</div>
+              <div className={style.card__header__column_3}>
+                <span className={style.card__edit}>✎</span>
+                <span>✰</span>
+              </div>
+            </div>
+            <div className={style.card__front__content}>
+              { props.moduleData?.words?.[cardItemIndex].value }
+            </div>
+            <div className={style.card__footer}>
+              <div className={style.card__footer__left} onClick={(e) => props.clickBack(e)}>←</div>
+              <div className={style.card__footer__right} onClick={(e) => props.clickForward(e)}>→</div>
+            </div>
           </div>
           <div className={style.card__back}>
-            <div>{ props.moduleData?.words?.[cardItemIndex].translate }</div>
-            <div>
-              <img className={style.card__img}
-                src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />
+            <div className={style.card__header}>
+              <div className={style.card__header__column_1}>Термин</div>
+              <div className={style.card__header__column_2}>6/19</div>
+              <div className={style.card__header__column_3}>
+                <span className={style.card__edit}>✎</span>
+                <span>✰</span>
+              </div>
+            </div>
+            <div className={style.card__back__content}>
+              <div>{ props.moduleData?.words?.[cardItemIndex].translate }</div>
+              <div>
+                <img className={style.card__img}
+                  src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />
+              </div>
+            </div>
+            <div className={style.card__footer}>
+              <div className={style.card__footer__left} onClick={(e) => props.clickBack(e)}>←</div>
+              <div className={style.card__footer__right} onClick={(e) => props.clickForward(e)}>→</div>
             </div>
           </div>
         </div>

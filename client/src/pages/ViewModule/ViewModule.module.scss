@@ -11,9 +11,6 @@
   margin: 30px 0px 20px;
 }
 
-.header {
-}
-
 @media (min-width: 1200px) {
   .container {
     max-width: 814px;
@@ -27,17 +24,32 @@
   .container {
     margin-top: 6vh;
   }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
 }
 
 @media (max-width: 767px) {
   .container {
     margin-top: 6vh;
   }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
 }
 
 @media (max-width: 480px) {
   .container {
     margin-top: 6vh;
+  }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap-reverse;
   }
 }
 

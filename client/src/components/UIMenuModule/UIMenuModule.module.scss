@@ -25,3 +25,16 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+
+    li {
+      width: 400px;
+      margin-top: 10px;
+    }
+  }
+}

@@ -21,4 +21,16 @@
 .container li:hover {
   border-bottom: 5px solid #a8b1ff;
   padding-bottom: 3px;
+}
+
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .container li {
+    width: 400px;
+    margin-top: 10px;
+  }
 }/*# sourceMappingURL=UIMenuModule.module.css.map */
