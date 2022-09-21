@@ -14,13 +14,16 @@ export const ListCreateCards = (props) => {
             value={card.value}
             translate={card.translate}
             imgUrl={card.imgUrl}
-            setCards={props.setCards}
             cards={props.cards}
+            setCards={props.setCards}
           />
         ))
       }
 
-      <AddCardButton index={props.cards.length} />
+      <AddCardButton
+        index={props.cards.length}
+        cards={props.cards}
+        setCards={props.setCards} />
     </div>
   );
 }
