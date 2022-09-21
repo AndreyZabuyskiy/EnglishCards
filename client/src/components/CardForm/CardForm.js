@@ -3,19 +3,19 @@ import style from './CardForm.module.css';
 export const CardForm = (props) => {
   const handleChangeValue = e => {
     const changedCards = [];
-
-    for (let i = 0; i < props.cards.length; ++i) {
-      if (props.id === i) {
+    
+    props.cards.forEach(card => {
+      if (props.id === card.id) {
         changedCards.push({
-          id: props.cards[i].id,
+          id: card.id,
           value: e.target.value,
-          translate: props.cards[i].translate,
-          imgUrl: props.cards[i].imgUrl
+          translate: card.translate,
+          imgUrl: card.imgUrl
         });
       } else {
-        changedCards.push(props.cards[i]);
+        changedCards.push(card);
       }
-    }
+    });
 
     props.setCards(changedCards);
   }
@@ -23,18 +23,36 @@ export const CardForm = (props) => {
   const handleChangeTranslate = e => {
     const changedCards = [];
 
-    for (let i = 0; i < props.cards.length; ++i) {
-      if (props.id === i) {
+    props.cards.forEach(card => {
+      if (props.id === card.id) {
         changedCards.push({
-          id: props.cards[i].id,
-          value:  props.cards[i].value,
+          id: card.id,
+          value: card.value,
           translate: e.target.value,
-          imgUrl: props.cards[i].imgUrl
+          imgUrl: card.imgUrl
         });
       } else {
-        changedCards.push(props.cards[i]);
+        changedCards.push(card);
       }
-    }
+    });
+
+    props.setCards(changedCards);
+  }
+
+  const handleDeleteCard = e => {
+    const changedCards = [];
+    let index = 0;
+
+    props.cards.forEach(card => {
+      if(props.id !== card.id) {
+        changedCards.push({
+          id: index++,
+          value:  card.value,
+          translate: card.translate,
+          imgUrl: card.imgUrl
+        });
+      }
+    });
 
     props.setCards(changedCards);
   }
@@ -46,7 +64,7 @@ export const CardForm = (props) => {
           <div className={style.index}>{props.id + 1}</div>
           <div>
             <span>═</span>
-            <button>🗑</button>
+            <button onClick={handleDeleteCard}>🗑</button>
           </div>
         </div>
       </div>

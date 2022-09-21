@@ -44,8 +44,6 @@ export const ModuleForm = () => {
 
   const [cards, setCards] = useState(initialState);
 
-  console.log('cards --> ', cards);
-
   return (
     <div>
       <Navbar />
