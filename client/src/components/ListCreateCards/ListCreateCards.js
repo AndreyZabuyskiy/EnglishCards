@@ -14,6 +14,8 @@ export const ListCreateCards = (props) => {
             value={card.value}
             translate={card.translate}
             imgUrl={card.imgUrl}
+            setCards={props.setCards}
+            cards={props.cards}
           />
         ))
       }

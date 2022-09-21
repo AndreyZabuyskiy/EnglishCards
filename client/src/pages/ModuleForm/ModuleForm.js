@@ -6,8 +6,8 @@ export const ModuleForm = () => {
   const initialState = [
     {
       id: 0,
-      value: '',
-      translate: '',
+      value: 'skin',
+      translate: 'кожа',
       imgUrl: ''
     },
     {
@@ -44,6 +44,8 @@ export const ModuleForm = () => {
 
   const [cards, setCards] = useState(initialState);
 
+  console.log('cards --> ', cards);
+
   return (
     <div>
       <Navbar />
@@ -53,7 +55,7 @@ export const ModuleForm = () => {
         
         <div className={style.content}>
           <HeaderModuleForm />
-          <ListCreateCards cards={cards} />
+          <ListCreateCards cards={cards} setCards={setCards} />
           
           <div className={style.button__create__module}>
             <button>Создать</button>

@@ -25,16 +25,20 @@ export const CardItemInner = (props) => {
     setIsFrontCard(!isFrontCard);
   }
 
-  const clickBack = () => {
+  const clickBack = (e) => {
     if(cardItemIndex > 0) { 
       setCardItemIndex(cardItemIndex - 1);
     }
+    
+    e.stopPropagation();
   }
 
-  const clickForward = () => {
+  const clickForward = (e) => {
     if(cardItemIndex < props.moduleData.words.length - 1) {
       setCardItemIndex(cardItemIndex + 1);
     }
+    
+    e.stopPropagation();
   }
 
   return (
@@ -44,7 +48,9 @@ export const CardItemInner = (props) => {
           <div className={style.card__front}>
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
-              <div className={style.card__header__column_2}>6/19</div>
+              <div className={style.card__header__column_2}>
+                { cardItemIndex + 1 }/{ props.moduleData?.words?.length }
+              </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
                 <span>✰</span>
@@ -54,14 +60,16 @@ export const CardItemInner = (props) => {
               { props.moduleData?.words?.[cardItemIndex].value }
             </div>
             <div className={style.card__footer}>
-              <div className={style.card__footer__left} onClick={(e) => props.clickBack(e)}>←</div>
-              <div className={style.card__footer__right} onClick={(e) => props.clickForward(e)}>→</div>
+              <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
+              <div className={style.card__footer__right} onClick={(e) => clickForward(e)}>→</div>
             </div>
           </div>
           <div className={style.card__back}>
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
-              <div className={style.card__header__column_2}>6/19</div>
+              <div className={style.card__header__column_2}>
+                { cardItemIndex + 1 }/{ props.moduleData?.words?.length }
+              </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
                 <span>✰</span>
@@ -75,20 +83,14 @@ export const CardItemInner = (props) => {
               </div>
             </div>
             <div className={style.card__footer}>
-              <div className={style.card__footer__left} onClick={(e) => props.clickBack(e)}>←</div>
-              <div className={style.card__footer__right} onClick={(e) => props.clickForward(e)}>→</div>
+              <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
+              <div className={style.card__footer__right} onClick={(e) => clickForward(e)}>→</div>
             </div>
           </div>
         </div>
       </div>
 
       <div className={style.cards__items__buttons}>
-        <button className={style.button__card__item} onClick={() => clickBack()}> ← </button>
-        <div className={ style.counter__cards } >
-          { cardItemIndex + 1 }/{ props.moduleData?.words?.length }
-        </div>
-        <button className={style.button__card__item} onClick={() => clickForward()}> → </button>
-
         <Link
           to={`${SCREEN_CARDS}/${props.id}`}
           className={style.link__screen__cards}

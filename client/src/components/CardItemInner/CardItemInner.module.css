@@ -7,6 +7,9 @@
   height: 428px;
   position: relative;
 }
+.wrapper__card:hover {
+  cursor: pointer;
+}
 
 .card {
   width: 100%;

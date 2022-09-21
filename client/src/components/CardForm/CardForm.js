@@ -1,7 +1,43 @@
 import style from './CardForm.module.css';
 
 export const CardForm = (props) => {
-  console.log('card form -->', props);
+  const handleChangeValue = e => {
+    const changedCards = [];
+
+    for (let i = 0; i < props.cards.length; ++i) {
+      if (props.id === i) {
+        changedCards.push({
+          id: props.cards[i].id,
+          value: e.target.value,
+          translate: props.cards[i].translate,
+          imgUrl: props.cards[i].imgUrl
+        });
+      } else {
+        changedCards.push(props.cards[i]);
+      }
+    }
+
+    props.setCards(changedCards);
+  }
+
+  const handleChangeTranslate = e => {
+    const changedCards = [];
+
+    for (let i = 0; i < props.cards.length; ++i) {
+      if (props.id === i) {
+        changedCards.push({
+          id: props.cards[i].id,
+          value:  props.cards[i].value,
+          translate: e.target.value,
+          imgUrl: props.cards[i].imgUrl
+        });
+      } else {
+        changedCards.push(props.cards[i]);
+      }
+    }
+
+    props.setCards(changedCards);
+  }
 
   return (
     <div className={style.container}>
@@ -16,11 +52,11 @@ export const CardForm = (props) => {
       </div>
       <div className={style.inputs}>
         <div className={style.input__value}>
-          <input type="text" />
+          <input type="text" value={props.value} onChange={handleChangeValue} />
           <p>Термин</p>
         </div>
         <div className={style.input__translate}>
-          <input type="text" />
+          <input type="text" value={props.translate} onChange={handleChangeTranslate} />
           <p>Определение</p>
         </div>
         <div className={style.add__image}>
