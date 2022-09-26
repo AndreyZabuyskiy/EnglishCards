@@ -1,17 +1,16 @@
 import style from './HeaderModuleForm.module.css';
 
-export const HeaderModuleForm = () => {
+export const HeaderModuleForm = props => {
   return (
     <>
       <div className={style.header__content}>
-        <input id="title"
-          className={style.text__input}
-          type="text" placeholder='Введите название' />
+        <input id="title" className={style.text__input}
+          type="text" placeholder='Введите название'
+          value={props.title} onChange={props.setTitle} />
         <label for="title" className={style.label}>Название</label>
-        <input id={"description"}
-          className={style.text__input}
-          type="text"
-          placeholder='Добавьте описание...' />
+        <input id={"description"} className={style.text__input}
+          type="text" placeholder='Добавьте описание...'
+          value={props.description} onChange={props.setDescription} />
         <label for="description" className={style.label}>Описание</label>
       </div>
 

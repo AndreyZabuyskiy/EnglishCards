@@ -1,7 +1,7 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
-import { fetchModuleByIdApi } from "../http/moduleApi";
+import { createModuleApi, fetchModuleByIdApi } from "../http/moduleApi";
 
 export function register(login, password) {
   return async dispatch => {
@@ -50,6 +50,29 @@ export function fetchModuleById(id) {
 
     dispatch({
       type: FETCH_MODULE,
+      data: response
+    });
+  }
+}
+
+export function createModule(module) {
+  return async dispatch => {
+    let words = [];
+    for(let card in module.cards) {
+      words.push({
+        value: module.cards[card].value,
+        translate: module.cards[card].translate,
+        imgUrl: ''
+      });
+    }
+    
+    const createdModule = {
+      title: module.title, words
+    }
+
+    const response = await createModuleApi(createdModule);
+    dispatch({
+      type: CREATE_MODULE,
       data: response
     });
   }

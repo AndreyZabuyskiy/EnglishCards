@@ -13,6 +13,7 @@ export default function(req, res, next) {
     }
 
     const decoded = jwt.verify(token, config.get('seckretKey'));
+    console.log('decoded --> ', decoded);
     req.user = decoded;
     next();
   } catch (e) {

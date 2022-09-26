@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
+import { useDispatch } from 'react-redux';
+import { createModule } from '../../redux/actions';
 
 export const ModuleForm = () => {
+  const dispatch = useDispatch();
+
+
   const initialState = [
     {
       id: 0,
@@ -12,37 +17,47 @@ export const ModuleForm = () => {
     },
     {
       id: 1,
-      value: '',
-      translate: '',
+      value: 'lips',
+      translate: 'губы',
       imgUrl: ''
     },
     {
       id: 2,
-      value: '',
-      translate: '',
+      value: 'chin',
+      translate: 'подбородок',
       imgUrl: ''
     },
     {
       id: 3,
-      value: '',
-      translate: '',
+      value: 'shoulder',
+      translate: 'плечо',
       imgUrl: ''
     },
     {
       id: 4,
-      value: '',
-      translate: '',
+      value: 'cheek',
+      translate: 'щека',
       imgUrl: ''
-    },
-    {
-      id: 5,
-      value: '',
-      translate: '',
-      imgUrl: ''
-    },
+    }
   ]
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [cards, setCards] = useState(initialState);
+
+  const handleChangeTitle = e => {
+    setTitle(e.target.value);
+  }
+
+  const handleChangeDescription = e => {
+    setDescription(e.target.value);
+  }
+
+  const clickCreateModule = e => {
+    dispatch(createModule({
+      title, description, cards
+    }));
+  }
 
   return (
     <div>
@@ -52,11 +67,12 @@ export const ModuleForm = () => {
         <NavbarModuleForm />
         
         <div className={style.content}>
-          <HeaderModuleForm />
+          <HeaderModuleForm title={title} setTitle={handleChangeTitle}
+            description={description} setDescription={handleChangeDescription} />
           <ListCreateCards cards={cards} setCards={setCards} />
           
           <div className={style.button__create__module}>
-            <button>Создать</button>
+            <button onClick={clickCreateModule}>Создать</button>
           </div>
         </div>
       </div>

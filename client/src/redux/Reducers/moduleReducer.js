@@ -1,4 +1,4 @@
-import { FETCH_MODULE } from "../types";
+import { CREATE_MODULE, FETCH_MODULE } from "../types";
 
 const initialState = {
   module: null

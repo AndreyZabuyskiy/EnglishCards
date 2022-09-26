@@ -1,7 +1,8 @@
-import { FETCH_MODULES } from "../types";
+import { FETCH_MODULES, CREATE_MODULE } from "../types";
 
 const initialState = {
-  modules: []
+  modules: [],
+  isCreateModule: false
 }
 
 export const modulesReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ export const modulesReducer = (state = initialState, action) => {
         ...state,
         modules: action.data
       }
+
+      case CREATE_MODULE:
+        console.log('modules reducer --> ', action.data);
+        return {
+          ...state
+        }
     
     default:
       return state;

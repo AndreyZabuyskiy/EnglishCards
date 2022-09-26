@@ -35,8 +35,8 @@ class UserController {
 
   async check(req, res, next) {
     try {
-      const { _id, login } = req.user;
-      const token = await userService.check(_id, login);
+      const { id, login } = req.user;
+      const token = await userService.check(id, login);
       return res.status(200).json({ token });
     } catch (e) {
       next(ApiError.badRequest(e.message));

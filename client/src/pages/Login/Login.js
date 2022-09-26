@@ -21,7 +21,7 @@ export const Login = () => {
         <input className={style.input} type="text" name="login" placeholder='login...'
           value={login} onChange={(e) => setLogin(e.target.value)} />
         <input className={style.input} type="password" name="password" placeholder='password...'
-         value={password} onChange={(e) => setPassword(e.target.value)} />
+          value={password} onChange={(e) => setPassword(e.target.value)} />
         <button onClick={() => clickLogin()} className={style.button}>Login</button>
       </div>
     </div>

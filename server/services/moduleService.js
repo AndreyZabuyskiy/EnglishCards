@@ -28,25 +28,29 @@ class ModuleService {
   }
 
   async createModule (title, userId, words) {
-    const moduleDoc = new StudyModule({
-      title: title,
-      user: userId
-    });
-
-    const createdModule = await moduleDoc.save();
-
-    words.map(async (word) => {
-      const wordDoc = new Word({
-        value: word.value,
-        translate: word.translate,
-        imgUrl: word.imgUrl,
-        module: createdModule._id
+    try{
+      const moduleDoc = new StudyModule({
+        title: title,
+        user: userId
+      });
+  
+      const createdModule = await moduleDoc.save();
+  
+      words.map(async (word) => {
+        const wordDoc = new Word({
+          value: word.value,
+          translate: word.translate,
+          imgUrl: word.imgUrl,
+          module: createdModule._id
+        });
+  
+        await wordDoc.save();
       });
 
-      await wordDoc.save();
-    });
-
-    return { createdModule, words };
+      return { createdModule, words };
+    } catch(e) {
+      console.log(e.message);
+    }
   }
 
   async updateModule (userId, moduleId, title, updateWords) {
