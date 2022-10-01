@@ -8,3 +8,4 @@ export const CHECK_AUTH = 'CHECK_AUTH';
 export const FETCH_MODULES = 'FETCH_MODULES';
 export const FETCH_MODULE = 'FETCH_MODULE';
 export const CREATE_MODULE = 'CREATE_MODULE';
+export const LOGOUT = 'LOGOUT';

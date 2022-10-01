@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../../redux/actions';
+import { Link } from 'react-router-dom';
+import { HOME_ROUTE } from '../../utils/consts';
 import style from './Login.module.css';
 
 export const Login = () => {
@@ -22,7 +24,9 @@ export const Login = () => {
           value={login} onChange={(e) => setLogin(e.target.value)} />
         <input className={style.input} type="password" name="password" placeholder='password...'
           value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={() => clickLogin()} className={style.button}>Login</button>
+        <Link to={ HOME_ROUTE }>
+          <button onClick={() => clickLogin()} className={style.button}>Login</button>
+        </Link>
       </div>
     </div>
   );

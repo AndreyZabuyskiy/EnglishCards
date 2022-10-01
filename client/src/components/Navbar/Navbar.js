@@ -1,16 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Navbar.module.css';
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { logout } from '../../redux/actions';
 
 export const Navbar = () => {
   const user = useSelector(state => {
     const { authReducer } = state;
-    return authReducer.state;
+    return authReducer.user;
   });
 
-  useEffect(() => { }, [user]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const clickLogout = () => {
+    dispatch(logout());
+    navigate(LOGIN_ROUTE);
+  }
+
+  useEffect(() => { }, [user]);;
 
   let links = [
     <Link className={style.login} to={HOME_ROUTE}>Login</Link>,
@@ -18,7 +27,7 @@ export const Navbar = () => {
   ]
 
   if (user) {
-    links = <span>Выйти</span>
+    links = <button onClick={clickLogout}>Выйти</button>
   }
 
   return (

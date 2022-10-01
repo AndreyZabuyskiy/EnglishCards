@@ -1,7 +1,8 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, LOGOUT } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi } from "../http/moduleApi";
+import Cookies from "js-cookie";
 
 export function register(login, password) {
   return async dispatch => {
@@ -74,6 +75,18 @@ export function createModule(module) {
     dispatch({
       type: CREATE_MODULE,
       data: response
+    });
+  }
+}
+
+export function logout() {
+  return async dispatch => {
+    console.log('logout action');
+    Cookies.remove('token');
+    //Cookies.set('token', '');
+
+    dispatch({
+      type: LOGOUT
     });
   }
 }
