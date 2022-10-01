@@ -1,11 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.container__navbar {
+  position: fixed;
+  width: 100%;
+}
+
 .container__form {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1200px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+  min-height: 100vh;
   padding-top: 50px;
 }
 
@@ -82,4 +91,4 @@
   .form {
     width: 224px;
   }
-}/*# sourceMappingURL=Login.module.css.map */
+}/*# sourceMappingURL=AuthForm.module.css.map */

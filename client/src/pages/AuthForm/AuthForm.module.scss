@@ -1,8 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.container__navbar {
+  position: fixed;
+  width: 100%;
+}
+
 .container__form {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1200px;
+  min-height: 100vh;
+  padding-top: 50px;
 }
 
 .img {
@@ -54,28 +67,33 @@
     width: 537px;
   }
 }
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .form {
     width: 537px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .form {
     width: 537px;
   }
 }
+
 @media (max-width: 767px) {
   .form {
     width: 436px;
   }
 }
+
 @media (max-width: 480px) {
   .form {
     width: 336px;
   }
 }
+
 @media (max-width: 320px) {
   .form {
     width: 224px;
   }
-}/*# sourceMappingURL=Register.module.css.map */
+}

@@ -1,9 +1,8 @@
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE, TEST_MODULE, LEARN_MODULE, WRITE_MODULE, SPELL_MODULE } from './utils/consts';
+import { AuthForm } from './pages/AuthForm';
 import { Home } from './pages/Home'
 import { ViewModule } from './pages/ViewModule';
 import { ScreenCards } from './pages/ScreenCards';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE, TEST_MODULE, LEARN_MODULE, WRITE_MODULE, SPELL_MODULE } from './utils/consts';
 import { ModuleForm } from './pages/ModuleForm/ModuleForm';
 import { TestModule } from './pages/TestModule';
 import { WriteModule } from './pages/WriteModule/WriteModule';
@@ -40,11 +39,11 @@ export const authRoutes = [
 export const publicRoutes = [
   {
     path: REGISTRATION_ROUTE,
-    Component: Register
+    Component: AuthForm
   },
   {
     path: LOGIN_ROUTE,
-    Component: Login
+    Component: AuthForm
   },
   {
     path: HOME_ROUTE + '/:id',

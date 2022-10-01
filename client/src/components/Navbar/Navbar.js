@@ -22,23 +22,22 @@ export const Navbar = () => {
   useEffect(() => { }, [user]);;
 
   let links = [
-    <Link className={style.login} to={HOME_ROUTE}>Login</Link>,
-    <Link to={HOME_ROUTE}>Register</Link>
+    <Link className={`${style.login} ${style.button}`} to={LOGIN_ROUTE}>Login</Link>,
+    <Link className={`${style.button}`} to={REGISTRATION_ROUTE}>Register</Link>
   ]
 
   if (user) {
-    links = <button onClick={clickLogout}>Выйти</button>
+    links = <button className={`${style.logout} ${style.button}`}
+      onClick={clickLogout}>Logout</button>
   }
 
   return (
     <div className={style.container__navbar}>
-      <div className={style.content}>
-        <div className={style.main}>
-          <Link to={HOME_ROUTE}>Main</Link>
-        </div>
-        <div className={style.links}>
+      <div>
+        <Link className={`${style.button}`} to={HOME_ROUTE}>Main</Link>
+      </div>
+      <div className={style.links}>
         { links }
-        </div>
       </div>
     </div>
   );

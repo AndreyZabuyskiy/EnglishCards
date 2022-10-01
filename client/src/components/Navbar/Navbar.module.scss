@@ -2,21 +2,21 @@
   background-color: #3a7fc3;
   height: 6vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.content {
-  max-width: 1200px;
-  width: 1200px;
-  height: 6vh;
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   color: #ffffff;
+  padding: 0px 20px;
 }
 
 .login {
   margin-right: 10px;
+}
+
+.logout {
+  background-color: #3a7fc3;
+}
+
+.button {
+  color: #ffffff;
 }
