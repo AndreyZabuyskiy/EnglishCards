@@ -20,4 +20,4 @@ const schema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model('Word', schema);
+export default mongoose.model('Card', schema);

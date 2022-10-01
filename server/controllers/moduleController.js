@@ -15,8 +15,8 @@ class ModuleController {
   async viewModule (req, res, next) {
     try {
       const { id } = req.params;
-      const { module, words } = await moduleService.viewModule(id);
-      res.status(200).json({ module, words });
+      const { module, cards } = await moduleService.viewModule(id);
+      res.status(200).json({ module, cards });
     } catch (e) {
       next(ApiError.badRequest('Error view module'));
     }
@@ -24,10 +24,10 @@ class ModuleController {
 
   async createModule (req, res, next) {
     try {
-      const { title, words } = req.body;
+      const { title, cards } = req.body;
       const userId = req.user.id;
 
-      const { createdModule } = await moduleService.createModule(title, userId, words);
+      const { createdModule } = await moduleService.createModule(title, userId, cards);
       return res.status(200).json(createdModule);
     }
     catch (e) {
@@ -38,10 +38,10 @@ class ModuleController {
   async updateModule (req, res, next) {
     try {
       const { id } = req.params;
-      const { title, words } = req.body;
+      const { title, cards } = req.body;
       const userId = req.user.id;
 
-      const module = await moduleService.updateModule(userId, id, title, words);
+      const module = await moduleService.updateModule(userId, id, title, cards);
       return res.status(200).json(module);
     } catch (e) {
       next(ApiError.badRequest(e.message));

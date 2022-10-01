@@ -1,17 +1,17 @@
 import StudyModule from "../models/StudyModule.js";
-import Word from '../models/Word.js';
+import Card from '../models/Card.js';
 
 class ModuleService {
-  async getModulesByUser (userId) {
+  async getModulesByUser(userId) {
     let data = [];
-    const modules = await StudyModule.find({ userId });
+    const modules = await StudyModule.find({ user: userId });
 
     for(let mod of modules) {
-      const words = await Word.find({ module: mod._id });
+      const cards = await Card.find({ module: mod._id });
       
       const obj = {
         ...mod._doc,
-        countWords: words.length
+        countWords: cards.length
       }
 
       data.push(obj);
@@ -22,12 +22,12 @@ class ModuleService {
 
   async viewModule (moduleId) {
     const module = await StudyModule.findById({ _id: moduleId });
-    const words = await Word.find({ module: moduleId });
+    const cards = await Card.find({ module: moduleId });
     
-    return { module, words };
+    return { module, cards };
   }
 
-  async createModule (title, userId, words) {
+  async createModule (title, userId, cards) {
     try{
       const moduleDoc = new StudyModule({
         title: title,
@@ -35,19 +35,21 @@ class ModuleService {
       });
   
       const createdModule = await moduleDoc.save();
+
+      console.log(cards);
   
-      words.map(async (word) => {
-        const wordDoc = new Word({
-          value: word.value,
-          translate: word.translate,
-          imgUrl: word.imgUrl,
+      cards.map(async (card) => {
+        const cardDoc = new Card({
+          value: card.value,
+          translate: card.translate,
+          imgUrl: card.imgUrl,
           module: createdModule._id
         });
   
-        await wordDoc.save();
+        await cardDoc.save();
       });
 
-      return { createdModule, words };
+      return { createdModule, cards };
     } catch(e) {
       console.log(e.message);
     }
@@ -62,20 +64,18 @@ class ModuleService {
 
     const updateModule = await StudyModule.findByIdAndUpdate(moduleId, module, { new: true });
 
-    const words = await Word.find({ module: moduleId });
-    words.map(async (word) => {
-      await Word.findByIdAndDelete(word._id);
-    });
+    const cards = await Card.find({ module: moduleId });
+    cards.map(async (card) => await Card.findByIdAndDelete(card._id));
 
-    updateWords.map(async word => {
-      const wordDoc = new Word({
-        value: word.value,
-        translate: word.translate,
-        imgUrl: word.imgUrl,
+    updateWords.map(async card => {
+      const cardDoc = new Card({
+        value: card.value,
+        translate: card.translate,
+        imgUrl: card.imgUrl,
         module: moduleId
       });
 
-      await wordDoc.save();
+      await cardDoc.save();
     });
 
     return updateModule;
@@ -84,9 +84,9 @@ class ModuleService {
   async deleteModule (moduleId) {
     const deletedModule = await StudyModule.findByIdAndDelete(moduleId);
     
-    const words = await Word.find({ module: moduleId });
-    words.map(async word => {
-      await Word.findByIdAndDelete(word._id);
+    const cards = await Card.find({ module: moduleId });
+    cards.map(async card => {
+      await Card.findByIdAndDelete(card._id);
     });
 
     return deletedModule;
