@@ -81,9 +81,7 @@ export function createModule(module) {
 
 export function logout() {
   return async dispatch => {
-    console.log('logout action');
     Cookies.remove('token');
-    //Cookies.set('token', '');
 
     dispatch({
       type: LOGOUT

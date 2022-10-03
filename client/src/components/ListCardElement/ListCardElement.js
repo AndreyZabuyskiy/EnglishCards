@@ -5,15 +5,13 @@ export const ListCardElement = (props) => {
   return (
     <>
       <div className={style.count__cards}>
-        Термины в модуле ({ props?.moduleData?.words.length })
+        Термины в модуле ({ props?.moduleData?.cards.length })
       </div>
 
         <div>
-          {props?.moduleData?.words.map((card, index) => {
-            return <CardElement
-              key={index}
-              value={card.value}
-              translate={card.translate} />
+          {props?.moduleData?.cards.map((card, index) => {
+            return <CardElement key={index} value={card.value}
+              translate={card.translate} imgUrl={card.imgUrl} />
           })}
         </div>
     </>

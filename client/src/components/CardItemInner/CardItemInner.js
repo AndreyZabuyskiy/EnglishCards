@@ -34,7 +34,7 @@ export const CardItemInner = (props) => {
   }
 
   const clickForward = (e) => {
-    if(cardItemIndex < props.moduleData.words.length - 1) {
+    if(cardItemIndex < props.moduleData.cards.length - 1) {
       setCardItemIndex(cardItemIndex + 1);
     }
     
@@ -49,7 +49,7 @@ export const CardItemInner = (props) => {
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
               <div className={style.card__header__column_2}>
-                { cardItemIndex + 1 }/{ props.moduleData?.words?.length }
+                { cardItemIndex + 1 }/{ props.moduleData?.cards?.length }
               </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
@@ -57,7 +57,7 @@ export const CardItemInner = (props) => {
               </div>
             </div>
             <div className={style.card__front__content}>
-              { props.moduleData?.words?.[cardItemIndex].value }
+              { props.moduleData?.cards?.[cardItemIndex].value }
             </div>
             <div className={style.card__footer}>
               <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
@@ -68,7 +68,7 @@ export const CardItemInner = (props) => {
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
               <div className={style.card__header__column_2}>
-                { cardItemIndex + 1 }/{ props.moduleData?.words?.length }
+                { cardItemIndex + 1 }/{ props.moduleData?.cards?.length }
               </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
@@ -76,7 +76,7 @@ export const CardItemInner = (props) => {
               </div>
             </div>
             <div className={style.card__back__content}>
-              <div>{ props.moduleData?.words?.[cardItemIndex].translate }</div>
+              <div>{ props.moduleData?.cards?.[cardItemIndex].translate }</div>
               <div>
                 <img className={style.card__img}
                   src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />

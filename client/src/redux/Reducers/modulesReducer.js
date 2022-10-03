@@ -14,7 +14,6 @@ export const modulesReducer = (state = initialState, action) => {
       }
 
       case CREATE_MODULE:
-        console.log('modules reducer --> ', action.data);
         return {
           ...state
         }

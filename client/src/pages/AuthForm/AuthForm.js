@@ -2,7 +2,7 @@ import style from './AuthForm.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction, register } from '../../redux/actions';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/consts';
 import { Navbar } from '../../components';
 
@@ -35,7 +35,7 @@ export const AuthForm = () => {
           <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="" className={style.img} />
         
           <div className={style.title}>
-            {isLogin ? "User log in" : "User sign in"}
+            {isLogin ? "User log in" : "User registeration"}
           </div>
           <input className={style.input} type="text" name="login" placeholder='login...'
             value={login} onChange={(e) => setLogin(e.target.value)} />
@@ -44,7 +44,7 @@ export const AuthForm = () => {
           <Link to={HOME_ROUTE}>
             {isLogin
               ? <button onClick={() => clickLogin()} className={style.button}>Login</button>
-              : <button onClick={() => clickRegister()} className={style.button}>Sign in</button>
+              : <button onClick={() => clickRegister()} className={style.button}>Register</button>
             }
           </Link>
         </div>

@@ -7,9 +7,7 @@ export const fetchModuleByIdApi = async (id) => {
 
 export const createModuleApi = async (module) => {
   try {
-    console.log('create module api --> ', module);
     const { data } = await $authHost.post('api/module/', module);
-    console.log('response --> ', data);
     return data;
   } catch(e) {
     console.log(e.message);
