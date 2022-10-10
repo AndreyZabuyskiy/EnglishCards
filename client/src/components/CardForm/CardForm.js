@@ -1,6 +1,10 @@
 import style from './CardForm.module.css';
+import { uploadFileApi } from '../../http/moduleApi';
+import { useRef } from 'react';
 
 export const CardForm = (props) => {
+  const inputFileRef = useRef(null);
+
   const handleChangeValue = e => {
     const changedCards = [];
     
@@ -57,6 +61,15 @@ export const CardForm = (props) => {
     props.setCards(changedCards);
   }
 
+  const handleChangeFile = async (e) => {
+    try {
+      const data = await uploadFileApi(e.target.files[0]);
+    }catch (err) {
+      console.warn(err);
+      alert('Ошибка при загрузке файла!');
+    }
+  }
+
   return (
     <div className={style.container}>
       <div className={style.header__container}>
@@ -78,7 +91,9 @@ export const CardForm = (props) => {
           <p>Определение</p>
         </div>
         <div className={style.add__image}>
-          <input type='file' id={`file__${props.index}`} accept='image/*' />
+          <input type='file' id={`file__${props.index}`}
+            accept='image/*' onChange={handleChangeFile}
+            ref={inputFileRef} />
           <label for={`file__${props.index}`}>
             <div className={style.icon__img}>🖼</div>
             <span>Изображение</span>

@@ -7,7 +7,6 @@ import { createModule } from '../../redux/actions';
 export const ModuleForm = () => {
   const dispatch = useDispatch();
 
-
   const initialState = [
     {
       id: 0,

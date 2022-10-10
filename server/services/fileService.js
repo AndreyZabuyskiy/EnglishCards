@@ -3,7 +3,8 @@ import * as path from 'path';
 import fs from 'fs';
 
 class FileService {
-  saveImage (file, user) {
+  saveImage(file, user) {
+    try {
     const pathFolder = `./static/${user.login}`;
     fs.mkdir(pathFolder, { recursive: true }, err => {
       if(err) throw err;
@@ -11,9 +12,12 @@ class FileService {
 
     const fileName = uuid.v4() + '.jpg';
     const filePath = path.resolve(pathFolder, fileName);
-    console.log('file path --> ', filePath);
-    file.picture.mv(filePath);
-    return filePath;
+    
+    file.image.mv(filePath);
+    return fileName;
+    } catch (err) {
+      console.log('err --> ', err);
+    }
   }
 }
 

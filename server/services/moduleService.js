@@ -35,9 +35,7 @@ class ModuleService {
       });
   
       const createdModule = await moduleDoc.save();
-
-      console.log(cards);
-  
+      
       cards.map(async (card) => {
         const cardDoc = new Card({
           value: card.value,
