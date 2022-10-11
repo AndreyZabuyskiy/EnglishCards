@@ -68,6 +68,17 @@ class ModuleController {
       next(ApiError.badRequest(e.message))
     }
   }
+
+  async removeImage(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { user } = req;
+      const fileName = fileService.removeImage(id, user);
+      return res.status(200).json(fileName);
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 export default new ModuleController();

@@ -19,6 +19,19 @@ class FileService {
       console.log('err --> ', err);
     }
   }
+
+  removeImage(fileName, user) {
+    try {
+      console.log('fileName --> ', fileName);
+      console.log('user --> ', user);
+      const pathFolder = `./static/${user.login}`;
+      const filePath = path.resolve(pathFolder, fileName);
+      fs.unlinkSync(filePath);
+      return fileName;
+    } catch {
+      console.log('err --> ', err);
+    }
+  }
 }
 
 export default new FileService;

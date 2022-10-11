@@ -11,5 +11,6 @@ router.put("/:id", authMiddleware, moduleController.updateModule);
 router.delete("/:id", authMiddleware, moduleController.deleteModule);
 
 router.post("/upload-image", authMiddleware, moduleController.uploadImage);
+router.delete("/remove-image/:id", authMiddleware, moduleController.removeImage);
 
 export default router;

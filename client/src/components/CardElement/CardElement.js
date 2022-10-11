@@ -9,12 +9,12 @@ export const CardElement = (props) => {
         <div className={style.card__translate}>
           <div className={style.translate}>{props.translate}</div>
           {props.imgUrl && <div>
-            <img src={`${REACT_APP_API_URL}/mark_42/ff3dd286-afc2-488e-82a4-ec000d01b386.jpg`} 
+            <img src={`${REACT_APP_API_URL}/user_557/5860c080-1217-4ea4-a953-533229f8fc4a.jpg`} 
               className={style.card__img} />
           </div>
           }
           <div>
-            <img src={`${REACT_APP_API_URL}/mark_42/ff3dd286-afc2-488e-82a4-ec000d01b386.jpg`} 
+            <img src={`${REACT_APP_API_URL}/user_557/5860c080-1217-4ea4-a953-533229f8fc4a.jpg`} 
               className={style.card__img} />
           </div>
         </div>

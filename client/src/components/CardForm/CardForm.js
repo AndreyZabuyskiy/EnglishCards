@@ -1,9 +1,20 @@
 import style from './CardForm.module.css';
-import { uploadFileApi } from '../../http/moduleApi';
+import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
 import { useRef } from 'react';
+import { REACT_APP_API_URL } from '../../http/baseUrl';
+import { useSelector } from 'react-redux';
 
 export const CardForm = (props) => {
   const inputFileRef = useRef(null);
+
+  const user = useSelector(state => {
+    const { authReducer } = state;
+    return authReducer.user;
+  });
+
+  const backgroundImage = {
+    background: 'url(' + `${REACT_APP_API_URL}/${user.login}/${props.imgUrl}` + ') 50%/cover no-repeat',
+  };
 
   const handleChangeValue = e => {
     const changedCards = [];
@@ -25,6 +36,7 @@ export const CardForm = (props) => {
   }
 
   const handleChangeTranslate = e => {
+    console.log(`handleChangeTranslate\nprops.id: ${props.id}`);
     const changedCards = [];
 
     props.cards.forEach(card => {
@@ -64,6 +76,49 @@ export const CardForm = (props) => {
   const handleChangeFile = async (e) => {
     try {
       const data = await uploadFileApi(e.target.files[0]);
+      const changedCards = [];
+
+      props.cards.forEach(card => {        
+        if (props.id === card.id) {
+          changedCards.push({
+            id: card.id,
+            value: card.value,
+            translate: card.translate,
+            imgUrl: data
+          });
+        } else {
+          changedCards.push(card);
+        }
+      });
+
+      props.setCards(changedCards);
+    }catch (err) {
+      console.warn(err);
+      alert('Ошибка при загрузке файла!');
+    }
+  }
+
+  const handleRemoveFile = async (e) => {
+    try {
+      const card = props.cards[props.id];
+      const data = await removeFileApi(card.imgUrl);
+      
+      const changedCards = [];
+
+      props.cards.forEach(card => {        
+        if (props.id === card.id) {
+          changedCards.push({
+            id: card.id,
+            value: card.value,
+            translate: card.translate,
+            imgUrl: ''
+          });
+        } else {
+          changedCards.push(card);
+        }
+      });
+
+      props.setCards(changedCards);
     }catch (err) {
       console.warn(err);
       alert('Ошибка при загрузке файла!');
@@ -90,15 +145,22 @@ export const CardForm = (props) => {
           <input type="text" value={props.translate} onChange={handleChangeTranslate} />
           <p>Определение</p>
         </div>
-        <div className={style.add__image}>
-          <input type='file' id={`file__${props.index}`}
-            accept='image/*' onChange={handleChangeFile}
-            ref={inputFileRef} />
-          <label for={`file__${props.index}`}>
-            <div className={style.icon__img}>🖼</div>
-            <span>Изображение</span>
-          </label>
-        </div>
+        {
+          props.imgUrl ?
+          <div className={style.image__container} style={backgroundImage}>
+            <button className={style.delete__img} onClick={handleRemoveFile}>🗑</button>                  
+          </div>
+          :
+          <div className={style.add__image}>
+            <input type='file' id={`file__${props.id}`}
+              accept='image/*' onChange={handleChangeFile}
+              ref={inputFileRef} />
+            <label for={`file__${props.id}`}>
+              <div className={style.icon__img}>🖼</div>
+              <span>Изображение</span>
+            </label>
+          </div>
+          }
       </div>
     </div>
   );

@@ -25,3 +25,12 @@ export const uploadFileApi = async (img) => {
     console.log(e.message)
   }
 }
+
+export const removeFileApi = async (img) => {
+  try {
+    const { data } = await $authHost.delete(`api/module/remove-image/${img}`);
+    return data;
+  } catch (e) {
+    console.log(e.message)
+  }
+}

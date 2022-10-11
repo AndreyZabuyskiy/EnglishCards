@@ -52,11 +52,12 @@
 }
 
 .add__image {
-  border: 2px dashed white;
   width: 84px;
   height: 60px;
-  padding: 10px;
   margin-left: 25px;
+  border-radius: 5px;
+  border: 2px dashed white;
+  padding: 10px;
 
   input {
     display: none;
@@ -96,6 +97,43 @@
       color: yellow;
     }
   }
+}
+
+.input__img {
+  display: none;
+}
+
+.image__container {
+  position: relative;
+  width: 84px;
+  height: 60px;
+  margin-left: 25px;
+  border-radius: 5px;
+  background-color: aqua;
+}
+
+.delete__img {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 0;
+  color: white;
+  background-color: #303545;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  text-align: center;
+
+  &:hover {
+    background-color: yellow;
+    color: black;
+  }
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 .inputs {
