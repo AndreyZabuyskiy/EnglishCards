@@ -26,7 +26,7 @@ class ModuleController {
     try {
       const { title, cards } = req.body;
       const userId = req.user.id;
-
+      
       const { createdModule } = await moduleService.createModule(title, userId, cards);
       return res.status(200).json(createdModule);
     }

@@ -11,7 +11,8 @@ export const ListCardElement = (props) => {
         <div>
           {props?.moduleData?.cards.map((card, index) => {
             return <CardElement key={index} value={card.value}
-              translate={card.translate} imgUrl={card.imgUrl} />
+              translate={card.translate} imgUrl={card.imgUrl}
+              user={props.user} />
           })}
         </div>
     </>

@@ -9,14 +9,10 @@ export const CardElement = (props) => {
         <div className={style.card__translate}>
           <div className={style.translate}>{props.translate}</div>
           {props.imgUrl && <div>
-            <img src={`${REACT_APP_API_URL}/user_557/5860c080-1217-4ea4-a953-533229f8fc4a.jpg`} 
+            <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.imgUrl}`}
               className={style.card__img} />
           </div>
           }
-          <div>
-            <img src={`${REACT_APP_API_URL}/user_557/5860c080-1217-4ea4-a953-533229f8fc4a.jpg`} 
-              className={style.card__img} />
-          </div>
         </div>
       </div>
       <div className={style.actions__container}>

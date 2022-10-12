@@ -36,7 +36,7 @@ export const ViewModule = () => {
         </div>
 
         <SetPageInfo user={user} />
-        <ListCardElement moduleData={moduleData} />
+        <ListCardElement moduleData={moduleData} user={user} />
       </div>
     </>
   )

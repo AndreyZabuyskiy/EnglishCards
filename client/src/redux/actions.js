@@ -58,17 +58,20 @@ export function fetchModuleById(id) {
 
 export function createModule(module) {
   return async dispatch => {
-    let words = [];
+    let cards = [];
+
     for(let card in module.cards) {
-      words.push({
+      cards.push({
         value: module.cards[card].value,
         translate: module.cards[card].translate,
-        imgUrl: ''
+        imgUrl: module.cards[card].imgUrl
       });
     }
     
     const createdModule = {
-      title: module.title, words
+      title: module.title,
+      description: module.description,
+      cards
     }
 
     const response = await createModuleApi(createdModule);
