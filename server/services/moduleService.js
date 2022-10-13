@@ -27,10 +27,11 @@ class ModuleService {
     return { module, cards };
   }
 
-  async createModule (title, userId, cards) {
+  async createModule (userId, title, description, cards) {
     try{
       const moduleDoc = new StudyModule({
-        title: title,
+        title,
+        description,
         user: userId
       });
   

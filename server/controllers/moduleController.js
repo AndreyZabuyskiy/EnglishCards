@@ -1,6 +1,7 @@
 import ApiError from '../error/ApiError.js';
 import moduleService from '../services/moduleService.js';
 import fileService from '../services/fileService.js';
+import { validationResult } from 'express-validator';
 
 class ModuleController {
   async getModules (req, res, next) {
@@ -24,13 +25,19 @@ class ModuleController {
 
   async createModule (req, res, next) {
     try {
-      const { title, cards } = req.body;
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return next(ApiError.badRequest("Not valid data"));
+      }
+
+      const { title, description, cards } = req.body;
       const userId = req.user.id;
       
-      const { createdModule } = await moduleService.createModule(title, userId, cards);
+      const { createdModule } = await moduleService.createModule(userId, title, description, cards);
       return res.status(200).json(createdModule);
     }
     catch (e) {
+      console.log('exception message --> ', e.message);
       next(ApiError.badRequest('Error create module'));
     }
   }
