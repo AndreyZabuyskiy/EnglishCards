@@ -1,26 +1,27 @@
 import style from './AuthForm.module.css';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginAction, register } from '../../redux/actions';
-import { Link, useLocation } from 'react-router-dom';
+import { loginAction, registerAction } from '../../redux/actions';
+import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/consts';
+import { LOGIN_ROUTE } from '../../utils/consts';
 import { Navbar } from '../../components';
+import { useNavigate } from "react-router-dom";
 
 export const AuthForm = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  
+  const { register, handleSubmit, formState: { errors, isValid }, reset} = useForm({mode: 'onChange'});
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const isLogin = location.pathname === LOGIN_ROUTE;
 
-  const clickLogin = () => {
-    dispatch(loginAction(login, password));
-  }
-
-  const clickRegister = () => {
-    dispatch(register(login, password));
+  const onSubmit = (data) => {
+    if (isLogin) {
+      dispatch(loginAction(data.login, data.password));
+    } else {
+      dispatch(registerAction(data.login, data.password));
+    }
+    navigate('/home');
   }
   
   return (
@@ -36,17 +37,37 @@ export const AuthForm = () => {
           <div className={style.title}>
             {isLogin ? "User log in" : "User registeration"}
           </div>
-
-          <input className={style.input} type="text" name="login" placeholder='login...'
-            value={login} onChange={(e) => setLogin(e.target.value)} />
-          <input className={style.input} type="password" name="password" placeholder='password...'
-            value={password} onChange={(e) => setPassword(e.target.value)} />
-          <Link to={HOME_ROUTE}>
-            {isLogin
-              ? <button onClick={() => clickLogin()} className={style.button}>Login</button>
-              : <button onClick={() => clickRegister()} className={style.button}>Register</button>
-            }
-          </Link>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={style.input__container}>
+              <input className={style.input} type="text" name="login" placeholder='login...'
+                {...register('login', {
+                  required: 'Login is required field!',
+                  minLength: {
+                    value: 4,
+                    message: 'Minimum login length 4 characters'
+                  }
+                })}
+              />
+              {errors.login &&
+                <div className={style.error}>{errors.login.message}</div>
+              }
+            </div>
+            <div className={style.input__container}>
+              <input className={style.input} type="password" name="password" placeholder='password...'
+                {...register('password', {
+                  required: 'Password is required field',
+                  minLength: {
+                    value: 6,
+                    message: 'Minimum password length 6 characters'
+                  }
+                })}
+              />
+              {errors.password &&
+                <div className={style.error}>{errors.password.message}</div>
+              }
+            </div>
+            <button className={style.button} disabled={!isValid}>{ isLogin ? 'Login' : 'Register' }</button>
+          </form>
         </div>
       </div>
     </div>

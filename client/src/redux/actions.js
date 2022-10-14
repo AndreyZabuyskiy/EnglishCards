@@ -4,7 +4,7 @@ import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi } from "../http/moduleApi";
 import Cookies from "js-cookie";
 
-export function register(login, password) {
+export function registerAction(login, password) {
   return async dispatch => {
     const response = await registerApi(login, password);
     dispatch({
