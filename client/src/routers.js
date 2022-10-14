@@ -1,13 +1,7 @@
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE, TEST_MODULE, LEARN_MODULE, WRITE_MODULE, SPELL_MODULE } from './utils/consts';
-import { AuthForm } from './pages/AuthForm';
-import { Home } from './pages/Home'
-import { ViewModule } from './pages/ViewModule';
-import { ScreenCards } from './pages/ScreenCards';
-import { ModuleForm } from './pages/ModuleForm/ModuleForm';
-import { TestModule } from './pages/TestModule';
-import { WriteModule } from './pages/WriteModule/WriteModule';
-import { LearnModule } from './pages/LearnModule';
-import { SpellModule } from './pages/SpellModule';
+import {
+  AuthForm, Home, ViewModule, ScreenCards, ModuleForm,TestModule, WriteModule, LearnModule, SpellModule
+} from './pages';
 
 export const authRoutes = [
   {

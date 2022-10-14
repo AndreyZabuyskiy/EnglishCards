@@ -1,1 +1,1 @@
-export { CreateModule } from './CreateModule';
+export { ModuleForm } from './ModuleForm';

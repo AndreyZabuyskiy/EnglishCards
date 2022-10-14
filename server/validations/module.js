@@ -8,10 +8,10 @@ export const moduleValidation = [
   body('description')
     .optional()
     .isString().withMessage('Description must be a string')
-    .isLength({ max: 100 }).withMessage('Description must be no more than 30 characters'),
+    .isLength({ max: 100 }).withMessage('Cards must have at least 2 elements'),
   body('cards').notEmpty()
     .withMessage('Cards cannot be empty')
-    .isArray().withMessage('Cards must be a list'),
+    .isArray({min: 2, max: 100}).withMessage('Cards must be a list'),
   body('cards.*.value')
     .notEmpty().withMessage('Value cannot be empty')
     .isString().withMessage('Value must be a string')

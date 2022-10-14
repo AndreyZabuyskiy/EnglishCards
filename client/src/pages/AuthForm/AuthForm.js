@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction, register } from '../../redux/actions';
 import { Link, useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/consts';
 import { Navbar } from '../../components';
 
@@ -12,9 +13,7 @@ export const AuthForm = () => {
   
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log('location --> ', location.pathname);
   const isLogin = location.pathname === LOGIN_ROUTE;
-  console.log('isLogin --> ', isLogin);
 
   const clickLogin = () => {
     dispatch(loginAction(login, password));
@@ -37,6 +36,7 @@ export const AuthForm = () => {
           <div className={style.title}>
             {isLogin ? "User log in" : "User registeration"}
           </div>
+
           <input className={style.input} type="text" name="login" placeholder='login...'
             value={login} onChange={(e) => setLogin(e.target.value)} />
           <input className={style.input} type="password" name="password" placeholder='password...'
