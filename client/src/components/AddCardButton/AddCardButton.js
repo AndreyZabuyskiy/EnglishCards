@@ -9,7 +9,7 @@ export const AddCardButton = (props) => {
     });
 
     changedCards.push({
-      id: props.cards.length,
+      _id: props.cards.length,
       value: '',
       translate: '',
       imgUrl: ''

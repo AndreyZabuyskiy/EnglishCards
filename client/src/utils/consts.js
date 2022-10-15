@@ -3,6 +3,7 @@ export const LOGIN_ROUTE = '/login';
 export const HOME_ROUTE = '/home';
 export const SCREEN_CARDS = '/screen-cards';
 export const CREATE_MODULE = '/create-module';
+export const EDIT_MODULE = '/edit-module';
 export const TEST_MODULE = '/test-module';
 export const LEARN_MODULE = '/learn-module';
 export const WRITE_MODULE = '/write-module';

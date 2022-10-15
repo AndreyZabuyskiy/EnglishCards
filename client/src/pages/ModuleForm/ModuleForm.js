@@ -2,47 +2,67 @@ import { useState } from 'react';
 import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
 import { useDispatch } from 'react-redux';
-import { createModule } from '../../redux/actions';
+import { createModule, updateModule } from '../../redux/actions';
+import { CREATE_MODULE } from '../../utils/consts';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { fetchModuleByIdApi } from '../../http/moduleApi';
 
 export const ModuleForm = () => {
   const dispatch = useDispatch();
-
-  const initialState = [
+  const params = useParams();
+  let moduleState = [
     {
-      id: 0,
-      value: 'skin',
-      translate: 'кожа',
+      _id: 0,
+      value: '',
+      translate: '',
       imgUrl: ''
     },
     {
-      id: 1,
-      value: 'lips',
-      translate: 'губы',
+      _id: 1,
+      value: '',
+      translate: '',
       imgUrl: ''
     },
     {
-      id: 2,
-      value: 'chin',
-      translate: 'подбородок',
+      _id: 2,
+      value: '',
+      translate: '',
       imgUrl: ''
     },
     {
-      id: 3,
-      value: 'shoulder',
-      translate: 'плечо',
+      _id: 3,
+      value: '',
+      translate: '',
       imgUrl: ''
     },
     {
-      id: 4,
-      value: 'cheek',
-      translate: 'щека',
+      _id: 4,
+      value: '',
+      translate: '',
       imgUrl: ''
     }
-  ]
+  ];
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [cards, setCards] = useState(initialState);
+  const [cards, setCards] = useState(moduleState);
+
+  const url = window.location.href;
+  const isCreateModule = url.split('/').slice(-1)[0] === CREATE_MODULE.substring(1);
+
+  useEffect(() => {
+    async function fetchModuleState() {
+      if (!isCreateModule) {
+        const response = await fetchModuleByIdApi(params.id);
+        setCards(response.cards);
+        setTitle(response.module.title);
+        setDescription(response.module.description);
+      }
+    }
+
+    fetchModuleState();
+  }, []);
 
   const handleChangeTitle = e => {
     setTitle(e.target.value);
@@ -53,9 +73,15 @@ export const ModuleForm = () => {
   }
 
   const clickCreateModule = e => {
-    dispatch(createModule({
-      title, description, cards
-    }));
+    if (isCreateModule) {
+      dispatch(createModule({
+        title, description, cards
+      }));
+    } else {
+      dispatch(updateModule(params.id, {
+        title, description, cards
+      }))
+    }
   }
 
   return (
@@ -71,7 +97,9 @@ export const ModuleForm = () => {
           <ListCreateCards cards={cards} setCards={setCards} />
           
           <div className={style.button__create__module}>
-            <button onClick={clickCreateModule}>Создать</button>
+            <button onClick={clickCreateModule}>
+              { isCreateModule ? "Создать" : "Редактировать" }
+            </button>
           </div>
         </div>
       </div>

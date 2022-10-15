@@ -7,7 +7,8 @@ export const ListCreateCards = (props) => {
       {
         props?.cards.map((card, index) => (
           <CardForm key={index}
-            id={card.id}
+            index={index}
+            _id={card._id}
             value={card.value}
             translate={card.translate}
             imgUrl={card.imgUrl}
@@ -18,6 +19,7 @@ export const ListCreateCards = (props) => {
       }
 
       <AddCardButton
+        isCreateModule={props.isCreateModule}
         index={props.cards.length}
         cards={props.cards}
         setCards={props.setCards} />

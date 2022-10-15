@@ -46,10 +46,12 @@ class ModuleController {
   async updateModule (req, res, next) {
     try {
       const { id } = req.params;
-      const { title, cards } = req.body;
+      const { title, description, cards } = req.body;
       const userId = req.user.id;
 
-      const module = await moduleService.updateModule(userId, id, title, cards);
+      console.log('req.body --> ', req.body);
+
+      const module = await moduleService.updateModule(userId, id, title, description, cards);
       return res.status(200).json(module);
     } catch (e) {
       next(ApiError.badRequest(e.message));

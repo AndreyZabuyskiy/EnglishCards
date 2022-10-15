@@ -1,4 +1,4 @@
-import { FETCH_MODULES, CREATE_MODULE } from "../types";
+import { FETCH_MODULES, CREATE_MODULE, UPDATE_MODULE } from "../types";
 
 const initialState = {
   modules: [],
@@ -16,7 +16,12 @@ export const modulesReducer = (state = initialState, action) => {
       case CREATE_MODULE:
         return {
           ...state
-        }
+      }
+    
+    case UPDATE_MODULE:
+      return {
+        ...state
+      }
     
     default:
       return state;

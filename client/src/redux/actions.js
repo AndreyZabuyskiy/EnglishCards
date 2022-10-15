@@ -1,7 +1,7 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, LOGOUT } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
-import { createModuleApi, fetchModuleByIdApi } from "../http/moduleApi";
+import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import Cookies from "js-cookie";
 
 export function registerAction(login, password) {
@@ -77,6 +77,32 @@ export function createModule(module) {
     const response = await createModuleApi(createdModule);
     dispatch({
       type: CREATE_MODULE,
+      data: response
+    });
+  }
+}
+
+export function updateModule(id, module) {
+  return async dispatch => {
+    let cards = [];
+
+    for(let card in module.cards) {
+      cards.push({
+        value: module.cards[card].value,
+        translate: module.cards[card].translate,
+        imgUrl: module.cards[card].imgUrl
+      });
+    }
+    
+    const createdModule = {
+      title: module.title,
+      description: module.description,
+      cards
+    }
+
+    const response = await updateModuleApi(id, createdModule);
+    dispatch({
+      type: UPDATE_MODULE,
       data: response
     });
   }

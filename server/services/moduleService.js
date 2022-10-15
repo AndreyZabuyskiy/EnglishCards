@@ -54,19 +54,22 @@ class ModuleService {
     }
   }
 
-  async updateModule (userId, moduleId, title, updateWords) {
+  async updateModule (userId, moduleId, title, description, cards) {
     const module = {
       _id: moduleId,
       title,
+      description,
       user: userId
     };
 
+    console.log('cards --> ', cards);
+
     const updateModule = await StudyModule.findByIdAndUpdate(moduleId, module, { new: true });
 
-    const cards = await Card.find({ module: moduleId });
-    cards.map(async (card) => await Card.findByIdAndDelete(card._id));
+    const findCards = await Card.find({ module: moduleId });
+    findCards.map(async (card) => await Card.findByIdAndDelete(card._id));
 
-    updateWords.map(async card => {
+    cards.map(async card => {
       const cardDoc = new Card({
         value: card.value,
         translate: card.translate,

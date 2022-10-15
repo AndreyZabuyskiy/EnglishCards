@@ -1,4 +1,4 @@
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE, TEST_MODULE, LEARN_MODULE, WRITE_MODULE, SPELL_MODULE } from './utils/consts';
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE, SCREEN_CARDS, CREATE_MODULE, TEST_MODULE, LEARN_MODULE, WRITE_MODULE, SPELL_MODULE, EDIT_MODULE } from './utils/consts';
 import {
   AuthForm, Home, ViewModule, ScreenCards, ModuleForm,TestModule, WriteModule, LearnModule, SpellModule
 } from './pages';
@@ -10,6 +10,10 @@ export const authRoutes = [
   },
   {
     path: CREATE_MODULE,
+    Component: ModuleForm
+  },
+  {
+    path: EDIT_MODULE + '/:id',
     Component: ModuleForm
   },
   {

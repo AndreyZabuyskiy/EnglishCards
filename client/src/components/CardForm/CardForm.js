@@ -20,9 +20,9 @@ export const CardForm = (props) => {
     const changedCards = [];
     
     props.cards.forEach(card => {
-      if (props.id === card.id) {
+      if (props._id === card._id) {
         changedCards.push({
-          id: card.id,
+          _id: card._id,
           value: e.target.value,
           translate: card.translate,
           imgUrl: card.imgUrl
@@ -36,13 +36,12 @@ export const CardForm = (props) => {
   }
 
   const handleChangeTranslate = e => {
-    console.log(`handleChangeTranslate\nprops.id: ${props.id}`);
     const changedCards = [];
 
     props.cards.forEach(card => {
-      if (props.id === card.id) {
+      if (props._id === card._id) {
         changedCards.push({
-          id: card.id,
+          _id: card._id,
           value: card.value,
           translate: e.target.value,
           imgUrl: card.imgUrl
@@ -57,12 +56,13 @@ export const CardForm = (props) => {
 
   const handleDeleteCard = e => {
     const changedCards = [];
-    let index = 0;
+    let count = 0;
 
     props.cards.forEach(card => {
-      if(props.id !== card.id) {
+      console.log('card --> ', card);
+      if(props._id !== card._id) {
         changedCards.push({
-          id: index++,
+          _id: card._id,
           value:  card.value,
           translate: card.translate,
           imgUrl: card.imgUrl
@@ -79,9 +79,9 @@ export const CardForm = (props) => {
       const changedCards = [];
 
       props.cards.forEach(card => {        
-        if (props.id === card.id) {
+        if (props._id === card._id) {
           changedCards.push({
-            id: card.id,
+            _id: card._id,
             value: card.value,
             translate: card.translate,
             imgUrl: data
@@ -100,15 +100,15 @@ export const CardForm = (props) => {
 
   const handleRemoveFile = async (e) => {
     try {
-      const card = props.cards[props.id];
+      const card = props.cards[props._id];
       const data = await removeFileApi(card.imgUrl);
       
       const changedCards = [];
 
       props.cards.forEach(card => {        
-        if (props.id === card.id) {
+        if (props._id === card._id) {
           changedCards.push({
-            id: card.id,
+            _id: card.id,
             value: card.value,
             translate: card.translate,
             imgUrl: ''
@@ -129,7 +129,7 @@ export const CardForm = (props) => {
     <div className={style.container}>
       <div className={style.header__container}>
         <div className={style.header}>
-          <div className={style.index}>{props.id + 1}</div>
+          <div className={style.index}>{props.index + 1}</div>
           <div>
             <span>═</span>
             <button onClick={handleDeleteCard}>🗑</button>
@@ -152,10 +152,10 @@ export const CardForm = (props) => {
           </div>
           :
           <div className={style.add__image}>
-            <input type='file' id={`file__${props.id}`}
+            <input type='file' id={`file__${props._id}`}
               accept='image/*' onChange={handleChangeFile}
               ref={inputFileRef} />
-            <label for={`file__${props.id}`}>
+            <label for={`file__${props._id}`}>
               <div className={style.icon__img}>🖼</div>
               <span>Изображение</span>
             </label>
