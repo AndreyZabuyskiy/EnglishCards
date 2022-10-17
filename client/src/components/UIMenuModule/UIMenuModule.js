@@ -7,18 +7,18 @@ export const UIMenuModule = (props) => {
     <ul className={style.container}>
       <div className={style.row__links}>
         <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
-          <div><span>🗎</span> Карточки</div>
+          <div><span>🗎</span>Карточки</div>
         </Link>
         <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
-          <div><span>🗎</span> Заучивание</div>
+          <div><span>🗎</span>Заучивание</div>
         </Link>
       </div>
       <div className={style.row__links}>
         <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
-          <div><span>🗎</span> Тест</div>
+          <div><span>🗎</span>Тест</div>
         </Link>
         <Link className={`${style.link} ${style.last__link}`} to={`${SCREEN_CARDS}/${props.id}`}>
-          <div><span>🗎</span> Подбор</div>
+          <div><span>🗎</span>Подбор</div>
         </Link>
       </div>
     </ul>

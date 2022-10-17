@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import style from './BigCard.module.css';
+import { REACT_APP_API_URL } from '../../http/baseUrl';
 
 export const BigCard = (props) => {
   const [isFrontCard, setIsFrontCard] = useState(true);
@@ -31,13 +32,19 @@ export const BigCard = (props) => {
             <div className={style.card__header__right}>Header content</div>
           </div>
 
-          <div className={style.card__content__front}>        
+          {props.img ?
+          <div className={style.card__content__front}>
             <div className={style.card__content__left}> { props.translate } </div>
             <div className={style.card__content__right}>
-              <img className={style.card__img}
-                src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />
+              <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.img}`}
+                className={style.card__img} />
             </div>
           </div>
+          :
+          <div className={style.card__content__text}>        
+            { props.translate }
+          </div>
+          }
 
           <div className={style.card__footer}>
             <div className={style.card__footer__left} onClick={props.clickBack}>←</div>  
@@ -51,7 +58,7 @@ export const BigCard = (props) => {
             <div className={style.card__header__right}>Header content</div>
           </div>
 
-          <div className={style.card__content__back}>        
+          <div className={style.card__content__text}>        
             { props.value }
           </div>
 

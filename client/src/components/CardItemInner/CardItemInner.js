@@ -3,8 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SCREEN_CARDS } from '../../utils/consts';
 import { StudiedCardsLine } from '../StudiedCardsLine';
+import { REACT_APP_API_URL } from '../../http/baseUrl';
 
 export const CardItemInner = (props) => {
+  console.log('CardItemInner --> ', props);
+
   const [cardItemIndex, setCardItemIndex] = useState(0);
   const [isFrontCard, setIsFrontCard] = useState(true);
 
@@ -45,7 +48,7 @@ export const CardItemInner = (props) => {
   return (
     <div className={style.card__item__container}>
 
-      <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={props.moduleData.cards.length} />
+      <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={props?.moduleData?.cards.length} />
       
       <div className={style.wrapper__card}>
         <div className={cardStyle} onClick={() => onClickCard()}>
@@ -82,8 +85,7 @@ export const CardItemInner = (props) => {
             <div className={style.card__back__content}>
               <div>{ props.moduleData?.cards?.[cardItemIndex].translate }</div>
               <div>
-                <img className={style.card__img}
-                  src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />
+                
               </div>
             </div>
             <div className={style.card__footer}>

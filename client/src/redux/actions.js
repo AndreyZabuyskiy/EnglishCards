@@ -46,6 +46,7 @@ export function fetchModules() {
 }
 
 export function fetchModuleById(id) {
+  console.log('<---------- fetchModuleById --------->');
   return async dispatch => {
     const response = await fetchModuleByIdApi(id);
 

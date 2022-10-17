@@ -1,10 +1,14 @@
 .wrapper {
-  width: 90%;
+  width: 100%;
   height: 80vh;
   position: relative;
+  padding: 0px 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .card {
+  max-width: 800px;
   width: 100%;
   height: 100%;
   position: relative;
@@ -52,6 +56,7 @@
 .card__header__left {
   width: 50%;
   height: 100%;
+  color: #646F90;
 }
 
 .card__header__right {
@@ -97,7 +102,7 @@
   display: flex;
 }
 
-.card__content__back {
+.card__content__text {
   width: 100%;
   height: 80%;
   display: flex;
@@ -113,9 +118,24 @@
   align-items: center;
   font-size: 35px;
   color: white;
+
+  img {
+    max-width: 250px;
+    max-height: 183px;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media (min-width: 1200px) {
+  .card__content__front {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .card__content__left {
     width: 50%;
     height: 100%;
@@ -132,6 +152,14 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+  .card__content__front {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .card__content__left {
     width: 50%;
     height: 100%;
@@ -148,6 +176,14 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .card__content__front {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .card__content {
     flex-direction: column-reverse;
   }
@@ -168,6 +204,13 @@
 }
 
 @media (max-width: 767px) {
+  .card__content__front {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
   .card__content {
     flex-direction: column-reverse;
   }
@@ -188,6 +231,13 @@
 }
 
 @media (max-width: 480px) {
+  .card__content__front {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
   .card__content {
     flex-direction: column-reverse;
   }

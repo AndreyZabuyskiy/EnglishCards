@@ -10,7 +10,7 @@
 }
 
 .content {
-  width: 1240px;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -37,7 +37,7 @@
   background-color: #2e3856;
 }
 
-.container__line {
+.line__container {
   position: absolute;
   bottom: 0;
   left: 0;

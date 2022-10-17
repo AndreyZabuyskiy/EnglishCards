@@ -20,17 +20,24 @@ export const ScreenCards = () => {
     return moduleReducer.module;
   });
 
+  const user = useSelector(state => {
+    const { authReducer } = state;
+    return authReducer.user;
+  })
+
   const clickBack = (e) => {
     if(cardIndex > 0) { 
       setCardIndex(cardIndex - 1);
     }
+
     e.stopPropagation();
   }
 
   const clickForward = (e) => {
-    if(cardIndex < moduleData.words.length - 1) {
+    if(cardIndex < moduleData.cards.length - 1) {
       setCardIndex(cardIndex + 1);
     }
+
     e.stopPropagation();
   }
 
@@ -38,15 +45,16 @@ export const ScreenCards = () => {
     <>
       <NavbarScreenCards
         title={moduleData?.module?.title}
-        countWords={moduleData?.words?.length}
-        currentWord={cardIndex}
+        countCards={moduleData?.cards?.length}
+        currentCard={cardIndex}
       />
 
-      <div className={style.container}>
+      <div className={style.container__content}>
         <BigCard
-          value={moduleData?.words?.[cardIndex].value}
-          translate={moduleData?.words?.[cardIndex].translate}
-          img={moduleData?.words?.[cardIndex].imgUrl}
+          value={moduleData?.cards?.[cardIndex].value}
+          translate={moduleData?.cards?.[cardIndex].translate}
+          img={moduleData?.cards?.[cardIndex].imgUrl}
+          user={user}
           clickForward={clickForward}
           clickBack={clickBack}
         />
