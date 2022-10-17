@@ -5,10 +5,22 @@ import { LEARN_MODULE, SCREEN_CARDS, SPELL_MODULE, TEST_MODULE, WRITE_MODULE, } 
 export const UIMenuModule = (props) => {
   return (
     <ul className={style.container}>
-      <li><p>Карточки</p></li>
-      <li><p>Заучивание</p></li>
-      <li><p>Тест</p></li>
-      <li><p>Подбор</p></li>
+      <div className={style.row__links}>
+        <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
+          <div><span>🗎</span> Карточки</div>
+        </Link>
+        <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
+          <div><span>🗎</span> Заучивание</div>
+        </Link>
+      </div>
+      <div className={style.row__links}>
+        <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
+          <div><span>🗎</span> Тест</div>
+        </Link>
+        <Link className={`${style.link} ${style.last__link}`} to={`${SCREEN_CARDS}/${props.id}`}>
+          <div><span>🗎</span> Подбор</div>
+        </Link>
+      </div>
     </ul>
   );
 }

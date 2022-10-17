@@ -49,8 +49,6 @@ class ModuleController {
       const { title, description, cards } = req.body;
       const userId = req.user.id;
 
-      console.log('req.body --> ', req.body);
-
       const module = await moduleService.updateModule(userId, id, title, description, cards);
       return res.status(200).json(module);
     } catch (e) {

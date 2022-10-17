@@ -4,13 +4,15 @@ import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../
 import { useDispatch } from 'react-redux';
 import { createModule, updateModule } from '../../redux/actions';
 import { CREATE_MODULE } from '../../utils/consts';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchModuleByIdApi } from '../../http/moduleApi';
 
 export const ModuleForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const navigate = useNavigate();
+  
   let moduleState = [
     {
       _id: 0,
@@ -80,7 +82,7 @@ export const ModuleForm = () => {
     } else {
       dispatch(updateModule(params.id, {
         title, description, cards
-      }))
+      }));
     }
   }
 

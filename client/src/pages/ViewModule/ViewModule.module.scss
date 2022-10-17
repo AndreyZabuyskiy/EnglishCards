@@ -18,6 +18,17 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .container {
+    max-width: 814px;
+  }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .container {
     margin-top: 6vh;
