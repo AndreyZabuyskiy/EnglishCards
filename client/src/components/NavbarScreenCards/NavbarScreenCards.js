@@ -14,7 +14,7 @@ export const NavbarScreenCards = (props) => {
           <div>{props.title}</div>
         </div>
         <div>
-          <Link className={style.button__exit}  to={`${HOME_ROUTE}/${id}`}>✕</Link>
+          <Link className={style.button__exit} to={`${HOME_ROUTE}/${id}`}>✕</Link>
         </div>
       </div>
       <div className={style.load}></div>

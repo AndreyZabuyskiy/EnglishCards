@@ -13,6 +13,7 @@ import { CardItemInner } from './CardItemInner';
 import { UIMenuModule } from './UIMenuModule/UIMenuModule';
 import { SetPageInfo } from './SetPageInfo';
 import { ListCardElement } from './ListCardElement';
+import { StudiedCardsLine } from './StudiedCardsLine';
 
 export {
   StudyModule,
@@ -29,5 +30,6 @@ export {
   CardItemInner,
   UIMenuModule,
   SetPageInfo,
-  ListCardElement
+  ListCardElement,
+  StudiedCardsLine
 }

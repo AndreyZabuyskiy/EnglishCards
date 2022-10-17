@@ -1,7 +1,8 @@
-import { useState } from 'react';
 import style from './CardItemInner.module.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SCREEN_CARDS } from '../../utils/consts';
+import { StudiedCardsLine } from '../StudiedCardsLine';
 
 export const CardItemInner = (props) => {
   const [cardItemIndex, setCardItemIndex] = useState(0);
@@ -43,6 +44,9 @@ export const CardItemInner = (props) => {
 
   return (
     <div className={style.card__item__container}>
+
+      <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={props.moduleData.cards.length} />
+      
       <div className={style.wrapper__card}>
         <div className={cardStyle} onClick={() => onClickCard()}>
           <div className={style.card__front}>

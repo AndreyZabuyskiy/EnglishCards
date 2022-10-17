@@ -188,6 +188,14 @@
   }
 }
 @media (max-width: 767px) {
+  .wrapper__card {
+    width: 100%;
+    height: 340px;
+    position: relative;
+  }
+  .wrapper__card:hover {
+    cursor: pointer;
+  }
   .front, .back {
     height: 40vh;
     margin-bottom: 20px;
