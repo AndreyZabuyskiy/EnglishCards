@@ -6,8 +6,6 @@ import { StudiedCardsLine } from '../StudiedCardsLine';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 
 export const CardItemInner = (props) => {
-  console.log('CardItemInner --> ', props);
-
   const [cardItemIndex, setCardItemIndex] = useState(0);
   const [isFrontCard, setIsFrontCard] = useState(true);
 
@@ -83,10 +81,19 @@ export const CardItemInner = (props) => {
               </div>
             </div>
             <div className={style.card__back__content}>
-              <div>{ props.moduleData?.cards?.[cardItemIndex].translate }</div>
-              <div>
-                
-              </div>
+              {props.imgUrl ?
+                <div className={style.card__content__front}>
+                  <div className={style.card__content__left}> { props.translate } </div>
+                  <div className={style.card__content__right}>
+                    <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.img}`}
+                      className={style.card__img} />
+                  </div>
+                </div>
+                :
+                <div className={style.card__content__text}>        
+                  { props.translate }
+                </div>
+              }
             </div>
             <div className={style.card__footer}>
               <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
