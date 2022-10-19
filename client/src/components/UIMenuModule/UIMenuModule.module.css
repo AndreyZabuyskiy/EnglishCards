@@ -15,7 +15,7 @@
   padding: 8px 12px;
   border-radius: 10px;
   background-color: #2e3856;
-  margin-right: 20px;
+  margin-right: 16px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -55,11 +55,11 @@
   }
   .container .link {
     width: 50%;
-    margin-right: 20px;
+    margin-right: 10px;
   }
-  .container .link:nth-child(odd) {
+  .container .link:nth-child(even) {
     width: 50%;
-    margin-right: 20px;
+    margin-right: 0px;
   }
 }
 @media (max-width: 460px) {
@@ -82,7 +82,7 @@
     width: 100%;
     margin-bottom: 10px;
   }
-  .container .link:nth-child(odd) {
+  .container .link:nth-child(even) {
     width: 100%;
   }
 }/*# sourceMappingURL=UIMenuModule.module.css.map */

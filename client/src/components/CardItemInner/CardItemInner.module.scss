@@ -1,5 +1,6 @@
 .card__item__container {
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .wrapper__card {
@@ -102,20 +103,6 @@
   display: flex;
 }
 
-.card__footer__left {
-  width: 50%;
-  height: 100%;
-  margin-right: 12px;
-}
-
-.card__footer__right {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: right;
-  margin-left: 12px;
-}
-
 .card__footer__left,
 .card__footer__right {
   width: 50%;
@@ -131,8 +118,25 @@
   }
 }
 
+.card__footer__left {
+  margin-right: 12px;
+}
+
+.card__footer__right {
+  margin-left: 12px;
+}
+
+.disabled {
+  border: 2px solid #2b334a;
+
+  &:hover {
+    border: 2px solid #2b334a;
+    cursor: default;
+  }
+}
+
 .card__click {
-  .card__front {
+.card__front {
     transform: rotateX(180deg);
   }
 
@@ -145,19 +149,12 @@
   width: 75%;
 }
 
-.cards__items__buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
-  position: relative;
-}
-
 .button__card__item {
   background-color: #0A092D;
   color: white;
   font-size: 28px;
   font-weight: bold;
+  margin: 20px 0px;
 
   &:hover{
     color: yellow
@@ -171,9 +168,35 @@
   margin: 0px 40px;
 }
 
+.cards__items__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0px;
+  display: flex;
+  justify-content: right;
+  text-align: right;
+}
+
 .link__screen__cards {
-  position: absolute;
   right: 0;
+  padding: 10px;
+  border-radius: 100%;
+  font-size: 20px;
+
+  &:hover {
+    background-color: #2e3856;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 0.5px;
+  background-color: #282e3e;
+}
+
+.button__disabled {
+
 }
 
 @media (min-width: 1200px) {

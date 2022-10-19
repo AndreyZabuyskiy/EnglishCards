@@ -45,7 +45,6 @@ export const CardItemInner = (props) => {
 
   return (
     <div className={style.card__item__container}>
-
       <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={props?.moduleData?.cards.length} />
       
       <div className={style.wrapper__card}>
@@ -61,14 +60,18 @@ export const CardItemInner = (props) => {
                 <span>✰</span>
               </div>
             </div>
+
             <div className={style.card__front__content}>
-              { props.moduleData?.cards?.[cardItemIndex].value }
+              { props?.moduleData?.cards[cardItemIndex].value }
             </div>
+
             <div className={style.card__footer}>
-              <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
-              <div className={style.card__footer__right} onClick={(e) => clickForward(e)}>→</div>
+              <div onClick={(e) => clickBack(e)}
+                className={cardItemIndex === 0 ? `${style.card__footer__left} ${style.disabled}` : `${style.card__footer__left}`}>←</div>
+              <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>→</div>
             </div>
           </div>
+          
           <div className={style.card__back}>
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
@@ -80,24 +83,30 @@ export const CardItemInner = (props) => {
                 <span>✰</span>
               </div>
             </div>
+
             <div className={style.card__back__content}>
-              {props.imgUrl ?
+              {props?.moduleData?.cards[cardItemIndex].imgUrl ?
                 <div className={style.card__content__front}>
-                  <div className={style.card__content__left}> { props.translate } </div>
+                  <div className={style.card__content__left}>
+                    {props?.moduleData?.cards[cardItemIndex].translate}
+                  </div>
                   <div className={style.card__content__right}>
-                    <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.img}`}
+                    <img
+                      src={`${REACT_APP_API_URL}/${props.user.login}/${props?.moduleData?.cards[cardItemIndex].imgUrl}`}
                       className={style.card__img} />
                   </div>
                 </div>
                 :
                 <div className={style.card__content__text}>        
-                  { props.translate }
+                  {props?.moduleData?.cards[cardItemIndex].translate}
                 </div>
               }
             </div>
+
             <div className={style.card__footer}>
-              <div className={style.card__footer__left} onClick={(e) => clickBack(e)}>←</div>
-              <div className={style.card__footer__right} onClick={(e) => clickForward(e)}>→</div>
+              <div onClick={(e) => clickBack(e)}
+                className={cardItemIndex === 0 ? `${style.card__footer__left} ${style.disabled}` : `${style.card__footer__left}`}>←</div>
+              <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>→</div>
             </div>
           </div>
         </div>
@@ -112,6 +121,8 @@ export const CardItemInner = (props) => {
           🔗
         </Link>
       </div>
+
+      <div className={style.line}></div>
     </div>
   );
 }

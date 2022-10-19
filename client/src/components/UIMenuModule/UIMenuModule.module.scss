@@ -16,7 +16,7 @@
     padding: 8px 12px;
     border-radius: 10px;
     background-color: #2e3856;
-    margin-right: 20px;
+    margin-right: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -63,12 +63,12 @@
 
     .link {
       width: 50%;
-      margin-right: 20px;
+      margin-right: 10px;
     }
 
-    .link:nth-child(odd){
+    .link:nth-child(even) {
       width: 50%;
-      margin-right: 20px;
+      margin-right: 0px;
     }
   }
 }
@@ -96,7 +96,7 @@
       margin-bottom: 10px;
     }    
 
-    .link:nth-child(odd){
+    .link:nth-child(even){
       width: 100%;
     }
   }
