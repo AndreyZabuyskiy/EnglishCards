@@ -4,6 +4,11 @@
   border-radius: 5px;
   margin-top: 20px;
   width: 90%;
+
+  &:hover {
+    border-bottom: 5px solid #cedaf3;
+    padding: 12px 20px 7px 20px;
+  }
 }
 
 .count__words {
@@ -19,4 +24,10 @@
 .title {
   color: #f6f7fb;
   font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+
+  &:hover {
+    color: #ffcd1f;
+  }
 }

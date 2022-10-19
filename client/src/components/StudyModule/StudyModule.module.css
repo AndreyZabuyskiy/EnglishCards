@@ -5,6 +5,10 @@
   margin-top: 20px;
   width: 90%;
 }
+.module:hover {
+  border-bottom: 5px solid #cedaf3;
+  padding: 12px 20px 7px 20px;
+}
 
 .count__words {
   margin-right: 10px;
@@ -19,4 +23,9 @@
 .title {
   color: #f6f7fb;
   font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.title:hover {
+  color: #ffcd1f;
 }/*# sourceMappingURL=StudyModule.module.css.map */
