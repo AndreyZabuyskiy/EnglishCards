@@ -3,7 +3,7 @@ import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
 import { useDispatch } from 'react-redux';
 import { createModule, updateModule } from '../../redux/actions';
-import { CREATE_MODULE } from '../../utils/consts';
+import { CREATE_MODULE, HOME_ROUTE } from '../../utils/consts';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchModuleByIdApi } from '../../http/moduleApi';
@@ -83,6 +83,7 @@ export const ModuleForm = () => {
       dispatch(updateModule(params.id, {
         title, description, cards
       }));
+      navigate(`${HOME_ROUTE}`);
     }
   }
 

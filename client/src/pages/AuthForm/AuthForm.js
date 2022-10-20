@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loginAction, registerAction } from '../../redux/actions';
 import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { LOGIN_ROUTE } from '../../utils/consts';
+import { LOGIN_ROUTE, HOME_ROUTE } from '../../utils/consts';
 import { Navbar } from '../../components';
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ export const AuthForm = () => {
     } else {
       dispatch(registerAction(data.login, data.password));
     }
-    navigate('/home');
+    navigate(`/${HOME_ROUTE}`);
   }
   
   return (
