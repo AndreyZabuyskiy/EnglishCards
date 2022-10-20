@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #0a092d;
+  box-shadow: 5px 5px #111033;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.container__content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #f6f7fb;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.button__edit__module {
+  display: flex;
+  justify-content: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+}
+.button__edit__module button {
+  background-color: #4255ff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+.button__edit__module button:hover {
+  background-color: #4d5dee;
+}/*# sourceMappingURL=NavbarViewModule.module.css.map */

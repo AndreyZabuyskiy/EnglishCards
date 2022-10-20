@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchModuleById } from "../../redux/actions";
 import { Navbar, CardItemInner, UIMenuModule, SetPageInfo, ListCardElement } from '../../components';
 import { EDIT_MODULE } from '../../utils/consts';
+import { NavbarViewModule } from '../../components/NavbarViewModule/NavbarViewModule';
 
 export const ViewModule = () => {
   const navigate = useNavigate();
@@ -29,16 +30,20 @@ export const ViewModule = () => {
     <>
       <Navbar />
 
-      <div className={style.container}>
+      <div className={`${style.container}`}>
         <h1 className={style.title}> { moduleData?.module?.title } </h1>
 
-        <div className={style.header}>
+        <div className={`${style.header} ${style.container__column}`}>
           <UIMenuModule id={id} />
           <CardItemInner id={id} moduleData={moduleData} user={user} />
         </div>
 
-        <SetPageInfo user={user} />
-        <ListCardElement moduleData={moduleData} user={user} />
+        <NavbarViewModule title={moduleData?.module?.title} />
+
+        <div className={`${style.container__column}`}>
+          <SetPageInfo user={user} />
+          <ListCardElement moduleData={moduleData} user={user} />
+        </div>
 
         <div className={style.button__edit__module}>
           <button onClick={(e) => navigate(`${EDIT_MODULE}/${id}`)}>Добавить или удалить термины</button>
