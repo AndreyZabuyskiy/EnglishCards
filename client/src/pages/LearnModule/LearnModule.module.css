@@ -1,1 +1,10 @@
-/*# sourceMappingURL=LearnModule.module.css.map */
+.container {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=LearnModule.module.css.map */

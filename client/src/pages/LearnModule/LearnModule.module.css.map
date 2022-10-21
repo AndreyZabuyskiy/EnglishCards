@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"LearnModule.module.css"}
+{"version":3,"sources":["LearnModule.module.scss","LearnModule.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;ACCF;;ADEA;EACE;IACE,aAAA;IACA,sBAAA;ECCF;AACF","file":"LearnModule.module.css"}

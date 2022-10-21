@@ -9,7 +9,7 @@ export const UIMenuModule = (props) => {
         <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
           <div><span>🗎</span>Карточки</div>
         </Link>
-        <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
+        <Link className={style.link} to={`${LEARN_MODULE}/${props.id}`}>
           <div><span>🗎</span>Заучивание</div>
         </Link>
       </div>

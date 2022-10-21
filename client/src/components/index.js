@@ -10,10 +10,12 @@ import { ListCardChoiceAnswer } from './ListCardChoiceAnswer';
 import { ListCardWriteAnswer } from './ListCardWriteAnswer';
 import { CardWordsSelection } from './CardWordsSelection';
 import { CardItemInner } from './CardItemInner';
+import { CardWriteAnswer } from './CardWriteAnswer';
 import { UIMenuModule } from './UIMenuModule/UIMenuModule';
 import { SetPageInfo } from './SetPageInfo';
 import { ListCardElement } from './ListCardElement';
 import { StudiedCardsLine } from './StudiedCardsLine';
+import { ModeControls } from './ModeControls';
 
 export {
   StudyModule,
@@ -28,8 +30,10 @@ export {
   ListCardWriteAnswer,
   CardWordsSelection,
   CardItemInner,
+  CardWriteAnswer,
   UIMenuModule,
   SetPageInfo,
   ListCardElement,
-  StudiedCardsLine
+  StudiedCardsLine,
+  ModeControls
 }

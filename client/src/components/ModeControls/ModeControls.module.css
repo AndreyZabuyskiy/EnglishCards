@@ -1,0 +1,149 @@
+.container {
+  padding: 16px;
+}
+
+.ModeControls__back {
+  padding: 16px 0px;
+  width: 163px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.text__back {
+  margin-left: 12px;
+  color: #f6f7fb;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.UILink {
+  width: 163px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #0A092D;
+  color: #3ccfcf;
+  font-size: 20px;
+}
+.UILink:hover {
+  color: #e0b421;
+}
+
+.modeName {
+  color: #f6f7fb;
+  font-size: 16px;
+  display: flex;
+  margin: 24px 0px 40px;
+  width: 100%;
+}
+
+.UIIcon {
+  color: #7b89c9;
+  font-size: 26px;
+  margin-right: 10px;
+}
+
+.controls {
+  width: 163px;
+}
+
+.prograss__bar__container {
+  margin-bottom: 16px;
+}
+
+.prograss__bar {
+  width: 163px;
+  height: 12px;
+}
+
+.prograss__bar__fill {
+  background-color: #1b2055;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.prograss__bar__invalid {
+  background-color: #54283a;
+}
+
+.prograss__bar__valid {
+  background-color: #123c40;
+}
+
+.fill {
+  background-color: #4257b2;
+  width: 30%;
+  height: 100%;
+}
+
+.invalid {
+  background-color: #ff725b;
+  width: 25%;
+  height: 100%;
+}
+
+.valid {
+  background-color: #23b26d;
+  width: 20%;
+  height: 100%;
+}
+
+.labal {
+  display: flex;
+  justify-content: space-between;
+  color: #f6f7fb;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
+  .ModeControls__back {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  .UILink {
+    width: 100%;
+    height: 50px;
+    background-color: #13141b;
+    padding-left: 12px;
+    color: #f6f7fb;
+  }
+  .UILink:hover {
+    color: #898a8d;
+  }
+  .text__back {
+    display: none;
+  }
+  .modeName {
+    display: none;
+  }
+  .controls {
+    width: 100%;
+    display: flex;
+    padding-right: 24px;
+  }
+  .prograss__bar__container {
+    width: 100%;
+    margin-left: 24px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .labal {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .prograss__bar {
+    width: 100%;
+  }
+}/*# sourceMappingURL=ModeControls.module.css.map */
