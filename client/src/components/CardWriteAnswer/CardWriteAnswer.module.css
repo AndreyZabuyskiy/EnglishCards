@@ -1,9 +1,8 @@
 .card {
   width: 100%;
   background-color: #2e3856;
-  border-radius: 5px;
-  margin: 20px 0px;
-  padding: 24px 32px;
+  margin: 24px;
+  padding: 40px;
 }
 
 .header {
@@ -19,22 +18,55 @@
 .content {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px 40px;
+  border-bottom: 2px solid black;
+}
+
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .translate {
   color: #F6F7FB;
-  font-size: 20px;
+  font-size: 24px;
+}
+
+.img__container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.dont__know {
+  background-color: #2e3856;
+  color: #3ccfcf;
+  font-size: 16px;
+  font-weight: bold;
+}
+.dont__know:hover {
+  color: #e0b421;
 }
 
 .card__img {
-  width: 104px;
-  height: 104px;
-  border-radius: 5px;
+  width: 170px;
+  height: 105px;
 }
 
 .footer {
-  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0px 0px;
+  width: 100%;
+}
+
+.UITextarea {
+  width: 100%;
 }
 
 .text {
@@ -44,27 +76,79 @@
   font-weight: 700;
 }
 
-.input {
+.footer__input {
+  background-color: #2e3856;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 48px;
-  border-radius: 10px;
-  padding: 4px 16px;
-  background-color: #0A092D;
-  color: #f6f7fb;
-  font-size: 18px;
-  font-weight: 700;
+  margin-right: 32px;
+}
+.footer__input div {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+.footer__input label {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer__input label:hover {
+  cursor: pointer;
 }
 
-.container__button {
-  display: flex;
-  justify-content: right;
-  margin-top: 32px;
-}
-.container__button button {
-  background-color: #4255ff;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 700;
+.text__input {
+  width: 100%;
+  margin: 10px 0px;
+  background-color: #2e3856;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
   font-size: 18px;
-  color: #ffffff;
+  color: white;
+}
+.text__input:focus {
+  border-bottom: 4px solid #e0b421;
+}
+
+.answer__button {
+  background-color: #2e3856;
+}
+.answer__button button {
+  background-color: #3ccfcf;
+  padding: 12px 24px;
+  width: 100px;
+  height: 48px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #282e3e;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    margin: 0px;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .answer__button button {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    padding: 20px 16px;
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+  }
+  .answer__button {
+    display: flex;
+    align-items: flex-end;
+  }
+  .answer__button button {
+    width: 100px;
+  }
 }/*# sourceMappingURL=CardWriteAnswer.module.css.map */

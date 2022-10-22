@@ -21,7 +21,7 @@ export const AuthForm = () => {
     } else {
       dispatch(registerAction(data.login, data.password));
     }
-    navigate(`/${HOME_ROUTE}`);
+    navigate(`${HOME_ROUTE}`);
   }
   
   return (
