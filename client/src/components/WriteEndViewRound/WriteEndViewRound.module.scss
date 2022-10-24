@@ -1,0 +1,66 @@
+.container {
+  background-color: #13141B;
+  padding: 40px;
+  margin: 24px;
+}
+
+.round__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header {
+  font-size: 30px;
+  color: #F6F7fB;
+  font-weight: bold;
+}
+
+.subheader {
+  font-size: 20px;
+  color: #C3C7D5;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.UIButton {
+  padding: 12px 24px;
+  background-color: #3CCFCF;
+  color: #282E3E;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.write__answer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 24px 0px;
+}
+
+.answer__correct {
+  color: #23B26D;
+}
+
+.answer__incorrect {
+  color: #FF725B;
+}
+
+.UIIcon__answer {
+  width: 40px;
+  height: 17px;
+  text-align: center;
+}
+
+.value {
+  width: 50%;
+  font-size: 18px;
+}
+
+.translate {
+  color: #F6F6FB;
+  font-size: 20px;
+  width: 50%;
+}

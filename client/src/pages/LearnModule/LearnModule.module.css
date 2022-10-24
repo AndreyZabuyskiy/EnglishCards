@@ -1,4 +1,10 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__content {
   width: 100%;
   max-width: 1200px;
   display: flex;

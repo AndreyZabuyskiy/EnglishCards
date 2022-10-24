@@ -16,6 +16,8 @@ import { SetPageInfo } from './SetPageInfo';
 import { ListCardElement } from './ListCardElement';
 import { StudiedCardsLine } from './StudiedCardsLine';
 import { ModeControls } from './ModeControls';
+import { WriteEndView } from './WriteEndView/WriteEndView';
+import { WriteEndViewRound } from './WriteEndViewRound';
 
 export {
   StudyModule,
@@ -35,5 +37,7 @@ export {
   SetPageInfo,
   ListCardElement,
   StudiedCardsLine,
-  ModeControls
+  ModeControls,
+  WriteEndView,
+  WriteEndViewRound
 }

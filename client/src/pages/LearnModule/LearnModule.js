@@ -1,4 +1,4 @@
-import { Navbar, CardWriteAnswer, ModeControls } from '../../components';
+import { Navbar, CardWriteAnswer, ModeControls, WriteEndView } from '../../components';
 import style from './LearnModule.module.css';
 
 export const LearnModule = () => {
@@ -7,8 +7,11 @@ export const LearnModule = () => {
       <Navbar />
 
       <div className={style.container}>
-        <ModeControls />
-        <CardWriteAnswer />
+        <div className={style.container__content}>
+          <ModeControls />
+          {/* <CardWriteAnswer /> */}
+          <WriteEndView />
+        </div>
       </div>
     </>
   );
