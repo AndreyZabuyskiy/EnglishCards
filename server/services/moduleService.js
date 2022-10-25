@@ -54,15 +54,13 @@ class ModuleService {
     }
   }
 
-  async updateModule (userId, moduleId, title, description, cards) {
+  async updateModule(userId, moduleId, title, description, cards) {
     const module = {
       _id: moduleId,
       title,
       description,
       user: userId
     };
-
-    console.log('cards --> ', cards);
 
     const updateModule = await StudyModule.findByIdAndUpdate(moduleId, module, { new: true });
 
@@ -80,7 +78,7 @@ class ModuleService {
       await cardDoc.save();
     });
 
-    return updateModule;
+    return { updateModule, cards };
   }
 
   async deleteModule (moduleId) {

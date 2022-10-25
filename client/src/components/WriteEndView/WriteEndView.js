@@ -5,6 +5,7 @@ export const WriteEndView = () => {
   return (
     <div className={style.content}>
       <WriteEndViewRound />
+      <WriteEndViewRound />
     </div>
   )
 }

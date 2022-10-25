@@ -5,66 +5,78 @@ import { validationResult } from 'express-validator';
 
 class ModuleController {
   async getModules (req, res, next) {
-    try {
-      const modules = await moduleService.getModulesByUser(req.user.id);
-      res.status(200).json(modules);
-    } catch (e) {
-      next(ApiError.badRequest(e.message));
-    }
+    const userId = req.user.id;
+
+    await moduleService.getModulesByUser(userId)
+      .then(modules => {
+        res.status(200).json(modules);
+      })
+      .catch(e => {
+        next(ApiError.badRequest(e.message));
+      });
   }
 
   async viewModule (req, res, next) {
-    try {
-      const { id } = req.params;
-      const { module, cards } = await moduleService.viewModule(id);
-      res.status(200).json({ module, cards });
-    } catch (e) {
-      next(ApiError.badRequest('Error view module'));
-    }
+    const { id } = req.params;
+
+    await moduleService.viewModule(id)
+      .then((_module) => {
+        const { module, cards } = _module;
+        res.status(200).json({ module, cards });
+      })
+      .catch(e => {
+        next(ApiError.badRequest(e.message));
+      });
   }
 
   async createModule (req, res, next) {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log('errors --> ', errors);
-        return next(ApiError.badRequest("Not valid data"));
-      }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log('errors --> ', errors);
+      return next(ApiError.badRequest("Not valid data"));
+    }
 
-      const { title, description, cards } = req.body;
-      const userId = req.user.id;
-      
-      const { createdModule } = await moduleService.createModule(userId, title, description, cards);
-      return res.status(200).json(createdModule);
-    }
-    catch (e) {
-      console.log('exception message --> ', e.message);
-      next(ApiError.badRequest('Error create module'));
-    }
+    const { title, description, cards } = req.body;
+    const userId = req.user.id;
+        
+    await moduleService.createModule(userId, title, description, cards)
+      .then(createdModule => {
+        return res.status(200).json(createdModule);
+      }).catch(err => {
+        next(ApiError.badRequest('Error create module'));
+      });
   }
 
   async updateModule (req, res, next) {
-    try {
-      const { id } = req.params;
-      const { title, description, cards } = req.body;
-      const userId = req.user.id;
-
-      const module = await moduleService.updateModule(userId, id, title, description, cards);
-      return res.status(200).json(module);
-    } catch (e) {
-      next(ApiError.badRequest(e.message));
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log('errors --> ', errors);
+      return next(ApiError.badRequest("Not valid data"));
     }
+
+    const { id } = req.params;
+    const { title, description, cards } = req.body;
+    const userId = req.user.id;
+
+    await moduleService.updateModule(userId, id, title, description, cards)
+      .then(_modele => {
+        return res.status(200).json(_modele);
+      })
+      .catch(e => {
+        next(ApiError.badRequest(e.message));
+      });
   }
 
   async deleteModule (req, res, next) {
-    try {
-      const { id } = req.params;
-      const deletedModule = await moduleService.deleteModule(id);
-      
-      res.status(200).json(deletedModule);
-    } catch(e) {
-      next(ApiError.badRequest('Error delete module'));
-    }
+    const { id } = req.params;
+
+    await moduleService.deleteModule(id)
+      .then(deletedModule => {
+        res.status(200).json(deletedModule);
+      })
+      .catch(e => {
+        next(ApiError.badRequest(e.message));
+      });
   }
 
   async uploadImage (req, res, next) {
