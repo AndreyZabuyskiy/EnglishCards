@@ -28,13 +28,13 @@ export const Home = () => {
       </div>
 
       <div className={style.content}>
-        {modules?.map((module, index) => (
+        {modules?.map((item, index) => (
           <StudyModule
             key={index}
-            title={module.title}
-            countWords={module.countWords}
+            title={item.module.title}
+            countWords={item.module.countWords}
             login={user.login}
-            id={module._id}
+            id={item.module._id}
           />
         ))}
       </div>

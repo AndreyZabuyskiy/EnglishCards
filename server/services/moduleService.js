@@ -35,20 +35,20 @@ class ModuleService {
         user: userId
       });
   
-      const createdModule = await moduleDoc.save();
+      const newModule = await moduleDoc.save();
       
       cards.map(async (card) => {
         const cardDoc = new Card({
           value: card.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          module: createdModule._id
+          module: newModule._id
         });
   
         await cardDoc.save();
       });
 
-      return { createdModule, cards };
+      return { module: newModule, cards };
     } catch(e) {
       console.log(e.message);
     }
@@ -78,7 +78,7 @@ class ModuleService {
       await cardDoc.save();
     });
 
-    return { updateModule, cards };
+    return { module: updateModule, cards };
   }
 
   async deleteModule (moduleId) {

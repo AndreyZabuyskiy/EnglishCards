@@ -8,9 +8,10 @@ const initialState = {
 export const modulesReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_MODULES:
+      console.log('modulesReducer --> ', action.data.modules);
       return {
         ...state,
-        modules: action.data
+        modules: action.data.modules
       }
 
       case CREATE_MODULE:

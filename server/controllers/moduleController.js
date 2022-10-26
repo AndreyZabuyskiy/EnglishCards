@@ -2,6 +2,7 @@ import ApiError from '../error/ApiError.js';
 import moduleService from '../services/moduleService.js';
 import fileService from '../services/fileService.js';
 import { validationResult } from 'express-validator';
+import config from 'config';
 
 class ModuleController {
   async getModules (req, res, next) {
@@ -9,7 +10,21 @@ class ModuleController {
 
     await moduleService.getModulesByUser(userId)
       .then(modules => {
-        res.status(200).json(modules);
+        const _modules = modules.map(item => {
+          return {
+            module: item,
+            request: {
+              type: "GET",
+              url: `http://localhost:${config.get('port')}/api/module/`
+            }
+          }
+        })
+        
+        const response = {
+          count: modules.length,
+          modules: _modules
+        }
+        res.status(200).json(response);
       })
       .catch(e => {
         next(ApiError.badRequest(e.message));
@@ -21,8 +36,13 @@ class ModuleController {
 
     await moduleService.viewModule(id)
       .then((_module) => {
-        const { module, cards } = _module;
-        res.status(200).json({ module, cards });
+        res.status(200).json({
+          data : _module,
+          request: {
+            type: "GET",
+            url: `http://localhost:${config.get('port')}/api/module/`
+          }
+        });
       })
       .catch(e => {
         next(ApiError.badRequest(e.message));
@@ -40,8 +60,14 @@ class ModuleController {
     const userId = req.user.id;
         
     await moduleService.createModule(userId, title, description, cards)
-      .then(createdModule => {
-        return res.status(200).json(createdModule);
+      .then(studyModule => {
+        return res.status(200).json({
+          data: studyModule,
+          request: {
+            type: "GET",
+            url: `http://localhost:${config.get('port')}/api/module/${studyModule.module._id}`
+          }
+        });
       }).catch(err => {
         next(ApiError.badRequest('Error create module'));
       });
@@ -59,8 +85,14 @@ class ModuleController {
     const userId = req.user.id;
 
     await moduleService.updateModule(userId, id, title, description, cards)
-      .then(_modele => {
-        return res.status(200).json(_modele);
+      .then(studyModule => {
+        return res.status(200).json({
+          data: studyModule,
+          request: {
+            type: "GET",
+            url: `http://localhost:${config.get('port')}/api/module/${studyModule.module._id}`
+          }
+        });
       })
       .catch(e => {
         next(ApiError.badRequest(e.message));
@@ -72,7 +104,14 @@ class ModuleController {
 
     await moduleService.deleteModule(id)
       .then(deletedModule => {
-        res.status(200).json(deletedModule);
+        
+        res.status(200).json({
+          data: deletedModule,
+          request: {
+            type: "GET",
+            url: `http://localhost:${config.get('port')}/api/module/`
+          }
+        });
       })
       .catch(e => {
         next(ApiError.badRequest(e.message));
