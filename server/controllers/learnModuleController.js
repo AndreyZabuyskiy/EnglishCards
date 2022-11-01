@@ -1,8 +1,10 @@
+import learnService from "../services/learnModuleService.js";
+
 class LearnModuleController {
   async getLearnModule(req, res, next) {
-    res.status(200).json({
-      message: "Success"
-    });
+    await learnService.createWriteModule().then(responseService => {
+      res.status(200).json(responseService);
+    })
   }
 }
 
