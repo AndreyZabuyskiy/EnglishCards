@@ -1,9 +1,17 @@
+import ApiError from "../error/ApiError.js";
 import learnService from "../services/learnModuleService.js";
 
 class LearnModuleController {
   async getLearnModule(req, res, next) {
-    await learnService.createWriteModule().then(responseService => {
+    const userId = req.user.id;
+    const moduleId = req.params.id;
+
+    await learnService.createWriteModule(userId, moduleId)
+    .then(responseService => {
       res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
     })
   }
 }

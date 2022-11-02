@@ -28,30 +28,26 @@ class ModuleService {
   }
 
   async createModule (userId, title, description, cards) {
-    try{
-      const moduleDoc = new StudyModule({
-        title,
-        description,
-        user: userId
-      });
+    const moduleDoc = new StudyModule({
+      title,
+      description,
+      user: userId
+    });
   
-      const newModule = await moduleDoc.save();
+    const newModule = await moduleDoc.save();
       
-      cards.map(async (card) => {
-        const cardDoc = new Card({
-          value: card.value,
-          translate: card.translate,
-          imgUrl: card.imgUrl,
-          module: newModule._id
-        });
-  
-        await cardDoc.save();
+    cards.map(async (card) => {
+      const cardDoc = new Card({
+        value: card.value,
+        translate: card.translate,
+        imgUrl: card.imgUrl,
+        module: newModule._id
       });
+  
+      await cardDoc.save();
+    });
 
-      return { module: newModule, cards };
-    } catch(e) {
-      console.log(e.message);
-    }
+    return { module: newModule, cards };
   }
 
   async updateModule(userId, moduleId, title, description, cards) {

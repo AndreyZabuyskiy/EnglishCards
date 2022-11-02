@@ -6,6 +6,16 @@ const schema = new mongoose.Schema({
   },
   round: {
     type: Number
+  },
+  module: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'StudyModule',
+    required: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
