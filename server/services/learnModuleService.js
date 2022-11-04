@@ -8,9 +8,12 @@ class LearnModuleService {
     const module = await StudyModule.findById({ _id: moduleId });
     const cards = await Card.find({ module: moduleId });
 
+    const writesModules = await WriteModule.find({ module: moduleId, user: userId });
+    console.log('writesModules --> ', writesModules);
+
     const writeModuleDoc = new WriteModule({
-      currentIndex: 1,
-      round: 1,
+      currentIndex: 0,
+      round: writesModules.length + 1,
       module: moduleId,
       user: userId
     });
