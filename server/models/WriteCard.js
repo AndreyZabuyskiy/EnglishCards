@@ -5,16 +5,26 @@ const shcema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  isCorrect: {
-    type: Boolean,
+  status: {
+    type: Number,
     required: true,
-    default: false
+    default: 0
   },
   card: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Card',
     required: true
   },
+  /*value: {
+    type: String,
+    required: true
+  },
+  translate: {
+    type: String
+  },
+  imgUrl: {
+    type: String
+  },*/
   writeModule: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'WriteModule',

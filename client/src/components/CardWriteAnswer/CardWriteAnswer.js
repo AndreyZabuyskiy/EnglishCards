@@ -1,19 +1,22 @@
 import style from './CardWriteAnswer.module.css';
+import { REACT_APP_API_URL } from '../../http/baseUrl';
 
-export const CardWriteAnswer = () => {
+export const CardWriteAnswer = (props) => {
   return (
     <div className={style.card}>
       <div className={style.content}>
         <div className={style.content__header}>
-          <div className={style.translate}>Подписать</div>
+          <div className={style.translate}>{ props.translate }</div>
           <div className={style.UILink}>
             <button className={style.dont__know}>Не знаю</button>
           </div>
         </div>
-        <div className={style.img__container}>
-          <img className={style.card__img}
-            src='https://media-cdn.tripadvisor.com/media/photo-s/0c/bb/a3/97/predator-ride-in-the.jpg' />
-        </div>
+        {props.imgUrl &&
+          <div className={style.img__container}>
+            <img className={style.card__img}
+              src={`${REACT_APP_API_URL}/${props.user.login}/${props.imgUrl}`} />
+          </div>
+        }
       </div>
       <div className={style.footer}>
         <div className={style.footer__input}>

@@ -1,7 +1,8 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
+import { fetchLearnModulesApi } from "../http/learnModuleApi";
 import Cookies from "js-cookie";
 
 export function registerAction(login, password) {
@@ -113,6 +114,17 @@ export function logout() {
 
     dispatch({
       type: LOGOUT
+    });
+  }
+}
+
+export function fetchLearnModule(id) {
+  return async dispatch => {
+    const response = await fetchLearnModulesApi(id);
+
+    dispatch({
+      type: FETCH_LEARN_MODULE,
+      data: response.data
     });
   }
 }

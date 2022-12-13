@@ -4,40 +4,63 @@ import WriteModule from '../models/WriteModule.js';
 import WriteCard from '../models/WriteCard.js';
 
 class LearnModuleService {
-  async createWriteModule(userId, moduleId) {
-    const module = await StudyModule.findById({ _id: moduleId });
-    const cards = await Card.find({ module: moduleId });
-
+  async getWriteModule(userId, moduleId) {
     const writesModules = await WriteModule.find({ module: moduleId, user: userId });
-    console.log('writesModules --> ', writesModules);
+
+    if (writesModules.length === 0) {
+      await this.createWriteModule(userId, moduleId);
+    }
+
+    const data = await this.getLastWriteModule(userId, moduleId);
+    return data;
+  }
+
+  async createWriteModule(userId, moduleId) {
+    const cards = await Card.find({ module: moduleId });
+    const writesModules = await WriteModule.find({ module: moduleId, user: userId });
 
     const writeModuleDoc = new WriteModule({
-      currentIndex: 0,
-      round: writesModules.length + 1,
+      round: writesModules.length,
       module: moduleId,
       user: userId
     });
 
     const writeModule = await writeModuleDoc.save();
-    const writeCards = [];
 
     await Promise.all(cards.map(async (card, index) => {
       const writeCardDoc = new WriteCard({
         index: index,
         isCorrect: false,
-        card: card,
+        card: card._id,
         writeModule: writeModule._id
       });
 
       return await writeCardDoc.save();
-    }))
-    .then(cards => {
-      cards.map(card => {
-        writeCards.push(card);
-      })
-    });
+    }));
+  }
 
-    return { writeModule, writeCards };
+  async getLastWriteModule(userId, moduleId) {
+    const writeModules = await WriteModule.find({ user: userId, module: moduleId });
+    const writeModule = writeModules[writeModules.length - 1];
+
+    const writeCards = await WriteCard.find({ writeModule: writeModule._id });
+    const cards = [];
+
+    await Promise.all(writeCards.map(async (writeCard, index) => {
+      const card = await Card.find({ _id: writeCard.card });
+
+      const responseCard = {
+        _id: writeCard._id,
+        index: writeCard.index,
+        status: writeCard.status,
+        writeModule: writeCard.writeModule,
+        card: card[0]
+      };
+      
+      cards.push(responseCard);
+    }));
+
+    return { writeModule, cards }
   }
 }
 
