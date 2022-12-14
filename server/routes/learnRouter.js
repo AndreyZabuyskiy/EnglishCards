@@ -5,5 +5,6 @@ import authMiddleware from '../middleware/authMiddleware.js'
 const router = Router();
 
 router.get('/:id', authMiddleware, LearnModuleController.getLearnModule);
+router.post("/check-card/:id", authMiddleware, LearnModuleController.checkCardAnswer);
 
 export default router;

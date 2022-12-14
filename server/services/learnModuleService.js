@@ -15,6 +15,25 @@ class LearnModuleService {
     return data;
   }
 
+  async checkAnswer(cardId, answer) {
+    const writeCard = await WriteCard.findById(cardId);
+    const card = await Card.findById(writeCard.card);
+    let status = 0;
+
+    status = card.value.toLowerCase() === answer.toLowerCase() ? 1 : -1;
+
+    const _writeCard = {
+      _id: writeCard._id,
+      index: writeCard.index,
+      status,
+      card,
+      writeModule: writeCard.writeModule
+    }
+
+    const updatedWriteCard = await WriteCard.findByIdAndUpdate(cardId, _writeCard, { new: true });
+    return updatedWriteCard;
+  }
+
   async createWriteModule(userId, moduleId) {
     const cards = await Card.find({ module: moduleId });
     const writesModules = await WriteModule.find({ module: moduleId, user: userId });

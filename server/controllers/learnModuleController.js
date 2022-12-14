@@ -14,6 +14,19 @@ class LearnModuleController {
       next(ApiError.badRequest(e.message));
     })
   }
+
+  async checkCardAnswer(req, res, next) {
+    const cardId = req.params.id;
+    const { answer } = req.body;
+
+    await learnService.checkAnswer(cardId, answer)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new LearnModuleController();

@@ -2,7 +2,7 @@ import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
-import { fetchLearnModulesApi } from "../http/learnModuleApi";
+import { checkAnswerApi, fetchCheckAnswerApi, fetchLearnModulesApi } from "../http/learnModuleApi";
 import Cookies from "js-cookie";
 
 export function registerAction(login, password) {
@@ -121,7 +121,7 @@ export function logout() {
 export function fetchLearnModule(id) {
   return async dispatch => {
     const response = await fetchLearnModulesApi(id);
-
+    
     dispatch({
       type: FETCH_LEARN_MODULE,
       data: response.data

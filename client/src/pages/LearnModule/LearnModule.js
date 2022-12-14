@@ -30,11 +30,13 @@ export const LearnModule = () => {
       <div className={style.container}>
         <div className={style.container__content}>
           <ModeControls />
-          <CardWriteAnswer user={user}
-            value={cards[index].card.value}
-            translate={cards[index].card.translate}
-            imgUrl={cards[index].card.imgUrl} />
-          
+          {cards &&
+            <CardWriteAnswer user={user}
+              value={cards[index].card.value}
+              translate={cards[index].card.translate}
+              imgUrl={cards[index].card.imgUrl} />
+          }
+
           {/* <WriteEndView /> */}
         </div>
       </div>
