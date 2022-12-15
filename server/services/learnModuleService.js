@@ -17,21 +17,19 @@ class LearnModuleService {
 
   async checkAnswer(cardId, answer) {
     const writeCard = await WriteCard.findById(cardId);
-    const card = await Card.findById(writeCard.card);
-    let status = 0;
-
-    status = card.value.toLowerCase() === answer.toLowerCase() ? 1 : -1;
+    const card = await Card.findById(writeCard.card);    
+    let isCorrectAnswer = card.value.toLowerCase() === answer.toLowerCase();
 
     const _writeCard = {
       _id: writeCard._id,
       index: writeCard.index,
-      status,
+      status: isCorrectAnswer ? 1 : -1,
       card,
       writeModule: writeCard.writeModule
     }
 
-    const updatedWriteCard = await WriteCard.findByIdAndUpdate(cardId, _writeCard, { new: true });
-    return updatedWriteCard;
+    await WriteCard.findByIdAndUpdate(cardId, _writeCard, { new: true });
+    return isCorrectAnswer;
   }
 
   async createWriteModule(userId, moduleId) {
@@ -79,7 +77,12 @@ class LearnModuleService {
       cards.push(responseCard);
     }));
 
-    return { writeModule, cards }
+    const correctAnswers = cards.filter(card => card.status === 1).length;
+    const incorrectAnswers = cards.filter(card => card.status === -1).length;
+    const countAnswers = cards.length;
+    const _cards = cards.filter(card => card.status === 0);
+
+    return { writeModule, cards: _cards, countAnswers, correctAnswers, incorrectAnswers }
   }
 }
 

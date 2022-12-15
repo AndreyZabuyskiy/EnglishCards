@@ -20,11 +20,12 @@ export const CardWriteAnswer = (props) => {
       </div>
       <div className={style.footer}>
         <div className={style.footer__input}>
-          <input id="answer" className={style.text__input} type="text" />
-          <label for="answer">Ваш ответ</label>
+          <input id="answer" className={style.text__input} type="text"
+            value={props.userAnswer} onChange={props.setUserAnswer} />
+          <label htmlFor="answer">Ваш ответ</label>
         </div>
         <div className={style.answer__button}>
-          <button>Ответ</button>
+          <button onClick={props.onClickAnswer}>Ответ</button>
         </div>
       </div>
     </div>

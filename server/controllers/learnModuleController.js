@@ -19,6 +19,8 @@ class LearnModuleController {
     const cardId = req.params.id;
     const { answer } = req.body;
 
+    console.log('checkCardAnswer answer --> ', answer);
+
     await learnService.checkAnswer(cardId, answer)
     .then(responseService => {
       res.status(200).json(responseService);

@@ -155,7 +155,7 @@ export const CardForm = (props) => {
             <input type='file' id={`file__${props._id}`}
               accept='image/*' onChange={handleChangeFile}
               ref={inputFileRef} />
-            <label for={`file__${props._id}`}>
+            <label htmlFor={`file__${props._id}`}>
               <div className={style.icon__img}>🖼</div>
               <span>Изображение</span>
             </label>

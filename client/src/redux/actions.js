@@ -1,4 +1,4 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
@@ -124,6 +124,17 @@ export function fetchLearnModule(id) {
     
     dispatch({
       type: FETCH_LEARN_MODULE,
+      data: response.data
+    });
+  }
+}
+
+export function checkAnswer(cardId, answer) {
+  return async dispatch => {
+    const response = await checkAnswerApi(cardId, answer);
+
+    dispatch({
+      type: CHECK_ANSWER,
       data: response.data
     });
   }

@@ -7,11 +7,11 @@ export const HeaderModuleForm = props => {
         <input id="title" className={style.text__input}
           type="text" placeholder='Введите название'
           value={props.title} onChange={props.setTitle} />
-        <label for="title" className={style.label}>Название</label>
+        <label htmlFor="title" className={style.label}>Название</label>
         <input id={"description"} className={style.text__input}
           type="text" placeholder='Добавьте описание...'
           value={props.description} onChange={props.setDescription} />
-        <label for="description" className={style.label}>Описание</label>
+        <label htmlFor="description" className={style.label}>Описание</label>
       </div>
 
       <div className={style.container__permissions}>
