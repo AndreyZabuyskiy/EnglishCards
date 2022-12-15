@@ -19,9 +19,20 @@ class LearnModuleController {
     const cardId = req.params.id;
     const { answer } = req.body;
 
-    console.log('checkCardAnswer answer --> ', answer);
-
     await learnService.checkAnswer(cardId, answer)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
+  async getResultWriteModule(req, res, next) {
+    const userId = req.user.id;
+    const moduleId = req.params.id;
+
+    await learnService.getResultWriteModule(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })

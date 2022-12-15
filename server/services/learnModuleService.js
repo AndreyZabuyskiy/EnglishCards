@@ -32,6 +32,13 @@ class LearnModuleService {
     return isCorrectAnswer;
   }
 
+  async getResultWriteModule(userId, moduleId) {
+    const writeModules = await WriteModule.find({ user: userId, module: moduleId });
+    const writeModule = writeModules[0];
+    const cards = await WriteCard.find({ writeModule: writeModule._id });
+    return { writeModule, cards };
+  }
+
   async createWriteModule(userId, moduleId) {
     const cards = await Card.find({ module: moduleId });
     const writesModules = await WriteModule.find({ module: moduleId, user: userId });
