@@ -40,6 +40,19 @@ class LearnModuleController {
       next(ApiError.badRequest(e.message));
     });
   }
+
+  async removeLearnModuleById(req, res, next) {
+    const userId = req.user.id;
+    const moduleId = req.params.id;
+
+    await learnService.removeModule(userId, moduleId)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new LearnModuleController();

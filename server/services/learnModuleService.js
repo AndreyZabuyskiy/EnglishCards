@@ -108,6 +108,22 @@ class LearnModuleService {
 
     return { writeModule, cards: _cards, countAnswers, correctAnswers, incorrectAnswers }
   }
+
+  async removeLearnModuleById(userId, moduleId) {
+    const writeModules = await WriteModule.find({ user: userId, module: moduleId });
+
+    await Promise.all(writeModules.map(async (_module) => {
+      const cards = await WriteCard.find({ writeModule: _module._id });
+
+      await Promise.all(cards.map(async card => {
+        await WriteCard.deleteOne({ _id: card._id });
+      }));
+      
+      await WriteModule.deleteOne({ _id: _module._id });
+    }));
+
+    return { moduleId };
+  } 
 }
 
 export default new LearnModuleService;
