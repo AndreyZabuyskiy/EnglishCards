@@ -1,4 +1,4 @@
-import { GET_RESULT_MODULE } from "../types";
+import { GET_RESULT_MODULE, REMOVE_LEARN_MODULE } from "../types";
 
 const inititalState = {
   module: null,
@@ -6,7 +6,6 @@ const inititalState = {
 }
 
 export const resultModuleReducer = (state = inititalState, action) => {
-  console.log('resultModuleReducer action.data -->', action.action);
   switch (action.type) {
     case GET_RESULT_MODULE:
       return {
@@ -14,6 +13,14 @@ export const resultModuleReducer = (state = inititalState, action) => {
         module: action.action.writeModule,
         cards: action.action.cards
       }
+    
+    case REMOVE_LEARN_MODULE: {
+      return {
+        ...state,
+        module: null,
+        cards: null
+      }
+    }
 
     default:
       return state;

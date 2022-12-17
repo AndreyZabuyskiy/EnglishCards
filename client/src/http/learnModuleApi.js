@@ -21,7 +21,15 @@ export const checkAnswerApi = async (cardId, answer) => {
 export const getResultModuleApi = async (moduleId) => {
   try {
     const response = await $authHost.get(`api/learn-module/write-module/${moduleId}`);
-    console.log('getResultModuleApi response -->', response);
+    return response.data;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export const removeLearnModuleApi = async (moduleId) => {
+  try {
+    const response = await $authHost.get(`api/learn-module/remove-module/${moduleId}`);
     return response.data;
   } catch (e) {
     console.log(e.message);

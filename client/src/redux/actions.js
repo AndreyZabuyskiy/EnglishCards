@@ -1,8 +1,8 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
-import { checkAnswerApi, fetchCheckAnswerApi, fetchLearnModulesApi, getResultModuleApi } from "../http/learnModuleApi";
+import { checkAnswerApi, fetchCheckAnswerApi, fetchLearnModulesApi, getResultModuleApi, removeLearnModuleApi } from "../http/learnModuleApi";
 import Cookies from "js-cookie";
 
 export function registerAction(login, password) {
@@ -143,10 +143,28 @@ export function checkAnswer(cardId, answer) {
 export function getResultModule(moduleId) {
   return async dispatch => {
     const data = await getResultModuleApi(moduleId);
-    console.log('getResultModule data -->', data);
+
     dispatch({
       type: GET_RESULT_MODULE,
       action: data
+    });
+  }
+}
+
+export function removeLearnModule(moduleId) {
+  return async dispatch => {
+    const data = await removeLearnModuleApi(moduleId);
+
+    dispatch({
+      type: REMOVE_LEARN_MODULE,
+      action: data
+    });
+
+    const response = await fetchLearnModulesApi(moduleId);
+    
+    dispatch({
+      type: FETCH_LEARN_MODULE,
+      data: response.data
     });
   }
 }

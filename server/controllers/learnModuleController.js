@@ -45,7 +45,7 @@ class LearnModuleController {
     const userId = req.user.id;
     const moduleId = req.params.id;
 
-    await learnService.removeModule(userId, moduleId)
+    await learnService.removeLearnModuleById(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })

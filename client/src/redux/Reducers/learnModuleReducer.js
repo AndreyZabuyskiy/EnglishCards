@@ -1,4 +1,4 @@
-import { CHECK_ANSWER, FETCH_LEARN_MODULE } from "../types";
+import { CHECK_ANSWER, FETCH_LEARN_MODULE, REMOVE_LEARN_MODULE } from "../types";
 
 const inititalState = {
   module: null,
@@ -19,7 +19,8 @@ export const learnModuleReducer = (state = inititalState, action) => {
         cards: action.data.cards,
         totalNumberCards: action.data.countAnswers,
         countCorrectAnswers: action.data.correctAnswers,
-        countIncorrectAnswers: action.data.incorrectAnswers
+        countIncorrectAnswers: action.data.incorrectAnswers,
+        index: 0
       }
     
     case CHECK_ANSWER: {

@@ -58,8 +58,6 @@ export const LearnModule = () => {
               :
                 <WriteEndView />
             }
-
-          {/* <WriteEndView /> */}
         </div>
       </div>
       }
