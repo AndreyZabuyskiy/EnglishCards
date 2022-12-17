@@ -35,7 +35,24 @@ class LearnModuleService {
   async getResultWriteModule(userId, moduleId) {
     const writeModules = await WriteModule.find({ user: userId, module: moduleId });
     const writeModule = writeModules[0];
-    const cards = await WriteCard.find({ writeModule: writeModule._id });
+
+    const writeCards = await WriteCard.find({ writeModule: writeModule._id });
+    const cards = [];
+
+    await Promise.all(writeCards.map(async (writeCard, index) => {
+      const card = await Card.find({ _id: writeCard.card });
+
+      const responseCard = {
+        _id: writeCard._id,
+        index: writeCard.index,
+        status: writeCard.status,
+        writeModule: writeCard.writeModule,
+        card: card[0]
+      };
+      
+      cards.push(responseCard);
+    }));
+    
     return { writeModule, cards };
   }
 

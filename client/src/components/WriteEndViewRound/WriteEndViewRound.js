@@ -1,71 +1,38 @@
 import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { LEARN_MODULE } from '../../utils/consts';
 import style from './WriteEndViewRound.module.css';
 
-export const WriteEndViewRound = () => {
-  const [cards, setCards] = useState(
-  [
-    {
-      value: "two years ago",
-      translate: "два года назад",
-      isRight: true 
-    },
-    {
-      value: "to turn",
-      translate: "поворачивать",
-      isRight: true 
-    },
-    {
-      value: "to get in touch with sb",
-      translate: "связаться с кем-то",
-      isRight: true 
-    },
-    {
-      value: "almost every day",
-      translate: "практически каждый день",
-      isRight: true 
-      },
-    {
-      value: "to include",
-      translate: "включать",
-      isRight: false 
-    },
-    {
-      value: "a couple of",
-      translate: "пара (чего-либо)",
-      isRight: false 
-    },
-    {
-      value: "switch on/off",
-      translate: "включать/выключать (2)",
-      isRight: true 
-    },
-    {
-      value: "turn on / off",
-      translate: "включать/выключать (1)",
-      isRight: false
-    }
-  ]);
+export const WriteEndViewRound = (props) => {
+  const { id } = useParams();
+  
+  console.log('WriteEndViewRound props -->', props);
+  const countCards = props.cards.length;
+  const countCorrectCards = props.cards.filter(card => card.status === 1).length;
+  const interestRatioCorrctAnswers = countCorrectCards / countCards * 100;
 
   return (
     <div className={style.container}>
       <div className={style.round__header}>
         <div className={style.round__summary}>
-          <div className={style.header}>Этап 1</div>
-          <div className={style.subheader}>5/8 - 63%</div>
+          <div className={style.header}>Этап { props.module.round + 1 }</div>
+          <div className={style.subheader}>{countCorrectCards}/{countCards} - { interestRatioCorrctAnswers }%</div>
         </div>
         <div>
-          <button className={style.UIButton}>Начать сначала</button>
+          <button className={style.UIButton}>
+            <Link onClick={() => alert("Начать сначала")} to={`${LEARN_MODULE}/${id}`}>Начать сначала</Link>
+          </button>
         </div>
       </div>
-      {cards?.map(card => (
+      {props.cards?.map(card => (
         <div className={`${style.write__answer} 
-          ${card.isRight ? style.answer__correct : style.answer__incorrect}`}
+          ${card.status === 1 ? style.answer__correct : style.answer__incorrect}`}
         >
           <div className={style.UIIcon__answer}>
-            {card.isRight ? "✓" : "❌"}
+            {card.status === 1 ? "✓" : "❌"}
           </div>
-          <div className={style.value}>{ card.value }</div>
-          <div className={style.translate}>{ card.translate }</div>
+          <div className={style.value}>{ card.card.value }</div>
+          <div className={style.translate}>{ card.card.translate }</div>
         </div>
       ))}
     </div>
