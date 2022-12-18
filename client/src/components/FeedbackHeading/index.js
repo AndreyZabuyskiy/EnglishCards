@@ -1,0 +1,1 @@
+export { FeedbackHeading } from './FeedbackHeading';

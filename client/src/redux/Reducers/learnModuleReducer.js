@@ -7,7 +7,9 @@ const inititalState = {
   totalNumberCards: 0,
   countCorrectAnswers: 0,
   countIncorrectAnswers: 0,
-  countCheckAnswers: 0
+  countCheckAnswers: 0,
+  isFinish: false,
+  isCurrentAnswer: true
 }
 
 export const learnModuleReducer = (state = inititalState, action) => {
@@ -20,7 +22,8 @@ export const learnModuleReducer = (state = inititalState, action) => {
         totalNumberCards: action.data.countAnswers,
         countCorrectAnswers: action.data.correctAnswers,
         countIncorrectAnswers: action.data.incorrectAnswers,
-        index: 0
+        index: 0,
+        isFinish: false
       }
     
     case CHECK_ANSWER: {
@@ -29,14 +32,16 @@ export const learnModuleReducer = (state = inititalState, action) => {
           ...state,
           index: state.index + 1,
           countCorrectAnswers: state.countCorrectAnswers + 1,
-          countCheckAnswers: state.countCheckAnswers + 1
+          countCheckAnswers: state.countCheckAnswers + 1,
+          isFinish: !state.cards[state.index + 1]
         }
       } else {
         return {
           ...state,
-          index: state.index + 1,
           countIncorrectAnswers: state.countIncorrectAnswers + 1,
-          countCheckAnswers: state.countCheckAnswers + 1
+          countCheckAnswers: state.countCheckAnswers + 1,
+          isFinish: !state.cards[state.index + 1],
+          isCurrentAnswer: false
         }
       }
     }

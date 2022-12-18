@@ -1,0 +1,94 @@
+.container {
+  width: 100%;
+  background-color: #13141b;
+  color: #ffffff;
+  padding: 24px 32px;
+  margin: 24px;
+}
+
+.UIHeading {
+  padding-bottom: 32px;
+}
+
+.UIEmoticons {
+  padding-right: 10px;
+  font-size: 33px;
+}
+
+.UIHeadingText {
+  color: #FF725B;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.content {
+  color: #C3C7D5;
+  font-size: 15px;
+  padding: 5px 0px;
+}
+
+.feedbackItem {
+  margin-bottom: 40px;
+}
+
+.UIItemTextWithImage {
+  display: flex;
+  justify-content: space-between;
+}
+
+.UIButtonWrapper {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.UIItemSix {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.UIItemValue {
+  font-size: 18px;
+  padding: 10px 0px;
+}
+
+.translate {
+  color: #F6F7FB;
+}
+
+.answer {
+  color: #FF725B;
+}
+
+.rightAnswer {
+  color: #23B26D;
+}
+
+.UILinkInner {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.UILink {
+  background-color: #13141b;
+  color: #3ccfcf;
+  font-size: 16px;
+}
+.UILink:hover {
+  color: #ffcd1f;
+}
+
+.fixedContinueButton {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+.fixedContinueButton button {
+  padding: 12px 24px;
+  background-color: #3ccfcf;
+  color: #282e3e;
+  font-weight: bold;
+}
+.fixedContinueButton button:hover {
+  background-color: #77dddd;
+}/*# sourceMappingURL=FeedbackHeading.module.css.map */

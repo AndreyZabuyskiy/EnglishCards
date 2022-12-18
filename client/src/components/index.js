@@ -18,6 +18,7 @@ import { StudiedCardsLine } from './StudiedCardsLine';
 import { ModeControls } from './ModeControls';
 import { WriteEndView } from './WriteEndView/WriteEndView';
 import { WriteEndViewRound } from './WriteEndViewRound';
+import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
 
 export {
   StudyModule,
@@ -39,5 +40,6 @@ export {
   StudiedCardsLine,
   ModeControls,
   WriteEndView,
-  WriteEndViewRound
+  WriteEndViewRound,
+  FeedbackHeading
 }
