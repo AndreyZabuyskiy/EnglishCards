@@ -14,7 +14,7 @@ export const UIMenuModule = (props) => {
         </Link>
       </div>
       <div className={style.row__links}>
-        <Link className={style.link} to={`${SCREEN_CARDS}/${props.id}`}>
+        <Link className={style.link} to={`${TEST_MODULE}/${props.id}`}>
           <div><span>🗎</span>Тест</div>
         </Link>
         <Link className={`${style.link} ${style.last__link}`} to={`${SCREEN_CARDS}/${props.id}`}>

@@ -1,4 +1,4 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
@@ -165,6 +165,23 @@ export function removeLearnModule(moduleId) {
     dispatch({
       type: FETCH_LEARN_MODULE,
       data: response.data
+    });
+  }
+}
+
+export function saveUserAnswer(userAnswer) {
+  return async dispatch => {
+    dispatch({
+      type: SAVE_USER_ANSWER,
+      data: userAnswer
+    });
+  }
+}
+
+export function nextQuestion() {
+  return async dispatch => {
+    dispatch({
+      type: NEXT_QUESTION
     });
   }
 }

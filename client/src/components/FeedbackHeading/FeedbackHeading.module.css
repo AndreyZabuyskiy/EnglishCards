@@ -91,4 +91,20 @@
 }
 .fixedContinueButton button:hover {
   background-color: #77dddd;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    background-color: #13141b;
+    color: #ffffff;
+    padding: 24px 32px;
+    margin: 0px;
+  }
+  .UIHeadingText {
+    font-size: 24px;
+  }
+  .fixedContinueButton button {
+    padding: 12px 12px;
+  }
 }/*# sourceMappingURL=FeedbackHeading.module.css.map */

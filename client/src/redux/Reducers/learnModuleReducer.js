@@ -1,4 +1,4 @@
-import { CHECK_ANSWER, FETCH_LEARN_MODULE, REMOVE_LEARN_MODULE } from "../types";
+import { CHECK_ANSWER, FETCH_LEARN_MODULE, NEXT_QUESTION, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER } from "../types";
 
 const inititalState = {
   module: null,
@@ -9,7 +9,8 @@ const inititalState = {
   countIncorrectAnswers: 0,
   countCheckAnswers: 0,
   isFinish: false,
-  isCurrentAnswer: true
+  isCurrentAnswer: true,
+  currentUserAnswer: ''
 }
 
 export const learnModuleReducer = (state = inititalState, action) => {
@@ -23,7 +24,8 @@ export const learnModuleReducer = (state = inititalState, action) => {
         countCorrectAnswers: action.data.correctAnswers,
         countIncorrectAnswers: action.data.incorrectAnswers,
         index: 0,
-        isFinish: false
+        isFinish: false,
+        isCurrentAnswer: true,
       }
     
     case CHECK_ANSWER: {
@@ -33,7 +35,7 @@ export const learnModuleReducer = (state = inititalState, action) => {
           index: state.index + 1,
           countCorrectAnswers: state.countCorrectAnswers + 1,
           countCheckAnswers: state.countCheckAnswers + 1,
-          isFinish: !state.cards[state.index + 1]
+          isFinish: !state.cards[state.index + 1],
         }
       } else {
         return {
@@ -43,6 +45,21 @@ export const learnModuleReducer = (state = inititalState, action) => {
           isFinish: !state.cards[state.index + 1],
           isCurrentAnswer: false
         }
+      }
+    }
+    
+    case SAVE_USER_ANSWER: {
+      return {
+        ...state,
+        currentUserAnswer: action.data
+      }
+    }
+      
+    case NEXT_QUESTION: {
+      return {
+        ...state,
+        index: state.index + 1,
+        isCurrentAnswer: true
       }
     }
 

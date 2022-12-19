@@ -8,7 +8,7 @@ export const CardWriteAnswer = (props) => {
         <div className={style.content__header}>
           <div className={style.translate}>{ props.translate }</div>
           <div className={style.UILink}>
-            <button className={style.dont__know}>Не знаю</button>
+            <button className={style.dont__know}>I don't know</button>
           </div>
         </div>
         {props.imgUrl &&
@@ -22,10 +22,10 @@ export const CardWriteAnswer = (props) => {
         <div className={style.footer__input}>
           <input id="answer" className={style.text__input} type="text"
             value={props.userAnswer} onChange={props.setUserAnswer} />
-          <label htmlFor="answer">Ваш ответ</label>
+          <label htmlFor="answer">Your answer</label>
         </div>
         <div className={style.answer__button}>
-          <button onClick={props.onClickAnswer}>Ответ</button>
+          <button onClick={props.onClickAnswer}>Answer</button>
         </div>
       </div>
     </div>

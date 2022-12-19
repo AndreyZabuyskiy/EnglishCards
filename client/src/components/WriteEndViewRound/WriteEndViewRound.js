@@ -20,11 +20,11 @@ export const WriteEndViewRound = (props) => {
     <div className={style.container}>
       <div className={style.round__header}>
         <div className={style.round__summary}>
-          <div className={style.header}>Этап { props.module.round + 1 }</div>
+          <div className={style.header}>Stage { props.module.round + 1 }</div>
           <div className={style.subheader}>{countCorrectCards}/{countCards} - { interestRatioCorrectAnswers }%</div>
         </div>
         <div>
-          <Link onClick={onClickStartOver} className={style.UIButton} to={`${LEARN_MODULE}/${id}`}>Начать сначала</Link>
+          <Link onClick={onClickStartOver} className={style.UIButton} to={`${LEARN_MODULE}/${id}`}>Start over</Link>
         </div>
       </div>
       {props.cards?.map(card => (
