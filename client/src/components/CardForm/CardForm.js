@@ -127,30 +127,68 @@ export const CardForm = (props) => {
 
   return (
     <div className={style.container}>
-      <div className={style.header__container}>
-        <div className={style.header}>
-          <div className={style.index}>{props.index + 1}</div>
+      <div className={style.container__card}>
+        <div className={style.header__container}>
+          <div className={style.header}>
+            <div className={style.index}>{props.index + 1}</div>
+            <div>
+              <span>═</span>
+              <button onClick={handleDeleteCard}>🗑</button>
+            </div>
+          </div>
+        </div>
+        <div className={style.inputs}>
+          <div className={style.input__value}>
+            <input type="text" value={props.value} onChange={handleChangeValue} />
+            <p>Термин</p>
+          </div>
+          <div className={style.input__translate}>
+            <input type="text" value={props.translate} onChange={handleChangeTranslate} />
+            <p>Определение</p>
+          </div>
+          {
+            props.imgUrl ?
+            <div className={style.image__container} style={backgroundImage}>
+              <button className={style.delete__img} onClick={handleRemoveFile}>🗑</button>                  
+            </div>
+            :
+            <div onClick={() => alert("OnClick image")} className={style.add__image}>
+              <label>
+                <div className={style.icon__img}>🖼</div>
+                <span>Изображение</span>
+              </label>
+            </div>
+            }
+        </div>
+      </div>
+      <div className={style.UploadImages}>
+        <div className={style.UploadImages__header}>
+          <input id="search" className={style.text__input}
+          type="text" placeholder='Search by images' />
+          <button className={style.UIButton}>Или загрузить свое изображение</button>
+        </div>
+
+        <div className={style.ImageCarousel}>
           <div>
-            <span>═</span>
-            <button onClick={handleDeleteCard}>🗑</button>
+            <button className={style.UIButton__wrapper}> ← </button>
+          </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+          <div>
+            <button className={style.UIButton__wrapper}> → </button>
           </div>
         </div>
       </div>
-      <div className={style.inputs}>
-        <div className={style.input__value}>
-          <input type="text" value={props.value} onChange={handleChangeValue} />
-          <p>Термин</p>
-        </div>
-        <div className={style.input__translate}>
-          <input type="text" value={props.translate} onChange={handleChangeTranslate} />
-          <p>Определение</p>
-        </div>
-        {
-          props.imgUrl ?
-          <div className={style.image__container} style={backgroundImage}>
-            <button className={style.delete__img} onClick={handleRemoveFile}>🗑</button>                  
-          </div>
-          :
+    </div>
+  );
+}
+
+/*
           <div className={style.add__image}>
             <input type='file' id={`file__${props._id}`}
               accept='image/*' onChange={handleChangeFile}
@@ -160,8 +198,4 @@ export const CardForm = (props) => {
               <span>Изображение</span>
             </label>
           </div>
-          }
-      </div>
-    </div>
-  );
-}
+*/

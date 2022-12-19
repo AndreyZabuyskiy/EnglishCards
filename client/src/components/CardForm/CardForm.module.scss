@@ -1,6 +1,9 @@
 .container {
   margin-bottom: 20px;
   width: 100%;
+}
+
+.container__card {
   padding: 20px 0px;
   border-radius: 5px;
   background-color: #2e3856;
@@ -217,5 +220,57 @@
 
   .add__image {
     display: none;
+  }
+}
+
+.UploadImages {
+  background-color: #13141b;
+  padding: 20px 24px;
+}
+
+.ImageCarousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.UploadImages__wrapp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.image__link {
+  width: 200px;
+  height: 150px;
+}
+
+.UIButton {
+  background-color: #3ccfcf;
+  color: #282E3E;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 24px;
+  margin-left: 20px;
+}
+
+.UIButton__wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #3ccfcf;
+}
+
+.text__input {
+  width: 250px;
+  margin: 10px 0px;
+  background-color: #13141b;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+  font-size: 18px;
+  color: #c3c7d5;
+
+  &:focus {
+    border-bottom: 3px solid yellow;
   }
 }
