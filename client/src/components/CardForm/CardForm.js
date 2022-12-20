@@ -3,7 +3,7 @@ import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
 import { useRef } from 'react';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchImages } from '../../redux/actions';
+import { clearImages, fetchImages } from '../../redux/actions';
 
 export const CardForm = (props) => {
   const card = props.cards.find(card => props._id === card._id);
@@ -41,7 +41,7 @@ export const CardForm = (props) => {
           value: e.target.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          isUploadImage: card.isUploadImage,
+          isViewUploadImage: card.isViewUploadImage,
           searchQuery: card.searchQuery
         });
       } else {
@@ -62,7 +62,7 @@ export const CardForm = (props) => {
           value: card.value,
           translate: e.target.value,
           imgUrl: card.imgUrl,
-          isUploadImage: card.isUploadImage,
+          isViewUploadImage: card.isViewUploadImage,
           searchQuery: card.searchQuery
         });
       } else {
@@ -85,7 +85,7 @@ export const CardForm = (props) => {
           value:  card.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          isUploadImage: card.isUploadImage,
+          isViewUploadImage: card.isViewUploadImage,
           searchQuery: card.searchQuery
         });
       }
@@ -106,7 +106,7 @@ export const CardForm = (props) => {
             value: card.value,
             translate: card.translate,
             imgUrl: data,
-            isUploadImage: card.isUploadImage,
+            isViewUploadImage: card.isViewUploadImage,
             searchQuery: card.searchQuery
           });
         } else {
@@ -135,7 +135,7 @@ export const CardForm = (props) => {
             value: card.value,
             translate: card.translate,
             imgUrl: '',
-            isUploadImage: card.isUploadImage,
+            isViewUploadImage: card.isViewUploadImage,
             searchQuery: card.searchQuery
           });
         } else {
@@ -151,6 +151,12 @@ export const CardForm = (props) => {
   }
 
   const onClickUploadImage = e => {
+    if (!card.isViewUploadImage) {
+      dispatch(fetchImages(card.value));
+    } else {
+      dispatch(clearImages());
+    }
+
     const changedCards = [];
     
     props.cards.forEach(card => {
@@ -160,7 +166,7 @@ export const CardForm = (props) => {
           value: card.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          isUploadImage: !card.isUploadImage,
+          isViewUploadImage: !card.isViewUploadImage,
           searchQuery: card.value
         });
       } else {
@@ -169,7 +175,7 @@ export const CardForm = (props) => {
           value: card.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          isUploadImage: false,
+          isViewUploadImage: false,
           searchQuery: card.value
         });
       }
@@ -194,7 +200,7 @@ export const CardForm = (props) => {
           value: card.value,
           translate: card.translate,
           imgUrl: card.imgUrl,
-          isUploadImage: card.isUploadImage,
+          isViewUploadImage: card.isUploadImage,
           searchQuery: e.target.value
         });
       } else {
@@ -203,6 +209,10 @@ export const CardForm = (props) => {
     });
 
     props.setCards(changedCards);
+  }
+
+  const onClickImage = url => {
+    console.log('onClickImage url -->', url);
   }
 
   return (
@@ -241,7 +251,7 @@ export const CardForm = (props) => {
             }
         </div>
       </div>
-      {card.isUploadImage &&
+      {card.isViewUploadImage &&
       <div className={style.UploadImages}>
         <div className={style.UploadImages__header}>
             <input id="search" className={style.text__input}
@@ -265,19 +275,12 @@ export const CardForm = (props) => {
               {_images && 
               _images.map(img => (
                 <div>
-                  <img className={style.image__link} src={img}></img>
+                  <button className={style.button__img} onClick={() => onClickImage(img)}>
+                    <img src={img} alt="image"></img>
+                  </button>
                 </div>
                 ))
               }
-            {/*
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
-
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
-
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
-
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
-            */}
           <div>
             <button className={style.UIButton__wrapper}> → </button>
           </div>

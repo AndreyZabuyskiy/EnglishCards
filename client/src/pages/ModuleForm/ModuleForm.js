@@ -19,7 +19,7 @@ export const ModuleForm = () => {
       value: '',
       translate: '',
       imgUrl: '',
-      isUploadImage: false,
+      isViewUploadImage: false,
       searchQuery: ''
     },
     {
@@ -27,7 +27,7 @@ export const ModuleForm = () => {
       value: '',
       translate: '',
       imgUrl: '',
-      isUploadImage: false,
+      isViewUploadImage: false,
       searchQuery: ''
     },
     {
@@ -35,7 +35,7 @@ export const ModuleForm = () => {
       value: '',
       translate: '',
       imgUrl: '',
-      isUploadImage: false,
+      isViewUploadImage: false,
       searchQuery: ''
     },
     {
@@ -43,7 +43,7 @@ export const ModuleForm = () => {
       value: '',
       translate: '',
       imgUrl: '',
-      isUploadImage: false,
+      isViewUploadImage: false,
       searchQuery: ''
     },
     {
@@ -51,7 +51,7 @@ export const ModuleForm = () => {
       value: '',
       translate: '',
       imgUrl: '',
-      isUploadImage: false,
+      isViewUploadImage: false,
       searchQuery: ''
     }
   ];
@@ -118,4 +118,4 @@ export const ModuleForm = () => {
       </div>
     </div>
   );
-} 
+}

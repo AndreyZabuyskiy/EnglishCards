@@ -245,11 +245,6 @@
   justify-content: space-around;
 }
 
-.image__link {
-  width: 200px;
-  height: 150px;
-}
-
 .UIButton__wrapper {
   width: 36px;
   height: 36px;
@@ -293,5 +288,27 @@
     &:hover {
       cursor: pointer;
     }
+  }
+}
+
+.button__img {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+
+  &:hover {
+    outline: #ffdc62 solid 6px;
+    outline-offset: -3px;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
