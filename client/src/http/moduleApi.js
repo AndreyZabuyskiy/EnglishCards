@@ -1,3 +1,4 @@
+import axios from "axios";
 import { $host, $authHost } from "./index";
 
 export const fetchModuleByIdApi = async (id) => {
@@ -41,5 +42,21 @@ export const removeFileApi = async (img) => {
     return data;
   } catch (e) {
     console.log(e.message)
+  }
+}
+
+export const fetchImagesApi = async (searchQuery) => {
+  try {
+    const key = 'y0nalq7ojG9Rvm75ByY5vYuNeSjsXjU9h7oW6oQ5opc'
+    const { data } = await axios.get(`https://api.unsplash.com/search/photos?client_id=${key}&page=1&query=${searchQuery}`);
+
+    const urls = [];
+    data.results.forEach(img => {
+      urls.push(img.urls.regular);
+    });
+    
+    return urls;
+  } catch (e) {
+    console.log(e.message);
   }
 }

@@ -1,17 +1,31 @@
 import style from './CardForm.module.css';
 import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchImages } from '../../redux/actions';
 
 export const CardForm = (props) => {
   const card = props.cards.find(card => props._id === card._id);
   const inputFileRef = useRef(null);
+  const dispatch = useDispatch();
 
   const user = useSelector(state => {
     const { authReducer } = state;
     return authReducer.user;
   });
+
+  const images = useSelector(state => {
+    const { uploadImagesReducer } = state;
+    return uploadImagesReducer.images;
+  });
+
+  const _images = [];
+  if (images) {
+    for (let i = 0; i < 4; ++i) {
+      _images.push(images[i]);
+    }
+  }
 
   const backgroundImage = {
     background: 'url(' + `${REACT_APP_API_URL}/${user.login}/${props.imgUrl}` + ') 50%/cover no-repeat',
@@ -166,7 +180,7 @@ export const CardForm = (props) => {
 
   const onClickEnter = (e) => {
     if(e.key === 'Enter') {
-        alert(e.target.value);        
+        dispatch(fetchImages(e.target.value));
     }
   }
 
@@ -247,14 +261,23 @@ export const CardForm = (props) => {
         <div className={style.ImageCarousel}>
           <div>
             <button className={style.UIButton__wrapper}> ← </button>
-          </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+            </div>
+              {_images && 
+              _images.map(img => (
+                <div>
+                  <img className={style.image__link} src={img}></img>
+                </div>
+                ))
+              }
+            {/*
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAILHdALH4vkOCgfcOkiS2QwTeKBGi-qHY_g&usqp=CAU" alt="" className={style.image__link} />
+            */}
           <div>
             <button className={style.UIButton__wrapper}> → </button>
           </div>
