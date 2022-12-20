@@ -12,6 +12,7 @@ export const ListCreateCards = (props) => {
             value={card.value}
             translate={card.translate}
             imgUrl={card.imgUrl}
+            searchQuery={card.searchQuery}
             cards={props.cards}
             setCards={props.setCards}
           />

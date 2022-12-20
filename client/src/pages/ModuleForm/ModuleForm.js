@@ -18,31 +18,41 @@ export const ModuleForm = () => {
       _id: 0,
       value: '',
       translate: '',
-      imgUrl: ''
+      imgUrl: '',
+      isUploadImage: false,
+      searchQuery: ''
     },
     {
       _id: 1,
       value: '',
       translate: '',
-      imgUrl: ''
+      imgUrl: '',
+      isUploadImage: false,
+      searchQuery: ''
     },
     {
       _id: 2,
       value: '',
       translate: '',
-      imgUrl: ''
+      imgUrl: '',
+      isUploadImage: false,
+      searchQuery: ''
     },
     {
       _id: 3,
       value: '',
       translate: '',
-      imgUrl: ''
+      imgUrl: '',
+      isUploadImage: false,
+      searchQuery: ''
     },
     {
       _id: 4,
       value: '',
       translate: '',
-      imgUrl: ''
+      imgUrl: '',
+      isUploadImage: false,
+      searchQuery: ''
     }
   ];
 

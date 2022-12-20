@@ -1,10 +1,11 @@
 import style from './CardForm.module.css';
 import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
 
 export const CardForm = (props) => {
+  const card = props.cards.find(card => props._id === card._id);
   const inputFileRef = useRef(null);
 
   const user = useSelector(state => {
@@ -25,7 +26,9 @@ export const CardForm = (props) => {
           _id: card._id,
           value: e.target.value,
           translate: card.translate,
-          imgUrl: card.imgUrl
+          imgUrl: card.imgUrl,
+          isUploadImage: card.isUploadImage,
+          searchQuery: card.searchQuery
         });
       } else {
         changedCards.push(card);
@@ -44,7 +47,9 @@ export const CardForm = (props) => {
           _id: card._id,
           value: card.value,
           translate: e.target.value,
-          imgUrl: card.imgUrl
+          imgUrl: card.imgUrl,
+          isUploadImage: card.isUploadImage,
+          searchQuery: card.searchQuery
         });
       } else {
         changedCards.push(card);
@@ -65,7 +70,9 @@ export const CardForm = (props) => {
           _id: card._id,
           value:  card.value,
           translate: card.translate,
-          imgUrl: card.imgUrl
+          imgUrl: card.imgUrl,
+          isUploadImage: card.isUploadImage,
+          searchQuery: card.searchQuery
         });
       }
     });
@@ -84,7 +91,9 @@ export const CardForm = (props) => {
             _id: card._id,
             value: card.value,
             translate: card.translate,
-            imgUrl: data
+            imgUrl: data,
+            isUploadImage: card.isUploadImage,
+            searchQuery: card.searchQuery
           });
         } else {
           changedCards.push(card);
@@ -111,7 +120,9 @@ export const CardForm = (props) => {
             _id: card.id,
             value: card.value,
             translate: card.translate,
-            imgUrl: ''
+            imgUrl: '',
+            isUploadImage: card.isUploadImage,
+            searchQuery: card.searchQuery
           });
         } else {
           changedCards.push(card);
@@ -123,6 +134,61 @@ export const CardForm = (props) => {
       console.warn(err);
       alert('Ошибка при загрузке файла!');
     }
+  }
+
+  const onClickUploadImage = e => {
+    const changedCards = [];
+    
+    props.cards.forEach(card => {
+      if (props._id === card._id) {
+        changedCards.push({
+          _id: card._id,
+          value: card.value,
+          translate: card.translate,
+          imgUrl: card.imgUrl,
+          isUploadImage: !card.isUploadImage,
+          searchQuery: card.value
+        });
+      } else {
+        changedCards.push({
+          _id: card._id,
+          value: card.value,
+          translate: card.translate,
+          imgUrl: card.imgUrl,
+          isUploadImage: false,
+          searchQuery: card.value
+        });
+      }
+    });
+
+    props.setCards(changedCards);
+  }
+
+  const onClickEnter = (e) => {
+    if(e.key === 'Enter') {
+        alert(e.target.value);        
+    }
+  }
+
+  const handleChangeSearchQuery = (e) => {
+    const changedCards = [];
+    
+    props.cards.forEach(card => {
+      if (props._id === card._id) {
+        changedCards.push({
+          _id: card._id,
+          value: card.value,
+          translate: card.translate,
+          imgUrl: card.imgUrl,
+          isUploadImage: card.isUploadImage,
+          searchQuery: e.target.value
+        });
+      } else {
+        changedCards.push(card);
+      }
+    });
+
+    props.setCards(changedCards);
   }
 
   return (
@@ -152,7 +218,7 @@ export const CardForm = (props) => {
               <button className={style.delete__img} onClick={handleRemoveFile}>🗑</button>                  
             </div>
             :
-            <div onClick={() => alert("OnClick image")} className={style.add__image}>
+            <div onClick={onClickUploadImage} className={style.add__image}>
               <label>
                 <div className={style.icon__img}>🖼</div>
                 <span>Изображение</span>
@@ -161,11 +227,21 @@ export const CardForm = (props) => {
             }
         </div>
       </div>
+      {card.isUploadImage &&
       <div className={style.UploadImages}>
         <div className={style.UploadImages__header}>
-          <input id="search" className={style.text__input}
-          type="text" placeholder='Search by images' />
-          <button className={style.UIButton}>Или загрузить свое изображение</button>
+            <input id="search" className={style.text__input}
+              type="text" placeholder='Search by images'
+              value={props.searchQuery} onChange={handleChangeSearchQuery}
+              onKeyDown={onClickEnter} />
+            
+          <div className={style.upload__your__image}>
+            <input type='file' id={`file__${props._id}`}
+              ref={inputFileRef} accept='image/*' onChange={handleChangeFile} />
+            <label htmlFor={`file__${props._id}`}>
+              <div>Or upload your image</div>
+            </label>
+          </div>  
         </div>
 
         <div className={style.ImageCarousel}>
@@ -184,18 +260,7 @@ export const CardForm = (props) => {
           </div>
         </div>
       </div>
+      }
     </div>
   );
 }
-
-/*
-          <div className={style.add__image}>
-            <input type='file' id={`file__${props._id}`}
-              accept='image/*' onChange={handleChangeFile}
-              ref={inputFileRef} />
-            <label htmlFor={`file__${props._id}`}>
-              <div className={style.icon__img}>🖼</div>
-              <span>Изображение</span>
-            </label>
-          </div>
-*/

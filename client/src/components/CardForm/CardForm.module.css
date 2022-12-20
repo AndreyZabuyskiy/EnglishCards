@@ -198,6 +198,11 @@
   padding: 20px 24px;
 }
 
+.UploadImages__header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
 .ImageCarousel {
   display: flex;
   align-items: center;
@@ -213,15 +218,6 @@
 .image__link {
   width: 200px;
   height: 150px;
-}
-
-.UIButton {
-  background-color: #3ccfcf;
-  color: #282E3E;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 12px 24px;
-  margin-left: 20px;
 }
 
 .UIButton__wrapper {
@@ -242,4 +238,24 @@
 }
 .text__input:focus {
   border-bottom: 3px solid yellow;
+}
+
+.upload__your__image {
+  margin-left: 20px;
+  padding: 10px;
+}
+.upload__your__image input {
+  display: none;
+}
+.upload__your__image label div {
+  background-color: #3ccfcf;
+  color: #282E3E;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 24px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+.upload__your__image label:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=CardForm.module.css.map */
