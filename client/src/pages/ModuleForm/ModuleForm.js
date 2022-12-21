@@ -18,41 +18,51 @@ export const ModuleForm = () => {
       _id: 0,
       value: '',
       translate: '',
-      imgUrl: '',
       isViewUploadImage: false,
-      searchQuery: ''
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     },
     {
       _id: 1,
       value: '',
       translate: '',
-      imgUrl: '',
       isViewUploadImage: false,
-      searchQuery: ''
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     },
     {
       _id: 2,
       value: '',
       translate: '',
-      imgUrl: '',
       isViewUploadImage: false,
-      searchQuery: ''
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     },
     {
       _id: 3,
       value: '',
       translate: '',
-      imgUrl: '',
       isViewUploadImage: false,
-      searchQuery: ''
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     },
     {
       _id: 4,
       value: '',
       translate: '',
-      imgUrl: '',
       isViewUploadImage: false,
-      searchQuery: ''
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     }
   ];
 

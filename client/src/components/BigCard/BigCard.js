@@ -5,6 +5,13 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 export const BigCard = (props) => {
   const [isFrontCard, setIsFrontCard] = useState(true);
 
+  let imgSrc = '';
+  if (props.pathToFile) {
+    imgSrc = `${REACT_APP_API_URL}/${props.user.login}/${props.pathToFile}`;
+  } else if (props.urlToImage) {
+    imgSrc = `${props.urlToImage}`;
+  }
+
   let cardStyle = undefined;
 
   if(isFrontCard){
@@ -32,16 +39,15 @@ export const BigCard = (props) => {
             <div className={style.card__header__right}>Header content</div>
           </div>
 
-          {props.img ?
+          {imgSrc ?
           <div className={style.card__content__front}>
             <div className={style.card__content__left}> { props.translate } </div>
             <div className={style.card__content__right}>
-              <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.img}`}
-                className={style.card__img} />
+              <img src={`${imgSrc}`} className={style.card__img} />
             </div>
           </div>
           :
-          <div className={style.card__content__text}>        
+          <div className={style.card__content__text}>
             { props.translate }
           </div>
           }

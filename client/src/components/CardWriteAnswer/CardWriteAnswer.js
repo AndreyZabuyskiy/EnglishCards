@@ -2,6 +2,13 @@ import style from './CardWriteAnswer.module.css';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 
 export const CardWriteAnswer = (props) => {
+  let imgSrc = '';
+  if (props.pathToFile) {
+    imgSrc = `${REACT_APP_API_URL}/${props.user.login}/${props.pathToFile}`;
+  } else if (props.urlToImage) {
+    imgSrc = `${props.urlToImage}`;
+  }
+
   return (
     <div className={style.card}>
       <div className={style.content}>
@@ -11,10 +18,9 @@ export const CardWriteAnswer = (props) => {
             <button className={style.dont__know}>I don't know</button>
           </div>
         </div>
-        {props.imgUrl &&
+        {imgSrc &&
           <div className={style.img__container}>
-            <img className={style.card__img}
-              src={`${REACT_APP_API_URL}/${props.user.login}/${props.imgUrl}`} />
+            <img className={style.card__img} src={`${imgSrc}`} />
           </div>
         }
       </div>

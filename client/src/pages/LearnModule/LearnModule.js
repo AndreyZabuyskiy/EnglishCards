@@ -56,19 +56,20 @@ export const LearnModule = () => {
               ?
                 isCurrentAnswer
                 ?
-                <CardWriteAnswer user={user}
-                  value={cards[index].card.value}
-                  translate={cards[index].card.translate}
-                  imgUrl={cards[index].card.imgUrl}
-                  userAnswer={userAnswer}
-                  setUserAnswer={handleChangeUserAnswer}
-                  onClickAnswer={onClickAnswer} />
+                  <CardWriteAnswer user={user}
+                    value={cards[index].card.value}
+                    translate={cards[index].card.translate}
+                    pathToFile={cards[index].card.pathToFile}
+                    urlToImage={cards[index].card.urlToImage}
+                    userAnswer={userAnswer}
+                    setUserAnswer={handleChangeUserAnswer}
+                    onClickAnswer={onClickAnswer} />
                 :
-                <FeedbackHeading
-                  translate={cards[index].card.translate}
-                  value={cards[index].card.value}
-                  userAnswer={currentUserAnswer}
-                  onClickNextQuestion={onClickNextQuestion} />
+                  <FeedbackHeading
+                    translate={cards[index].card.translate}
+                    value={cards[index].card.value}
+                    userAnswer={currentUserAnswer}
+                    onClickNextQuestion={onClickNextQuestion} />
               :
                 <WriteEndView />
             }

@@ -2,6 +2,8 @@ import { AddCardButton } from "../AddCardButton/AddCardButton";
 import { CardForm } from "../CardForm/CardForm";
 
 export const ListCreateCards = (props) => {
+  //console.log('ListCreateCards props.cards -->', props.cards);
+  
   return (
     <div>
       {
@@ -11,10 +13,11 @@ export const ListCreateCards = (props) => {
             _id={card._id}
             value={card.value}
             translate={card.translate}
-            imgUrl={card.imgUrl}
+            pathToFile={card.pathToFile}
             searchQuery={card.searchQuery}
             cards={props.cards}
             setCards={props.setCards}
+            urlToImage={card.urlToImage}
           />
         ))
       }

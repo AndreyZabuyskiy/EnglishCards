@@ -104,7 +104,6 @@ class ModuleController {
 
     await moduleService.deleteModule(id)
       .then(deletedModule => {
-        
         res.status(200).json({
           data: deletedModule,
           request: {

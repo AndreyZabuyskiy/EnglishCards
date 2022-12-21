@@ -27,7 +27,7 @@ class ModuleService {
     return { module, cards };
   }
 
-  async createModule (userId, title, description, cards) {
+  async createModule(userId, title, description, cards) {
     const moduleDoc = new StudyModule({
       title,
       description,
@@ -35,12 +35,13 @@ class ModuleService {
     });
   
     const newModule = await moduleDoc.save();
-      
+    
     cards.map(async (card) => {
       const cardDoc = new Card({
         value: card.value,
         translate: card.translate,
-        imgUrl: card.imgUrl,
+        pathToFile: card.pathToFile,
+        urlToImage: card.urlToImage,
         module: newModule._id
       });
   

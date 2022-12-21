@@ -8,7 +8,10 @@ const schema = new mongoose.Schema({
   translate: {
     type: String
   },
-  imgUrl: {
+  pathToFile: {
+    type: String
+  },
+  urlToImage: {
     type: String
   },
   module: {

@@ -27,9 +27,18 @@ export const CardForm = (props) => {
     }
   }
 
-  const backgroundImage = {
-    background: 'url(' + `${REACT_APP_API_URL}/${user.login}/${props.imgUrl}` + ') 50%/cover no-repeat',
-  };
+  let backgroundImage = null;
+
+  if (props.pathToFile) {
+    backgroundImage = {
+      background: 'url(' + `${REACT_APP_API_URL}/${user.login}/${props.pathToFile}` + ') 50%/cover no-repeat'
+    };
+  }
+  if (props.urlToImage) {
+    backgroundImage = {
+      background: 'url(' + `${props.urlToImage}` + ') 50%/cover no-repeat'
+    };
+  }
 
   const handleChangeValue = e => {
     const changedCards = [];
@@ -40,9 +49,11 @@ export const CardForm = (props) => {
           _id: card._id,
           value: e.target.value,
           translate: card.translate,
-          imgUrl: card.imgUrl,
+          pathToFile: card.pathToFile,
           isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery
+          searchQuery: card.searchQuery,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       } else {
         changedCards.push(card);
@@ -61,9 +72,11 @@ export const CardForm = (props) => {
           _id: card._id,
           value: card.value,
           translate: e.target.value,
-          imgUrl: card.imgUrl,
           isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery
+          searchQuery: card.searchQuery,
+          pathToFile: card.pathToFile,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       } else {
         changedCards.push(card);
@@ -78,15 +91,16 @@ export const CardForm = (props) => {
     let count = 0;
 
     props.cards.forEach(card => {
-      console.log('card --> ', card);
       if(props._id !== card._id) {
         changedCards.push({
           _id: card._id,
           value:  card.value,
           translate: card.translate,
-          imgUrl: card.imgUrl,
           isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery
+          searchQuery: card.searchQuery,
+          pathToFile: card.pathToFile,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       }
     });
@@ -105,9 +119,11 @@ export const CardForm = (props) => {
             _id: card._id,
             value: card.value,
             translate: card.translate,
-            imgUrl: data,
             isViewUploadImage: card.isViewUploadImage,
-            searchQuery: card.searchQuery
+            searchQuery: card.searchQuery,
+            pathToFile: data,
+            isUrlImage: false,
+            urlToImage: ''
           });
         } else {
           changedCards.push(card);
@@ -122,21 +138,27 @@ export const CardForm = (props) => {
   }
 
   const handleRemoveFile = async (e) => {
-    try {
+    try {      
       const card = props.cards[props._id];
-      const data = await removeFileApi(card.imgUrl);
+
+      const data = '';
+      if (card.pathToFile) {
+        data = await removeFileApi(card.pathToFile);
+      }
       
       const changedCards = [];
 
       props.cards.forEach(card => {        
         if (props._id === card._id) {
           changedCards.push({
-            _id: card.id,
+            _id: card._id,
             value: card.value,
             translate: card.translate,
-            imgUrl: '',
             isViewUploadImage: card.isViewUploadImage,
-            searchQuery: card.searchQuery
+            searchQuery: card.searchQuery,
+            pathToFile: '',
+            isUrlImage: false,
+            urlToImage: ''
           });
         } else {
           changedCards.push(card);
@@ -165,18 +187,22 @@ export const CardForm = (props) => {
           _id: card._id,
           value: card.value,
           translate: card.translate,
-          imgUrl: card.imgUrl,
           isViewUploadImage: !card.isViewUploadImage,
-          searchQuery: card.value
+          searchQuery: card.value,
+          pathToFile: card.pathToFile,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       } else {
         changedCards.push({
           _id: card._id,
           value: card.value,
           translate: card.translate,
-          imgUrl: card.imgUrl,
           isViewUploadImage: false,
-          searchQuery: card.value
+          searchQuery: card.value,
+          pathToFile: card.pathToFile,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       }
     });
@@ -199,9 +225,11 @@ export const CardForm = (props) => {
           _id: card._id,
           value: card.value,
           translate: card.translate,
-          imgUrl: card.imgUrl,
           isViewUploadImage: card.isUploadImage,
-          searchQuery: e.target.value
+          searchQuery: e.target.value,
+          pathToFile: card.pathToFile,
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
         });
       } else {
         changedCards.push(card);
@@ -212,7 +240,35 @@ export const CardForm = (props) => {
   }
 
   const onClickImage = url => {
-    console.log('onClickImage url -->', url);
+    const changedCards = [];
+    
+    props.cards.forEach(card => {
+      if (props._id === card._id) {
+        changedCards.push({
+          _id: card._id,
+          value: card.value,
+          translate: card.translate,
+          isViewUploadImage: !card.isViewUploadImage,
+          searchQuery: card.value,
+          pathToFile: '',
+          isUrlImage: true,
+          urlToImage: url
+        });
+      } else {
+        changedCards.push({
+          _id: card._id,
+          value: card.value,
+          translate: card.translate,
+          isViewUploadImage: false,
+          searchQuery: card.value,
+          pathToFile: '',
+          isUrlImage: card.isUrlImage,
+          urlToImage: card.urlToImage
+        });
+      }
+    });
+
+    props.setCards(changedCards);
   }
 
   return (
@@ -236,19 +292,19 @@ export const CardForm = (props) => {
             <input type="text" value={props.translate} onChange={handleChangeTranslate} />
             <p>Определение</p>
           </div>
-          {
-            props.imgUrl ?
+          {props.pathToFile || props.urlToImage
+          ?
             <div className={style.image__container} style={backgroundImage}>
               <button className={style.delete__img} onClick={handleRemoveFile}>🗑</button>                  
             </div>
-            :
+          :
             <div onClick={onClickUploadImage} className={style.add__image}>
               <label>
                 <div className={style.icon__img}>🖼</div>
                 <span>Изображение</span>
               </label>
             </div>
-            }
+          }
         </div>
       </div>
       {card.isViewUploadImage &&

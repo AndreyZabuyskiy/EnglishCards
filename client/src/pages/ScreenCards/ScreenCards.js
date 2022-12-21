@@ -53,7 +53,8 @@ export const ScreenCards = () => {
         <BigCard
           value={moduleData?.cards?.[cardIndex].value}
           translate={moduleData?.cards?.[cardIndex].translate}
-          img={moduleData?.cards?.[cardIndex].imgUrl}
+          pathToFile={moduleData?.cards?.[cardIndex].pathToFile}
+          urlToImage={moduleData.cards?.[cardIndex].urlToImage}
           user={user}
           clickForward={clickForward}
           clickBack={clickBack}

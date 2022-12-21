@@ -17,6 +17,14 @@ export const CardItemInner = (props) => {
     cardStyle = `${style.card} ${style.card__click}`;
   }
 
+  let imgSrc = '';
+  if (props?.moduleData?.cards[cardItemIndex].pathToFile) {
+    imgSrc = `${REACT_APP_API_URL}/${props.user.login}/${props?.moduleData?.cards[cardItemIndex].pathToFile}`;
+  } else if (props?.moduleData?.cards[cardItemIndex].urlToImage) {
+    imgSrc = `${props?.moduleData?.cards[cardItemIndex].urlToImage}`;
+  }
+
+
   const onClickCard = () => {
     if(isFrontCard){
       cardStyle = `${style.card}`;
@@ -85,18 +93,33 @@ export const CardItemInner = (props) => {
             </div>
 
             <div className={style.card__back__content}>
-              {props?.moduleData?.cards[cardItemIndex].imgUrl ?
+              {props.pathToFile &&
+            <div>
+              <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.pathToFile}`}
+                className={style.card__img} />
+            </div>
+          }
+          {props.urlToImage &&
+            <div>
+              <img src={`${props.urlToImage}`}
+                className={style.card__img} />
+            </div>
+          }
+            {props?.moduleData?.cards[cardItemIndex].pathToFile || props?.moduleData?.cards[cardItemIndex].urlToImage
+              ?
                 <div className={style.card__content__front}>
                   <div className={style.card__content__left}>
                     {props?.moduleData?.cards[cardItemIndex].translate}
                   </div>
                   <div className={style.card__content__right}>
-                    <img
-                      src={`${REACT_APP_API_URL}/${props.user.login}/${props?.moduleData?.cards[cardItemIndex].imgUrl}`}
-                      className={style.card__img} />
+                    {imgSrc &&
+                      <div>
+                        <img src={`${imgSrc}`} className={style.card__img} />
+                      </div>
+                    }
                   </div>
                 </div>
-                :
+              :
                 <div className={style.card__content__text}>        
                   {props?.moduleData?.cards[cardItemIndex].translate}
                 </div>
