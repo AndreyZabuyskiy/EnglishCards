@@ -20,7 +20,8 @@ class FileService {
     }
   }
 
-  removeImage(fileName, user) {    try {
+  removeImage(fileName, user) {
+    try {
       const pathFolder = `./static/${user.login}`;
       const filePath = path.resolve(pathFolder, fileName);
       fs.unlinkSync(filePath);

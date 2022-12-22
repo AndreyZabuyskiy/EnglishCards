@@ -238,6 +238,19 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 150px;
+
+  p {
+    width: 100%;
+    text-align: center;
+    color: #F6F7FB;
+    font-size: 18px;
+  }
+}
+
+.ImageCarouselEmpty {
+  width: 100%;
+  height: 150px;
 }
 
 .UploadImages__wrapp {

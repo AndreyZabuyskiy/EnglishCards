@@ -121,7 +121,7 @@ export const ModuleForm = () => {
           
           <div className={style.button__create__module}>
             <button onClick={clickCreateModule}>
-              { isCreateModule ? "Создать" : "Редактировать" }
+              { isCreateModule ? "Create" : "Edit" }
             </button>
           </div>
         </div>

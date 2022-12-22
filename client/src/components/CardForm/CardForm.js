@@ -1,6 +1,6 @@
 import style from './CardForm.module.css';
 import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearImages, fetchImages } from '../../redux/actions';
@@ -9,6 +9,7 @@ export const CardForm = (props) => {
   const card = props.cards.find(card => props._id === card._id);
   const inputFileRef = useRef(null);
   const dispatch = useDispatch();
+  const [searchQueryError, setSearchQueryError] = useState(card.value);
 
   const user = useSelector(state => {
     const { authReducer } = state;
@@ -20,8 +21,8 @@ export const CardForm = (props) => {
     return uploadImagesReducer.images;
   });
 
-  const _images = [];
-  if (images) {
+  let _images = [];
+  if (images.length) {    
     for (let i = 0; i < 4; ++i) {
       _images.push(images[i]);
     }
@@ -44,16 +45,10 @@ export const CardForm = (props) => {
     const changedCards = [];
     
     props.cards.forEach(card => {
-      if (props._id === card._id) {
+      if (props._id === card._id) {        
         changedCards.push({
-          _id: card._id,
-          value: e.target.value,
-          translate: card.translate,
-          pathToFile: card.pathToFile,
-          isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          ...card,
+          value: e.target.value
         });
       } else {
         changedCards.push(card);
@@ -69,14 +64,8 @@ export const CardForm = (props) => {
     props.cards.forEach(card => {
       if (props._id === card._id) {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: e.target.value,
-          isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery,
-          pathToFile: card.pathToFile,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          ...card,
+          translate: e.target.value
         });
       } else {
         changedCards.push(card);
@@ -88,19 +77,11 @@ export const CardForm = (props) => {
 
   const handleDeleteCard = e => {
     const changedCards = [];
-    let count = 0;
 
     props.cards.forEach(card => {
       if(props._id !== card._id) {
         changedCards.push({
-          _id: card._id,
-          value:  card.value,
-          translate: card.translate,
-          isViewUploadImage: card.isViewUploadImage,
-          searchQuery: card.searchQuery,
-          pathToFile: card.pathToFile,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          ...card
         });
       }
     });
@@ -116,11 +97,7 @@ export const CardForm = (props) => {
       props.cards.forEach(card => {        
         if (props._id === card._id) {
           changedCards.push({
-            _id: card._id,
-            value: card.value,
-            translate: card.translate,
-            isViewUploadImage: card.isViewUploadImage,
-            searchQuery: card.searchQuery,
+            ...card,
             pathToFile: data,
             isUrlImage: false,
             urlToImage: ''
@@ -141,21 +118,16 @@ export const CardForm = (props) => {
     try {      
       const card = props.cards[props._id];
 
-      const data = '';
+      let data = '';
       if (card.pathToFile) {
         data = await removeFileApi(card.pathToFile);
       }
       
       const changedCards = [];
-
       props.cards.forEach(card => {        
         if (props._id === card._id) {
           changedCards.push({
-            _id: card._id,
-            value: card.value,
-            translate: card.translate,
-            isViewUploadImage: card.isViewUploadImage,
-            searchQuery: card.searchQuery,
+            ...card,
             pathToFile: '',
             isUrlImage: false,
             urlToImage: ''
@@ -168,7 +140,7 @@ export const CardForm = (props) => {
       props.setCards(changedCards);
     }catch (err) {
       console.warn(err);
-      alert('Ошибка при загрузке файла!');
+      alert('Ошибка при удалении файла');
     }
   }
 
@@ -180,39 +152,30 @@ export const CardForm = (props) => {
     }
 
     const changedCards = [];
-    
     props.cards.forEach(card => {
       if (props._id === card._id) {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: card.translate,
+          ...card,
           isViewUploadImage: !card.isViewUploadImage,
-          searchQuery: card.value,
-          pathToFile: card.pathToFile,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          searchQuery: card.value
         });
       } else {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: card.translate,
+          ...card,
           isViewUploadImage: false,
-          searchQuery: card.value,
-          pathToFile: card.pathToFile,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          searchQuery: card.value
         });
       }
     });
 
     props.setCards(changedCards);
+    setSearchQueryError(card.value);
   }
 
   const onClickEnter = (e) => {
     if(e.key === 'Enter') {
-        dispatch(fetchImages(e.target.value));
+      dispatch(fetchImages(e.target.value));
+      setSearchQueryError(card.searchQuery);
     }
   }
 
@@ -222,14 +185,8 @@ export const CardForm = (props) => {
     props.cards.forEach(card => {
       if (props._id === card._id) {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: card.translate,
-          isViewUploadImage: card.isUploadImage,
-          searchQuery: e.target.value,
-          pathToFile: card.pathToFile,
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          ...card,
+          searchQuery: e.target.value
         });
       } else {
         changedCards.push(card);
@@ -239,31 +196,25 @@ export const CardForm = (props) => {
     props.setCards(changedCards);
   }
 
-  const onClickImage = url => {
+  const onClickImage = _urlToImage => {
     const changedCards = [];
     
     props.cards.forEach(card => {
       if (props._id === card._id) {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: card.translate,
+          ...card,
           isViewUploadImage: !card.isViewUploadImage,
           searchQuery: card.value,
           pathToFile: '',
           isUrlImage: true,
-          urlToImage: url
+          urlToImage: _urlToImage
         });
       } else {
         changedCards.push({
-          _id: card._id,
-          value: card.value,
-          translate: card.translate,
+          ...card,
           isViewUploadImage: false,
           searchQuery: card.value,
-          pathToFile: '',
-          isUrlImage: card.isUrlImage,
-          urlToImage: card.urlToImage
+          pathToFile: ''
         });
       }
     });
@@ -324,23 +275,32 @@ export const CardForm = (props) => {
           </div>  
         </div>
 
-        <div className={style.ImageCarousel}>
-          <div>
-            <button className={style.UIButton__wrapper}> ← </button>
-            </div>
-              {_images && 
-              _images.map(img => (
+        {card.searchQuery !== ""
+        ?
+          _images.length !== 0
+          ?
+            <div className={style.ImageCarousel}>
+              <div>
+                <button className={style.UIButton__wrapper}> ← </button>
+              </div>
+              {_images.map(img => (
                 <div>
                   <button className={style.button__img} onClick={() => onClickImage(img)}>
                     <img src={img} alt="image"></img>
                   </button>
                 </div>
-                ))
-              }
-          <div>
-            <button className={style.UIButton__wrapper}> → </button>
-          </div>
-        </div>
+              ))}
+              <div>
+                <button className={style.UIButton__wrapper}> → </button>
+              </div>
+            </div>
+          :
+            <div className={style.ImageCarousel}>
+              <p>Don't find images for "{searchQueryError}"</p>
+            </div>
+        :
+          <div className={style.ImageCarousel}></div>
+        }
       </div>
       }
     </div>

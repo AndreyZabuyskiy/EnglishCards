@@ -2,7 +2,7 @@ import { AddCardButton } from "../AddCardButton/AddCardButton";
 import { CardForm } from "../CardForm/CardForm";
 
 export const ListCreateCards = (props) => {
-  //console.log('ListCreateCards props.cards -->', props.cards);
+  console.log('ListCreateCards props.cards -->', props.cards);
   
   return (
     <div>
@@ -18,6 +18,7 @@ export const ListCreateCards = (props) => {
             cards={props.cards}
             setCards={props.setCards}
             urlToImage={card.urlToImage}
+            searchQueryError={card.searchQueryError}
           />
         ))
       }

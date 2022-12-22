@@ -12,7 +12,11 @@ export const AddCardButton = (props) => {
       _id: props.cards.length,
       value: '',
       translate: '',
-      imgUrl: ''
+      isViewUploadImage: false,
+      searchQuery: '',
+      pathToFile: '',
+      isUrlImage: false,
+      urlToImage: ''
     });
 
     props.setCards(changedCards);
