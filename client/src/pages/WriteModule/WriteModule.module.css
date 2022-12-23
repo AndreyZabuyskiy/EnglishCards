@@ -1,1 +1,19 @@
-/*# sourceMappingURL=WriteModule.module.css.map */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .container__content {
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=WriteModule.module.css.map */

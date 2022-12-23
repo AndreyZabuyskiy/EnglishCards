@@ -1,19 +1,59 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container__content {
+.NavbarLearnModule {
   width: 100%;
-  max-width: 1200px;
+  height: 64px;
+  background-color: #0a092d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+  color: #F6F7FB;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+.NavbarLearnModule .item__left {
+  width: 45%;
+  display: flex;
+  justify-content: left;
+}
+.NavbarLearnModule .item__left button {
+  height: 64px;
+  padding: 0px 10px;
+  background-color: #0a092d;
+  color: #F6F7FB;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.NavbarLearnModule .item__left button:hover {
+  background-color: #2e3856;
+}
+.NavbarLearnModule .item__right {
+  width: 45%;
+  display: flex;
+  justify-content: right;
+}
+.NavbarLearnModule .item__right button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: #0a092d;
+  color: #f6f7fb;
+  border: 2px solid #f6f7fb;
+}
+.NavbarLearnModule .item__right button:hover {
+  background-color: #2e3856;
+}
+
+.content {
+  padding: 32px 24px 24px;
   display: flex;
   justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .container__content {
-    display: flex;
-    flex-direction: column;
+@media (max-width: 620px) {
+  .content {
+    padding: 0px;
   }
 }/*# sourceMappingURL=LearnModule.module.css.map */

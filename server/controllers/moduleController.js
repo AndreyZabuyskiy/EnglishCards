@@ -132,7 +132,6 @@ class ModuleController {
       const { id } = req.params;
       const { user } = req;
       const fileName = fileService.removeImage(id, user);
-      console.log('removeImage controller fileName -->', fileName);
       return res.status(200).json(fileName);
     } catch (e) {
       next(ApiError.badRequest(e.message));
