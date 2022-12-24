@@ -59,7 +59,7 @@ export const CardItemInner = (props) => {
         <div className={cardStyle} onClick={() => onClickCard()}>
           <div className={style.card__front}>
             <div className={style.card__header}>
-              <div className={style.card__header__column_1}>Термин</div>
+              <div className={style.card__header__column_1}>Word</div>
               <div className={style.card__header__column_2}>
                 { cardItemIndex + 1 }/{ props.moduleData?.cards?.length }
               </div>

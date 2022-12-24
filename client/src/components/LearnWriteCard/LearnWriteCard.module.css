@@ -1,0 +1,92 @@
+.container {
+  background-color: #2e3856;
+  width: 100%;
+  max-width: 840px;
+  padding: 24px 32px;
+  border-radius: 5px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+.header span {
+  color: #646F90;
+  font-size: 16px;
+  font-weight: bold;
+}
+.header button {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  background-color: #2e3856;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  color: #F6F7FB;
+  font-size: 22px;
+  margin-bottom: 64px;
+  font-weight: bold;
+}
+
+.image {
+  width: 105px;
+  height: 105px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.footer p {
+  color: #646F90;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.footer input {
+  width: 100%;
+  padding: 4px 16px;
+  color: #d9dde8;
+  font-weight: bold;
+  font-size: 20px;
+  height: 48px;
+  background-color: #0a092d;
+  border-radius: 5px;
+}
+.footer input::-moz-placeholder {
+  color: #d9dde8;
+}
+.footer input:-ms-input-placeholder {
+  color: #d9dde8;
+}
+.footer input::placeholder {
+  color: #d9dde8;
+}
+.footer input:focus {
+  height: 51px;
+  border-bottom: 3px solid #d9dde8;
+}
+
+.footer__inputs {
+  margin-top: 32px;
+  display: flex;
+  justify-content: right;
+}
+.footer__inputs button {
+  margin-left: 16px;
+  height: 40px;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.button__unknow {
+  background-color: #2e3856;
+  color: #A8B1FF;
+}
+
+.button__answer {
+  background-color: #4255ff;
+  border-radius: 10px;
+  color: #ffffff;
+}/*# sourceMappingURL=LearnWriteCard.module.css.map */

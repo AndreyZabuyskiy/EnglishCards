@@ -46,7 +46,7 @@ export const ViewModule = () => {
         </div>
 
         <div className={style.button__edit__module}>
-          <button onClick={(e) => navigate(`${EDIT_MODULE}/${id}`)}>Добавить или удалить термины</button>
+          <button onClick={(e) => navigate(`${EDIT_MODULE}/${id}`)}>Create or delete words</button>
         </div>
       </div>
     </>

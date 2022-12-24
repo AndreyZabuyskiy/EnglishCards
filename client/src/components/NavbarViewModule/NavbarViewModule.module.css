@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   background-color: #0a092d;
-  box-shadow: 5px 5px #111033;
+  border-bottom: 3px solid rgba(252, 49, 143, 0.9607843137);
   position: -webkit-sticky;
   position: sticky;
   top: 0;

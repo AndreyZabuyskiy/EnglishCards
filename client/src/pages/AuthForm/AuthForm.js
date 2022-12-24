@@ -41,10 +41,10 @@ export const AuthForm = () => {
             <div className={style.input__container}>
               <input className={style.input} type="text" name="login" placeholder='login...'
                 {...register('login', {
-                  required: 'Login is required field!',
+                  required: '*required field',
                   minLength: {
                     value: 4,
-                    message: 'Minimum login length 4 characters'
+                    message: 'Login must be at least 4 characters long'
                   }
                 })}
               />
@@ -55,10 +55,10 @@ export const AuthForm = () => {
             <div className={style.input__container}>
               <input className={style.input} type="password" name="password" placeholder='password...'
                 {...register('password', {
-                  required: 'Password is required field',
+                  required: '*required field',
                   minLength: {
                     value: 6,
-                    message: 'Minimum password length 6 characters'
+                    message: 'Password must be at least 6 characters long'
                   }
                 })}
               />

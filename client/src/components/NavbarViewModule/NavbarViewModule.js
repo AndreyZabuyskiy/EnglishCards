@@ -9,7 +9,7 @@ export const NavbarViewModule = (props) => {
         </div>
         
         <div className={style.button__edit__module}>
-          <button>Учить</button>
+          <button>Learn</button>
         </div>
       </div>
     </div>
