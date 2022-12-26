@@ -1,12 +1,12 @@
 import ApiError from "../error/ApiError.js";
-import learnService from "../services/learnModuleService.js";
+import writeService from "../services/writeModuleService.js";
 
 class WriteModuleController {
   async getLearnModule(req, res, next) {
     const userId = req.user.id;
     const moduleId = req.params.id;
 
-    await learnService.getWriteModule(userId, moduleId)
+    await writeService.getWriteModule(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })
@@ -19,7 +19,7 @@ class WriteModuleController {
     const cardId = req.params.id;
     const { answer } = req.body;
 
-    await learnService.checkAnswer(cardId, answer)
+    await writeService.checkAnswer(cardId, answer)
     .then(responseService => {
       res.status(200).json(responseService);
     })
@@ -32,7 +32,7 @@ class WriteModuleController {
     const userId = req.user.id;
     const moduleId = req.params.id;
 
-    await learnService.getResultWriteModule(userId, moduleId)
+    await writeService.getResultWriteModule(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })
@@ -45,7 +45,7 @@ class WriteModuleController {
     const userId = req.user.id;
     const moduleId = req.params.id;
 
-    await learnService.removeLearnModuleById(userId, moduleId)
+    await writeService.removeLearnModuleById(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })
