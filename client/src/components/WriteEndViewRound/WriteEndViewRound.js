@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { LEARN_MODULE } from '../../utils/consts';
+import { WRITE_MODULE } from '../../utils/consts';
 import { useDispatch } from 'react-redux';
 import style from './WriteEndViewRound.module.css';
-import { removeLearnModule } from '../../redux/actions';
+import { removeWriteModule } from '../../redux/actions';
 
 export const WriteEndViewRound = (props) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const WriteEndViewRound = (props) => {
   const interestRatioCorrectAnswers = countCorrectCards / countCards * 100;
 
   const onClickStartOver = () => {
-    dispatch(removeLearnModule(id));
+    dispatch(removeWriteModule(id));
   }
 
   return (
@@ -24,7 +24,7 @@ export const WriteEndViewRound = (props) => {
           <div className={style.subheader}>{countCorrectCards}/{countCards} - { interestRatioCorrectAnswers }%</div>
         </div>
         <div>
-          <Link onClick={onClickStartOver} className={style.UIButton} to={`${LEARN_MODULE}/${id}`}>Start over</Link>
+          <Link onClick={onClickStartOver} className={style.UIButton} to={`${WRITE_MODULE}/${id}`}>Start over</Link>
         </div>
       </div>
       {props.cards?.map(card => (

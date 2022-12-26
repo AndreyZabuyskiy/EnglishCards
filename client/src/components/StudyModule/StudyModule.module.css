@@ -1,10 +1,9 @@
 .module {
-  background-color: #2E3856;
+  background-color: #2e3856;
   padding: 12px 20px;
   border-radius: 5px;
   margin-top: 20px;
   width: 90%;
-  background-color: #fd67c3;
 }
 .module:hover {
   border-bottom: 5px solid #cedaf3;

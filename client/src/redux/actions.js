@@ -2,7 +2,7 @@ import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
-import { checkAnswerApi, fetchCheckAnswerApi, fetchLearnModulesApi, getResultModuleApi, removeLearnModuleApi } from "../http/learnModuleApi";
+import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
 
 export function registerAction(login, password) {
@@ -120,9 +120,9 @@ export function logout() {
   }
 }
 
-export function fetchLearnModule(id) {
+export function fetchWriteModule(id) {
   return async dispatch => {
-    const response = await fetchLearnModulesApi(id);
+    const response = await fetchWriteModulesApi(id);
     
     dispatch({
       type: FETCH_LEARN_MODULE,
@@ -131,9 +131,9 @@ export function fetchLearnModule(id) {
   }
 }
 
-export function checkAnswer(cardId, answer) {
+export function checkWriteCardAnswer(cardId, answer) {
   return async dispatch => {
-    const response = await checkAnswerApi(cardId, answer);
+    const response = await checkWriteCardAnswerApi(cardId, answer);
 
     dispatch({
       type: CHECK_ANSWER,
@@ -142,9 +142,9 @@ export function checkAnswer(cardId, answer) {
   }
 }
 
-export function getResultModule(moduleId) {
+export function getResultWriteModule(moduleId) {
   return async dispatch => {
-    const data = await getResultModuleApi(moduleId);
+    const data = await getResultWriteModuleApi(moduleId);
 
     dispatch({
       type: GET_RESULT_MODULE,
@@ -153,16 +153,16 @@ export function getResultModule(moduleId) {
   }
 }
 
-export function removeLearnModule(moduleId) {
+export function removeWriteModule(moduleId) {
   return async dispatch => {
-    const data = await removeLearnModuleApi(moduleId);
+    const data = await removeWriteModuleApi(moduleId);
 
     dispatch({
       type: REMOVE_LEARN_MODULE,
       action: data
     });
 
-    const response = await fetchLearnModulesApi(moduleId);
+    const response = await fetchWriteModulesApi(moduleId);
     
     dispatch({
       type: FETCH_LEARN_MODULE,

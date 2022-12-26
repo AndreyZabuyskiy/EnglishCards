@@ -3,7 +3,7 @@ import { WriteEndViewRound } from '../WriteEndViewRound';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResultModule } from '../../redux/actions';
+import { getResultWriteModule } from '../../redux/actions';
 import { resultModuleReducer } from '../../redux/Reducers/resultModuleReducer';
 
 export const WriteEndView = () => {
@@ -11,7 +11,7 @@ export const WriteEndView = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getResultModule(id));
+    dispatch(getResultWriteModule(id));
   }, []);
 
   const { module, cards } = useSelector(state => {

@@ -1,7 +1,7 @@
 import ApiError from "../error/ApiError.js";
 import learnService from "../services/learnModuleService.js";
 
-class LearnModuleController {
+class WriteModuleController {
   async getLearnModule(req, res, next) {
     const userId = req.user.id;
     const moduleId = req.params.id;
@@ -55,4 +55,4 @@ class LearnModuleController {
   }
 }
 
-export default new LearnModuleController();
+export default new WriteModuleController();

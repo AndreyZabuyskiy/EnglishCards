@@ -3,7 +3,7 @@ import Card from '../models/Card.js';
 import WriteModule from '../models/WriteModule.js';
 import WriteCard from '../models/WriteCard.js';
 
-class LearnModuleService {
+class WriteModuleService {
   async getWriteModule(userId, moduleId) {
     const writesModules = await WriteModule.find({ module: moduleId, user: userId });
 
@@ -126,4 +126,4 @@ class LearnModuleService {
   } 
 }
 
-export default new LearnModuleService;
+export default new WriteModuleService();

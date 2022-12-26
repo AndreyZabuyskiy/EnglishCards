@@ -13,7 +13,7 @@ const inititalState = {
   currentUserAnswer: ''
 }
 
-export const learnModuleReducer = (state = inititalState, action) => {
+export const writeModuleReducer = (state = inititalState, action) => {
   switch (action.type) {
     case FETCH_LEARN_MODULE:
       return {

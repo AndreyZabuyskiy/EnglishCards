@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Navbar, CardWriteAnswer, ModeControls, WriteEndView, FeedbackHeading } from '../../components';
-import { fetchLearnModule, nextQuestion, saveUserAnswer } from '../../redux/actions';
-import { checkAnswer } from '../../redux/actions';
+import { fetchWriteModule, nextQuestion, saveUserAnswer } from '../../redux/actions';
+import { checkWriteCardAnswer } from '../../redux/actions';
 import style from './WriteModule.module.scss';
 
 export const WriteModule = () => {
@@ -19,12 +19,12 @@ export const WriteModule = () => {
   const { cards, index, totalNumberCards, countCorrectAnswers,
     countIncorrectAnswers, countCheckAnswers,
     isFinish, isCurrentAnswer, currentUserAnswer } = useSelector(state => {
-    const { learnModuleReducer } = state;
-    return learnModuleReducer;
+    const { writeModuleReducer } = state;
+    return writeModuleReducer;
   });
 
   useEffect(() => {
-    dispatch(fetchLearnModule(id));
+    dispatch(fetchWriteModule(id));
   }, []);
 
   const handleChangeUserAnswer = e => {
@@ -34,7 +34,7 @@ export const WriteModule = () => {
   const onClickAnswer = () => {
     setUserAnswer('');
     dispatch(saveUserAnswer(userAnswer));
-    dispatch(checkAnswer(cards[index]._id, userAnswer));
+    dispatch(checkWriteCardAnswer(cards[index]._id, userAnswer));
   }
 
   const onClickNextQuestion = () => {
