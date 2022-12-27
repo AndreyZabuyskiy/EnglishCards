@@ -24,7 +24,9 @@ export const WriteEndViewRound = (props) => {
           <div className={style.subheader}>{countCorrectCards}/{countCards} - { interestRatioCorrectAnswers }%</div>
         </div>
         <div>
-          <Link onClick={onClickStartOver} className={style.UIButton} to={`${WRITE_MODULE}/${id}`}>Start over</Link>
+          <Link onClick={onClickStartOver} className={style.UIButton} to={`${WRITE_MODULE}/${id}`}>
+            Start over
+          </Link>
         </div>
       </div>
       {props.cards?.map(card => (

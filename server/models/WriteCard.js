@@ -15,16 +15,6 @@ const shcema = new mongoose.Schema({
     ref: 'Card',
     required: true
   },
-  /*value: {
-    type: String,
-    required: true
-  },
-  translate: {
-    type: String
-  },
-  imgUrl: {
-    type: String
-  },*/
   writeModule: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'WriteModule',
