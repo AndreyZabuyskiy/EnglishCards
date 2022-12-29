@@ -1,4 +1,4 @@
-import { CHECK_ANSWER, FETCH_LEARN_MODULE, NEXT_QUESTION, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER } from "../types";
+import { CHECK_ANSWER, FETCH_WRITE_MODULE, NEXT_QUESTION, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER } from "../types";
 
 const inititalState = {
   module: null,
@@ -15,7 +15,7 @@ const inititalState = {
 
 export const writeModuleReducer = (state = inititalState, action) => {
   switch (action.type) {
-    case FETCH_LEARN_MODULE:
+    case FETCH_WRITE_MODULE:
       return {
         ...state,
         module: action.data.writeModule,

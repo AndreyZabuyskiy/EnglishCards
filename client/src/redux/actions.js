@@ -4,6 +4,7 @@ import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
+import { fetchLearnModuleApi } from "../http/learnModuleApi";
 
 export function registerAction(login, password) {
   return async dispatch => {
@@ -203,6 +204,17 @@ export function clearImages() {
   return async dispatch => {
     dispatch({
       type: CLEAR_IMAGES
+    });
+  }
+}
+
+export function fetchLearnModule(id) {
+  return async dispatch => {
+    const response = await fetchLearnModuleApi(id);
+    
+    dispatch({
+      type: FETCH_LEARN_MODULE,
+      data: response._id
     });
   }
 }
