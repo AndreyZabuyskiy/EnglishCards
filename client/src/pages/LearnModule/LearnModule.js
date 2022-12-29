@@ -14,7 +14,7 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const learnModuleData = useSelector(state => {
+  const { learnModuleId, isDone} = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
@@ -31,7 +31,14 @@ export const LearnModule = () => {
         </div>
       </div>
       <div className={style.content}>
-        <h1>LearnModule component</h1>
+        {isDone
+          ?
+            <h1>LearnModule done</h1>
+          :
+            <h1>LearnModule round</h1>
+        }
+
+
         {/* <LearnTestCard /> */}
         {/* <LearnWriteCard /> */}
       </div>

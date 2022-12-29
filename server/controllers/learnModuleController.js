@@ -5,8 +5,8 @@ class LearnModuleController {
   async getLearnModule(req, res, next) {
     const userId = req.user.id;
     const moduleId = req.params.id;
-
-    await learnModuleService.getLearnModule(userId, moduleId)
+    
+    await learnModuleService.getLearnModuleByModuleId(userId, moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })
@@ -15,11 +15,10 @@ class LearnModuleController {
     });
   }
 
-  async getLearnModuleRound(req, res, next) {
-    const userId = req.user.id;
+  async getLearnRoundByModuleId(req, res, next) {
     const moduleId = req.params.id;
-
-    await learnModuleService.getLearnModuleRound(userId, moduleId)
+    
+    await learnModuleService.getLearnModuleRound(moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })

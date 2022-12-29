@@ -9,6 +9,12 @@ const schema = mongoose.Schema({
   round: {
     type: Number
   },
+  totalNumberCards: {
+    type: Number
+  },
+  passedCards: {
+    type: Number
+  },
   numberCurrentCard: {
     type: Number
   }

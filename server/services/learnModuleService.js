@@ -4,9 +4,8 @@ import LearnModuleCard from '../models/LearnModuleCard.js';
 import LearnModuleRound from '../models/LearnModuleRound.js';
 
 class LearnModuleService {
-  async getLearnModule(userId, moduleId) {
+  async getLearnModuleByModuleId(userId, moduleId) {
     const learnModules = await LearnModule.find({ user: userId, module: moduleId });
-
     if (learnModules.length === 0) {
       await this.createLearnModule(userId, moduleId);
     }
@@ -15,16 +14,10 @@ class LearnModuleService {
     return learnModule;
   }
 
-  async getLearnModuleRound(userId, moduleId) {
-    const learnModules = await LearnModule.find({ user: userId, module: moduleId });
+  async getLearnModuleRound(moduleId) {
+    const learnModule = await LearnModule.findById(moduleId);
+    const rounds = await LearnModuleRound.find({ module: moduleId });
 
-    if (learnModules.length === 0) {
-      await this.createLearnModule(userId, moduleId);
-    }
-
-    const learnModule = await this.getLearnModule(userId, moduleId);
-
-    const rounds = await LearnModuleRound.find({ module: learnModule._id });
     let learnRound = null;
 
     if (rounds.length === 0) {
@@ -32,13 +25,8 @@ class LearnModuleService {
     } else {
       learnRound = rounds[rounds.length - 1];
     }
-
-    const cards = await LearnModuleCard.find({ round: learnRound._id });
     
-    console.log('round -->', learnRound);
-    console.log('cards -->', cards);
-
-    return learnModule;
+    return learnRound;
   }
 
   async createLearnModule(userId, moduleId) {
@@ -91,7 +79,15 @@ class LearnModuleService {
       await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
     }
 
-    return round;
+    const roundUpdated = {
+      module: round.module,
+      round: round.round,
+      numberCurrentCard: round.numberCurrentCard,
+      totalNumberCards: 0,
+      passedCards: 0
+    }
+
+    await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
   }
 }
 
