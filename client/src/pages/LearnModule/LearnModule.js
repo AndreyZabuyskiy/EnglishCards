@@ -14,34 +14,40 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { learnModuleId, isDone} = useSelector(state => {
+  const { learnModuleId, isDone, round } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
 
+  console.log('LearnModule round -->', round);
+
   return (
     <>
-      <div className={style.NavbarLearnModule}>
-        <div className={style.item__left}>
-          <button>Заучивание</button>
-        </div>
-        <div>Этап 3</div>
-        <div className={style.item__right}>
-          <button>🗙</button>
-        </div>
-      </div>
-      <div className={style.content}>
-        {isDone
-          ?
-            <h1>LearnModule done</h1>
-          :
-            <h1>LearnModule round</h1>
-        }
+      {round &&
+        <div>
+          <div className={style.NavbarLearnModule}>
+            <div className={style.item__left}>
+              <button>Заучивание</button>
+            </div>
+            <div>Этап { round?.round }</div>
+            <div className={style.item__right}>
+              <button>🗙</button>
+            </div>
+          </div>
+          <div className={style.content}>
+            {!isDone
+              ?
+                <LearnTestCard roundId={round._id} />
+              :
+                <h1>LearnModule done</h1>
+            }
 
 
-        {/* <LearnTestCard /> */}
-        {/* <LearnWriteCard /> */}
-      </div>
+            {/* <LearnTestCard /> */}
+            {/* <LearnWriteCard /> */}
+          </div>
+        </div>
+      }
     </>
   );
 }

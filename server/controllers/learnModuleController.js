@@ -26,6 +26,18 @@ class LearnModuleController {
       next(ApiError.badRequest(e.message));
     });
   }
+
+  async getLearnCardByRoundId(req, res, next) {
+    const roundId = req.params.id;
+
+    await learnModuleService.getCardByRoundId(roundId)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new LearnModuleController();

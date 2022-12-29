@@ -18,6 +18,9 @@ const schema = mongoose.Schema({
   },
   status: {
     type: Number
+  },
+  index: {
+    type: Number
   }
 });
 

@@ -15,7 +15,7 @@ const schema = mongoose.Schema({
   passedCards: {
     type: Number
   },
-  numberCurrentCard: {
+  indexCurrentCard: {
     type: Number
   }
 });
