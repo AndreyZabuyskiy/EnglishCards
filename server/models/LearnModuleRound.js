@@ -1,6 +1,11 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 
 const schema = mongoose.Schema({
+  module: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'LearnModule',
+    require: true
+  },
   round: {
     type: Number
   },
