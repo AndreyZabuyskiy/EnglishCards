@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
 import { LearnWriteCard } from '../../components/LearnWriteCard';
 import { fetchLearnModule } from '../../redux/actions';
@@ -19,21 +20,11 @@ export const LearnModule = () => {
     return learnModuleReducer;
   });
 
-  console.log('LearnModule round -->', round);
-
   return (
     <>
       {round &&
         <div>
-          <div className={style.NavbarLearnModule}>
-            <div className={style.item__left}>
-              <button>Заучивание</button>
-            </div>
-            <div>Этап { round?.round }</div>
-            <div className={style.item__right}>
-              <button>🗙</button>
-            </div>
-          </div>
+          <NavbarLearnModule round={round} />
           <div className={style.content}>
             {!isDone
               ?

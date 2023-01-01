@@ -33,7 +33,7 @@ class LearnModuleService {
     const round = await LearnModuleRound.findById(roundId);
     const cards = await LearnModuleCard.find({ round: round._id });
 
-    const findCard = cards.filter(card => card.index === round.indexCurrentCard);
+    const findCard = cards.find(card => card.index === round.indexCurrentCard);
     return findCard;
   }
 

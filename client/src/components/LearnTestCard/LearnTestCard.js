@@ -1,7 +1,19 @@
 import style from './LearnTestCard.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { fetchLearnCard } from '../../redux/actions';
 
-export const LearnTestCard = () => {
-  
+export const LearnTestCard = ({ roundId }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLearnCard(roundId));
+  }, []);
+
+  const { card } = useSelector(state => {
+    const { learnCardReducer } = state;
+    return learnCardReducer;
+  });
 
   return (
     <div className={style.container}>

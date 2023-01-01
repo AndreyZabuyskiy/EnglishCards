@@ -6,7 +6,7 @@ import { writeModuleReducer } from "./writeModuleReducer";
 import { resultModuleReducer } from "./resultModuleReducer";
 import { uploadImagesReducer } from "./uploadImagesReducer";
 import { learnModuleReducer } from "./learnModuleReducer";
-
+import { learnCardReducer } from "./learnCardReducer";
 
 export const rootReducer = combineReducers({
   authReducer,
@@ -15,5 +15,6 @@ export const rootReducer = combineReducers({
   writeModuleReducer,
   resultModuleReducer,
   uploadImagesReducer,
-  learnModuleReducer
+  learnModuleReducer,
+  learnCardReducer
 });
