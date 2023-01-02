@@ -23,8 +23,9 @@ export const LearnModule = () => {
   return (
     <>
       {round &&
-        <div>
+        <>
           <NavbarLearnModule round={round} />
+
           <div className={style.content}>
             {!isDone
               ?
@@ -33,11 +34,10 @@ export const LearnModule = () => {
                 <h1>LearnModule done</h1>
             }
 
-
             {/* <LearnTestCard /> */}
             {/* <LearnWriteCard /> */}
           </div>
-        </div>
+        </>
       }
     </>
   );

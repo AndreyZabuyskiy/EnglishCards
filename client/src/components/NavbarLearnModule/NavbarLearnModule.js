@@ -2,7 +2,7 @@ import style from './NavbarLearn.module.css';
 
 export const NavbarLearnModule = ({ round }) => {
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.NavbarLearnModule}>
         <div className={style.item__left}>
           <button>Заучивание</button>
@@ -12,6 +12,7 @@ export const NavbarLearnModule = ({ round }) => {
           <button>🗙</button>
         </div>
       </div>
+      <div className={style.line__wrapper}></div>
     </div>
   );
 }

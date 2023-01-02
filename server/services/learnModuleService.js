@@ -1,4 +1,5 @@
 import Card from '../models/Card.js';
+import LearnCardOption from '../models/LearnCardOption.js';
 import LearnModule from '../models/LearnModule.js';
 import LearnModuleCard from '../models/LearnModuleCard.js';
 import LearnModuleRound from '../models/LearnModuleRound.js';
@@ -33,8 +34,34 @@ class LearnModuleService {
     const round = await LearnModuleRound.findById(roundId);
     const cards = await LearnModuleCard.find({ round: round._id });
 
-    const findCard = cards.find(card => card.index === round.indexCurrentCard);
-    return findCard;
+    const findCard = await cards.find(card => card.index === round.indexCurrentCard);
+    const card = await Card.findById(findCard.card);
+
+    const learnCard = {
+      _id: findCard._id,
+      value: card.value,
+      translate: card.translate,
+      pathToFile: card.pathToFile,
+      urlToImage: card.urlToImage,
+      round: findCard.round,
+      status: findCard.status
+    }
+    
+    let options = [];
+    if (findCard.status === 0) {
+      const findOptions = await LearnCardOption.find({ card: findCard._id });
+
+      for (let i = 0; i < findOptions.length; ++i) {
+        options.push({
+          _id: findOptions[i]._id,
+          card: findOptions[i].card._id,
+          value: findOptions[i].value,
+          isRight: findOptions[i].isRight
+        });
+      }
+    }
+
+    return { learnCard, options };
   }
 
   async createLearnModule(userId, moduleId) {
@@ -51,10 +78,58 @@ class LearnModuleService {
         module: learnModule._id,
         round: null,
         card: _card,
-        status: 0
+        status: 0,
+        index: index
       });
 
       return await learnCardDoc.save();
+    }));
+
+    const learnCards = await LearnModuleCard.find({ module: learnModule._id });
+    learnCards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+      
+      return 0;
+    });
+    
+    await Promise.all(learnCards.map(async (learnCard, index) => {
+      //console.log('learnCard ==>', learnCard);
+
+      if (learnCard.index < 4) {
+        for (let i = 0; i < 4; ++i) {
+          let cardId = learnCards[i].card;
+          const card = await Card.findById(cardId);
+          const isRightCard = learnCard._id === learnCards[i]._id;
+
+          console.log('card ==>', card);
+
+          const optionDoc = new LearnCardOption({
+            card: learnCard,
+            value: card.value,
+            isRight: isRightCard
+          });
+
+          await optionDoc.save();
+        }
+      } else {
+        for (let i = learnCard.index; i > learnCard.index - 4; --i) {
+          let cardId = learnCards[i].card;
+          const card = await Card.findById(cardId);
+          const isRightCard = learnCard._id === learnCards[i]._id;
+
+          const optionDoc = new LearnCardOption({
+            card: learnCard,
+            value: card.value,
+            isRight: isRightCard
+          });
+
+          await optionDoc.save();
+        }
+      }
     }));
   }
 
@@ -81,8 +156,8 @@ class LearnModuleService {
         module: cards[i].module,
         card: cards[i].card,
         status: cards[i].status,
-        round: round._id,
-        index: i
+        index: cards[i].index,
+        round: round._id
       }
 
       await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });

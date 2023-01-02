@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .NavbarLearnModule {
   width: 100%;
   height: 64px;
@@ -9,45 +13,54 @@
   color: #F6F7FB;
   font-size: 18px;
   font-weight: bold;
-  border-bottom: 2px solid white;
+  box-shadow: 0px 5px 5px 5px #111033;
+}
 
-  .item__left {
-    width: 45%;
-    display: flex;
-    justify-content: left;
+.item__left {
+  width: 45%;
+  display: flex;
+  justify-content: left;
 
-    button {
-      height: 64px;
-      padding: 0px 10px;
-      background-color: #0a092d;
-      color: #F6F7FB;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 10px;
+  button {
+    height: 64px;
+    padding: 0px 10px;
+    background-color: #0a092d;
+    color: #F6F7FB;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
 
-      &:hover {
-        background-color: #2e3856;
-      }
+    &:hover {
+      background-color: #2e3856;
     }
   }
+}
 
-  .item__right {
-    width: 45%;
-    display: flex;
-    justify-content: right;
+.item__right {
+  width: 45%;
+  display: flex;
+  justify-content: right;
 
-    button {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      font-weight: bold;
-      background-color: #0a092d;
-      color: #f6f7fb;
-      border: 2px solid #f6f7fb;
+  button {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: #0a092d;
+    color: #f6f7fb;
+    border: 2px solid #f6f7fb;
 
-      &:hover {
-        background-color: #2e3856;
-      }
+    &:hover {
+      background-color: #2e3856;
     }
   }
+}
+
+.line__wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #7b89c9;
+  width: 60%;
 }

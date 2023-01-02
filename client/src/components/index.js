@@ -19,7 +19,7 @@ import { ModeControls } from './ModeControls';
 import { WriteEndView } from './WriteEndView/WriteEndView';
 import { WriteEndViewRound } from './WriteEndViewRound';
 import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
-import { NavbarLearnModule } from './NavbarLearnModule/NavbarLearn';
+import { NavbarLearnModule } from './NavbarLearnModule';
 
 export {
   StudyModule,

@@ -12,5 +12,6 @@ export const fetchLearnRoundApi = async (id) => {
 
 export const fetchLearnCardApi = async (id) => {
   const { data } = await $authHost.get(`api/learn-module/get-card/${id}`);
-  return data
+  console.log('fetchLearnCardApi data -->', data);
+  return data;
 }

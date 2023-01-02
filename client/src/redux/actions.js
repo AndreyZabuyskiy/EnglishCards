@@ -225,11 +225,16 @@ export function fetchLearnModule(id) {
 
 export function fetchLearnCard(id) {
   return async dispatch => {
-    const card = await fetchLearnCardApi(id);
+    const { learnCard, options} = await fetchLearnCardApi(id);
+    console.log('fetchLearnCard learnCard -->', learnCard);
+    console.log('fetchLearnCard options -->', options);
 
     dispatch({
       type: FETCH_LEARN_CARD,
-      data: card
+      data: {
+        card: learnCard,
+        options: options
+      }
     });
   }
 }

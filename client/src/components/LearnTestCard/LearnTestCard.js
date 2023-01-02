@@ -10,10 +10,13 @@ export const LearnTestCard = ({ roundId }) => {
     dispatch(fetchLearnCard(roundId));
   }, []);
 
-  const { card } = useSelector(state => {
+  const { card, options } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
   });
+
+  console.log('card ==>', card);
+  console.log('options ==>', options);
 
   return (
     <div className={style.container}>
@@ -25,30 +28,30 @@ export const LearnTestCard = ({ roundId }) => {
         <div>⚑</div>
       </div>
       <div className={style.content}>
-        <div>Четыре</div>
+        <div>{ card.value }</div>
         <div><img className={style.image} src={"https://scientificrussia.ru/images/s/szs-full.jpg"} /></div>
       </div>
       <div className={style.footer}>
         <div className={style.footer__text}>Выбирите правильный термин</div>
         <div className={style.options}>
           <div className={style.row__options}>
-            <div className={style.option}>
+            <div onClick={() => alert(options[0].value)} className={style.option}>
               <div className={style.option__number}>1</div>
-              <span>two</span>
+              <span>{ options[0].value }</span>
             </div>
-            <div className={style.option}>
+            <div onClick={() => alert(options[1].value)}  className={style.option}>
               <div className={style.option__number}>2</div>
-              <span>three</span>
+              <span>{ options[1].value }</span>
             </div>
           </div>
           <div className={style.row__options}>
-            <div className={style.option}>
+            <div onClick={() => alert(options[2].value)} className={style.option}>
               <div className={style.option__number}>3</div>
-              <span>one</span>
+              <span>{ options[2].value }</span>
             </div>
-            <div className={style.option}>
+            <div onClick={() => alert(options[3].value)}  className={style.option}>
               <div className={style.option__number}>4</div>
-              <span>four</span>
+              <span>{ options[3].value }</span>
             </div>
           </div>
         </div>

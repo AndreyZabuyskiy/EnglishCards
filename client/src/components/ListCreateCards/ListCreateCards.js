@@ -1,9 +1,7 @@
 import { AddCardButton } from "../AddCardButton/AddCardButton";
 import { CardForm } from "../CardForm/CardForm";
 
-export const ListCreateCards = (props) => {
-  console.log('ListCreateCards props.cards -->', props.cards);
-  
+export const ListCreateCards = (props) => {  
   return (
     <div>
       {

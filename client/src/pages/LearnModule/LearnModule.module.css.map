@@ -1,1 +1,1 @@
-{"version":3,"sources":["LearnModule.module.scss","LearnModule.module.css"],"names":[],"mappings":"AAIA;EACE,WAAA;EACA,UAAA;ACHF;;ADMA;EACE,uBAAA;EACA,aAAA;EACA,uBAAA;ACHF;;ADMA;EACE;IACE,YAAA;ECHF;AACF","file":"LearnModule.module.css"}
+{"version":3,"sources":["LearnModule.module.scss","LearnModule.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAA;EACA,aAAA;EACA,uBAAA;ACCF;;ADEA;EACE;IACE,YAAA;ECCF;AACF","file":"LearnModule.module.css"}

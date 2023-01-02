@@ -1,1 +1,1 @@
-import { NavbarLearnModule } from "./NavbarLearn";
+export { NavbarLearnModule } from "./NavbarLearnModule";
