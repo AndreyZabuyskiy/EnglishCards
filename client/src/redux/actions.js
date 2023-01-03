@@ -4,7 +4,7 @@ import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
-import { fetchLearnCardApi, fetchLearnModuleApi, fetchLearnRoundApi } from "../http/learnModuleApi";
+import { checkTestCardApi, fetchLearnCardApi, fetchLearnModuleApi, fetchLearnRoundApi } from "../http/learnModuleApi";
 
 export function registerAction(login, password) {
   return async dispatch => {
@@ -236,5 +236,14 @@ export function fetchLearnCard(id) {
         options: options
       }
     });
+  }
+}
+
+export function checkTestCard(cardId, optionId) {
+  return async dispatch => {
+    const response = await checkTestCardApi(cardId, optionId);
+    console.log('checkTestCard response ==>', response);
+    
+    //dispatch();
   }
 }

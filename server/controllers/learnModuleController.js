@@ -38,6 +38,19 @@ class LearnModuleController {
       next(ApiError.badRequest(e.message));
     });
   }
+
+  async checkLearnTestCard(req, res, next) {
+    const cardId = req.params.id;
+    const optionId = req.body.optionId;
+    
+    await learnModuleService.checkLearnTestCard(cardId, optionId)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new LearnModuleController();

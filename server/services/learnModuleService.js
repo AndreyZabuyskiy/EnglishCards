@@ -150,6 +150,8 @@ class LearnModuleService {
 
     const round = await learnRoundDoc.save();
 
+    const roundCards = [];
+
     for (let i = 0; i < 7; ++i) {
       const updatedCard = {
         _id: cards[i]._id,
@@ -157,22 +159,56 @@ class LearnModuleService {
         card: cards[i].card,
         status: cards[i].status,
         index: cards[i].index,
-        round: round._id
+        round: round._id,
+        isDone: false
       }
 
-      await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+      const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+      roundCards.push(roundCard);
     }
 
     const roundUpdated = {
       module: round.module,
       round: round.round,
-      numberCurrentCard: round.numberCurrentCard,
-      totalNumberCards: 0,
+      totalNumberCards: roundCards.length,
       passedCards: 0,
       indexCurrentCard: 0
     }
 
     await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
+  }
+
+  async checkLearnTestCard(cardId, optionId) {
+    const card = await LearnModuleCard.findById(cardId);
+    const round = await LearnModuleRound.findById(card.round);
+    const option = await LearnCardOption.findById(optionId);
+    
+    const indexCurrentCard = round.indexCurrentCard + 1;
+    let passedCards = round.passedCards;
+
+    if (option.isRight) {
+      passedCards += 1;
+
+      const updatedCard = {
+        ...card,
+        status: card.status + 1,
+        isDone: true
+      }
+
+      await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
+    }
+
+    const updatedRound = {
+      module: round.module,
+      round: round.round,
+      totalNumberCards: round.totalNumberCards,
+      indexCurrentCard,
+      passedCards
+    }
+
+    await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
+
+    return option.isRight;
   }
 }
 
