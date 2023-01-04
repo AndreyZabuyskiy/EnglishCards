@@ -30,11 +30,17 @@ class LearnModuleService {
     return learnRound;
   }
 
-  async getCardByRoundId (roundId) {
+  async getCardByRoundId(roundId) {
+    //console.log('<---- getCardByRoundId ---->');
     const round = await LearnModuleRound.findById(roundId);
     const cards = await LearnModuleCard.find({ round: round._id });
 
+    //console.log('getCardByRoundId round ===>', round);
+    //console.log('getCardByRoundId cards ===>', cards);
+
     const findCard = await cards.find(card => card.index === round.indexCurrentCard);
+    //console.log('getCardByRoundId findCard ===>', findCard);
+    
     const card = await Card.findById(findCard.card);
 
     const learnCard = {
@@ -44,7 +50,8 @@ class LearnModuleService {
       pathToFile: card.pathToFile,
       urlToImage: card.urlToImage,
       round: findCard.round,
-      status: findCard.status
+      status: findCard.status,
+      isDone: false
     }
     
     let options = [];
@@ -79,7 +86,8 @@ class LearnModuleService {
         round: null,
         card: _card,
         status: 0,
-        index: index
+        index: index,
+        isDone: false
       });
 
       return await learnCardDoc.save();
@@ -140,8 +148,18 @@ class LearnModuleService {
 
   async createLearnModuleRound(learnModuleId) {
     const learnModule = await LearnModule.findById(learnModuleId);
-    const cards = await LearnModuleCard.find({ module: learnModule._id });
     const rounds = await LearnModuleRound.find({ module: learnModule._id });
+    const cards = await LearnModuleCard.find({ module: learnModule._id });
+    
+    cards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+
+      return 0;
+    });
     
     const learnRoundDoc = new LearnModuleRound({
       module: learnModule._id,
@@ -154,7 +172,7 @@ class LearnModuleService {
 
     for (let i = 0; i < 7; ++i) {
       const updatedCard = {
-        _id: cards[i]._id,
+        //_id: cards[i]._id,
         module: cards[i].module,
         card: cards[i].card,
         status: cards[i].status,
@@ -164,6 +182,7 @@ class LearnModuleService {
       }
 
       const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+      console.log('createLearnModuleRound roundCard ===>', roundCard);
       roundCards.push(roundCard);
     }
 
@@ -188,14 +207,19 @@ class LearnModuleService {
 
     if (option.isRight) {
       passedCards += 1;
+      const status = card.status + 1;
 
       const updatedCard = {
-        ...card,
-        status: card.status + 1,
+        module: card.module,
+        round: card.module,
+        card: card.card,
+        index: card.index,
+        status: status,
         isDone: true
       }
 
-      await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
+      const _updatedCard = await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
+      console.log('checkLearnTestCard _updatedCard ===>', _updatedCard);
     }
 
     const updatedRound = {

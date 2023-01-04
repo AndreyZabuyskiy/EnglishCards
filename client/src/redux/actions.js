@@ -1,4 +1,4 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
@@ -220,6 +220,18 @@ export function fetchLearnModule(id) {
         round
       }
     });
+
+    const { learnCard, options} = await fetchLearnCardApi(round._id);
+    console.log('fetchLearnModule learnCard -->', learnCard);
+    console.log('fetchLearnModule options -->', options);
+
+    dispatch({
+      type: FETCH_LEARN_CARD,
+      data: {
+        card: learnCard,
+        options: options
+      }
+    });
   }
 }
 
@@ -239,11 +251,44 @@ export function fetchLearnCard(id) {
   }
 }
 
-export function checkTestCard(cardId, optionId) {
+export function checkTestCard(cardId, optionId, roundId) {
   return async dispatch => {
-    const response = await checkTestCardApi(cardId, optionId);
-    console.log('checkTestCard response ==>', response);
+    dispatch({
+      type: USER_SELECTED_OPTION,
+      data: optionId
+    });
+
+    const isCorrectAnswerResponse = await checkTestCardApi(cardId, optionId, roundId);
+    console.log('checkTestCard isCorrectAnswerResponse ==>', isCorrectAnswerResponse);
     
-    //dispatch();
+    if (isCorrectAnswerResponse) {
+      dispatch({
+        type: CORRECT_LEARN_CARD_ANSWER
+      });
+
+      const { learnCard, options} = await fetchLearnCardApi(roundId);
+
+      dispatch({
+        type: FETCH_LEARN_CARD,
+        data: {
+          card: learnCard,
+          options: options
+        }
+      });
+    } else {
+      console.log('checkTestCard INCORRECT_LEARN_CARD_ANSWER');
+      
+      dispatch({
+        type: INCORRECT_LEARN_CARD_ANSWER
+      });
+    }
   }
+}
+
+export function continueLearnCard() {
+  return async dispatch => {
+    dispatch({
+      type: CONTINUE_LEARN_CARD
+    });
+  } 
 }

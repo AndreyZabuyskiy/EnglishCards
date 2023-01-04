@@ -20,6 +20,7 @@ import { WriteEndView } from './WriteEndView/WriteEndView';
 import { WriteEndViewRound } from './WriteEndViewRound';
 import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
 import { NavbarLearnModule } from './NavbarLearnModule';
+import { OptionLearnCard } from './OptionLearnCard';
 
 export {
   StudyModule,
@@ -43,5 +44,6 @@ export {
   WriteEndView,
   WriteEndViewRound,
   FeedbackHeading,
-  NavbarLearnModule
+  NavbarLearnModule,
+  OptionLearnCard
 }

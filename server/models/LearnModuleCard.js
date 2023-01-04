@@ -21,6 +21,9 @@ const schema = mongoose.Schema({
   },
   index: {
     type: Number
+  },
+  isDone: {
+    type: Boolean
   }
 });
 

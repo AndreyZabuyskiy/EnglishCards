@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
 import { LearnWriteCard } from '../../components/LearnWriteCard';
-import { fetchLearnModule } from '../../redux/actions';
+import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
 export const LearnModule = () => {
@@ -20,24 +20,52 @@ export const LearnModule = () => {
     return learnModuleReducer;
   });
 
+  const { card, options, isIncorrectAnswer, optionSelectedUser } = useSelector(state => {
+    const { learnCardReducer } = state;
+    return learnCardReducer;
+  });
+
+  //console.log('card ==>', card);
+  //console.log('options ==>', options);
+
+  const onClickOption = (cardId, optionId) => {
+    dispatch(checkTestCard(cardId, optionId, round._id));
+  }
+
+  const onClickContinue = () => {
+    dispatch(continueLearnCard());
+    dispatch(fetchLearnCard(round._id));
+  }
+
   return (
     <>
       {round &&
-        <>
+        <div className={style.container}>
           <NavbarLearnModule round={round} />
 
           <div className={style.content}>
             {!isDone
               ?
-                <LearnTestCard roundId={round._id} />
+                <LearnTestCard roundId={round._id} card={card} options={options}
+                  isIncorrectAnswer={isIncorrectAnswer} onClickOption={onClickOption}
+                  optionSelectedUser={optionSelectedUser} />
               :
                 <h1>LearnModule done</h1>
-            }
+          }
 
-            {/* <LearnTestCard /> */}
-            {/* <LearnWriteCard /> */}
-          </div>
-        </>
+          {/* <LearnTestCard /> */}
+          {/* <LearnWriteCard /> */}
+        </div>
+          
+          {isIncorrectAnswer &&
+            <div className={style.message__continue__wrapper}>
+              <div className={style.message__continue}>
+                <div>Чтобы продолжить, нажмите любую клавишу</div>
+                <button onClick={onClickContinue}>Продолжить</button>
+              </div>
+            </div>
+          }
+        </div>
       }
     </>
   );

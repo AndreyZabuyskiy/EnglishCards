@@ -56,6 +56,18 @@
   display: flex;
   align-items: center;
 }
+.option:hover {
+  border: 2px solid #939bb4;
+  cursor: pointer;
+}
+
+.option__correct {
+  background-color: green;
+}
+
+.option__incorrect {
+  background-color: red;
+}
 
 .row__options {
   display: flex;
