@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
-import { LearnWriteCard } from '../../components/LearnWriteCard';
 import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
@@ -25,9 +24,6 @@ export const LearnModule = () => {
     return learnCardReducer;
   });
 
-  //console.log('card ==>', card);
-  //console.log('options ==>', options);
-
   const onClickOption = (cardId, optionId) => {
     dispatch(checkTestCard(cardId, optionId, round._id));
   }
@@ -41,7 +37,8 @@ export const LearnModule = () => {
     <>
       {round &&
         <div className={style.container}>
-          <NavbarLearnModule round={round} />
+          <NavbarLearnModule round={round.round} totalNumberCards={round.totalNumberCards}
+            passedCards={round.passedCards} />
 
           <div className={style.content}>
             {!isDone
@@ -51,11 +48,11 @@ export const LearnModule = () => {
                   optionSelectedUser={optionSelectedUser} />
               :
                 <h1>LearnModule done</h1>
-          }
+            }
 
-          {/* <LearnTestCard /> */}
-          {/* <LearnWriteCard /> */}
-        </div>
+            {/* <LearnTestCard /> */}
+            {/* <LearnWriteCard /> */}
+          </div>
           
           {isIncorrectAnswer &&
             <div className={style.message__continue__wrapper}>

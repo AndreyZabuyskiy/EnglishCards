@@ -18,7 +18,7 @@ class LearnModuleController {
   async getLearnRoundByModuleId(req, res, next) {
     const moduleId = req.params.id;
     
-    await learnModuleService.getLearnModuleRound(moduleId)
+    await learnModuleService.getLearnRoundByModuleId(moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })
@@ -44,6 +44,18 @@ class LearnModuleController {
     const optionId = req.body.optionId;
     
     await learnModuleService.checkLearnTestCard(cardId, optionId)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
+  async getLearnRoundById(req, res, next) {
+    const roundId = req.params.id;
+    
+    await learnModuleService.getLearnRoundById(roundId)
     .then(responseService => {
       res.status(200).json(responseService);
     })

@@ -5,7 +5,12 @@ export const fetchLearnModuleApi = async (id) => {
   return data;
 }
 
-export const fetchLearnRoundApi = async (id) => {
+export const fetchLearnRoundByModuleIddApi = async (id) => {
+  const { data } = await $authHost.get(`api/learn-module/get-round-by-module/${id}`);
+  return data;
+}
+
+export const fetchLearnRoundById = async (id) => {
   const { data } = await $authHost.get(`api/learn-module/get-round/${id}`);
   return data;
 }

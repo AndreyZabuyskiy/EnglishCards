@@ -15,7 +15,7 @@ class LearnModuleService {
     return learnModule;
   }
 
-  async getLearnModuleRound(moduleId) {
+  async getLearnRoundByModuleId(moduleId) {
     const learnModule = await LearnModule.findById(moduleId);
     const rounds = await LearnModuleRound.find({ module: moduleId });
 
@@ -30,16 +30,16 @@ class LearnModuleService {
     return learnRound;
   }
 
+  async getLearnRoundById(roundId) {
+    const round = await LearnModuleRound.findById(roundId);
+    return round;
+  }
+
   async getCardByRoundId(roundId) {
-    //console.log('<---- getCardByRoundId ---->');
     const round = await LearnModuleRound.findById(roundId);
     const cards = await LearnModuleCard.find({ round: round._id });
 
-    //console.log('getCardByRoundId round ===>', round);
-    //console.log('getCardByRoundId cards ===>', cards);
-
     const findCard = await cards.find(card => card.index === round.indexCurrentCard);
-    //console.log('getCardByRoundId findCard ===>', findCard);
     
     const card = await Card.findById(findCard.card);
 
@@ -105,8 +105,6 @@ class LearnModuleService {
     });
     
     await Promise.all(learnCards.map(async (learnCard, index) => {
-      //console.log('learnCard ==>', learnCard);
-
       if (learnCard.index < 4) {
         for (let i = 0; i < 4; ++i) {
           let cardId = learnCards[i].card;
@@ -172,7 +170,6 @@ class LearnModuleService {
 
     for (let i = 0; i < 7; ++i) {
       const updatedCard = {
-        //_id: cards[i]._id,
         module: cards[i].module,
         card: cards[i].card,
         status: cards[i].status,

@@ -1,4 +1,4 @@
-import { FETCH_LEARN_MODULE, SHOW_RESULT_LEARN_MODULE } from "../types";
+import { FETCH_LEARN_MODULE, FETCH_LEARN_ROUND, SHOW_RESULT_LEARN_MODULE } from "../types";
 
 const initialState = {
   learnModuleId: null,
@@ -11,8 +11,13 @@ export const learnModuleReducer = (state = initialState, action) => {
     case FETCH_LEARN_MODULE:
       return {
         ...state,
-        learnModuleId: action.data.moduleId,
-        round: action.data.round
+        learnModuleId: action.data
+      }
+    
+    case FETCH_LEARN_ROUND:
+      return {
+        ...state,
+        round: action.data
       }
 
     case SHOW_RESULT_LEARN_MODULE:
