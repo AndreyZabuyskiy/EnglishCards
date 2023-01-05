@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { NavbarLearnModule } from '../../components';
+import { LearnRoundResult, NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
 import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
@@ -14,12 +14,12 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { learnModuleId, isDone, round } = useSelector(state => {
+  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
 
-  const { card, options, isIncorrectAnswer, optionSelectedUser } = useSelector(state => {
+  const { card, options, isIncorrectAnswer, isCorrectAnswer, optionSelectedUser } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
   });
@@ -41,11 +41,15 @@ export const LearnModule = () => {
             passedCards={round.passedCards} />
 
           <div className={style.content}>
-            {!isDone
+            {!isLearnModuleDone
               ?
-                <LearnTestCard roundId={round._id} card={card} options={options}
-                  isIncorrectAnswer={isIncorrectAnswer} onClickOption={onClickOption}
-                  optionSelectedUser={optionSelectedUser} />
+                !isLearnRoundDone
+                ?
+                  <LearnTestCard roundId={round._id} card={card} options={options}
+                  isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
+                  optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
+                :
+                  <LearnRoundResult />
               :
                 <h1>LearnModule done</h1>
             }

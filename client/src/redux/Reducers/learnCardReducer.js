@@ -14,7 +14,9 @@ export const learnCardReducer = (state = initialState, action) => {
       return {
         ...state,
         card: action.data.card,
-        options: action.data.options
+        options: action.data.options,
+        isCorrectAnswer: false,
+        isIncorrectAnswer: false
       }
     
     case USER_SELECTED_OPTION:

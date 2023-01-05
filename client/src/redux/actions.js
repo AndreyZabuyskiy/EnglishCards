@@ -1,4 +1,4 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
@@ -257,6 +257,7 @@ export function checkTestCard(cardId, optionId, roundId) {
     const isCorrectAnswerResponse = await checkTestCardApi(cardId, optionId, roundId);
     
     const round = await fetchLearnRoundById(roundId);
+    console.log('checkTestCard round -->', round);
     dispatch({
       type: FETCH_LEARN_ROUND,
       data: round
@@ -267,13 +268,23 @@ export function checkTestCard(cardId, optionId, roundId) {
         type: CORRECT_LEARN_CARD_ANSWER
       });
 
-      const { learnCard, options} = await fetchLearnCardApi(roundId);
-      dispatch({
-        type: FETCH_LEARN_CARD,
-        data: {
-          card: learnCard,
-          options: options
-        }
+      new Promise((resolve, reject) => {
+        setTimeout(async () => {
+          if (round.indexCurrentCard >= round.totalNumberCards) {
+            dispatch({
+              type: LEARN_ROUND_DONE
+            });
+          } else {
+            const { learnCard, options} = await fetchLearnCardApi(roundId);
+            dispatch({
+              type: FETCH_LEARN_CARD,
+              data: {
+                card: learnCard,
+                options: options
+              }
+            });
+          }
+        }, 1000);
       });
     } else {
       dispatch({

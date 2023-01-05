@@ -1,7 +1,7 @@
 import style from './LearnTestCard.module.css';
 import { OptionLearnCard } from '../OptionLearnCard';
 
-export const LearnTestCard = ({ roundId, card, options, onClickOption, isIncorrectAnswer, optionSelectedUser }) => {
+export const LearnTestCard = ({ roundId, card, options, onClickOption, isIncorrectAnswer, optionSelectedUser, isCorrectAnswer }) => {
   return (
     <>
       {card &&
@@ -24,15 +24,19 @@ export const LearnTestCard = ({ roundId, card, options, onClickOption, isIncorre
           <div className={style.options}>
             <div className={style.row__options}>
               <OptionLearnCard onClickOption={onClickOption} isIncorrectAnswer={isIncorrectAnswer}
-                option={options[0]} serialNumber={1} card={card} optionSelectedUser={optionSelectedUser} />
+                option={options[0]} serialNumber={1} card={card} optionSelectedUser={optionSelectedUser}
+                isCorrectAnswer={isCorrectAnswer}/>
               <OptionLearnCard onClickOption={onClickOption} isIncorrectAnswer={isIncorrectAnswer}
-                option={options[1]} serialNumber={2} card={card} optionSelectedUser={optionSelectedUser} />
+                option={options[1]} serialNumber={2} card={card} optionSelectedUser={optionSelectedUser}
+                isCorrectAnswer={isCorrectAnswer}/>
             </div>
             <div className={style.row__options}>
               <OptionLearnCard onClickOption={onClickOption} isIncorrectAnswer={isIncorrectAnswer}
-                option={options[2]} serialNumber={3} card={card} optionSelectedUser={optionSelectedUser} />
+                option={options[2]} serialNumber={3} card={card} optionSelectedUser={optionSelectedUser}
+                isCorrectAnswer={isCorrectAnswer}/>
               <OptionLearnCard onClickOption={onClickOption} isIncorrectAnswer={isIncorrectAnswer}
-                option={options[3]} serialNumber={4} card={card} optionSelectedUser={optionSelectedUser} />
+                option={options[3]} serialNumber={4} card={card} optionSelectedUser={optionSelectedUser}
+                isCorrectAnswer={isCorrectAnswer}/>
             </div>
           </div>
         </div>

@@ -21,6 +21,7 @@ import { WriteEndViewRound } from './WriteEndViewRound';
 import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
 import { NavbarLearnModule } from './NavbarLearnModule';
 import { OptionLearnCard } from './OptionLearnCard';
+import { LearnRoundResult } from './LearnRoundResult';
 
 export {
   StudyModule,
@@ -45,5 +46,6 @@ export {
   WriteEndViewRound,
   FeedbackHeading,
   NavbarLearnModule,
-  OptionLearnCard
+  OptionLearnCard,
+  LearnRoundResult
 }
