@@ -14,15 +14,18 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round } = useSelector(state => {
+  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
 
-  const { card, options, isIncorrectAnswer, isCorrectAnswer, optionSelectedUser } = useSelector(state => {
+  const { card, options, isIncorrectAnswer, isCorrectAnswer,
+    optionSelectedUser } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
-  });
+    });
+  
+  console.log('LearnModule resultRound -->', resultRound);
 
   const onClickOption = (cardId, optionId) => {
     dispatch(checkTestCard(cardId, optionId, round._id));
@@ -49,7 +52,8 @@ export const LearnModule = () => {
                   isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                   optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
                 :
-                  <LearnRoundResult />
+                <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
+                  lengthModuleCards={resultRound.lengthModuleCards} />
               :
                 <h1>LearnModule done</h1>
             }

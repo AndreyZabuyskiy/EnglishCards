@@ -5,6 +5,7 @@ const initialState = {
   isLearnModuleDone: false,
   isLearnRoundDone: false,
   round: null,
+  resultRound: null
 }
 
 export const learnModuleReducer = (state = initialState, action) => {
@@ -29,9 +30,11 @@ export const learnModuleReducer = (state = initialState, action) => {
       }
     
     case LEARN_ROUND_DONE: {
+      console.log('LEARN_ROUND_DONE action.data -->', action.data);
       return {
         ...state,
-        isLearnRoundDone: true
+        isLearnRoundDone: true,
+        resultRound: action.data
       }
     }
     

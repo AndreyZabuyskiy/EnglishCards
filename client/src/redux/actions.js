@@ -4,7 +4,7 @@ import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
-import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById } from "../http/learnModuleApi";
+import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById, getResultRoundApi } from "../http/learnModuleApi";
 
 export function registerAction(login, password) {
   return async dispatch => {
@@ -257,7 +257,6 @@ export function checkTestCard(cardId, optionId, roundId) {
     const isCorrectAnswerResponse = await checkTestCardApi(cardId, optionId, roundId);
     
     const round = await fetchLearnRoundById(roundId);
-    console.log('checkTestCard round -->', round);
     dispatch({
       type: FETCH_LEARN_ROUND,
       data: round
@@ -271,11 +270,16 @@ export function checkTestCard(cardId, optionId, roundId) {
       new Promise((resolve, reject) => {
         setTimeout(async () => {
           if (round.indexCurrentCard >= round.totalNumberCards) {
+            const resultRound = await getResultRoundApi(roundId);
+            console.log('checkTestCard resultRound -->', resultRound);
+            
             dispatch({
-              type: LEARN_ROUND_DONE
+              type: LEARN_ROUND_DONE,
+              data: resultRound
             });
           } else {
-            const { learnCard, options} = await fetchLearnCardApi(roundId);
+            const { learnCard, options } = await fetchLearnCardApi(roundId);
+            
             dispatch({
               type: FETCH_LEARN_CARD,
               data: {
