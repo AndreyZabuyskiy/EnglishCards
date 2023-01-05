@@ -208,7 +208,7 @@ class LearnModuleService {
 
       const updatedCard = {
         module: card.module,
-        round: card.module,
+        round: card.round,
         card: card.card,
         index: card.index,
         status: status,
@@ -216,7 +216,6 @@ class LearnModuleService {
       }
 
       const _updatedCard = await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
-      console.log('checkLearnTestCard _updatedCard ===>', _updatedCard);
     }
 
     const updatedRound = {
@@ -230,6 +229,18 @@ class LearnModuleService {
     await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
 
     return option.isRight;
+  }
+
+  async getResultRoundById(roundId) {
+    const round = await LearnModuleRound.findById(roundId);
+    const learnModule = await LearnModule.findById(round.module);
+    const cards = await LearnModuleCard.find({ module: learnModule._id });
+    console.log('getResultRoundById cards -->', cards);
+    const roundCards = await LearnModuleCard.find({ round: round._id });
+    //const roundCards = cards.filter(card => card.round === round._id);
+    console.log('getResultRoundById roundCards -->', roundCards);
+
+    return { round, lengthModuleCards: cards.length, cards: roundCards };
   }
 }
 
