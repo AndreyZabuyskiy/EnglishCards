@@ -4,77 +4,11 @@
 }
 
 .content {
-  padding: 32px 24px 24px;
   display: flex;
   justify-content: center;
-}
-
-.message__continue__wrapper {
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #1A1D28;
-  width: 100%;
-  height: 5.714rem;
-}
-
-.message__continue {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 60rem;
-
-  div {
-    font-size: 1.285rem;
-    color: #646f90;
-    font-weight: 700;
-  }
-
-  button {
-    padding: 0.857rem 1.714rem;
-    margin: 0rem 1.714rem;
-    background-color: #4255FF;
-    border-radius: 0.714rem;
-    color: #FFFFFF;
-    font-size: 1.285rem;
-    font-weight: 700;
-  }
-}
-
-@media (max-width: 1024px) {
-  .message__continue {
-    display: flex;
-    justify-content: center;
-
-    div {
-      display: none;
-    }
-
-    button {
-      width: 51.428rem;
-    }
-  }
-}
-
-@media (max-width: 770px) {
-  .message__continue {
-    div {
-      display: none;
-    }
-
-    button {
-      width: 100%;
-    }
-  }
 }
 
 @media (max-width: 620px) {
-  .message__continue__wrapper {
-    position: sticky;
-  }
-
   .content {
     padding: 0px;
   }

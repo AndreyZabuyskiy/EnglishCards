@@ -46,6 +46,15 @@
   font-size: 16px;
 }
 
+.row__options {
+  display: flex;
+  margin-top: 20px;
+}
+
+.row__options div:last-child {
+  margin-left: 20px;
+}
+
 .option__number {
   width: 24px;
   height: 24px;

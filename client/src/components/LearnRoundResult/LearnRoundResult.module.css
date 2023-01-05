@@ -1,14 +1,63 @@
 .container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header__wrapper {
+  background-color: #282e3e;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
   background-color: #282e3e;
-  padding: 3.488rem 0rem;
+  width: 85.714rem;
+  margin: 3.428rem 2.285rem;
+}
+
+.header__message {
+  color: #939BB4;
+  font-size: 2.285rem;
+  font-weight: bold;
+  margin-bottom: 2.142rem;
+}
+
+.message__progressbar {
+  color: #646F90;
+  font-size: 1.142rem;
+  margin-bottom: 0.571rem;
 }
 
 .progress__bar {
   width: 100%;
-  height: 15px;
   background-color: #F6F7FB;
+  border-radius: 10px;
+}
+
+.progress__bar__result {
+  background-color: #65C999;
+  height: 1rem;
+  border-radius: 10px;
+  border: 2px solid #F6F7FB;
+}
+
+.cards__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cards {
+  width: 85.714rem;
+  margin: 0rem 2.285rem 6.785rem;
+}
+.cards span {
+  display: inline-block;
+  color: #646F90;
+  font-size: 1.142rem;
+  margin: 1.714rem 0rem;
+  font-weight: bold;
 }/*# sourceMappingURL=LearnRoundResult.module.css.map */

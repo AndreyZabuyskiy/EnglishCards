@@ -179,7 +179,6 @@ class LearnModuleService {
       }
 
       const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
-      console.log('createLearnModuleRound roundCard ===>', roundCard);
       roundCards.push(roundCard);
     }
 
@@ -234,13 +233,18 @@ class LearnModuleService {
   async getResultRoundById(roundId) {
     const round = await LearnModuleRound.findById(roundId);
     const learnModule = await LearnModule.findById(round.module);
-    const cards = await LearnModuleCard.find({ module: learnModule._id });
-    console.log('getResultRoundById cards -->', cards);
+    const allCardsByModule = await LearnModuleCard.find({ module: learnModule._id });
+    const lengthModuleCards = allCardsByModule.length;
     const roundCards = await LearnModuleCard.find({ round: round._id });
-    //const roundCards = cards.filter(card => card.round === round._id);
-    console.log('getResultRoundById roundCards -->', roundCards);
-
-    return { round, lengthModuleCards: cards.length, cards: roundCards };
+    
+    const cards = [];
+    await Promise.all(roundCards.map(async (_card) => {
+      const card = await Card.findById(_card.card);
+      const { _id, value, translate, pathToFile, urlToImage } = card;
+      cards.push({_id, value, translate, pathToFile, urlToImage});
+    }));
+    
+    return { round, lengthModuleCards, cards };
   }
 }
 

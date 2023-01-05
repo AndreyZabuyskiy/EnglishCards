@@ -23,6 +23,7 @@ import { NavbarLearnModule } from './NavbarLearnModule';
 import { OptionLearnCard } from './OptionLearnCard';
 import { LearnRoundResult } from './LearnRoundResult';
 import { CardResultLearnRound } from './CardResultLearnRound';
+import { FixedBannerLearnModule } from './FixedBannerLearnModule';
 
 export {
   StudyModule,
@@ -49,5 +50,6 @@ export {
   NavbarLearnModule,
   OptionLearnCard,
   LearnRoundResult,
-  CardResultLearnRound
+  CardResultLearnRound,
+  FixedBannerLearnModule
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LearnRoundResult, NavbarLearnModule } from '../../components';
+import { FixedBannerLearnModule, LearnRoundResult, NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
 import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
@@ -14,7 +14,7 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
+  const { isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
@@ -61,12 +61,13 @@ export const LearnModule = () => {
           </div>
           
           {isIncorrectAnswer &&
-            <div className={style.message__continue__wrapper}>
-              <div className={style.message__continue}>
-                <div>Чтобы продолжить, нажмите любую клавишу</div>
-                <button onClick={onClickContinue}>Продолжить</button>
-              </div>
-            </div>
+            <FixedBannerLearnModule buttonMessage={'Продолжить'}
+              onClickButton={onClickContinue} />
+          }
+
+          {isLearnRoundDone &&
+            <FixedBannerLearnModule buttonMessage={'Перейти к раунду 3'}
+              onClickButton={onClickContinue} />
           }
         </div>
       }
