@@ -22,6 +22,7 @@ import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
 import { NavbarLearnModule } from './NavbarLearnModule';
 import { OptionLearnCard } from './OptionLearnCard';
 import { LearnRoundResult } from './LearnRoundResult';
+import { CardResultLearnRound } from './CardResultLearnRound';
 
 export {
   StudyModule,
@@ -47,5 +48,6 @@ export {
   FeedbackHeading,
   NavbarLearnModule,
   OptionLearnCard,
-  LearnRoundResult
+  LearnRoundResult,
+  CardResultLearnRound
 }

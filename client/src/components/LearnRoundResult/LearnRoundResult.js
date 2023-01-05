@@ -1,3 +1,4 @@
+import { CardResultLearnRound } from '../CardResultLearnRound';
 import style from './LearnRoundResult.module.css';
 
 export const LearnRoundResult = ({ round, cards, lengthModuleCards }) => {
@@ -11,10 +12,15 @@ export const LearnRoundResult = ({ round, cards, lengthModuleCards }) => {
         <div>Превосходно, вы делаете успехи!</div>
         <div>{cards.length} / {lengthModuleCards} терминов</div>
         <div className={style.progress__bar}>
-          
+
         </div>
       </div>
-      <div className={style.cards}>cards</div>
+      <div className={style.cards}>
+        <div>Термины изучены на этом этапе</div>
+        <CardResultLearnRound />
+        <CardResultLearnRound />
+        <CardResultLearnRound />
+      </div>
     </div>
   );
 }

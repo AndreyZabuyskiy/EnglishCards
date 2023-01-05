@@ -47,36 +47,6 @@
   font-size: 16px;
 }
 
-.option {
-  padding: 16px;
-  border: 2px solid #646f90;
-  max-width: 376px;
-  width: 100%;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-}
-.option:hover {
-  border: 2px solid #939bb4;
-  cursor: pointer;
-}
-
-.option__correct {
-  background-color: green;
-}
-
-.option__incorrect {
-  background-color: red;
-}
-
-.row__options {
-  display: flex;
-  margin-top: 20px;
-}
-.row__options div:last-child {
-  margin-left: 20px;
-}
-
 .option__number {
   width: 24px;
   height: 24px;
@@ -97,11 +67,6 @@
   }
   .row__options div:last-child {
     margin-left: 0px;
-  }
-  .option {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 20px;
   }
   .option__number {
     display: none;

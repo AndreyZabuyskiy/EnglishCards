@@ -24,8 +24,6 @@ export const LearnModule = () => {
     const { learnCardReducer } = state;
     return learnCardReducer;
     });
-  
-  console.log('LearnModule resultRound -->', resultRound);
 
   const onClickOption = (cardId, optionId) => {
     dispatch(checkTestCard(cardId, optionId, round._id));
