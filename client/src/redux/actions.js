@@ -271,7 +271,6 @@ export function checkTestCard(cardId, optionId, roundId) {
         setTimeout(async () => {
           if (round.indexCurrentCard >= round.totalNumberCards) {
             const resultRound = await getResultRoundApi(roundId);
-            console.log('checkTestCard resultRound -->', resultRound);
             
             dispatch({
               type: LEARN_ROUND_DONE,

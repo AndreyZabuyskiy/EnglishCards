@@ -15,9 +15,9 @@ export const LearnTestCard = ({ roundId, card, options, onClickOption, isIncorre
         </div>
         <div className={style.content}>
           <div>{ card.translate }</div>
-            <div>
-              <img className={style.image} src={"https://scientificrussia.ru/images/s/szs-full.jpg"} />
-            </div>
+          <div>
+            <img className={style.image} src={"https://scientificrussia.ru/images/s/szs-full.jpg"} />
+          </div>
         </div>
         <div className={style.footer}>
           <div className={style.footer__text}>Выбирите правильный термин</div>

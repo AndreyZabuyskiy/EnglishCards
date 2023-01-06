@@ -205,6 +205,11 @@ class LearnModuleService {
       passedCards += 1;
       const status = card.status + 1;
 
+      const options = await LearnCardOption.find({ card: card._id });
+      await Promise.all(options.map(async opt => {
+        await LearnCardOption.deleteOne({ _id: opt._id });
+      }));
+
       const updatedCard = {
         module: card.module,
         round: card.round,

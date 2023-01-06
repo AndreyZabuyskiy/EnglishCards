@@ -2,7 +2,6 @@ import { CardResultLearnRound } from '../CardResultLearnRound';
 import style from './LearnRoundResult.module.css';
 
 export const LearnRoundResult = ({ round, cards, lengthModuleCards }) => {
-  console.log('LearnRoundResult cards ==>', cards);
   const progressWidth = cards.length / lengthModuleCards * 100;
 
   return (
