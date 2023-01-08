@@ -9,7 +9,7 @@ export const NavbarLearnModule = ({ round, totalNumberCards, passedCards }) => {
         <div className={style.item__left}>
           <button>Заучивание</button>
         </div>
-        <div>Этап { round?.round }</div>
+        <div>Этап { round }</div>
         <div className={style.item__right}>
           <button>🗙</button>
         </div>

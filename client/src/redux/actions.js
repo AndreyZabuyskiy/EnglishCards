@@ -222,21 +222,31 @@ export function fetchLearnModule(id) {
       data: round
     });
 
-    const { learnCard, options } = await fetchLearnCardApi(round._id);
-    dispatch({
-      type: FETCH_LEARN_CARD,
-      data: {
-        card: learnCard,
-        options: options
-      }
-    });
+    if (round.passedCards >= round.totalNumberCards) {
+      const resultRound = await getResultRoundApi(round._id);
+    
+      dispatch({
+        type: LEARN_ROUND_DONE,
+        data: resultRound
+      });
+    } else {
+      const { learnCard, options } = await fetchLearnCardApi(round._id);
+      
+      dispatch({
+        type: FETCH_LEARN_CARD,
+        data: {
+          card: learnCard,
+          options: options
+        }
+      });
+    }
   }
 }
 
 export function fetchLearnCard(id) {
   return async dispatch => {
-    const { learnCard, options} = await fetchLearnCardApi(id);
-
+    const { learnCard, options } = await fetchLearnCardApi(id);
+    
     dispatch({
       type: FETCH_LEARN_CARD,
       data: {
@@ -247,52 +257,50 @@ export function fetchLearnCard(id) {
   }
 }
 
-export function checkTestCard(cardId, optionId, roundId) {
+export function checkTestCard(cardId, option, roundId) {
   return async dispatch => {
     dispatch({
       type: USER_SELECTED_OPTION,
-      data: optionId
+      data: option._id
     });
 
-    const isCorrectAnswerResponse = await checkTestCardApi(cardId, optionId, roundId);
-    
-    const round = await fetchLearnRoundById(roundId);
-    dispatch({
-      type: FETCH_LEARN_ROUND,
-      data: round
-    });
-    
-    if (isCorrectAnswerResponse) {
+    if (option.isRight) {
       dispatch({
         type: CORRECT_LEARN_CARD_ANSWER
-      });
-
-      new Promise((resolve, reject) => {
-        setTimeout(async () => {
-          if (round.indexCurrentCard >= round.totalNumberCards) {
-            const resultRound = await getResultRoundApi(roundId);
-            
-            dispatch({
-              type: LEARN_ROUND_DONE,
-              data: resultRound
-            });
-          } else {
-            const { learnCard, options } = await fetchLearnCardApi(roundId);
-            
-            dispatch({
-              type: FETCH_LEARN_CARD,
-              data: {
-                card: learnCard,
-                options: options
-              }
-            });
-          }
-        }, 1000);
       });
     } else {
       dispatch({
         type: INCORRECT_LEARN_CARD_ANSWER
       });
+    }
+
+    await checkTestCardApi(cardId, option._id, roundId);
+
+    if (option.isRight) {
+      const round = await fetchLearnRoundById(roundId);
+      dispatch({
+        type: FETCH_LEARN_ROUND,
+        data: round
+      });
+
+      if (round.passedCards >= round.totalNumberCards) {
+        const resultRound = await getResultRoundApi(roundId);
+
+        dispatch({
+          type: LEARN_ROUND_DONE,
+          data: resultRound
+        });
+      } else {
+        const { learnCard, options } = await fetchLearnCardApi(roundId);
+        
+        dispatch({
+          type: FETCH_LEARN_CARD,
+          data: {
+            card: learnCard,
+            options: options
+          }
+        });
+      }
     }
   }
 }

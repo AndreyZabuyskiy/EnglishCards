@@ -30,7 +30,6 @@ export const learnModuleReducer = (state = initialState, action) => {
       }
     
     case LEARN_ROUND_DONE: {
-      console.log('LEARN_ROUND_DONE action.data -->', action.data);
       return {
         ...state,
         isLearnRoundDone: true,

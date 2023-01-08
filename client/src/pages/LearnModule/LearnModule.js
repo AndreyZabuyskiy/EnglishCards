@@ -23,10 +23,13 @@ export const LearnModule = () => {
     optionSelectedUser } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
-    });
+  });
+  
+  console.log('LearnModule card -->', card);
+  console.log('LearnModule options -->', options);
 
-  const onClickOption = (cardId, optionId) => {
-    dispatch(checkTestCard(cardId, optionId, round._id));
+  const onClickOption = (cardId, option) => {
+    dispatch(checkTestCard(cardId, option, round._id));
   }
 
   const onClickContinue = () => {
@@ -55,9 +58,6 @@ export const LearnModule = () => {
               :
                 <h1>LearnModule done</h1>
             }
-
-            {/* <LearnTestCard /> */}
-            {/* <LearnWriteCard /> */}
           </div>
           
           {isIncorrectAnswer &&
@@ -66,7 +66,7 @@ export const LearnModule = () => {
           }
 
           {isLearnRoundDone &&
-            <FixedBannerLearnModule buttonMessage={'Перейти к раунду 3'}
+            <FixedBannerLearnModule buttonMessage={`Перейти к раунду ${round.round + 1}`}
               onClickButton={onClickContinue} />
           }
         </div>

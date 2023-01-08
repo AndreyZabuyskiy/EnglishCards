@@ -111,8 +111,6 @@ class LearnModuleService {
           const card = await Card.findById(cardId);
           const isRightCard = learnCard._id === learnCards[i]._id;
 
-          console.log('card ==>', card);
-
           const optionDoc = new LearnCardOption({
             card: learnCard,
             value: card.value,
@@ -197,8 +195,9 @@ class LearnModuleService {
     const card = await LearnModuleCard.findById(cardId);
     const round = await LearnModuleRound.findById(card.round);
     const option = await LearnCardOption.findById(optionId);
+    const cards = await LearnModuleCard.find({ round: round._id });
     
-    const indexCurrentCard = round.indexCurrentCard + 1;
+    const indexCurrentCard = await this.getNewPosition(round, cards);
     let passedCards = round.passedCards;
 
     if (option.isRight) {
@@ -250,6 +249,47 @@ class LearnModuleService {
     }));
     
     return { round, lengthModuleCards, cards };
+  }
+
+  async getNewPosition(round, cards) {
+    cards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    const minPositionCard = cards[0].index;
+    const maxPositionCard = cards[cards.length - 1].index;
+
+    let newPosition = 0;
+    let iterator = 0;
+
+    if (round.indexCurrentCard >= maxPositionCard) {
+      iterator = minPositionCard;
+    } else {
+      iterator = round.indexCurrentCard + 1;
+    }
+
+    for (let i = 0; i < round.totalNumberCards; ++i) {
+      const card = cards.find(card => card.index === iterator);
+
+      if (!card.isDone) {
+        newPosition = iterator;
+        break;
+      }
+
+      ++iterator;
+
+      if (iterator >= maxPositionCard) {
+        iterator = minPositionCard;
+      }
+    }
+    
+    return newPosition;
   }
 }
 
