@@ -24,6 +24,7 @@
 }
 
 .content {
+  height: 7.5rem;
   display: flex;
   justify-content: space-between;
   color: #F6F7F6;
@@ -32,8 +33,8 @@
 }
 
 .image {
-  width: 105px;
-  height: 105px;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 50%;
   object-fit: cover;
 }

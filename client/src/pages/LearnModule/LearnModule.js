@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FixedBannerLearnModule, LearnRoundResult, NavbarLearnModule } from '../../components';
 import { LearnTestCard } from '../../components/LearnTestCard';
-import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard } from '../../redux/actions';
+import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, lastQuestion } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
 export const LearnModule = () => {
@@ -25,8 +25,10 @@ export const LearnModule = () => {
     return learnCardReducer;
   });
   
-  console.log('LearnModule card -->', card);
-  console.log('LearnModule options -->', options);
+  const { user } = useSelector(state => {
+    const { authReducer } = state;
+    return authReducer;
+  });
 
   const onClickOption = (cardId, option) => {
     dispatch(checkTestCard(cardId, option, round._id));
@@ -49,7 +51,7 @@ export const LearnModule = () => {
               ?
                 !isLearnRoundDone
                 ?
-                  <LearnTestCard roundId={round._id} card={card} options={options}
+                  <LearnTestCard roundId={round._id} card={card} user={user} options={options}
                   isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                   optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
                 :

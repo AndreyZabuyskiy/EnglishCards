@@ -75,6 +75,18 @@ class LearnModuleController {
       next(ApiError.badRequest(e.message));
     });
   }
+
+  async createRound(req, res, next) {
+    const moduleId = req.params.id;
+      
+    await learnModuleService.createLearnModuleRound(moduleId)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new LearnModuleController();

@@ -222,6 +222,8 @@ export function fetchLearnModule(id) {
       data: round
     });
 
+    console.log('fetchLearnModule round -->', round);
+
     if (round.passedCards >= round.totalNumberCards) {
       const resultRound = await getResultRoundApi(round._id);
     

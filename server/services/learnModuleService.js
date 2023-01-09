@@ -166,18 +166,60 @@ class LearnModuleService {
 
     const roundCards = [];
 
-    for (let i = 0; i < 7; ++i) {
+    const writeCards = cards.filter(card => card.status === 1);
+    writeCards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    const testCards = cards.filter(card => card.status === 0);
+    testCards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    const lengthCardsRound = writeCards.length >= 7 ? 7 : writeCards.length;
+
+    for (let i = 0; i < lengthCardsRound; ++i) {
       const updatedCard = {
-        module: cards[i].module,
-        card: cards[i].card,
-        status: cards[i].status,
-        index: cards[i].index,
+        module: writeCards[i].module,
+        card: writeCards[i].card,
+        status: writeCards[i].status,
+        index: writeCards[i].index,
         round: round._id,
         isDone: false
       }
 
       const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
       roundCards.push(roundCard);
+    }
+
+    if (roundCards.length <= 7) {
+      const length = 7 - roundCards.length;
+
+      for (let i = 0; i < length; ++i) {
+        const updatedCard = {
+          module: testCards[i].module,
+          card: testCards[i].card,
+          status: testCards[i].status,
+          index: testCards[i].index,
+          round: round._id,
+          isDone: false
+        }
+
+        const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+        roundCards.push(roundCard);
+      }
     }
 
     const roundUpdated = {
@@ -188,7 +230,9 @@ class LearnModuleService {
       indexCurrentCard: 0
     }
 
-    await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
+    const newRound = await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
+    
+    return { round: newRound, cards: roundCards };
   }
 
   async checkLearnTestCard(cardId, optionId) {
