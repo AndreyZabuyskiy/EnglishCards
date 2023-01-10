@@ -24,6 +24,9 @@ import { OptionLearnCard } from './OptionLearnCard';
 import { LearnRoundResult } from './LearnRoundResult';
 import { CardResultLearnRound } from './CardResultLearnRound';
 import { FixedBannerLearnModule } from './FixedBannerLearnModule';
+import { LearnCard } from './LearnCard';
+import { LearnTestCard } from './LearnTestCard';
+import { LearnWriteCard } from './LearnWriteCard';
 
 export {
   StudyModule,
@@ -51,5 +54,8 @@ export {
   OptionLearnCard,
   LearnRoundResult,
   CardResultLearnRound,
-  FixedBannerLearnModule
+  FixedBannerLearnModule,
+  LearnCard,
+  LearnTestCard,
+  LearnWriteCard
 }

@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { FixedBannerLearnModule, LearnRoundResult, NavbarLearnModule } from '../../components';
-import { LearnTestCard } from '../../components/LearnTestCard';
+import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule } from '../../components';
 import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, lastQuestion } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
@@ -51,7 +50,7 @@ export const LearnModule = () => {
               ?
                 !isLearnRoundDone
                 ?
-                  <LearnTestCard roundId={round._id} card={card} user={user} options={options}
+                  <LearnCard roundId={round._id} card={card} user={user} options={options}
                   isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                   optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
                 :

@@ -232,7 +232,7 @@ class LearnModuleService {
 
     const newRound = await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
     
-    return { round: newRound, cards: roundCards };
+    return { round: newRound };
   }
 
   async checkLearnTestCard(cardId, optionId) {

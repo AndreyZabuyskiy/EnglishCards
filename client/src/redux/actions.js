@@ -222,8 +222,6 @@ export function fetchLearnModule(id) {
       data: round
     });
 
-    console.log('fetchLearnModule round -->', round);
-
     if (round.passedCards >= round.totalNumberCards) {
       const resultRound = await getResultRoundApi(round._id);
     
@@ -232,15 +230,19 @@ export function fetchLearnModule(id) {
         data: resultRound
       });
     } else {
-      const { learnCard, options } = await fetchLearnCardApi(round._id);
-      
-      dispatch({
-        type: FETCH_LEARN_CARD,
-        data: {
-          card: learnCard,
-          options: options
-        }
-      });
+      try {
+        const { learnCard, options } = await fetchLearnCardApi(round._id);
+        
+        dispatch({
+          type: FETCH_LEARN_CARD,
+          data: {
+            card: learnCard,
+            options: options
+          }
+        });
+      } catch (exp) {
+        console.log('fetchLearnModule exp.message', exp.message);
+      }
     }
   }
 }

@@ -11,6 +11,7 @@ const initialState = {
 export const learnCardReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LEARN_CARD:
+      console.log('FETCH_LEARN_CARD action.data -->', action.data);
       return {
         ...state,
         card: action.data.card,

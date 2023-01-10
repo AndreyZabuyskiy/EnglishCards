@@ -1,12 +1,11 @@
-.container {
+/*.container {
   width: 100%;
   max-width: 840px;
   background-color: #2e3856;
   padding: 24px 32px;
   margin-top: 2.285rem;
   border-radius: 10px;
-}
-
+}*/
 .header {
   display: flex;
   justify-content: space-between;
