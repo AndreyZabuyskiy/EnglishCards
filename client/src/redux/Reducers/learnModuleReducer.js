@@ -13,7 +13,11 @@ export const learnModuleReducer = (state = initialState, action) => {
     case FETCH_LEARN_MODULE:
       return {
         ...state,
-        learnModuleId: action.data
+        learnModuleId: action.data,
+        isLearnModuleDone: false,
+        isLearnRoundDone: false,
+        round: null,
+        resultRound: null
       }
     
     case FETCH_LEARN_ROUND:

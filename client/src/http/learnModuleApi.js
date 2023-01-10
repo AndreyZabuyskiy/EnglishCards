@@ -29,3 +29,13 @@ export const getResultRoundApi = async (roundId) => {
   const { data } = await $authHost.get(`api/learn-module/result-round/${roundId}`);
   return data;
 }
+
+export const checkLearnWriteCardApi = async (cardId, answer) => {
+  const { data } = await $authHost.post(`api/learn-module/check-write-card/${cardId}`, { answer });
+  return data;
+}
+
+export const createLearnRoundApi = async (moduleId) => {
+  const { data } = await $authHost.get(`api/learn-module/create-round/${moduleId}`);
+  return data;
+}

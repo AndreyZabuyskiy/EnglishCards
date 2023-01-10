@@ -1,10 +1,10 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE, FETCH_LEARN_OPTIONS, SHOW_LEARN_CARD, CLEAR_LEARN_CARD } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
-import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById, getResultRoundApi } from "../http/learnModuleApi";
+import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById, getResultRoundApi, getOptionsByCardIdApi, checkLearnWriteCardApi, createLearnRoundApi } from "../http/learnModuleApi";
 
 export function registerAction(login, password) {
   return async dispatch => {
@@ -261,7 +261,7 @@ export function fetchLearnCard(id) {
   }
 }
 
-export function checkTestCard(cardId, option, roundId) {
+export function checkTestCard(cardId, option, roundId, learnModuleId) {
   return async dispatch => {
     dispatch({
       type: USER_SELECTED_OPTION,
@@ -294,6 +294,8 @@ export function checkTestCard(cardId, option, roundId) {
           type: LEARN_ROUND_DONE,
           data: resultRound
         });
+
+        await createLearnRoundApi(learnModuleId);
       } else {
         const { learnCard, options } = await fetchLearnCardApi(roundId);
         
@@ -309,10 +311,55 @@ export function checkTestCard(cardId, option, roundId) {
   }
 }
 
-export function continueLearnCard() {
+export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
   return async dispatch => {
+    const data = await checkLearnWriteCardApi(cardId, answer);
+
+    if (data) {
+      dispatch({
+        type: CORRECT_LEARN_CARD_ANSWER
+      });
+    } else {
+      dispatch({
+        type: INCORRECT_LEARN_CARD_ANSWER
+      });
+    }
+
+    if (data) {
+      const round = await fetchLearnRoundById(roundId);
+      dispatch({
+        type: FETCH_LEARN_ROUND,
+        data: round
+      });
+
+      if (round.passedCards >= round.totalNumberCards) {
+        const resultRound = await getResultRoundApi(roundId);
+
+        dispatch({
+          type: LEARN_ROUND_DONE,
+          data: resultRound
+        });
+
+        await createLearnRoundApi(learnModuleId);
+      } else {
+        const { learnCard, options } = await fetchLearnCardApi(roundId);
+        
+        dispatch({
+          type: FETCH_LEARN_CARD,
+          data: {
+            card: learnCard,
+            options: options
+          }
+        });
+      }
+    }
+  }
+}
+
+export function clearLearnCard() {
+  return dispatch => {
     dispatch({
-      type: CONTINUE_LEARN_CARD
+      type: CLEAR_LEARN_CARD
     });
-  } 
+  }
 }

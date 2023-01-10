@@ -40,7 +40,6 @@ class LearnModuleService {
     const cards = await LearnModuleCard.find({ round: round._id });
 
     const findCard = await cards.find(card => card.index === round.indexCurrentCard);
-    
     const card = await Card.findById(findCard.card);
 
     const learnCard = {
@@ -205,9 +204,10 @@ class LearnModuleService {
     }
 
     if (roundCards.length <= 7) {
-      const length = 7 - roundCards.length;
+      let countCards = 7 - roundCards.length;
+      countCards = countCards > testCards.length ? testCards.length : countCards;
 
-      for (let i = 0; i < length; ++i) {
+      for (let i = 0; i < countCards; ++i) {
         const updatedCard = {
           module: testCards[i].module,
           card: testCards[i].card,
@@ -262,7 +262,7 @@ class LearnModuleService {
         isDone: true
       }
 
-      const _updatedCard = await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
+      await LearnModuleCard.findByIdAndUpdate(card._id, updatedCard, { new: true });
     }
 
     const updatedRound = {
@@ -334,6 +334,45 @@ class LearnModuleService {
     }
     
     return newPosition;
+  }
+
+  async checkLearnWriteCard(cardId, answer) {
+    const learnCard = await LearnModuleCard.findById(cardId);
+    const studyCard = await Card.findById(learnCard.card);
+    const round = await LearnModuleRound.findById(learnCard.round);
+    const cards = await LearnModuleCard.find({ round: round._id });
+    
+    const indexCurrentCard = await this.getNewPosition(round, cards);
+    let passedCards = round.passedCards + 1;
+    let status = learnCard.status;
+    const isCorrectAnswer = studyCard.value === answer;
+
+    if (isCorrectAnswer) {
+      status = learnCard.status + 1;
+    }
+    
+    const updatedCard = {
+      module: learnCard.module,
+      round: learnCard.round,
+      card: learnCard.card,
+      index: learnCard.index,
+      status: status,
+      isDone: true
+    }
+
+    await LearnModuleCard.findByIdAndUpdate(learnCard._id, updatedCard, { new: true });
+
+    const updatedRound = {
+      module: round.module,
+      round: round.round,
+      totalNumberCards: round.totalNumberCards,
+      indexCurrentCard,
+      passedCards
+    }
+
+    await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
+
+    return isCorrectAnswer;
   }
 }
 

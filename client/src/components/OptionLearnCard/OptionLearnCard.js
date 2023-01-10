@@ -1,6 +1,6 @@
 import style from './OptionLearnCard.module.css';
 
-export const OptionLearnCard = ({ serialNumber, option, onClickOption, isIncorrectAnswer, card, optionSelectedUser, isCorrectAnswer }) => {  
+export const OptionLearnCard = ({ serialNumber, option, onClickOption, isIncorrectAnswer, card, optionSelectedUser, isCorrectAnswer }) => {
   let cardStyle = `${style.option} ${style.option__select}`;
 
   if (isIncorrectAnswer && option.isRight) {
@@ -15,10 +15,12 @@ export const OptionLearnCard = ({ serialNumber, option, onClickOption, isIncorre
 
   return (
     <>
-      <div onClick={() => onClickOption(card._id, option)} className={cardStyle}>
-        <div className={style.option__number}>{ serialNumber }</div>
-        <span>{ option.value }</span>
-      </div>
+      {option &&
+        <div onClick={() => onClickOption(card._id, option)} className={cardStyle}>
+          <div className={style.option__number}>{ serialNumber }</div>
+          <span>{ option.value }</span>
+        </div>
+      }
     </>
   );
 }

@@ -1,8 +1,14 @@
 import style from './LearnTestCard.module.css';
 import { OptionLearnCard } from '../OptionLearnCard';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
+import { useSelector } from "react-redux"
 
-export const LearnTestCard = ({ roundId, card, user, options, onClickOption, isIncorrectAnswer, optionSelectedUser, isCorrectAnswer }) => {
+export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectAnswer, optionSelectedUser, isCorrectAnswer }) => {
+  const { options } = useSelector(state => {
+    const { learnCardReducer } = state;
+    return learnCardReducer;
+  });
+
   let imgSrc = '';
   if (card?.pathToFile) {
     imgSrc = `${REACT_APP_API_URL}/${user.login}/${card.pathToFile}`;

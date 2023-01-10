@@ -1,4 +1,4 @@
-import { CONTINUE_LEARN_CARD, CORRECT_LEARN_CARD_ANSWER, FETCH_LEARN_CARD, INCORRECT_LEARN_CARD_ANSWER, USER_SELECTED_OPTION } from "../types";
+import { CLEAR_LEARN_CARD, CORRECT_LEARN_CARD_ANSWER, FETCH_LEARN_CARD, INCORRECT_LEARN_CARD_ANSWER, USER_SELECTED_OPTION } from "../types";
 
 const initialState = {
   card: null,
@@ -11,11 +11,11 @@ const initialState = {
 export const learnCardReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LEARN_CARD:
-      console.log('FETCH_LEARN_CARD action.data -->', action.data);
       return {
         ...state,
         card: action.data.card,
         options: action.data.options,
+        optionSelectedUser: null,
         isCorrectAnswer: false,
         isIncorrectAnswer: false
       }
@@ -38,13 +38,15 @@ export const learnCardReducer = (state = initialState, action) => {
         isIncorrectAnswer: true
       }
     
-    case CONTINUE_LEARN_CARD: {
+    case CLEAR_LEARN_CARD:
       return {
         ...state,
+        card: null,
+        options: [],
+        optionSelectedUser: null,
         isCorrectAnswer: false,
         isIncorrectAnswer: false
       }
-    }
     
     default:
       return state;

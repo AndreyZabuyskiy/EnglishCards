@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule } from '../../components';
-import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, lastQuestion } from '../../redux/actions';
+import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, checkLearnWriteCard, clearLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
 export const LearnModule = () => {
@@ -13,7 +13,7 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
+  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
@@ -30,12 +30,20 @@ export const LearnModule = () => {
   });
 
   const onClickOption = (cardId, option) => {
-    dispatch(checkTestCard(cardId, option, round._id));
+    dispatch(checkTestCard(cardId, option, round._id, learnModuleId));
   }
 
   const onClickContinue = () => {
-    dispatch(continueLearnCard());
     dispatch(fetchLearnCard(round._id));
+  }
+
+  const onClickCheckAnswer = (cardId, answer) => {
+    dispatch(checkLearnWriteCard(cardId, answer, round._id, learnModuleId));
+  }
+
+  const onClickNextRound = () => {
+    dispatch(clearLearnCard());
+    dispatch(fetchLearnModule(id));
   }
 
   return (
@@ -50,9 +58,10 @@ export const LearnModule = () => {
               ?
                 !isLearnRoundDone
                 ?
-                  <LearnCard roundId={round._id} card={card} user={user} options={options}
+                <LearnCard roundId={round._id} card={card} user={user} options={options}
                   isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
-                  optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
+                  optionSelectedUser={optionSelectedUser} onClickOption={onClickOption}
+                  onClickCheckAnswer={onClickCheckAnswer} />
                 :
                 <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
                   lengthModuleCards={resultRound.lengthModuleCards} />
@@ -68,7 +77,7 @@ export const LearnModule = () => {
 
           {isLearnRoundDone &&
             <FixedBannerLearnModule buttonMessage={`Перейти к раунду ${round.round + 1}`}
-              onClickButton={onClickContinue} />
+              onClickButton={onClickNextRound} />
           }
         </div>
       }
