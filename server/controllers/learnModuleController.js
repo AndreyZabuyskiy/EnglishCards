@@ -91,9 +91,20 @@ class LearnModuleController {
   async checkLearnWriteCard(req, res, next) {
     const cardId = req.params.id;
     const answer = req.body.answer;
-    console.log('answer -->', answer);
     
     await learnModuleService.checkLearnWriteCard(cardId, answer)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
+  async completionCheckModule(req, res, next) {
+    const moduleId = req.params.id;
+    
+    await learnModuleService.completionCheckModule(moduleId)
     .then(responseService => {
       res.status(200).json(responseService);
     })

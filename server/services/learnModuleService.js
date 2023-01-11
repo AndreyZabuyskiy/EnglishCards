@@ -386,6 +386,19 @@ class LearnModuleService {
 
     return { isCorrectAnswer, correctAnswer: studyCard.value };
   }
+
+  async completionCheckModule(moduleId) {
+    const cards = await LearnModuleCard.find({ module: moduleId });
+    let isDone = true;
+
+    cards.forEach(card => {
+      if (card.status !== 3) {
+        isDone = false;
+      }
+    });
+
+    return isDone;
+  }
 }
 
 export default new LearnModuleService();
