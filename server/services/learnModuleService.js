@@ -39,7 +39,7 @@ class LearnModuleService {
     const round = await LearnModuleRound.findById(roundId);
     const cards = await LearnModuleCard.find({ round: round._id });
 
-    const findCard = await cards.find(card => card.index === round.indexCurrentCard);
+    const findCard = cards.find(card => card.index === round.indexCurrentCard);
     const card = await Card.findById(findCard.card);
 
     const learnCard = {
@@ -199,7 +199,7 @@ class LearnModuleService {
         isDone: false
       }
 
-      const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+      const roundCard = await LearnModuleCard.findByIdAndUpdate(writeCards[i]._id, updatedCard, { new: true });
       roundCards.push(roundCard);
     }
 
@@ -217,21 +217,30 @@ class LearnModuleService {
           isDone: false
         }
 
-        const roundCard = await LearnModuleCard.findByIdAndUpdate(cards[i]._id, updatedCard, { new: true });
+        const roundCard = await LearnModuleCard.findByIdAndUpdate(testCards[i]._id, updatedCard, { new: true });
         roundCards.push(roundCard);
       }
     }
+
+    roundCards.sort((a, b) => {
+      if (a.index > b.index) {
+        return 1;
+      } else if (a.index < b.index) {
+        return -1;
+      }
+
+      return 0;
+    });
 
     const roundUpdated = {
       module: round.module,
       round: round.round,
       totalNumberCards: roundCards.length,
       passedCards: 0,
-      indexCurrentCard: 0
+      indexCurrentCard: roundCards[0].index
     }
 
     const newRound = await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
-    
     return { round: newRound };
   }
 
@@ -309,13 +318,14 @@ class LearnModuleService {
     const minPositionCard = cards[0].index;
     const maxPositionCard = cards[cards.length - 1].index;
 
-    let newPosition = 0;
+    let newPosition = -1;
     let iterator = 0;
 
     if (round.indexCurrentCard >= maxPositionCard) {
       iterator = minPositionCard;
     } else {
-      iterator = round.indexCurrentCard + 1;
+      const itemIndex = cards.findIndex(el => el.index === round.indexCurrentCard);
+      iterator = cards[itemIndex + 1].index;
     }
 
     for (let i = 0; i < round.totalNumberCards; ++i) {
@@ -326,10 +336,12 @@ class LearnModuleService {
         break;
       }
 
-      ++iterator;
+      const itemIndex = cards.findIndex(el => el.index === iterator);
 
-      if (iterator >= maxPositionCard) {
+      if (itemIndex >= maxPositionCard) {
         iterator = minPositionCard;
+      } else {
+        iterator = cards[itemIndex + 1].index;
       }
     }
     
@@ -372,7 +384,7 @@ class LearnModuleService {
 
     await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
 
-    return isCorrectAnswer;
+    return { isCorrectAnswer, correctAnswer: studyCard.value };
   }
 }
 

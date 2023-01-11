@@ -1,4 +1,4 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE, FETCH_LEARN_OPTIONS, SHOW_LEARN_CARD, CLEAR_LEARN_CARD } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE, FETCH_LEARN_OPTIONS, SHOW_LEARN_CARD, CLEAR_LEARN_CARD, LOAD_CORRECT_ANSWER, INCORRECT_LEARN_WRITE_CARD_ANSWER, CORRECT_LEARN_WRITE_CARD_ANSWER } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
@@ -313,19 +313,21 @@ export function checkTestCard(cardId, option, roundId, learnModuleId) {
 
 export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
   return async dispatch => {
-    const data = await checkLearnWriteCardApi(cardId, answer);
-
-    if (data) {
+    const { isCorrectAnswer, correctAnswer} = await checkLearnWriteCardApi(cardId, answer);
+    
+    if (isCorrectAnswer) {
       dispatch({
-        type: CORRECT_LEARN_CARD_ANSWER
+        type: CORRECT_LEARN_WRITE_CARD_ANSWER,
+        data: { correctAnswer, userAnswer: answer }
       });
     } else {
       dispatch({
-        type: INCORRECT_LEARN_CARD_ANSWER
+        type: INCORRECT_LEARN_WRITE_CARD_ANSWER,
+        data: { correctAnswer, userAnswer: answer }
       });
     }
 
-    if (data) {
+    if (isCorrectAnswer) {
       const round = await fetchLearnRoundById(roundId);
       dispatch({
         type: FETCH_LEARN_ROUND,

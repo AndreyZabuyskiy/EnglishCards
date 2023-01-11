@@ -91,6 +91,7 @@ class LearnModuleController {
   async checkLearnWriteCard(req, res, next) {
     const cardId = req.params.id;
     const answer = req.body.answer;
+    console.log('answer -->', answer);
     
     await learnModuleService.checkLearnWriteCard(cardId, answer)
     .then(responseService => {

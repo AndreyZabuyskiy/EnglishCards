@@ -18,8 +18,8 @@ export const LearnModule = () => {
     return learnModuleReducer;
   });
 
-  const { card, options, isIncorrectAnswer, isCorrectAnswer,
-    optionSelectedUser } = useSelector(state => {
+  const { card, options, isIncorrectAnswer, isCorrectAnswer, optionSelectedUser,
+    correctAnswer, userAnswer } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
   });
@@ -61,7 +61,8 @@ export const LearnModule = () => {
                 <LearnCard roundId={round._id} card={card} user={user} options={options}
                   isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                   optionSelectedUser={optionSelectedUser} onClickOption={onClickOption}
-                  onClickCheckAnswer={onClickCheckAnswer} />
+                  onClickCheckAnswer={onClickCheckAnswer} correctAnswer={correctAnswer}
+                  userAnswer={userAnswer} />
                 :
                 <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
                   lengthModuleCards={resultRound.lengthModuleCards} />
