@@ -17,6 +17,7 @@ export const learnCardReducer = (state = initialState, action) => {
         ...state,
         card: action.data.card,
         options: action.data.options,
+        correctAnswer: action.data.value,
         optionSelectedUser: null,
         isCorrectAnswer: false,
         isIncorrectAnswer: false

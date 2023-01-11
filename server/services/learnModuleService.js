@@ -318,12 +318,8 @@ class LearnModuleService {
     const minPositionCard = cards[0].index;
     const maxPositionCard = cards[cards.length - 1].index;
 
-    //console.log('cards -->', cards);
-
     let newPosition = -1;
     let iterator = 0;
-
-    //console.log('round.indexCurrentCard -->', round.indexCurrentCard);
 
     if (round.indexCurrentCard >= maxPositionCard) {
       iterator = minPositionCard;
@@ -332,11 +328,8 @@ class LearnModuleService {
       iterator = cards[itemIndex + 1].index;
     }
 
-    //console.log('before for iterator -->', iterator);
-
     for (let i = 0; i < round.totalNumberCards; ++i) {
       const card = cards.find(card => card.index === iterator);
-      //console.log('card -->', card);
 
       if (!card.isDone) {
         newPosition = iterator;
@@ -344,31 +337,27 @@ class LearnModuleService {
       }
 
       const itemIndex = cards.findIndex(el => el.index === iterator);
-      //console.log('itemIndex -->', itemIndex);
 
       if (itemIndex >= cards.length - 1) {
         iterator = minPositionCard;
       } else {
-        //console.log('cards[itemIndex + 1] -->', cards[itemIndex + 1]);
         iterator = cards[itemIndex + 1].index;
-        //console.log('iterator -->', iterator);
       }
     }
     
-    console.log('new position -->', newPosition);
     return newPosition;
   }
 
-  async checkLearnWriteCard(cardId, answer) {
+  async checkLearnWriteCard(cardId, isCorrectAnswer) {
     const learnCard = await LearnModuleCard.findById(cardId);
-    const studyCard = await Card.findById(learnCard.card);
+    //const studyCard = await Card.findById(learnCard.card);
     const round = await LearnModuleRound.findById(learnCard.round);
     const cards = await LearnModuleCard.find({ round: round._id });
     
     const indexCurrentCard = await this.getNewPosition(round, cards);
     let passedCards = round.passedCards + 1;
     let status = learnCard.status;
-    const isCorrectAnswer = studyCard.value === answer;
+    //const isCorrectAnswer = studyCard.value === answer;
 
     if (isCorrectAnswer) {
       status = learnCard.status + 1;
@@ -395,7 +384,9 @@ class LearnModuleService {
 
     await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
 
-    return { isCorrectAnswer, correctAnswer: studyCard.value };
+    console.log('round -->', updatedRound);
+
+    return { isCorrectAnswer };
   }
 
   async completionCheckModule(moduleId) {

@@ -90,9 +90,9 @@ class LearnModuleController {
 
   async checkLearnWriteCard(req, res, next) {
     const cardId = req.params.id;
-    const answer = req.body.answer;
+    const isCorrectAnswer = req.body.isCorrectAnswer;
     
-    await learnModuleService.checkLearnWriteCard(cardId, answer)
+    await learnModuleService.checkLearnWriteCard(cardId, isCorrectAnswer)
     .then(responseService => {
       res.status(200).json(responseService);
     })

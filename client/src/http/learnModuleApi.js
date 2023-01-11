@@ -30,8 +30,8 @@ export const getResultRoundApi = async (roundId) => {
   return data;
 }
 
-export const checkLearnWriteCardApi = async (cardId, answer) => {
-  const { data } = await $authHost.post(`api/learn-module/check-write-card/${cardId}`, { answer });
+export const checkLearnWriteCardApi = async (cardId, isCorrectAnswer) => {
+  const { data } = await $authHost.post(`api/learn-module/check-write-card/${cardId}`, { isCorrectAnswer });
   return data;
 }
 

@@ -22,7 +22,10 @@ export const LearnModule = () => {
     correctAnswer, userAnswer } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
-  });
+    });
+  
+  console.log('userAnswer -->', userAnswer);
+  console.log('correctAnswer -->', correctAnswer);
   
   const { user } = useSelector(state => {
     const { authReducer } = state;
@@ -38,7 +41,7 @@ export const LearnModule = () => {
   }
 
   const onClickCheckAnswer = (cardId, answer) => {
-    dispatch(checkLearnWriteCard(cardId, answer, round._id, learnModuleId));
+    dispatch(checkLearnWriteCard(answer, correctAnswer, cardId, round._id, learnModuleId));
   }
 
   const onClickNextRound = () => {

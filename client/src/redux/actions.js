@@ -232,12 +232,13 @@ export function fetchLearnModule(id) {
     } else {
       try {
         const { learnCard, options } = await fetchLearnCardApi(round._id);
-        
+        console.log('learnCard -->', learnCard);
         dispatch({
           type: FETCH_LEARN_CARD,
           data: {
             card: learnCard,
-            options: options
+            options: options,
+            value: learnCard.value
           }
         });
       } catch (exp) {
@@ -255,7 +256,8 @@ export function fetchLearnCard(id) {
       type: FETCH_LEARN_CARD,
       data: {
         card: learnCard,
-        options: options
+        options: options,
+        value: learnCard.value
       }
     });
   }
@@ -311,7 +313,8 @@ export function checkTestCard(cardId, option, roundId, learnModuleId) {
           type: FETCH_LEARN_CARD,
           data: {
             card: learnCard,
-            options: options
+            options: options,
+            value: learnCard.value
           }
         });
       }
@@ -319,16 +322,26 @@ export function checkTestCard(cardId, option, roundId, learnModuleId) {
   }
 }
 
-export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
+export function checkLearnWriteCard(answer, correctAnswer, cardId, roundId, learnModuleId) {
   return async dispatch => {
-    const { isCorrectAnswer, correctAnswer} = await checkLearnWriteCardApi(cardId, answer);
+    //const { isCorrectAnswer, correctAnswer} = await checkLearnWriteCardApi(cardId, answer);
+    const isCorrectAnswer = answer === correctAnswer;
     
     if (isCorrectAnswer) {
       dispatch({
         type: CORRECT_LEARN_WRITE_CARD_ANSWER,
         data: { correctAnswer, userAnswer: answer }
       });
+    } else {
+      dispatch({
+        type: INCORRECT_LEARN_WRITE_CARD_ANSWER,
+        data: { correctAnswer, userAnswer: answer }
+      });
+    }
 
+    await checkLearnWriteCardApi(cardId, isCorrectAnswer);
+
+    if (isCorrectAnswer) {
       const round = await fetchLearnRoundById(roundId);
       dispatch({
         type: FETCH_LEARN_ROUND,
@@ -361,15 +374,11 @@ export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
           type: FETCH_LEARN_CARD,
           data: {
             card: learnCard,
-            options: options
+            options: options,
+            value: learnCard.value
           }
         });
       }
-    } else {
-      dispatch({
-        type: INCORRECT_LEARN_WRITE_CARD_ANSWER,
-        data: { correctAnswer, userAnswer: answer }
-      });
     }
   }
 }
@@ -414,7 +423,8 @@ export function nextLearnQuestion(roundId, learnModuleId) {
         type: FETCH_LEARN_CARD,
         data: {
           card: learnCard,
-          options: options
+          options: options,
+          value: learnCard.value
         }
       });
     }
@@ -423,8 +433,6 @@ export function nextLearnQuestion(roundId, learnModuleId) {
 
 export function startOverLearnModule(moduleId) {
   return async dispatch => {
-    //await deleteLearnModuleByIdApi(learnModuleId);
-
     dispatch({
       type: START_OVER_LEARN_MODULE
     });
@@ -447,7 +455,8 @@ export function startOverLearnModule(moduleId) {
       type: FETCH_LEARN_CARD,
       data: {
         card: learnCard,
-        options: options
+        options: options,
+        value: learnCard.value
       }
     });
   }
