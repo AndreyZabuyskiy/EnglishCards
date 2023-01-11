@@ -5,7 +5,7 @@ export const ResultLearnModule = () => {
     <div className={style.container__wrapper}>
       <div className={style.container}>
         <div className={style.image__wrapper}>
-          <img src='https://e7.pngegg.com/pngimages/404/406/png-clipart-golden-cup-golden-cup.png' />
+          <img src='https://abrakadabra.fun/uploads/posts/2022-02/1645752759_1-abrakadabra-fun-p-kubok-na-prozrachnom-fone-2.png' />
         </div>
         <div className={style.title}>Поздравляем! Вы все выучили</div>
         <div className={style.text}>

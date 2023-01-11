@@ -318,8 +318,12 @@ class LearnModuleService {
     const minPositionCard = cards[0].index;
     const maxPositionCard = cards[cards.length - 1].index;
 
+    //console.log('cards -->', cards);
+
     let newPosition = -1;
     let iterator = 0;
+
+    //console.log('round.indexCurrentCard -->', round.indexCurrentCard);
 
     if (round.indexCurrentCard >= maxPositionCard) {
       iterator = minPositionCard;
@@ -328,8 +332,11 @@ class LearnModuleService {
       iterator = cards[itemIndex + 1].index;
     }
 
+    //console.log('before for iterator -->', iterator);
+
     for (let i = 0; i < round.totalNumberCards; ++i) {
       const card = cards.find(card => card.index === iterator);
+      //console.log('card -->', card);
 
       if (!card.isDone) {
         newPosition = iterator;
@@ -337,14 +344,18 @@ class LearnModuleService {
       }
 
       const itemIndex = cards.findIndex(el => el.index === iterator);
+      //console.log('itemIndex -->', itemIndex);
 
-      if (itemIndex >= maxPositionCard) {
+      if (itemIndex >= cards.length - 1) {
         iterator = minPositionCard;
       } else {
+        //console.log('cards[itemIndex + 1] -->', cards[itemIndex + 1]);
         iterator = cards[itemIndex + 1].index;
+        //console.log('iterator -->', iterator);
       }
     }
     
+    console.log('new position -->', newPosition);
     return newPosition;
   }
 
@@ -398,6 +409,22 @@ class LearnModuleService {
     });
 
     return isDone;
+  }
+
+  async deleteModuleById(moduleId) {
+    const module = await LearnModule.findById(moduleId);
+    const rounds = await LearnModuleRound.find({ module: moduleId });
+    const cards = await LearnModuleCard.find({ module: moduleId });
+
+    await Promise.all(cards.map(async card => {
+      await LearnModuleCard.deleteOne({ _id: card._id });
+    }));
+
+    await Promise.all(rounds.map(async round => {
+      await LearnModuleRound.findByIdAndDelete({ _id: round._id });
+    }));
+
+    await LearnModule.findByIdAndDelete({ _id: moduleId });
   }
 }
 

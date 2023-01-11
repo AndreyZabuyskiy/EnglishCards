@@ -328,14 +328,7 @@ export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
         type: CORRECT_LEARN_WRITE_CARD_ANSWER,
         data: { correctAnswer, userAnswer: answer }
       });
-    } else {
-      dispatch({
-        type: INCORRECT_LEARN_WRITE_CARD_ANSWER,
-        data: { correctAnswer, userAnswer: answer }
-      });
-    }
 
-    if (isCorrectAnswer) {
       const round = await fetchLearnRoundById(roundId);
       dispatch({
         type: FETCH_LEARN_ROUND,
@@ -344,7 +337,7 @@ export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
 
       if (round.passedCards >= round.totalNumberCards) {
         const isLearnModuleDone = await completionCheckModuleApi(learnModuleId);
-        console.log('isLearnModuleDone -->', isLearnModuleDone);
+
         if (isLearnModuleDone) {
           dispatch({
             type: LEARN_MODULE_DONE
@@ -370,6 +363,11 @@ export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
           }
         });
       }
+    } else {
+      dispatch({
+        type: INCORRECT_LEARN_WRITE_CARD_ANSWER,
+        data: { correctAnswer, userAnswer: answer }
+      });
     }
   }
 }
@@ -379,5 +377,44 @@ export function clearLearnCard() {
     dispatch({
       type: CLEAR_LEARN_CARD
     });
+  }
+}
+
+export function nextLearnQuestion(roundId, learnModuleId) {
+  return async dispatch => {
+    const round = await fetchLearnRoundById(roundId);
+    dispatch({
+      type: FETCH_LEARN_ROUND,
+      data: round
+    });
+
+    if (round.passedCards >= round.totalNumberCards) {
+      const isLearnModuleDone = await completionCheckModuleApi(learnModuleId);
+
+      if (isLearnModuleDone) {
+        dispatch({
+          type: LEARN_MODULE_DONE
+        });
+      } else {
+        const resultRound = await getResultRoundApi(roundId);
+
+        dispatch({
+          type: LEARN_ROUND_DONE,
+          data: resultRound
+        });
+
+        await createLearnRoundApi(learnModuleId);
+      }
+    } else {
+      const { learnCard, options } = await fetchLearnCardApi(roundId);
+      
+      dispatch({
+        type: FETCH_LEARN_CARD,
+        data: {
+          card: learnCard,
+          options: options
+        }
+      });
+    }
   }
 }

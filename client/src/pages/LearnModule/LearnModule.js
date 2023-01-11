@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule, ResultLearnModule } from '../../components';
-import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, checkLearnWriteCard, clearLearnCard } from '../../redux/actions';
+import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, checkLearnWriteCard, clearLearnCard, nextLearnQuestion } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
 export const LearnModule = () => {
@@ -34,7 +34,7 @@ export const LearnModule = () => {
   }
 
   const onClickContinue = () => {
-    dispatch(fetchLearnCard(round._id));
+    dispatch(nextLearnQuestion(round._id, learnModuleId));
   }
 
   const onClickCheckAnswer = (cardId, answer) => {

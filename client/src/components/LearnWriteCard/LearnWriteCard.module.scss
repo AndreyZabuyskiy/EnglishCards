@@ -18,6 +18,8 @@
 .content {
   display: flex;
   justify-content: space-between;
+  width: 7.5rem;
+  height: 7.5rem;
   color: #F6F7FB;
   font-size: 22px;
   margin-bottom: 64px;
@@ -25,8 +27,8 @@
 }
 
 .image {
-  width: 105px;
-  height: 105px;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 10px;
   object-fit: cover;
 }
