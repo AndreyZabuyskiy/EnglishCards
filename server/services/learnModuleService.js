@@ -425,6 +425,8 @@ class LearnModuleService {
     }));
 
     await LearnModule.findByIdAndDelete({ _id: moduleId });
+
+    return true;
   }
 }
 

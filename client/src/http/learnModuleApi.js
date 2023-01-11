@@ -44,3 +44,8 @@ export const completionCheckModuleApi = async (moduleId) => {
   const { data } = await $authHost.get(`api/learn-module/completion-check-module/${moduleId}`);
   return data;
 }
+
+export const deleteLearnModuleByIdApi = async (moduleId) => {
+  const { data } = await $authHost.delete(`api/learn-module/delete-module/${moduleId}`);
+  return data;
+}

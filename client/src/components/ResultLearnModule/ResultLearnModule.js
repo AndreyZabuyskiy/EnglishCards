@@ -1,6 +1,6 @@
 import style from './ResultLearnModule.module.css';
 
-export const ResultLearnModule = () => {
+export const ResultLearnModule = ({ onClickStartOverLearnModule }) => {
   return (
     <div className={style.container__wrapper}>
       <div className={style.container}>
@@ -12,7 +12,7 @@ export const ResultLearnModule = () => {
           Повторите изучение, чтобы попрактиковать те же вопросы или попробовать другой режим обучения
         </div>
         <div className={style.button__wrapper}>
-          <button className={style.button}>Изучать снова</button>
+          <button onClick={onClickStartOverLearnModule} className={style.button}>Изучать снова</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { FETCH_LEARN_MODULE, FETCH_LEARN_ROUND, SHOW_RESULT_LEARN_MODULE, LEARN_ROUND_DONE, LEARN_MODULE_DONE, LEARN_MODULE_START_OVER } from "../types";
+import { FETCH_LEARN_MODULE, FETCH_LEARN_ROUND, SHOW_RESULT_LEARN_MODULE, LEARN_ROUND_DONE, LEARN_MODULE_DONE, START_OVER_LEARN_MODULE } from "../types";
 
 const initialState = {
   learnModuleId: null,
@@ -45,6 +45,13 @@ export const learnModuleReducer = (state = initialState, action) => {
       return {
         ...state,
         isLearnModuleDone: true,
+        isLearnRoundDone: false
+      }
+    }
+
+    case START_OVER_LEARN_MODULE: {
+      return {
+        ...state,
         isLearnRoundDone: false
       }
     }

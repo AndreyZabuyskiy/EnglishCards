@@ -1,10 +1,10 @@
-import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE, FETCH_LEARN_OPTIONS, SHOW_LEARN_CARD, CLEAR_LEARN_CARD, LOAD_CORRECT_ANSWER, INCORRECT_LEARN_WRITE_CARD_ANSWER, CORRECT_LEARN_WRITE_CARD_ANSWER, LEARN_MODULE_DONE } from "./types";
+import { REGISTER, LOADER_REGISTER_ON, LOADER_REGISTER_OFF, LOGIN, LOADER_LOGIN_ON, LOADER_LOGIN_OFF, CHECK_AUTH, FETCH_MODULES, FETCH_MODULE, CREATE_MODULE, UPDATE_MODULE, LOGOUT, FETCH_LEARN_MODULE, CHECK_ANSWER, GET_RESULT_MODULE, REMOVE_LEARN_MODULE, SAVE_USER_ANSWER, NEXT_QUESTION, FETCH_IMAGES, CLEAR_IMAGES, FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER, CONTINUE_LEARN_CARD, FETCH_LEARN_ROUND, LEARN_ROUND_DONE, FETCH_LEARN_OPTIONS, SHOW_LEARN_CARD, CLEAR_LEARN_CARD, LOAD_CORRECT_ANSWER, INCORRECT_LEARN_WRITE_CARD_ANSWER, CORRECT_LEARN_WRITE_CARD_ANSWER, LEARN_MODULE_DONE, DELETE_LEARN_MODULE, START_OVER_LEARN_MODULE } from "./types";
 import { checkApi, loginApi, registerApi } from "../http/userApi";
 import { fetchModulesApi } from "../http/modulesApi";
 import { createModuleApi, fetchImagesApi, fetchModuleByIdApi, updateModuleApi } from "../http/moduleApi";
 import { checkWriteCardAnswerApi, fetchWriteModulesApi, getResultWriteModuleApi, removeWriteModuleApi } from "../http/writeModuleApi";
 import Cookies from "js-cookie";
-import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById, getResultRoundApi, getOptionsByCardIdApi, checkLearnWriteCardApi, createLearnRoundApi, completionCheckModuleApi } from "../http/learnModuleApi";
+import { checkTestCardApi, fetchLearnRoundByModuleIddApi, fetchLearnModuleApi, fetchLearnCardApi, fetchLearnRoundById, getResultRoundApi, getOptionsByCardIdApi, checkLearnWriteCardApi, createLearnRoundApi, completionCheckModuleApi, deleteLearnModuleByIdApi } from "../http/learnModuleApi";
 
 export function registerAction(login, password) {
   return async dispatch => {
@@ -221,7 +221,7 @@ export function fetchLearnModule(id) {
       type: FETCH_LEARN_ROUND,
       data: round
     });
-
+    
     if (round.passedCards >= round.totalNumberCards) {
       const resultRound = await getResultRoundApi(round._id);
     
@@ -342,6 +342,8 @@ export function checkLearnWriteCard(cardId, answer, roundId, learnModuleId) {
           dispatch({
             type: LEARN_MODULE_DONE
           });
+
+          await deleteLearnModuleByIdApi(learnModuleId);
         } else {
           const resultRound = await getResultRoundApi(roundId);
 
@@ -416,5 +418,37 @@ export function nextLearnQuestion(roundId, learnModuleId) {
         }
       });
     }
+  }
+}
+
+export function startOverLearnModule(moduleId) {
+  return async dispatch => {
+    //await deleteLearnModuleByIdApi(learnModuleId);
+
+    dispatch({
+      type: START_OVER_LEARN_MODULE
+    });
+    
+    const learnModule = await fetchLearnModuleApi(moduleId);
+    dispatch({
+      type: FETCH_LEARN_MODULE,
+      data: learnModule._id
+    });
+    
+    const round = await fetchLearnRoundByModuleIddApi(learnModule._id);
+    dispatch({
+      type: FETCH_LEARN_ROUND,
+      data: round
+    });
+
+    const { learnCard, options } = await fetchLearnCardApi(round._id);
+
+    dispatch({
+      type: FETCH_LEARN_CARD,
+      data: {
+        card: learnCard,
+        options: options
+      }
+    });
   }
 }
