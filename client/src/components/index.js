@@ -27,6 +27,7 @@ import { FixedBannerLearnModule } from './FixedBannerLearnModule';
 import { LearnCard } from './LearnCard';
 import { LearnTestCard } from './LearnTestCard';
 import { LearnWriteCard } from './LearnWriteCard';
+import { ResultLearnModule } from './ResultLearnModule';
 
 export {
   StudyModule,
@@ -57,5 +58,6 @@ export {
   FixedBannerLearnModule,
   LearnCard,
   LearnTestCard,
-  LearnWriteCard
+  LearnWriteCard,
+  ResultLearnModule
 }

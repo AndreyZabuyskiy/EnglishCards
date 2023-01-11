@@ -1,0 +1,52 @@
+.container__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 4.57rem;
+}
+
+.container {
+  width: 67.14rem;
+}
+
+.image__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4.57rem;
+}
+
+img {
+  width: 8.85rem;
+  height: 8.85rem;
+}
+
+.title {
+  font-size: 2.28rem;
+  color: #F6F7FB;
+  font-weight: bold;
+  margin-bottom: 1.14rem;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.14rem;
+  color: #EDEFF4;
+  margin-bottom: 4.57rem;
+  text-align: center;
+  padding: 0rem 6.85rem;
+}
+
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 19rem;
+  background-color: #4255FF;
+  color: #FFFFFF;
+  font-size: 1.14rem;
+  padding: 0.85rem 3.42rem;
+  border-radius: 5px;
+}/*# sourceMappingURL=ResultLearnModule.module.css.map */

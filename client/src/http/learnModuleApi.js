@@ -39,3 +39,8 @@ export const createLearnRoundApi = async (moduleId) => {
   const { data } = await $authHost.get(`api/learn-module/create-round/${moduleId}`);
   return data;
 }
+
+export const completionCheckModuleApi = async (moduleId) => {
+  const { data } = await $authHost.get(`api/learn-module/completion-check-module/${moduleId}`);
+  return data;
+}

@@ -392,7 +392,7 @@ class LearnModuleService {
     let isDone = true;
 
     cards.forEach(card => {
-      if (card.status !== 3) {
+      if (card.status !== 2) {
         isDone = false;
       }
     });

@@ -1,8 +1,8 @@
-import { FETCH_LEARN_MODULE, FETCH_LEARN_ROUND, SHOW_RESULT_LEARN_MODULE, LEARN_ROUND_DONE } from "../types";
+import { FETCH_LEARN_MODULE, FETCH_LEARN_ROUND, SHOW_RESULT_LEARN_MODULE, LEARN_ROUND_DONE, LEARN_MODULE_DONE } from "../types";
 
 const initialState = {
   learnModuleId: null,
-  isLearnModuleDone: false,
+  isLearnModuleDone: true,
   isLearnRoundDone: false,
   round: null,
   resultRound: null
@@ -38,6 +38,14 @@ export const learnModuleReducer = (state = initialState, action) => {
         ...state,
         isLearnRoundDone: true,
         resultRound: action.data
+      }
+    }
+      
+    case LEARN_MODULE_DONE: {
+      return {
+        ...state,
+        isLearnModuleDone: true,
+        isLearnRoundDone: false
       }
     }
     

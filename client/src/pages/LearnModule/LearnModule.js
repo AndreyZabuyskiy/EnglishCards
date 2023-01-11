@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule } from '../../components';
+import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule, ResultLearnModule } from '../../components';
 import { fetchLearnModule, checkTestCard, fetchLearnCard, continueLearnCard, checkLearnWriteCard, clearLearnCard } from '../../redux/actions';
 import style from './LearnModule.module.css';
 
@@ -67,7 +67,7 @@ export const LearnModule = () => {
                 <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
                   lengthModuleCards={resultRound.lengthModuleCards} />
               :
-                <h1>LearnModule done</h1>
+                <ResultLearnModule />
             }
           </div>
           
