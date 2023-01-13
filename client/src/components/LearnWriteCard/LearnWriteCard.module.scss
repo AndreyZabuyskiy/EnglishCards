@@ -114,7 +114,7 @@
   color: #eceef3;
 }
 
-.message__correct__answer {
+.message__card {
   color: #646F90;
   font-size: 1.15rem;
   font-weight: bold;
@@ -143,4 +143,28 @@
 .correct__answer {
   color: #eceef3;
   font-size: 1.15rem;
+}
+
+.unknow__answer__block {
+  width: 100%;
+  border: 2px solid #646f90;
+  padding: 1.15rem;
+  border-radius: 5px;
+  margin-top: 1.42rem;
+  margin-bottom: 2.28rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.42rem;
+  height: 4.28rem;
+}
+
+.unknow__cross {
+  color: #646f90;
+  font-weight: bold;
+  margin-right: 1.42rem;
+}
+
+.unknow__answer {
+  color: #646f90;
+    font-size: 1.15rem;
 }

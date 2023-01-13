@@ -241,7 +241,7 @@ class LearnModuleService {
     }
 
     const newRound = await LearnModuleRound.findByIdAndUpdate(round._id, roundUpdated, { new: true });
-    return { round: newRound };
+    return newRound;
   }
 
   async checkLearnTestCard(cardId, optionId) {
@@ -350,14 +350,12 @@ class LearnModuleService {
 
   async checkLearnWriteCard(cardId, isCorrectAnswer) {
     const learnCard = await LearnModuleCard.findById(cardId);
-    //const studyCard = await Card.findById(learnCard.card);
     const round = await LearnModuleRound.findById(learnCard.round);
     const cards = await LearnModuleCard.find({ round: round._id });
     
     const indexCurrentCard = await this.getNewPosition(round, cards);
     let passedCards = round.passedCards + 1;
     let status = learnCard.status;
-    //const isCorrectAnswer = studyCard.value === answer;
 
     if (isCorrectAnswer) {
       status = learnCard.status + 1;
@@ -383,8 +381,6 @@ class LearnModuleService {
     }
 
     await LearnModuleRound.findByIdAndUpdate(round._id, updatedRound, { new: true });
-
-    console.log('round -->', updatedRound);
 
     return { isCorrectAnswer };
   }
