@@ -415,6 +415,12 @@ class LearnModuleService {
 
     return true;
   }
+
+  async getCountLearnCards(moduleId) {
+    const cards = await LearnModuleCard.find({ module: moduleId });
+    const learnedCards = cards.filter(card => card.status === 1);
+    return learnedCards.length;
+  }
 }
 
 export default new LearnModuleService();
