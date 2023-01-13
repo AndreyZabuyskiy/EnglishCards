@@ -15,7 +15,8 @@ export const LearnModule = () => {
     dispatch(fetchLearnModule(id));
   }, []);
 
-  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round, resultRound } = useSelector(state => {
+  const { learnModuleId, isLearnModuleDone, isLearnRoundDone, round, resultRound,
+    countLearnedCards } = useSelector(state => {
     const { learnModuleReducer } = state;
     return learnModuleReducer;
   });
@@ -24,7 +25,7 @@ export const LearnModule = () => {
     correctAnswer, userAnswer, isUnknowAnswer } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
-    });
+  });
   
   const { user } = useSelector(state => {
     const { authReducer } = state;
@@ -65,7 +66,8 @@ export const LearnModule = () => {
       {round &&
         <div className={style.container}>
           <NavbarLearnModule round={round.round} totalNumberCards={round.totalNumberCards}
-            passedCards={round.passedCards} onClickExit={onClickExit} />
+            passedCards={round.passedCards} onClickExit={onClickExit} isLearnRoundDone={isLearnRoundDone}
+            isLearnModuleDone={isLearnModuleDone} />
 
           <div className={style.content}>
             {!isLearnModuleDone
@@ -80,7 +82,8 @@ export const LearnModule = () => {
                   isUnknowAnswer={isUnknowAnswer} />
                 :
                 <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
-                  lengthModuleCards={resultRound.lengthModuleCards} />
+                  lengthModuleCards={resultRound.lengthModuleCards}
+                  countLearnedCards={resultRound.countLearnedCards} />
               :
                 <ResultLearnModule onClickStartOverLearnModule={onClickStartOverLearnModule} />
             }

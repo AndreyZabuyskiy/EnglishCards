@@ -1,8 +1,8 @@
 import { CardResultLearnRound } from '../CardResultLearnRound';
 import style from './LearnRoundResult.module.css';
 
-export const LearnRoundResult = ({ round, cards, lengthModuleCards }) => {
-  const progressWidth = cards.length / lengthModuleCards * 100;
+export const LearnRoundResult = ({ round, cards, lengthModuleCards, countLearnedCards }) => {
+  const progressWidth = countLearnedCards / lengthModuleCards * 100;
 
   return (
     <div className={style.container}>
@@ -10,7 +10,7 @@ export const LearnRoundResult = ({ round, cards, lengthModuleCards }) => {
         <div className={style.header}>
           <div className={style.header__message}>Превосходно, вы делаете успехи!</div>
           <div className={style.message__progressbar}>
-            {cards.length} / {lengthModuleCards} терминов
+            {countLearnedCards} / {lengthModuleCards} терминов
           </div>
           <div className={style.progress__bar}>
             <div className={style.progress__bar__result} style={{ width: `${progressWidth}%` }}></div>

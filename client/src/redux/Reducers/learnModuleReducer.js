@@ -17,7 +17,8 @@ export const learnModuleReducer = (state = initialState, action) => {
         isLearnModuleDone: false,
         isLearnRoundDone: false,
         round: null,
-        resultRound: null
+        resultRound: null,
+        countLearnedCards: 0
       }
     
     case FETCH_LEARN_ROUND:

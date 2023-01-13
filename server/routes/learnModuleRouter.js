@@ -11,7 +11,6 @@ router.get('/get-card/:id', authMiddleware, learnModuleController.getLearnCardBy
 router.get('/result-round/:id', authMiddleware, learnModuleController.getResultRoundById);
 router.get('/create-round/:id', authMiddleware, learnModuleController.createRound);
 router.get('/completion-check-module/:id', authMiddleware, learnModuleController.completionCheckModule);
-router.get('/count-learned-cards/:id', authMiddleware, learnModuleController.getCountLearnCards);
 
 router.post('/check-test-card/:id', authMiddleware, learnModuleController.checkLearnTestCard);
 router.post('/check-write-card/:id', authMiddleware, learnModuleController.checkLearnWriteCard);

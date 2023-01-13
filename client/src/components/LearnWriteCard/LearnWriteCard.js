@@ -42,7 +42,7 @@ export const LearnWriteCard = ({ card, user, onClickCheckAnswer, isIncorrectAnsw
             <div>
               {isCorrectAnswer &&
                 <div>
-                  <div className={style.message__correct__answer}>Супер</div>
+                  <div className={style.message__card}>Супер</div>
                   <div className={style.correct__answer__block}>
                     <div className={style.tick}>✓</div>
                     <div className={style.correct__answer}>{correctAnswer}</div>
@@ -60,7 +60,7 @@ export const LearnWriteCard = ({ card, user, onClickCheckAnswer, isIncorrectAnsw
                     <div className={style.user__answer}>{userAnswer}</div>
                   </div>
 
-                  <div className={style.message__correct__answer}>Правильный ответ</div>
+                  <div className={style.message__card}>Правильный ответ</div>
                   <div className={style.correct__answer__block}>
                     <div className={style.tick}>✓</div>
                     <div className={style.correct__answer}>{correctAnswer}</div>

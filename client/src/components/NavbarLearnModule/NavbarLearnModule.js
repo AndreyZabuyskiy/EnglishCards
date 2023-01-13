@@ -1,6 +1,7 @@
 import style from './NavbarLearn.module.css';
 
-export const NavbarLearnModule = ({ round, totalNumberCards, passedCards, onClickExit }) => {
+export const NavbarLearnModule = ({ round, totalNumberCards, passedCards, onClickExit, isLearnRoundDone,
+  isLearnModuleDone }) => {
   const widthLine = Math.round(passedCards / totalNumberCards * 100);
 
   return (
@@ -14,7 +15,9 @@ export const NavbarLearnModule = ({ round, totalNumberCards, passedCards, onClic
           <button onClick={onClickExit}>🗙</button>
         </div>
       </div>
-      <div className={style.line__wrapper} style={{width: `${widthLine}%`}}></div>
+      {!isLearnRoundDone && !isLearnModuleDone &&
+        <div className={style.line__wrapper} style={{ width: `${widthLine}%` }}></div>
+      }
     </div>
   );
 }

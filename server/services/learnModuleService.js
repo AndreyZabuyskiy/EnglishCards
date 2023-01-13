@@ -292,6 +292,7 @@ class LearnModuleService {
     const learnModule = await LearnModule.findById(round.module);
     const allCardsByModule = await LearnModuleCard.find({ module: learnModule._id });
     const lengthModuleCards = allCardsByModule.length;
+    const learnedCards = allCardsByModule.filter(card => card.status > 0);
     const roundCards = await LearnModuleCard.find({ round: round._id });
     
     const cards = [];
@@ -301,7 +302,7 @@ class LearnModuleService {
       cards.push({_id, value, translate, pathToFile, urlToImage});
     }));
     
-    return { round, lengthModuleCards, cards };
+    return { round, lengthModuleCards, countLearnedCards: learnedCards.length, cards };
   }
 
   async getNewPosition(round, cards) {
@@ -414,12 +415,6 @@ class LearnModuleService {
     await LearnModule.findByIdAndDelete({ _id: moduleId });
 
     return true;
-  }
-
-  async getCountLearnCards(moduleId) {
-    const cards = await LearnModuleCard.find({ module: moduleId });
-    const learnedCards = cards.filter(card => card.status === 1);
-    return learnedCards.length;
   }
 }
 
