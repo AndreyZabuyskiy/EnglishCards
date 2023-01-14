@@ -66,6 +66,8 @@ class LearnModuleService {
         });
       }
     }
+    
+    options = this.mixUpOptions(options);
 
     return { learnCard, options };
   }
@@ -415,6 +417,32 @@ class LearnModuleService {
     await LearnModule.findByIdAndDelete({ _id: moduleId });
 
     return true;
+  }
+
+  mixUpOptions(options) {
+    const positions = [];
+
+    while (positions.length < 4) {
+      const randomNumber = Math.floor(Math.random() * (4 - 0) + 0);
+      let isThere = false;
+
+      for (let i = 0; i < positions.length; ++i) {
+        if (positions[i] === randomNumber) {
+          isThere = true;
+        }
+      }
+
+      if (!isThere) {
+        positions.push(randomNumber);
+      }
+    }
+
+    const _options = [];
+    for (let i = 0; i < positions.length; ++i) {
+      _options.push(options[positions[i]]);
+    }
+
+    return _options;
   }
 }
 
