@@ -22,7 +22,7 @@ export const WriteModule = () => {
     const { writeModuleReducer } = state;
     return writeModuleReducer;
   });
-
+  
   useEffect(() => {
     dispatch(fetchWriteModule(id));
   }, []);

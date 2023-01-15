@@ -25,7 +25,7 @@ export const writeModuleReducer = (state = inititalState, action) => {
         countIncorrectAnswers: action.data.incorrectAnswers,
         index: 0,
         isFinish: false,
-        isCurrentAnswer: true,
+        isCurrentAnswer: true
       }
     
     case CHECK_ANSWER: {

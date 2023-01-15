@@ -20,18 +20,61 @@
   width: 45%;
   display: flex;
   justify-content: left;
+  display: flex;
 }
-.item__left button {
+.item__left .menu {
+  display: flex;
+  align-items: center;
+  position: relative;
   height: 64px;
   padding: 0px 10px;
   background-color: #0a092d;
   color: #F6F7FB;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 10px;
 }
-.item__left button:hover {
+.item__left .menu:hover {
   background-color: #2e3856;
+  cursor: pointer;
+}
+.item__left .menu__list {
+  position: absolute;
+  top: 0;
+  background-color: #0a092d;
+  margin-top: 68px;
+  width: 250px;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px 0px;
+  /*box-shadow: 5px 5px 5px 5px #111033,
+      5px 5px 5px 5px #111033,
+      5px 5px 5px 5px #111033,
+      5px 5px 5px 5px #111033;*/
+  box-shadow: #111033 0px 54px 55px, #111033 0px -12px 30px, #111033 0px 4px 6px, #111033 0px 12px 13px, #111033 0px -3px 5px;
+}
+.item__left .menu__list li {
+  width: 100%;
+  padding: 10px 30px;
+  color: #819bb4;
+}
+.item__left .menu__list li:hover {
+  cursor: pointer;
+  background-color: #282e3e;
+  color: #edeff4;
+}
+.item__left .menu__list li span {
+  display: inline-block;
+  margin-right: 10px;
+  color: blue;
+  font-size: 20px;
+}
+
+.menu__line {
+  height: 2px;
+  width: 100%;
+  background-color: #303545;
+  margin: 5px 0px;
 }
 
 .item__right {

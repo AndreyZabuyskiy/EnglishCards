@@ -7,7 +7,8 @@ class WriteModuleController {
     const moduleId = req.params.id;
 
     await writeService.getWriteModule(userId, moduleId)
-    .then(responseService => {
+      .then(responseService => {
+      console.log('responsiveService -->', responseService);
       res.status(200).json(responseService);
     })
     .catch(e => {
