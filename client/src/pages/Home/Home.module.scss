@@ -14,10 +14,65 @@
 .content {
   min-height: 94vh;
   margin-top: 6vh;
+  padding: 40px 0px;
   background-color: #0a092d;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.filter__inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding: 0px 0px 32px;
+}
+
+.filter {
+  position: relative;
+}
+
+.select__filter {
+  width: min-content;
+  padding: 8px 16px;
+  color: #f6f7fb;
+  font-size: 18px;
+  background-color: #0a092d;
+  border: 2px solid #d9dde8;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #282e3e;
+    cursor: pointer;
+  }
+}
+
+.options {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 200px;
+  padding: 10px 0px;
+  font-size: 16px;
+  background-color: #0a092d;
+  border: 1px solid #282e3e;
+  border-radius: 10px;
+  box-shadow: #111033 0px 54px 55px,
+      #111033 0px -12px 30px,
+      #111033 0px 4px 6px,
+      #111033 0px 12px 13px,
+      #111033 0px -3px 5px;
+}
+
+.option {
+  padding: 8px 24px;
+  color: #939bb4;
+
+  &:hover {
+    background-color: #282e3e;
+    color: #edeff4;
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 1200px) {
