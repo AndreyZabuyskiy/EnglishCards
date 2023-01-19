@@ -24,6 +24,7 @@
 .filter__inputs {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 90%;
   padding: 0px 0px 32px;
 }
@@ -40,6 +41,7 @@
   background-color: #0a092d;
   border: 2px solid #d9dde8;
   border-radius: 10px;
+  user-select: none;
 
   &:hover {
     background-color: #282e3e;
@@ -73,6 +75,25 @@
     color: #edeff4;
     cursor: pointer;
   }
+}
+
+.input {
+  width: 430px;
+  height: 40px;
+  background-color: #2e3856;
+  color: #d9dde8;
+  padding: 4px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.input::placeholder {
+  color: #d9dde8;
+}
+
+.input:focus {
+  border-bottom: 2px solid white;
+  padding: 18px 16px 16px 16px;
 }
 
 @media (min-width: 1200px) {

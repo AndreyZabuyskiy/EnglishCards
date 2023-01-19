@@ -53,7 +53,7 @@ export const Home = () => {
             </div>
           </div>
 
-          <div><input type="text" placeholder="search modules..." /></div>
+          <div><input className={style.input} type="text" placeholder="search modules..." /></div>
         </div>
 
         {modules?.map((item, index) => (
