@@ -1,0 +1,46 @@
+.container {
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  padding: 10px 0px;
+  font-size: 16px;
+  background-color: #0a092d;
+  box-shadow: #111033 0px 54px 55px,
+      #111033 0px -12px 30px,
+      #111033 0px 4px 6px,
+      #111033 0px 12px 13px,
+      #111033 0px -3px 5px;
+}
+
+.modules {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.module {
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: #282e3e;
+    cursor: pointer;
+  }
+}
+
+.footer {
+  background-color: #0a092d;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 0px 0px 10px 10px;
+  border-top: 1px solid #282e3e;
+
+  button {
+    color: #a8b1ff;
+    font-size: 16px;
+
+    &:hover {
+      color: #2b36a9;
+    }
+  }
+}

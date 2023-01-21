@@ -1,5 +1,5 @@
 import style from './ViewModule.module.scss';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModuleById } from "../../redux/actions";
@@ -11,7 +11,7 @@ export const ViewModule = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(fetchModuleById(id));
   }, []);

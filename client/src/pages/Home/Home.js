@@ -81,11 +81,3 @@ export const Home = () => {
     </div>
   );
 }
-
-          /*<StudyModule
-              key={index}
-              title={item.module.title}
-              countWords={item.module.countWords}
-              login={user.login}
-              id={item.module._id}
-            />*/
