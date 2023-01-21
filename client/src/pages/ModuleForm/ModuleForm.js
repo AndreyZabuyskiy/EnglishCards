@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
-import { useDispatch } from 'react-redux';
-import { createModule, updateModule } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { createModule, updateModule, clearCreateModuleReducer } from '../../redux/actions';
 import { CREATE_MODULE, HOME_ROUTE } from '../../utils/consts';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -66,6 +66,16 @@ export const ModuleForm = () => {
     }
   ];
 
+  const { isCreateOrUpdateModule, newModuleId } = useSelector(state => {
+    const { createModuleReducer } = state;
+    return createModuleReducer;
+  });
+
+  if (isCreateOrUpdateModule) {
+    dispatch(clearCreateModuleReducer());
+    navigate(`${HOME_ROUTE}/${newModuleId}`);
+  }
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [cards, setCards] = useState(moduleState);
@@ -103,7 +113,6 @@ export const ModuleForm = () => {
       dispatch(updateModule(params.id, {
         title, description, cards
       }));
-      navigate(`${HOME_ROUTE}`);
     }
   }
 

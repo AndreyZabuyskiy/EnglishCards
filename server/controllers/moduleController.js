@@ -9,26 +9,26 @@ class ModuleController {
     const userId = req.user.id;
 
     await moduleService.getModulesByUser(userId)
-      .then(modules => {
-        const _modules = modules.map(item => {
-          return {
-            module: item,
-            request: {
-              type: "GET",
-              url: `http://localhost:${config.get('port')}/api/module/`
-            }
+    .then(serviceResponse => {
+      /*const _modules = modules.map(item => {
+        return {
+          module: item,
+          request: {
+            type: "GET",
+            url: `http://localhost:${config.get('port')}/api/module/`
           }
-        })
-        
-        const response = {
-          count: modules.length,
-          modules: _modules
         }
-        res.status(200).json(response);
-      })
-      .catch(e => {
-        next(ApiError.badRequest(e.message));
-      });
+      })*/
+      
+      /*const response = {
+        count: modules.length,
+        modules: _modules
+      }*/
+      res.status(200).json(serviceResponse);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
   }
 
   async viewModule (req, res, next) {

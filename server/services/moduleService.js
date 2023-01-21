@@ -3,7 +3,7 @@ import Card from '../models/Card.js';
 
 class ModuleService {
   async getModulesByUser(userId) {
-    let data = [];
+    const data = [];
     const modules = await StudyModule.find({ user: userId });
 
     for(let mod of modules) {
@@ -17,13 +17,120 @@ class ModuleService {
       data.push(obj);
     }
 
-    return data;
+    data.sort((first, second) => {
+      const firstTime = new Date(first.createdAt);
+      const secondTime = new Date(second.createdAt);
+        
+      if (firstTime.getTime() < secondTime.getTime()) {
+        return 1;
+      } else if (firstTime.getTime() > secondTime.getTime()) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    const dataModules = [];
+
+    const currentDate = new Date();
+
+    const firstMinutesMilliseconds = 10 * 60 * 1000;
+    const firstMinutesModules = data.filter(_module => {
+      const createdModuleDate = new Date(_module.createdAt);
+      return (currentDate.getTime() - firstMinutesMilliseconds) < createdModuleDate.getTime();
+    });
+
+    dataModules.push({
+      title: 'during a few minutes',
+      data: firstMinutesModules
+    });
+
+    let count = firstMinutesModules.length;
+    let _modules = [];
+    for (let i = count; i < data.length; ++i) {
+      _modules.push(data[i]);
+    }
+
+    const hourMilliseconds = 60 * 60 * 1000;
+    const hourModules = _modules.filter(_module => {
+      const createdModuleDate = new Date(_module.createdAt);
+      return (currentDate.getTime() - hourMilliseconds) < createdModuleDate.getTime();
+    });
+
+    dataModules.push({
+      title: 'during a hour',
+      data: hourModules
+    });
+
+    count += hourModules.length;
+    _modules = [];
+    for (let i = count; i < data.length; ++i) {
+      _modules.push(data[i]);
+    }
+    
+    const dayMilliseconds = 24 * 60 * 60 * 1000;
+    const todayModules = _modules.filter(_module => {
+      const createdModuleDate = new Date(_module.createdAt);
+      return (currentDate.getTime() - dayMilliseconds) < createdModuleDate.getTime();
+    });
+
+    dataModules.push({
+      title: 'during today',
+      data: todayModules
+    });
+
+    count += todayModules.length;
+    _modules = [];
+    for (let i = count; i < data.length; ++i) {
+      _modules.push(data[i]);
+    }
+
+    const weekMilliseconds = 7 * 24 * 60 * 60 * 1000;
+    const weekModules = _modules.filter(_module => {
+      const createdModuleDate = new Date(_module.createdAt);
+      return (currentDate.getTime() - weekMilliseconds) < createdModuleDate.getTime();
+    });
+
+    dataModules.push({
+      title: 'during the week',
+      data: weekModules
+    });
+
+    count += weekModules.length;
+    _modules = [];
+    for (let i = count; i < data.length; ++i) {
+      _modules.push(data[i]);
+    }
+
+    const mounthMilliseconds = 30 * 24 * 60 * 60 * 1000;
+    const mounthModules = _modules.filter(_module => {
+      const createdModuleDate = new Date(_module.createdAt);
+      return (currentDate.getTime() - mounthMilliseconds) < createdModuleDate.getTime();
+    });
+
+    dataModules.push({
+      title: 'during the month',
+      data: mounthModules
+    });
+
+    count += mounthModules.length;
+    _modules = [];
+    for (let i = count; i < data.length; ++i) {
+      _modules.push(data[i]);
+    }
+
+    dataModules.push({
+      title: 'other time',
+      data: _modules
+    });
+
+    return dataModules;
   }
 
   async viewModule (moduleId) {
     const module = await StudyModule.findById({ _id: moduleId });
     const cards = await Card.find({ module: moduleId });
-    
+
     return { module, cards };
   }
 

@@ -10,17 +10,7 @@ export const modulesReducer = (state = initialState, action) => {
     case FETCH_MODULES:
       return {
         ...state,
-        modules: action.data.modules
-      }
-
-      case CREATE_MODULE:
-        return {
-          ...state
-      }
-    
-    case UPDATE_MODULE:
-      return {
-        ...state
+        modules: action.data
       }
     
     default:

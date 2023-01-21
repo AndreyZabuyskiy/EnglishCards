@@ -32,7 +32,7 @@ export const AuthForm = () => {
 
       <div className={style.container__form}>
         <div className={style.form}>
-          <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="" className={style.img} />
+          <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png" alt="" className={style.img} />
         
           <div className={style.title}>
             {isLogin ? "User log in" : "User registeration"}

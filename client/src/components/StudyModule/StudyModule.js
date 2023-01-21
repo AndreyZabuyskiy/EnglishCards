@@ -7,9 +7,9 @@ export const StudyModule = (props) => {
     <Link to={`${HOME_ROUTE}/${props.id}`} className={style.module}>
       <div>
         <span className={style.count__words}> { props.countWords } words</span>
-        <span className={style.login}>{ props.login }</span>
+        <span className={style.login}>{props.login}</span>
       </div>
-      <div className={style.title}>{ props.title }</div>
+      <div className={style.title}>{props.title}</div>
     </Link>
   );
 }

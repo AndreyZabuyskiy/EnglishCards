@@ -53,19 +53,39 @@ export const Home = () => {
             </div>
           </div>
 
-          <div><input className={style.input} type="text" placeholder="search modules..." /></div>
+          <input className={style.input} type="text" placeholder="search modules..." />
         </div>
 
         {modules?.map((item, index) => (
-          <StudyModule
-            key={index}
-            title={item.module.title}
-            countWords={item.module.countWords}
-            login={user.login}
-            id={item.module._id}
-          />
+          <>
+            {item.data.length !== 0 && 
+              <>
+                <div className={style.dashboard__feed__group}>
+                  <p>{item.title}</p>
+                  <div className={style.line}></div>
+                </div>
+                {item.data.map((module, idx) => (
+                  <StudyModule
+                    key={index}
+                    title={module.title}
+                    countWords={module.countWords}
+                    login={user.login}
+                    id={module._id}
+                  />
+                ))}
+              </>
+            }
+          </>
         ))}
       </div>
     </div>
   );
 }
+
+          /*<StudyModule
+              key={index}
+              title={item.module.title}
+              countWords={item.module.countWords}
+              login={user.login}
+              id={item.module._id}
+            />*/
