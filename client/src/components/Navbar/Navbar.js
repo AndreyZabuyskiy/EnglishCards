@@ -4,7 +4,7 @@ import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, CREATE_MODULE } from '../.
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { logout } from '../../redux/actions';
-import { NavbarModules } from '../NavbarModulesLists/NavbarModules';
+import { NavbarModules } from '../NavbarModulesList/NavbarModules';
 
 export const Navbar = () => {
   const [isShowModules, setIsShowModules] = useState();

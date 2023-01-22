@@ -21,6 +21,7 @@
 
 .logout {
   background-color: #0a092d;
+  color: #ffffff;
 }
 
 .button__main__wrapper {
@@ -45,6 +46,10 @@
 }
 .your__library button {
   background-color: #0A092D;
+  color: #ffffff;
+}
+
+.button {
   color: #ffffff;
 }
 
