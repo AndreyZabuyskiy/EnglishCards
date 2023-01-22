@@ -1,5 +1,6 @@
 import StudyModule from "../models/StudyModule.js";
 import Card from '../models/Card.js';
+import UserVisitedModule from "../models/UserVisitedModule.js";
 
 class ModuleService {
   async getModulesByUser(userId) {
@@ -127,11 +128,34 @@ class ModuleService {
     return dataModules;
   }
 
-  async viewModule (moduleId) {
+  async viewModule (userId, moduleId) {
     const module = await StudyModule.findById({ _id: moduleId });
     const cards = await Card.find({ module: moduleId });
 
+    await this.addOrUpdateUserVisitedModule(userId, moduleId);
     return { module, cards };
+  }
+
+  async getVisitedModules(userId) {
+    const visitedModules = await UserVisitedModule.find({ user: userId });
+
+    visitedModules.sort((a, b) => {
+      if (a.viewingTime > b.viewingTime) {
+        return -1;
+      } else if (a.visitedModules < b.visitedModules) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    const modules = [];
+    await Promise.all(visitedModules.map(async _visitedModule => {
+      const module = await StudyModule.findById(_visitedModule.module);
+      modules.push(module);
+    }));
+
+    return modules;
   }
 
   async createModule(userId, title, description, cards) {
@@ -194,6 +218,26 @@ class ModuleService {
     });
 
     return deletedModule;
+  }
+
+  async addOrUpdateUserVisitedModule(userId, moduleId) {
+    const findedUserModule = await UserVisitedModule.find({ user: userId, module: moduleId });
+    if (findedUserModule.length !== 0) {      
+      const updatedUserModule = {
+        _id: findedUserModule[0]._id,
+        user: findedUserModule[0].user,
+        module: findedUserModule[0].module,
+        viewingTime: new Date().getTime()
+      }
+
+      await UserVisitedModule.findByIdAndUpdate(findedUserModule[0]._id, updatedUserModule, { new: true });
+    } else {
+      const userModuleDoc = new UserVisitedModule({
+        user: userId, module: moduleId, viewingTime: new Date().getTime()
+      });
+
+      await userModuleDoc.save();
+    }
   }
 }
 

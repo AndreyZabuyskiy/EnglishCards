@@ -31,10 +31,11 @@ class ModuleController {
     });
   }
 
-  async viewModule (req, res, next) {
-    const { id } = req.params;
+  async viewModule(req, res, next) {
+    const userId = req.user.id;
+    const moduleId = req.params.id;
 
-    await moduleService.viewModule(id)
+    await moduleService.viewModule(userId, moduleId)
       .then((_module) => {
         res.status(200).json({
           data : _module,
@@ -43,6 +44,18 @@ class ModuleController {
             url: `http://localhost:${config.get('port')}/api/module/`
           }
         });
+      })
+      .catch(e => {
+        next(ApiError.badRequest(e.message));
+      });
+  }
+
+  async getVisitedModules(req, res, next) {
+    const userId = req.user.id;
+
+    await moduleService.getVisitedModules(userId)
+      .then((responseService) => {
+        res.status(200).json(responseService);
       })
       .catch(e => {
         next(ApiError.badRequest(e.message));

@@ -2,7 +2,7 @@ import axios from "axios";
 import { $host, $authHost } from "./index";
 
 export const fetchModuleByIdApi = async (id) => {
-  const { data } = await $host.get(`api/module/${id}`);
+  const { data } = await $authHost.get(`api/module/${id}`);
   return data;
 }
 

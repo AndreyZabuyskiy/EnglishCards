@@ -11,10 +11,11 @@ const schema = new mongoose.Schema({
     ref: 'StudyModule',
     required: true
   },
-  date: {
+  
+  viewingTime: {
     type: String,
     required: true
   }
 });
 
-export default mongoose.model('ViewUserModule', schema);
+export default mongoose.model('UserVisitedModule', schema);
