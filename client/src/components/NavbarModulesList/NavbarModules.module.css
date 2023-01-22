@@ -15,7 +15,9 @@
 }
 
 .module {
+  display: block;
   padding: 10px 20px;
+  color: #ffffff;
 }
 .module:hover {
   background-color: #282e3e;
@@ -29,11 +31,14 @@
   padding: 10px 20px;
   border-radius: 0px 0px 10px 10px;
   border-top: 1px solid #282e3e;
-}
-.footer button {
   color: #a8b1ff;
   font-size: 16px;
 }
-.footer button:hover {
+
+.link__to__modules {
+  color: #a8b1ff;
+  font-size: 16px;
+}
+.link__to__modules:hover {
   color: #2b36a9;
 }/*# sourceMappingURL=NavbarModules.module.css.map */

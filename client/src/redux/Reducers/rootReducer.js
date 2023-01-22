@@ -8,6 +8,7 @@ import { uploadImagesReducer } from "./uploadImagesReducer";
 import { learnModuleReducer } from "./learnModuleReducer";
 import { learnCardReducer } from "./learnCardReducer";
 import { createModuleReducer } from "./createModuleReducer";
+import { visitedModulesReducer } from "./visitedModulesReducer";
 
 export const rootReducer = combineReducers({
   authReducer,
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
   uploadImagesReducer,
   learnModuleReducer,
   learnCardReducer,
-  createModuleReducer
+  createModuleReducer,
+  visitedModulesReducer
 });

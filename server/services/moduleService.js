@@ -1,5 +1,6 @@
 import StudyModule from "../models/StudyModule.js";
 import Card from '../models/Card.js';
+import User from "../models/User.js";
 import UserVisitedModule from "../models/UserVisitedModule.js";
 
 class ModuleService {
@@ -152,7 +153,8 @@ class ModuleService {
     const modules = [];
     await Promise.all(visitedModules.map(async _visitedModule => {
       const module = await StudyModule.findById(_visitedModule.module);
-      modules.push(module);
+      const user = await User.findById(_visitedModule.user);
+      modules.push({ module, user });
     }));
 
     return modules;
