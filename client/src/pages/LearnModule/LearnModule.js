@@ -13,6 +13,7 @@ export const LearnModule = () => {
   const { id } = useParams();
 
   const [isShowMenu, setIsShowMenu] = useState(false);
+  const [isShowMenuParam, setIsShowMenuParam] = useState(false);
 
   useEffect(() => {
     dispatch(fetchLearnModule(id));
@@ -65,6 +66,7 @@ export const LearnModule = () => {
 
   const clickForm = () => {
     setIsShowMenu(false);
+    setIsShowMenuParam(false);
   }
 
   return (
@@ -72,8 +74,10 @@ export const LearnModule = () => {
       {round &&
         <div className={style.container} onClick={clickForm}>
           <NavbarLearnModule round={round.round} totalNumberCards={round.totalNumberCards}
-            passedCards={round.passedCards} onClickExit={onClickExit} isLearnRoundDone={isLearnRoundDone}
-            isLearnModuleDone={isLearnModuleDone} isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
+            passedCards={round.passedCards} onClickExit={onClickExit}
+            isLearnRoundDone={isLearnRoundDone} isLearnModuleDone={isLearnModuleDone}
+            isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu}
+            isShowMenuParam={isShowMenuParam} setIsShowMenuParam={setIsShowMenuParam} />
 
           <div className={style.content}>
             {!isLearnModuleDone
@@ -96,17 +100,17 @@ export const LearnModule = () => {
           </div>
           
           {isIncorrectAnswer &&
-            <FixedBannerLearnModule buttonMessage={'Продолжить'}
+            <FixedBannerLearnModule buttonMessage={'Continue'}
               onClickButton={onClickContinue} />
           }
 
           {isUnknowAnswer &&
-            <FixedBannerLearnModule buttonMessage={'Продолжить'}
+            <FixedBannerLearnModule buttonMessage={'Continue'}
               onClickButton={onClickContinue} />
           }
 
           {isLearnRoundDone &&
-            <FixedBannerLearnModule buttonMessage={`Перейти к раунду ${round.round + 1}`}
+            <FixedBannerLearnModule buttonMessage={`Next level ${round.round + 1}`}
               onClickButton={onClickNextRound} />
           }
         </div>

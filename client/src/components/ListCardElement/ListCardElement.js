@@ -5,7 +5,7 @@ export const ListCardElement = (props) => {
   return (
     <>
       <div className={style.count__cards}>
-        Термины в модуле ({ props?.moduleData?.cards.length })
+        Terms in the module ({ props?.moduleData?.cards.length })
       </div>
 
         <div>

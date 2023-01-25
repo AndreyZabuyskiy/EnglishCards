@@ -35,7 +35,7 @@ export const BigCard = (props) => {
       <div onClick={() => onClickCard()} className={cardStyle}>
         <div className={style.card__front}>
           <div className={style.card__header}>
-            <div className={style.card__header__left}>Определение</div>
+            <div className={style.card__header__left}>Definition</div>
             <div className={style.card__header__right}>Header content</div>
           </div>
 
@@ -60,7 +60,7 @@ export const BigCard = (props) => {
 
         <div className={style.card__back}>
           <div className={style.card__header}>
-            <div className={style.card__header__left}>Определение</div>
+            <div className={style.card__header__left}>Definition</div>
             <div className={style.card__header__right}>Header content</div>
           </div>
 

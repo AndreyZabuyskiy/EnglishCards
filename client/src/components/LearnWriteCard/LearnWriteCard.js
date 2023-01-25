@@ -89,7 +89,9 @@ export const LearnWriteCard = ({ card, user, onClickCheckAnswer, isIncorrectAnsw
               <p>Your answer</p>
               <input type='text' placeholder='Enter your answer' value={answer} onChange={onChangeAnswer} />
               <div className={style.footer__inputs}>
+              {/*  
                 <button onClick={onClickButtonUnknow} className={style.button__unknow}>I don't know</button>
+              */}
                 <button onClick={checkAnswer} className={style.button__answer}>Answer</button>
               </div>
             </>

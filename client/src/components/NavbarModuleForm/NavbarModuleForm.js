@@ -4,8 +4,8 @@ export const NavbarModuleForm = () => {
   return (
     <div className={style.navbar}>
       <div className={style.container}>
-        <div>Создать новый учебный модуль</div>
-        <div><button className={style.button}>Создать</button></div>
+        <div>Create new study module</div>
+        <div><button className={style.button}>Create</button></div>
       </div>
     </div>
   );

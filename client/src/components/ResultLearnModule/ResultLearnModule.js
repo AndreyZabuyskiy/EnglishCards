@@ -7,12 +7,12 @@ export const ResultLearnModule = ({ onClickStartOverLearnModule }) => {
         <div className={style.image__wrapper}>
           <img src='https://abrakadabra.fun/uploads/posts/2022-02/1645752759_1-abrakadabra-fun-p-kubok-na-prozrachnom-fone-2.png' />
         </div>
-        <div className={style.title}>Поздравляем! Вы все выучили</div>
+        <div className={style.title}>Congratulations! You have learned everything</div>
         <div className={style.text}>
-          Повторите изучение, чтобы попрактиковать те же вопросы или попробовать другой режим обучения
+          Repeat learning to practice the same or try other learning mode questions
         </div>
         <div className={style.button__wrapper}>
-          <button onClick={onClickStartOverLearnModule} className={style.button}>Изучать снова</button>
+          <button onClick={onClickStartOverLearnModule} className={style.button}>Repeat</button>
         </div>
       </div>
     </div>

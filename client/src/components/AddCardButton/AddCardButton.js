@@ -25,7 +25,7 @@ export const AddCardButton = (props) => {
   return (
     <button className={style.add__card} onClick={clickAddCardButton}>
       <div className={style.index}>{props.index + 1}</div>
-      <span className={style.content}> + Добавить карточку </span>
+      <span className={style.content}> + Add card </span>
     </button>
   )
 };

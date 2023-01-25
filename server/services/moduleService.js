@@ -43,7 +43,7 @@ class ModuleService {
     });
 
     dataModules.push({
-      title: 'during a few minutes',
+      title: 'few minutes',
       data: firstMinutesModules
     });
 
@@ -60,7 +60,7 @@ class ModuleService {
     });
 
     dataModules.push({
-      title: 'during a hour',
+      title: 'hour',
       data: hourModules
     });
 
@@ -77,7 +77,7 @@ class ModuleService {
     });
 
     dataModules.push({
-      title: 'during today',
+      title: 'today',
       data: todayModules
     });
 
@@ -94,7 +94,7 @@ class ModuleService {
     });
 
     dataModules.push({
-      title: 'during the week',
+      title: 'this week',
       data: weekModules
     });
 
@@ -111,7 +111,7 @@ class ModuleService {
     });
 
     dataModules.push({
-      title: 'during the month',
+      title: 'this month',
       data: mounthModules
     });
 

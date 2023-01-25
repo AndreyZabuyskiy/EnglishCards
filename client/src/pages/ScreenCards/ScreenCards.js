@@ -61,7 +61,7 @@ export const ScreenCards = () => {
         />
         
         <div className={style.footer__text}>
-          Нажмите ← или → для перехода вперед или назад
+          Click ← or → for go forward or backward
         </div>
       </div>
     </>

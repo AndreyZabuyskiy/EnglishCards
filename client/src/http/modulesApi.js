@@ -7,6 +7,5 @@ export const fetchModulesApi = async () => {
 
 export const fetchVisitedModulesApi = async () => {
   const { data } = await $authHost.post('api/module/visited-modules');
-  console.log('fetchVisitedModulesApi data -->', data);
   return data;
 }

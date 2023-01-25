@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchVisitedModules } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
-import { useNavigate } from "react-router-dom";
 
 export const NavbarModules = () => {
   const dispatch = useDispatch();
@@ -18,15 +17,14 @@ export const NavbarModules = () => {
     return visitedModulesReducer;
   });
 
-  console.log('NavbarModules modules -->', modules);
-
   return (
     <div className={style.container}>
       <div className={style.modules}>
-        {modules.map((_module, index) => (
-          <Link to={`${HOME_ROUTE}/${_module.module.id}`} className={style.module}>
-            <div>{ _module.module.title }</div>
-            <div>{ _module.user.login }</div>
+        {modules && modules.map((_module, index) => (
+          <Link to={`${HOME_ROUTE}/${_module?.module?._id}`}
+            className={style.module} key={index}>
+            <div>{ _module?.module?.title }</div>
+            <div>{ _module?.user?.login }</div>
           </Link>
         ))}
       </div>

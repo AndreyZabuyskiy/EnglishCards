@@ -480,8 +480,6 @@ export function fetchVisitedModules() {
   return async dispatch => {
     const modules = await fetchVisitedModulesApi();
     
-    console.log('fetchVisitedModules modules -->', modules);
-
     dispatch({
       type: FETCH_VISITED_MODULES,
       data: modules

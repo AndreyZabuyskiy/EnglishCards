@@ -8,9 +8,9 @@ export const LearnRoundResult = ({ round, cards, lengthModuleCards, countLearned
     <div className={style.container}>
       <div className={style.header__wrapper}>
         <div className={style.header}>
-          <div className={style.header__message}>Превосходно, вы делаете успехи!</div>
+          <div className={style.header__message}>Perfect, you realize success!</div>
           <div className={style.message__progressbar}>
-            {countLearnedCards} / {lengthModuleCards} терминов
+            {countLearnedCards} / {lengthModuleCards} words
           </div>
           <div className={style.progress__bar}>
             <div className={style.progress__bar__result} style={{ width: `${progressWidth}%` }}></div>
@@ -19,7 +19,7 @@ export const LearnRoundResult = ({ round, cards, lengthModuleCards, countLearned
       </div>
       <div className={style.cards__wrapper}>
         <div className={style.cards}>
-          <span>Термины изучены на этом этапе</span>
+          <span>Count of words learned</span>
           {
             cards.map(card => <CardResultLearnRound value={card.value} translate={card.translate}
               pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={card._id} />)
