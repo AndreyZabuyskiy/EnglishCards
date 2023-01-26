@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { LOGIN_ROUTE, HOME_ROUTE } from '../../utils/consts';
 import { Navbar } from '../../components';
 import { useNavigate } from "react-router-dom";
+import userProfileImage from '../../assets/user-profile-image.png';
 
 export const AuthForm = () => {
   const { register, handleSubmit, formState: { errors, isValid }, reset} = useForm({mode: 'onChange'});
@@ -32,7 +33,7 @@ export const AuthForm = () => {
 
       <div className={style.container__form}>
         <div className={style.form}>
-          <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png" alt="" className={style.img} />
+          <img src={userProfileImage} alt="" className={style.img} />
         
           <div className={style.title}>
             {isLogin ? "User log in" : "User registeration"}
