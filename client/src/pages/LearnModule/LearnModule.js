@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule, ResultLearnModule } from '../../components';
-import { fetchLearnModule, checkTestCard, checkLearnWriteCard, clearLearnCard, nextLearnQuestion, startOverLearnModule, unknowAnswer } from '../../redux/actions';
+import { fetchLearnModule, checkTestCard, checkLearnWriteCard, clearLearnCard, nextLearnQuestion,
+  startOverLearnModule, unknowAnswer} from '../../redux/actions/learnModuleAction';
 import { HOME_ROUTE } from '../../utils/consts';
 import style from './LearnModule.module.css';
 

@@ -3,8 +3,9 @@ import style from './Navbar.module.css';
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, CREATE_MODULE } from '../../utils/consts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { logout } from '../../redux/actions';
-import { NavbarModules } from '../NavbarModulesList/NavbarModules';
+import { logout } from '../../redux/actions/authAction';
+//import { NavbarModules } from '../NavbarModulesList/NavbarModules';
+import { NavbarModules } from '../';
 
 export const Navbar = () => {
   const [isShowModules, setIsShowModules] = useState();

@@ -28,6 +28,7 @@ import { LearnCard } from './LearnCard';
 import { LearnTestCard } from './LearnTestCard';
 import { LearnWriteCard } from './LearnWriteCard';
 import { ResultLearnModule } from './ResultLearnModule';
+import { NavbarModules } from './NavbarModulesList/NavbarModules';
 
 export {
   StudyModule,
@@ -59,5 +60,6 @@ export {
   LearnCard,
   LearnTestCard,
   LearnWriteCard,
-  ResultLearnModule
+  ResultLearnModule,
+  NavbarModules
 }

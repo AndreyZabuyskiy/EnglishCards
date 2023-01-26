@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StudyModule, Navbar } from "../../components";
-import { fetchModules } from "../../redux/actions";
+import { fetchModules } from "../../redux/actions/modulesAction";
 import style from './Home.module.css';
 
 export const Home = () => {

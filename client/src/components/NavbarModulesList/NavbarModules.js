@@ -1,7 +1,7 @@
 import style from './NavbarModules.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVisitedModules } from '../../redux/actions';
+import { fetchVisitedModules } from '../../redux/actions/modulesAction';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
 

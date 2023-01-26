@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Navbar, CardWriteAnswer, ModeControls, WriteEndView, FeedbackHeading } from '../../components';
-import { fetchWriteModule, nextQuestion, saveUserAnswer } from '../../redux/actions';
-import { checkWriteCardAnswer } from '../../redux/actions';
+import { fetchWriteModule, nextQuestion, saveUserAnswer, checkWriteCardAnswer } from '../../redux/actions/writeLearnModuleAction';
 import style from './WriteModule.module.scss';
 
 export const WriteModule = () => {
@@ -21,7 +20,9 @@ export const WriteModule = () => {
     isFinish, isCurrentAnswer, currentUserAnswer } = useSelector(state => {
     const { writeModuleReducer } = state;
     return writeModuleReducer;
-  });
+    });
+  
+  console.log('cards -->', cards);
   
   useEffect(() => {
     dispatch(fetchWriteModule(id));

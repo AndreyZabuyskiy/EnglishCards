@@ -2,7 +2,7 @@ import { useState } from 'react';
 import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
-import { createModule, updateModule, clearCreateModuleReducer } from '../../redux/actions';
+import { createModule, updateModule, clearCreateModuleReducer } from '../../redux/actions/moduleFormAction';
 import { CREATE_MODULE, HOME_ROUTE } from '../../utils/consts';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';

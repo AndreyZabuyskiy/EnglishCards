@@ -1,6 +1,6 @@
 import style from './AuthForm.module.css';
 import { useDispatch } from 'react-redux';
-import { loginAction, registerAction } from '../../redux/actions';
+import { loginAction, registerAction } from '../../redux/actions/authAction';
 import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { LOGIN_ROUTE, HOME_ROUTE } from '../../utils/consts';

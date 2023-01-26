@@ -2,7 +2,7 @@ import style from './ScreenCards.module.scss';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchModuleById } from "../../redux/actions";
+import { fetchModuleById } from '../../redux/actions/moduleAction';
 import { NavbarScreenCards, BigCard } from '../../components';
 
 export const ScreenCards = () => {

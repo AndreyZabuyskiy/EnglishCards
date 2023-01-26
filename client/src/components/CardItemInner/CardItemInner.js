@@ -6,8 +6,6 @@ import { StudiedCardsLine } from '../StudiedCardsLine';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 
 export const CardItemInner = (props) => {
-  console.log('CardItemInner props -->', props);
-
   const [cardItemIndex, setCardItemIndex] = useState(0);
   const [isFrontCard, setIsFrontCard] = useState(true);
 

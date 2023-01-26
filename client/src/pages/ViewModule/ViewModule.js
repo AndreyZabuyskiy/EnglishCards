@@ -2,7 +2,7 @@ import style from './ViewModule.module.scss';
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchModuleById } from "../../redux/actions";
+import { fetchModuleById } from '../../redux/actions/moduleAction';
 import { Navbar, CardItemInner, UIMenuModule, SetPageInfo, ListCardElement } from '../../components';
 import { EDIT_MODULE } from '../../utils/consts';
 import { NavbarViewModule } from '../../components/NavbarViewModule/NavbarViewModule';

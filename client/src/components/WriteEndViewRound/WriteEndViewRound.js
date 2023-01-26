@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { WRITE_MODULE } from '../../utils/consts';
 import { useDispatch } from 'react-redux';
 import style from './WriteEndViewRound.module.css';
-import { removeWriteModule } from '../../redux/actions';
+import { removeWriteModule } from '../../redux/actions/writeLearnModuleAction';
 
 export const WriteEndViewRound = (props) => {
   const dispatch = useDispatch();

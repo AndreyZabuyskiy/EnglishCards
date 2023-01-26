@@ -3,7 +3,7 @@ import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
 import { useRef, useState } from 'react';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearImages, fetchImages } from '../../redux/actions';
+import { clearImages, fetchImages } from '../../redux/actions/moduleFormAction';
 
 export const CardForm = (props) => {
   const card = props.cards.find(card => props._id === card._id);

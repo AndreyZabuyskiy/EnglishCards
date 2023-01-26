@@ -3,8 +3,7 @@ import { WriteEndViewRound } from '../WriteEndViewRound';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResultWriteModule } from '../../redux/actions';
-import { resultModuleReducer } from '../../redux/Reducers/resultModuleReducer';
+import { getResultWriteModule } from '../../redux/actions/writeLearnModuleAction';
 
 export const WriteEndView = () => {
   const dispatch = useDispatch();

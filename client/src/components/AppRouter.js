@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { AuthForm } from '../pages/AuthForm';
 import { Home } from '../pages/Home';
-import { checkAuth } from '../redux/actions';
+import { checkAuth } from '../redux/actions/authAction';
 import { authRoutes, publicRoutes } from '../routers';
 
 const AppRouter = () => {
