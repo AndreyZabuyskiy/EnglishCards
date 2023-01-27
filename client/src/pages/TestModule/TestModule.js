@@ -41,7 +41,8 @@ export const TestModule = () => {
       })}
 
       {groups && groups.writeCards.map((card, index) => {
-        return <TestWriteCard />
+        return <TestWriteCard key={index} translate={card.translate} user={user}
+          pathToFile={card.pathToFile} urlToImage={card.urlToImage} />
       })}
     </div>
   );

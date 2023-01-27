@@ -1,1 +1,86 @@
-/*# sourceMappingURL=TestWriteCard.module.css.map */
+.card {
+  width: 100%;
+  background-color: #2e3856;
+  padding: 24px 32px;
+  border-radius: 5px;
+  margin: 30px 0px;
+}
+
+.header {
+  width: 100%;
+  height: 32px;
+  margin-bottom: 24px;
+  color: #646F90;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  width: 100%;
+  height: 104px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.value {
+  color: #F6F7FB;
+  font-size: 20px;
+}
+
+.text {
+  color: #646F90;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 104px;
+  height: 104px;
+  border-radius: 10px;
+}
+
+input {
+  width: 100%;
+  height: 48px;
+  background-color: #0A092D;
+  color: #d9dde8;
+  padding: 4px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+input::-moz-placeholder {
+  color: #d9dde8;
+}
+
+input:-ms-input-placeholder {
+  color: #d9dde8;
+}
+
+input::placeholder {
+  color: #d9dde8;
+}
+
+input:focus {
+  border-bottom: 3px solid #d9dde8;
+  padding-bottom: 3px;
+}
+
+.next__button__wrapper {
+  display: flex;
+  justify-content: right;
+  margin-top: 32px;
+}
+
+button {
+  background-color: #4255FF;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 16px;
+}/*# sourceMappingURL=TestWriteCard.module.css.map */
