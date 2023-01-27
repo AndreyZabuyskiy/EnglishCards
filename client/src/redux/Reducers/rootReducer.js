@@ -9,6 +9,7 @@ import { learnModuleReducer } from "./learnModuleReducer";
 import { learnCardReducer } from "./learnCardReducer";
 import { createModuleReducer } from "./createModuleReducer";
 import { visitedModulesReducer } from "./visitedModulesReducer";
+import { testModuleReducer } from "./testModuleReducer";
 
 export const rootReducer = combineReducers({
   authReducer,
@@ -20,5 +21,6 @@ export const rootReducer = combineReducers({
   learnModuleReducer,
   learnCardReducer,
   createModuleReducer,
-  visitedModulesReducer
+  visitedModulesReducer,
+  testModuleReducer
 });

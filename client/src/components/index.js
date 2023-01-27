@@ -5,9 +5,6 @@ import { HeaderModuleForm } from './HeaderModuleForm';
 import { ListCreateCards } from './ListCreateCards';
 import { NavbarScreenCards } from "./NavbarScreenCards";
 import { BigCard } from "./BigCard";
-import { ListCardsTrueFalse } from './ListCardsTrueFalse';
-import { ListCardChoiceAnswer } from './ListCardChoiceAnswer';
-import { ListCardWriteAnswer } from './ListCardWriteAnswer';
 import { CardWordsSelection } from './CardWordsSelection';
 import { CardItemInner } from './CardItemInner';
 import { CardWriteAnswer } from './CardWriteAnswer';
@@ -29,6 +26,9 @@ import { LearnTestCard } from './LearnTestCard';
 import { LearnWriteCard } from './LearnWriteCard';
 import { ResultLearnModule } from './ResultLearnModule';
 import { NavbarModules } from './NavbarModulesList/NavbarModules';
+import { CardTrueFalse } from './CardTrueFalse';
+import { CardChoiceAnswer } from './CardChoiceAnswer';
+import { TestWriteCard } from './TestWriteCard';
 
 export {
   StudyModule,
@@ -38,9 +38,6 @@ export {
   ListCreateCards,
   NavbarScreenCards,
   BigCard,
-  ListCardsTrueFalse,
-  ListCardChoiceAnswer,
-  ListCardWriteAnswer,
   CardWordsSelection,
   CardItemInner,
   CardWriteAnswer,
@@ -61,5 +58,8 @@ export {
   LearnTestCard,
   LearnWriteCard,
   ResultLearnModule,
-  NavbarModules
-}
+  NavbarModules,
+  CardTrueFalse,
+  CardChoiceAnswer,
+  TestWriteCard
+} 
