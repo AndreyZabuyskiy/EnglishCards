@@ -6,6 +6,7 @@ import { getTestModule } from '../../redux/actions/testModuleAction';
 import { useParams } from 'react-router-dom';
 import { CardChoiceAnswer, TestWriteCard } from '../../components';
 import { CardWordsSelection } from '../../components';
+import testImage from '../../assets/test-image.png'
 
 export const TestModule = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,12 @@ export const TestModule = () => {
         return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
           pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index} />
       })}
+
+      <div className={style.footer}>
+        <img src={testImage} alt='' />
+        <p>Все готово! Отправить тест?</p>
+        <button>Оправить тест</button>
+      </div>
     </div>
   );
 }

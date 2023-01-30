@@ -4,3 +4,27 @@
   margin: 0 auto;
   padding: 30px;
 }
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 64px;
+    margin-bottom: 42px;
+    object-fit: contain;
+  }
+
+  p {
+    color: #F6F7FB;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 42px;
+  }
+
+  button {
+    padding: 20px 32px;
+  }
+}

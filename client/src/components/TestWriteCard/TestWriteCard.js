@@ -28,7 +28,7 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user 
 
       <div className={style.content}>
         <div className={style.value}>{ translate }</div>
-        {imgSrc && <div> <img src={`${imgSrc}`} className={style.img} /> </div>}
+        {imgSrc && <img src={`${imgSrc}`} className={style.img} alt='' />}
       </div>
 
       <div className={style.footer}>
