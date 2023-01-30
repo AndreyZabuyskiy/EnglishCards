@@ -1,4 +1,4 @@
-import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_UNSELECT_OPTION } from "../types"
+import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_SELECT_TRUE_OR_FALSE_CARD, TEST_UNSELECT_OPTION, TEST_UNSELECT_TRUE_OR_FALSE_CARD, TEST_WRITE_CARD_ANSWER } from "../types"
 
 const initialState = {
   title: '',
@@ -51,6 +51,30 @@ export const testModuleReducer = (state = initialState, action) => {
       return {
         ...state,
         testCards: testCards
+      }
+    }
+
+    case TEST_SELECT_TRUE_OR_FALSE_CARD: {
+      const trueOrFalseCards = selectTrueOrFalseCard(state.trueOrFalseCards, action.payload.cardId, action.payload.userAnswer);
+      return {
+        ...state,
+        trueOrFalseCards
+      }
+    }
+    
+    case TEST_UNSELECT_TRUE_OR_FALSE_CARD: {
+      const trueOrFalseCards = unselectTrueOrFalseCard(state.trueOrFalseCards, action.payload);
+      return {
+        ...state,
+        trueOrFalseCards
+      }
+    }
+    
+    case TEST_WRITE_CARD_ANSWER: {
+      const writeCards = writeCardAnswer(state.writeCards, action.payload.cardId, action.payload.userAnswer);
+      return {
+        ...state,
+        writeCards
       }
     }
     
@@ -179,6 +203,56 @@ function unselectOption(testCards, cardId, indexOption) {
 
   const cardsOne = testCards.slice(0, cardIndex);
   const cardsTwo = testCards.slice(cardIndex + 1);
+  const cards = [...cardsOne, updatedCard, ...cardsTwo];
+
+  return cards;
+}
+
+function selectTrueOrFalseCard(trueOrFalseCards, cardId, userAnswer) {
+  const indexCard = trueOrFalseCards.findIndex(card => card.cardId === cardId);
+  const card = trueOrFalseCards[indexCard];
+
+  const updatedCard = {
+    ...card,
+    userAnswer: userAnswer,
+    selected: true
+  };
+
+  const cardsOne = trueOrFalseCards.slice(0, indexCard);
+  const cardsTwo = trueOrFalseCards.slice(indexCard + 1);
+  const cards = [...cardsOne, updatedCard, ...cardsTwo];
+
+  return cards;
+}
+
+function unselectTrueOrFalseCard(trueOrFalseCards, cardId) {
+  const indexCard = trueOrFalseCards.findIndex(card => card.cardId === cardId);
+  const card = trueOrFalseCards[indexCard];
+
+  const updatedCard = {
+    ...card,
+    userAnswer: '',
+    selected: false
+  };
+
+  const cardsOne = trueOrFalseCards.slice(0, indexCard);
+  const cardsTwo = trueOrFalseCards.slice(indexCard + 1);
+  const cards = [...cardsOne, updatedCard, ...cardsTwo];
+
+  return cards;
+}
+
+function writeCardAnswer(writeCards, cardId, userAnswer) {
+  const indexCard = writeCards.findIndex(card => card.cardId === cardId);
+  const card = writeCards[indexCard];
+
+  const updatedCard = {
+    ...card,
+    userAnswer: userAnswer
+  }
+
+  const cardsOne = writeCards.slice(0, indexCard);
+  const cardsTwo = writeCards.slice(indexCard + 1);
   const cards = [...cardsOne, updatedCard, ...cardsTwo];
 
   return cards;

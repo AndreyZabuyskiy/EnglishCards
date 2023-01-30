@@ -1,12 +1,22 @@
 import style from './TestWriteCard.module.css';
+import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
+import { useState } from 'react';
+import { answerWriteCard } from '../../redux/actions/testModuleAction';
 
-export const TestWriteCard = ({ translate, pathToFile, urlToImage, user }) => {
+export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user }) => {
+  const dispatch = useDispatch();
+  const [answer, setAnswer] = useState('');
+
   let imgSrc = '';
   if (pathToFile) {
     imgSrc = `${REACT_APP_API_URL}/${user.login}/${pathToFile}`;
   } else if (urlToImage) {
     imgSrc = `${urlToImage}`;
+  }
+
+  const onClickNext = () => {
+    dispatch(answerWriteCard(cardId, answer));
   }
 
   return (
@@ -23,9 +33,10 @@ export const TestWriteCard = ({ translate, pathToFile, urlToImage, user }) => {
 
       <div className={style.footer}>
         <div className={style.text}>Ваш ответ</div>
-        <input type="text" placeholder='Введите ответ' />
+        <input type="text" placeholder='Введите ответ' value={answer}
+          onChange={(e) => setAnswer(e.target.value)} />
         <div className={style.next__button__wrapper}>
-          <button>Далее</button>
+          <button onClick={onClickNext}>Далее</button>
         </div>
       </div>
     </div>

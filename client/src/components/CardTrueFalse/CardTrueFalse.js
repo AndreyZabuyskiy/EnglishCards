@@ -1,12 +1,25 @@
 import style from './CardTrueFalse.module.css';
+import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
+import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 
-export const CardTrueFalse = ({ translate, value, pathToFile, urlToImage, user }) => {
+export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage,
+  user, selected, userAnswer }) => {
+  const dispatch = useDispatch();
+
   let imgSrc = '';
   if (pathToFile) {
     imgSrc = `${REACT_APP_API_URL}/${user.login}/${pathToFile}`;
   } else if (urlToImage) {
     imgSrc = `${urlToImage}`;
+  }
+
+  const onClickSelectTrueOrFalse = (userAnswer) => {
+    dispatch(testSelectTrueOrFalseCard(cardId, userAnswer));
+  }
+
+  const onClickUnselectTrueOrFalse = () => {
+    dispatch(testUnselectTrueOrFalseCard(cardId));
   }
 
   return (
@@ -27,8 +40,12 @@ export const CardTrueFalse = ({ translate, value, pathToFile, urlToImage, user }
       <div className={style.footer}>
         <div className={style.text}>Выбирите ответ</div>
         <div className={style.buttons}>
-          <button className={style.left__button}>Верно</button>
-          <button className={style.right__button}>Неверно</button>
+          <button onClick={() => selected && userAnswer ? onClickUnselectTrueOrFalse()
+            : onClickSelectTrueOrFalse(true)}
+            className={`${style.left__button} ${selected && userAnswer ? style.selected : ''}`}>Верно</button>
+          <button onClick={() => selected && !userAnswer ? onClickUnselectTrueOrFalse()
+            : onClickSelectTrueOrFalse(false)}
+            className={`${style.right__button} ${selected && !userAnswer ? style.selected : ''}`}>Неверно</button>
         </div>
       </div>
     </div>

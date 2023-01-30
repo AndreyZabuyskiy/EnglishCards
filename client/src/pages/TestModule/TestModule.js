@@ -28,12 +28,13 @@ export const TestModule = () => {
   return (
     <div className={style.container}>
       {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
-        return <CardTrueFalse key={index} translate={card.translate} value={card.value}
-          pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} />
+        return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
+          pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
+          selected={card.selected} userAnswer={card.userAnswer} />
       })}
 
       {testCards && testCards.map((card, index) => {
-        return <CardChoiceAnswer cardId={card.cardId} key={index} translate={card.translate} user={user}
+        return <CardChoiceAnswer cardId={card.cardId} translate={card.translate} user={user} key={index}
           pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options} />
       })}
 
@@ -42,8 +43,8 @@ export const TestModule = () => {
       }
 
       {writeCards && writeCards.map((card, index) => {
-        return <TestWriteCard key={index} translate={card.translate} user={user}
-          pathToFile={card.pathToFile} urlToImage={card.urlToImage} />
+        return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
+          pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index} />
       })}
     </div>
   );
