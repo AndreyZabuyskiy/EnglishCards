@@ -14,7 +14,7 @@ export const CardWordsSelection = ({ cards, values, user }) => {
     setSelectIndexCard(indexCard);
   }
 
-  const onClickValue = (e, selectValue) => {
+  const onClickValue = (selectValue) => {
     dispatch(matchingCard(selectValue, selectIndexCard));
     setWasSelectedCard(true);
 
@@ -41,7 +41,7 @@ export const CardWordsSelection = ({ cards, values, user }) => {
     }
   }
 
-  const onClickRemoveMatchingCard = (e, indexCard) => {
+  const onClickRemoveMatchingCard = (indexCard) => {
     setSelectIndexCard(indexCard);
     dispatch(removeMatchingCard(indexCard));
 
@@ -93,7 +93,7 @@ export const CardWordsSelection = ({ cards, values, user }) => {
                   {card.userAnswer &&
                     <div className={style.single__card__answer}>
                       <div>{card.userAnswer}</div>
-                      <button onClick={(e) => onClickRemoveMatchingCard(e, index)}>🗙</button>
+                      <button onClick={() => onClickRemoveMatchingCard(index)}>🗙</button>
                     </div>
                   }
                 </div>
@@ -115,7 +115,7 @@ export const CardWordsSelection = ({ cards, values, user }) => {
               </span>
             :
               <button className={style.value} key={index}
-                onClick={(e) => onClickValue(e, { value, index })}>
+                onClick={() => onClickValue({ value, index })}>
                 { value.value }
               </button>
         ))}

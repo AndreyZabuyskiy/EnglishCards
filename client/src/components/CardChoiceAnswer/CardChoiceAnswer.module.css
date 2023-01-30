@@ -67,6 +67,13 @@
   flex-direction: column;
   margin-right: 16px;
 }
+.buttoms__column__1 .selected__option {
+  background-color: #282E3E;
+  border: 2px solid #4257b2;
+}
+.buttoms__column__1 .selected__option:hover {
+  border: 2px solid #4257b2;
+}
 .buttoms__column__1 button:first-child {
   margin-bottom: 20px;
 }
@@ -79,6 +86,13 @@
 }
 .buttoms__column__2 button:first-child {
   margin-bottom: 20px;
+}
+.buttoms__column__2 .selected__option {
+  background-color: #282E3E;
+  border: 2px solid #4257b2;
+}
+.buttoms__column__2 .selected__option:hover {
+  border: 2px solid #4257b2;
 }
 
 @media (max-width: 620px) {

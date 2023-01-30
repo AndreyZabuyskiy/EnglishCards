@@ -1,9 +1,26 @@
 import { fetchTestModuleApi } from "../../http/testModule"
-import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD } from "../types";
+import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_UNSELECT_OPTION } from "../types";
 
 export function getTestModule(moduleId) {
   return async dispatch => {
     const response = await fetchTestModuleApi(moduleId);
+
+    const testCards = [];
+    response.groups.testCards.forEach(card => {
+      const options = [];
+      card.options.forEach(option => {
+        options.push({
+          value: option,
+          selected: false
+        });
+      });
+
+      testCards.push({
+        ...card,
+        userAnswer: '',
+        options
+      });
+    });
 
     const joinCards = {
       cards: [],
@@ -33,7 +50,7 @@ export function getTestModule(moduleId) {
       title: response.title,
       countCards: response.countCards,
       trueOrFalseCards: response.groups.trueOrFalseCards,
-      testCards: response.groups.testCards,
+      testCards: testCards,
       joinCards: joinCards,
       writeCards: response.groups.writeCards
     }
@@ -62,6 +79,28 @@ export function removeMatchingCard(indexCard) {
     dispatch({
       type: REMOVE_MATCHING_CARD,
       payload: indexCard
+    });
+  }
+}
+
+export function testSelectOption(cardId, indexOption) {
+  return async dispatch => {
+    dispatch({
+      type: TEST_SELECT_OPTION,
+      payload: {
+        cardId, indexOption
+      }
+    });
+  }
+}
+
+export function testUnselectOption(cardId, indexOption) {
+  return async dispatch => {
+    dispatch({
+      type: TEST_UNSELECT_OPTION,
+      payload: {
+        cardId, indexOption
+      }
     });
   }
 }

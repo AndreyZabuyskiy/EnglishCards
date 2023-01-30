@@ -18,7 +18,7 @@ class TestModuleService {
       }
     }
 
-    let countGroups = null;
+    let countGroups = [];
 
     if (cards.length < 20) {
       countGroups = countGroupsByModuleSize[cards.length];

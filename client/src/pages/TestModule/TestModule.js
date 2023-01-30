@@ -33,7 +33,7 @@ export const TestModule = () => {
       })}
 
       {testCards && testCards.map((card, index) => {
-        return <CardChoiceAnswer key={index} translate={card.translate} user={user}
+        return <CardChoiceAnswer cardId={card.cardId} key={index} translate={card.translate} user={user}
           pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options} />
       })}
 
