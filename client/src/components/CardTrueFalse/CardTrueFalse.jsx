@@ -4,7 +4,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 
 export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage,
-  user, selected, userAnswer }) => {
+  user, selected, userAnswer, index, countCards }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -24,6 +24,7 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
 
   return (
     <div className={style.card}>
+      <div className={style.index}>{index} из {countCards}</div>
       <div className={style.content}>
         <div className={style.content__translate}>
           <div className={style.content__header}>Определение</div>

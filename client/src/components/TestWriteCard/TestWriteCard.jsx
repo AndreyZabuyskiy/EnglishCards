@@ -4,7 +4,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { useState } from 'react';
 import { answerWriteCard } from '../../redux/actions/testModuleAction';
 
-export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user }) => {
+export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user, countCards, index }) => {
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState('');
 
@@ -23,7 +23,7 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user 
     <div className={style.card}>
       <div className={style.header}>
         <div>Определение</div>
-        <div>20 из 20</div>
+        <div>{index} из {countCards}</div>
       </div>
 
       <div className={style.content}>

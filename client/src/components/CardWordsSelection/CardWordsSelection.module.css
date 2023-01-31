@@ -4,6 +4,15 @@
   border-radius: 5px;
   margin: 20px 0px;
   padding: 24px 32px;
+  position: relative;
+}
+
+.index {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 16px;
+  color: #646F90;
 }
 
 .header div:first-child {
@@ -48,16 +57,21 @@
   font-size: 16px;
 }
 
-.matching {
+.single__card__body {
   width: 250px;
+  margin-right: 20px;
+}
+
+.matching {
+  display: flex;
+  align-items: center;
+  width: 100%;
   height: 55px;
   margin-right: 20px;
   padding: 16px;
   background-color: #13141B;
   border: 2px dashed #646f90;
   border-radius: 5px;
-  display: flex;
-  align-items: center;
 }
 .matching:hover {
   cursor: pointer;
@@ -69,7 +83,7 @@
 }
 
 .matching__actual {
-  width: 250px;
+  width: 100%;
   border: 2px solid #4257b2;
   background-color: #282e3e;
   color: #4257b2;
@@ -92,7 +106,9 @@
 .card__img {
   width: 104px;
   height: 104px;
-  border-radius: 5px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .footer {
@@ -123,4 +139,23 @@
 }
 .selected__value:hover {
   cursor: auto;
+}
+
+@media (max-width: 620px) {
+  .single__card {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  .single__card__body {
+    width: 100%;
+    margin-right: 0px;
+  }
+  .translate {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .matching {
+    width: 100%;
+  }
 }/*# sourceMappingURL=CardWordsSelection.module.css.map */

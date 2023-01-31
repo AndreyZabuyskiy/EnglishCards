@@ -1,14 +1,16 @@
-import { fetchTestModuleApi } from "../../http/testModule"
-import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_SELECT_TRUE_OR_FALSE_CARD, TEST_UNSELECT_OPTION, TEST_UNSELECT_TRUE_OR_FALSE_CARD, TEST_WRITE_CARD_ANSWER } from "../types";
+import { checkTestModuleApi, fetchTestModuleApi } from "../../http/testModuleApi"
+import { CHECK_TEST_MODULE, GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_SELECT_TRUE_OR_FALSE_CARD, TEST_UNSELECT_OPTION, TEST_UNSELECT_TRUE_OR_FALSE_CARD, TEST_WRITE_CARD_ANSWER } from "../types";
 
 export function getTestModule(moduleId) {
   return async dispatch => {
     const response = await fetchTestModuleApi(moduleId);
+    let index = 1;
 
     const trueOrFalseCards = [];
     response.groups.trueOrFalseCards.forEach(card => {
       trueOrFalseCards.push({
         ...card,
+        index: index++,
         userAnswer: false,
         selected: false
       });
@@ -26,6 +28,7 @@ export function getTestModule(moduleId) {
 
       testCards.push({
         ...card,
+        index: index++,
         userAnswer: '',
         options
       });
@@ -44,7 +47,8 @@ export function getTestModule(moduleId) {
         urlToImage: card.urlToImage,
         selected: false,
         userAnswer: '',
-        indexValue: null
+        indexValue: null,
+        index: index++,
       });
     });
 
@@ -59,6 +63,7 @@ export function getTestModule(moduleId) {
     response.groups.writeCards.forEach(card => {
       writeCards.push({
         ...card,
+        index: index++,
         userAnswer: ''
       });
     });
@@ -151,4 +156,14 @@ export function answerWriteCard(cardId, userAnswer) {
       }
     });
   }
-} 
+}
+
+export function checkTest(module) {
+  return async dispatch => {
+    const response = await checkTestModuleApi(module);
+
+    dispatch({
+      type: CHECK_TEST_MODULE
+    });
+  }
+}

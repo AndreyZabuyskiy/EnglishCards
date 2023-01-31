@@ -4,6 +4,15 @@
   border-radius: 5px;
   margin: 20px 0px;
   padding: 24px 32px;
+  position: relative;
+}
+
+.index {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 16px;
+  color: #646F90;
 }
 
 .content {

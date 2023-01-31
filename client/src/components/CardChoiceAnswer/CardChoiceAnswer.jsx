@@ -3,7 +3,8 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectOption, testUnselectOption } from '../../redux/actions/testModuleAction';
 import { useDispatch } from 'react-redux';
 
-export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlToImage, user }) => {
+export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlToImage,
+  user, countCards, index }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -23,6 +24,7 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
 
   return (
     <div className={style.card}>
+      <div className={style.index}>{index} из {countCards}</div>
       <div className={style.header}>
         Определение
       </div>

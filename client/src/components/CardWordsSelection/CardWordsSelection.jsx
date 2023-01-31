@@ -4,13 +4,16 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { matchingCard, removeMatchingCard } from "../../redux/actions/testModuleAction";
 
-export const CardWordsSelection = ({ cards, values, user }) => {
+export const CardWordsSelection = ({ cards, values, user, countCards }) => {
   const dispatch = useDispatch();
 
   const [selectIndexCard, setSelectIndexCard] = useState(0);
   const [wasSelectedCard, setWasSelectedCard] = useState(false);
 
-  const onClickMatchingButton = (e, indexCard) => {
+  const minIndex = cards[0].index;
+  const maxIndex = cards[cards.length - 1].index;
+
+  const onClickMatchingButton = (indexCard) => {
     setSelectIndexCard(indexCard);
   }
 
@@ -66,6 +69,7 @@ export const CardWordsSelection = ({ cards, values, user }) => {
 
   return (
     <div className={style.card}>
+      <div className={style.index}>{minIndex}-{maxIndex} из {countCards}</div>
       <div className={style.header}>
         <div>Вопрос для подбора</div>
         <div>Нажмите термин, подходящий определению</div>
@@ -83,8 +87,8 @@ export const CardWordsSelection = ({ cards, values, user }) => {
 
           return (
             <div className={style.single__card} key={index}>
-              <div>
-                <div onClick={(e) => onClickMatchingButton(e, index)}
+              <div className={style.single__card__body}>
+                <div onClick={() => onClickMatchingButton(index)}
                   className={`${styleMatchingCard} ${selectIndexCard === index ? style.matching__actual : ''}`}>
                   {!wasSelectedCard && selectIndexCard === index &&
                     <span>Выбирите из списка ниже</span>
