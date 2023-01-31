@@ -133,6 +133,10 @@ class TestModuleService {
     return testModule;
   }
 
+  async checkTest(userId, module) {
+    return 'OK';
+  }
+
   getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }

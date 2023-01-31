@@ -1,1 +1,1 @@
-export { StudiedCardsLine } from './StudiedCardsLine.js';
+export { StudiedCardsLine } from './StudiedCardsLine';

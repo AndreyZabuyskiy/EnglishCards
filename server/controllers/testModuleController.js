@@ -14,6 +14,19 @@ class TestModuleController {
       next(ApiError.badRequest(e.message));
     });
   }
+
+  async checkTest(req, res, next) {
+    const userId = req.user.id;
+    const module = req.body;
+    
+    await testModuleService.checkTest(userId, module)
+    .then(responseService => {
+      res.status(200).json(responseService);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
 }
 
 export default new TestModuleController();

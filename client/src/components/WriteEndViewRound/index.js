@@ -1,1 +1,1 @@
-export { WriteEndViewRound } from './WriteEndViewRound.js';
+export { WriteEndViewRound } from './WriteEndViewRound';
