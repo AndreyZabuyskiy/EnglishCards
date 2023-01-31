@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   color: #F6F7FB;
+  //position: relative;
 }
 
 .content__left {
@@ -67,4 +68,13 @@
   &:hover{
     background-color: #2e3856;
   }
+}
+
+.line {
+  height: 1px;
+  width: 30%;
+  background-color: #a8b1ff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }

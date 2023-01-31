@@ -20,10 +20,16 @@ export const TestModule = () => {
     return authReducer;
   });
 
-  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards } = useSelector(state => {
+  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards, } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
   });
+
+  let countUserAnsweredCards = 0;
+  countUserAnsweredCards += trueOrFalseCards?.filter(card => card.isUserAnswer).length;
+  countUserAnsweredCards += testCards?.filter(card => card.isUserAnswer).length;
+  countUserAnsweredCards += joinCards?.cards?.filter(card => card.isUserAnswer).length;
+  countUserAnsweredCards += writeCards?.filter(card => card.isUserAnswer).length;
 
   const onClickCheckModule = () => {
     dispatch(checkTest({
@@ -33,12 +39,13 @@ export const TestModule = () => {
 
   return (
     <div className={style.container}>
-      <NavbarTest title={title} countCards={countCards} />
+      <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards} />
       <div className={style.body}>
         {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
           return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
-            selected={card.selected} userAnswer={card.userAnswer} countCards={countCards} index={card.index} />
+            isUserAnswer={card.isUserAnswer} userAnswer={card.userAnswer} countCards={countCards}
+            index={card.index} />
         })}
 
         {testCards && testCards.map((card, index) => {
@@ -55,7 +62,7 @@ export const TestModule = () => {
         {writeCards && writeCards.map((card, index) => {
           return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index}
-            countCards={countCards} index={card.index}/>
+            countCards={countCards} index={card.index} userAnswer={card.userAnswer} />
         })}
 
         <div className={style.footer}>

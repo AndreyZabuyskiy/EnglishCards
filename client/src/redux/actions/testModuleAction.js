@@ -12,7 +12,7 @@ export function getTestModule(moduleId) {
         ...card,
         index: index++,
         userAnswer: false,
-        selected: false
+        isUserAnswer: false
       });
     });
 
@@ -30,7 +30,8 @@ export function getTestModule(moduleId) {
         ...card,
         index: index++,
         userAnswer: '',
-        options
+        options,
+        isUserAnswer: false
       });
     });
 
@@ -49,6 +50,7 @@ export function getTestModule(moduleId) {
         userAnswer: '',
         indexValue: null,
         index: index++,
+        isUserAnswer: false
       });
     });
 
@@ -64,7 +66,8 @@ export function getTestModule(moduleId) {
       writeCards.push({
         ...card,
         index: index++,
-        userAnswer: ''
+        userAnswer: '',
+        isUserAnswer: false
       });
     });
 

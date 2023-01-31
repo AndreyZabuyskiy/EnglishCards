@@ -63,4 +63,13 @@
 }
 .button__exit:hover {
   background-color: #2e3856;
+}
+
+.line {
+  height: 1px;
+  width: 30%;
+  background-color: #a8b1ff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }/*# sourceMappingURL=NavbarTest.module.css.map */

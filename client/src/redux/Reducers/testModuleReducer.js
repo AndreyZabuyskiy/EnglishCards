@@ -6,7 +6,7 @@ const initialState = {
   trueOrFalseCards: null,
   testCards: null,
   joinCards: null,
-  writeCards: null
+  writeCards: null,
 }
 
 export const testModuleReducer = (state = initialState, action) => {
@@ -102,7 +102,8 @@ function matchingCard(joinCards, selectValue, indexCard) {
     ...card,
     selected: true,
     userAnswer: selectValue.value.value,
-    indexValue: selectValue.index
+    indexValue: selectValue.index,
+    isUserAnswer: true
   };
   const cardsOne = joinCards.cards.slice(0, indexCard);
   const cardsTwo = joinCards.cards.slice(indexCard + 1);
@@ -138,7 +139,8 @@ function removeMatchingCard(joinCards, indexCard) {
     ...card,
     selected: false,
     userAnswer: '',
-    indexValue: null
+    indexValue: null,
+    isUserAnswer: false
   }
 
   const cardsOne = joinCards.cards.slice(0, indexCard);
@@ -173,7 +175,8 @@ function selectOption(testCards, cardId, indexOption) {
   const updatedCard = {
     ...card,
     userAnswer: card.options[indexOption].value,
-    options
+    options,
+    isUserAnswer: true
   }
 
   const cardsOne = testCards.slice(0, cardIndex);
@@ -198,7 +201,8 @@ function unselectOption(testCards, cardId, indexOption) {
   const updatedCard = {
     ...card,
     userAnswer: card.options[indexOption].value,
-    options
+    options,
+    isUserAnswer: false
   }
 
   const cardsOne = testCards.slice(0, cardIndex);
@@ -215,7 +219,8 @@ function selectTrueOrFalseCard(trueOrFalseCards, cardId, userAnswer) {
   const updatedCard = {
     ...card,
     userAnswer: userAnswer,
-    selected: true
+    selected: true,
+    isUserAnswer: true
   };
 
   const cardsOne = trueOrFalseCards.slice(0, indexCard);
@@ -232,7 +237,7 @@ function unselectTrueOrFalseCard(trueOrFalseCards, cardId) {
   const updatedCard = {
     ...card,
     userAnswer: '',
-    selected: false
+    isUserAnswer: false
   };
 
   const cardsOne = trueOrFalseCards.slice(0, indexCard);
@@ -248,7 +253,8 @@ function writeCardAnswer(writeCards, cardId, userAnswer) {
 
   const updatedCard = {
     ...card,
-    userAnswer: userAnswer
+    userAnswer: userAnswer,
+    isUserAnswer: userAnswer !== ''
   }
 
   const cardsOne = writeCards.slice(0, indexCard);

@@ -1,7 +1,10 @@
 import style from './NavbarTest.module.css';
 import fileImage from '../../assets/file-image.png';
 
-export const NavbarTest = ({ title, countCards }) => {
+export const NavbarTest = ({ title, countCards, countUserAnsweredCards }) => {
+  const widthLine = countUserAnsweredCards / countCards * 100;
+  console.log('NavbarTest widthLine -->', widthLine);
+
   return (
     <div className={style.wrapper}>
       <div className={style.content__left}>
@@ -11,7 +14,7 @@ export const NavbarTest = ({ title, countCards }) => {
         <button className={style.button__navigate}>Тест</button>
       </div>
       <div className={style.content__center}>
-        <p>3 / {countCards}</p>
+        <p>{countUserAnsweredCards} / {countCards}</p>
         <p>{ title }</p>
       </div>
       <div className={style.content__right}>
@@ -19,6 +22,7 @@ export const NavbarTest = ({ title, countCards }) => {
           <span>🗙</span>
         </button>
       </div>
+      <div className={style.line} style={{ width: `${widthLine}%` }}></div>
     </div>
   );
 }

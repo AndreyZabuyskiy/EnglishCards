@@ -4,7 +4,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 
 export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage,
-  user, selected, userAnswer, index, countCards }) => {
+  user, isUserAnswer, userAnswer, index, countCards }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -30,7 +30,7 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
           <div className={style.content__header}>Определение</div>
           <div className={style.translate}>
             <div>{translate}</div>
-            {imgSrc && <div> <img src={`${imgSrc}`} className={style.card__img} /> </div>}
+            {imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' />}
           </div>
         </div>
         <div className={style.content__value}>
@@ -41,12 +41,12 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
       <div className={style.footer}>
         <div className={style.text}>Выбирите ответ</div>
         <div className={style.buttons}>
-          <button onClick={() => selected && userAnswer ? onClickUnselectTrueOrFalse()
+          <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
             : onClickSelectTrueOrFalse(true)}
-            className={`${style.left__button} ${selected && userAnswer ? style.selected : ''}`}>Верно</button>
-          <button onClick={() => selected && !userAnswer ? onClickUnselectTrueOrFalse()
+            className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>Верно</button>
+          <button onClick={() => isUserAnswer && !userAnswer ? onClickUnselectTrueOrFalse()
             : onClickSelectTrueOrFalse(false)}
-            className={`${style.right__button} ${selected && !userAnswer ? style.selected : ''}`}>Неверно</button>
+            className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>Неверно</button>
         </div>
       </div>
     </div>
