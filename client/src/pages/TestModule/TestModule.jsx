@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkTest, getTestModule } from '../../redux/actions/testModuleAction';
 import { useParams } from 'react-router-dom';
-import { CardChoiceAnswer, TestWriteCard } from '../../components';
-import { CardWordsSelection } from '../../components';
+import { CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest } from '../../components';
 import testImage from '../../assets/test-image.png'
 
 export const TestModule = () => {
@@ -34,33 +33,36 @@ export const TestModule = () => {
 
   return (
     <div className={style.container}>
-      {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
-        return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
-          pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
-          selected={card.selected} userAnswer={card.userAnswer} countCards={countCards} index={card.index} />
-      })}
+      <NavbarTest title={title} countCards={countCards} />
+      <div className={style.body}>
+        {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
+          return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
+            pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
+            selected={card.selected} userAnswer={card.userAnswer} countCards={countCards} index={card.index} />
+        })}
 
-      {testCards && testCards.map((card, index) => {
-        return <CardChoiceAnswer cardId={card.cardId} translate={card.translate} user={user} key={index}
-          pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options}
-          countCards={countCards} index={card.index} />
-      })}
+        {testCards && testCards.map((card, index) => {
+          return <CardChoiceAnswer cardId={card.cardId} translate={card.translate} user={user} key={index}
+            pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options}
+            countCards={countCards} index={card.index} />
+        })}
 
-      {joinCards && 
-        <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
-          countCards={countCards} />
-      }
+        {joinCards && 
+          <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
+            countCards={countCards} />
+        }
 
-      {writeCards && writeCards.map((card, index) => {
-        return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
-          pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index}
-          countCards={countCards} index={card.index}/>
-      })}
+        {writeCards && writeCards.map((card, index) => {
+          return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
+            pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index}
+            countCards={countCards} index={card.index}/>
+        })}
 
-      <div className={style.footer}>
-        <img src={testImage} alt='' />
-        <p>Все готово! Отправить тест?</p>
-        <button onClick={onClickCheckModule}>Оправить тест</button>
+        <div className={style.footer}>
+          <img src={testImage} alt='' />
+          <p>Все готово! Отправить тест?</p>
+          <button onClick={onClickCheckModule}>Оправить тест</button>
+        </div>
       </div>
     </div>
   );

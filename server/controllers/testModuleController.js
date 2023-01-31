@@ -18,8 +18,6 @@ class TestModuleController {
   async checkTest(req, res, next) {
     const userId = req.user.id;
     const module = req.body;
-
-    console.log('module -->', module);
     
     await testModuleService.checkTest(userId, module)
     .then(responseService => {
