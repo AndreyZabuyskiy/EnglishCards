@@ -1,4 +1,4 @@
-import { GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_SELECT_TRUE_OR_FALSE_CARD, TEST_UNSELECT_OPTION, TEST_UNSELECT_TRUE_OR_FALSE_CARD, TEST_WRITE_CARD_ANSWER } from "../types"
+import { CHECK_TEST_MODULE, GET_TEST_MODULE, MATCHING_CARD, REMOVE_MATCHING_CARD, TEST_SELECT_OPTION, TEST_SELECT_TRUE_OR_FALSE_CARD, TEST_UNSELECT_OPTION, TEST_UNSELECT_TRUE_OR_FALSE_CARD, TEST_WRITE_CARD_ANSWER } from "../types"
 
 const initialState = {
   title: '',
@@ -7,6 +7,7 @@ const initialState = {
   testCards: null,
   joinCards: null,
   writeCards: null,
+  isShowResult: true
 }
 
 export const testModuleReducer = (state = initialState, action) => {
@@ -75,6 +76,13 @@ export const testModuleReducer = (state = initialState, action) => {
       return {
         ...state,
         writeCards
+      }
+    }
+    
+    case CHECK_TEST_MODULE: {
+      return {
+        ...state,
+        isShowResult: true
       }
     }
     

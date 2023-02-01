@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkTest, getTestModule } from '../../redux/actions/testModuleAction';
 import { useParams } from 'react-router-dom';
-import { CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest } from '../../components';
+import { CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest, ResultTestModule } from '../../components';
 import testImage from '../../assets/test-image.png'
 
 export const TestModule = () => {
@@ -20,7 +20,7 @@ export const TestModule = () => {
     return authReducer;
   });
 
-  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards, } = useSelector(state => {
+  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards, isShowResult } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
   });
@@ -41,6 +41,8 @@ export const TestModule = () => {
     <div className={style.container}>
       <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards} />
       <div className={style.body}>
+        {isShowResult && <ResultTestModule />}
+
         {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
           return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}

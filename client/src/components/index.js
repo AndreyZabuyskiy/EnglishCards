@@ -30,6 +30,7 @@ import { CardTrueFalse } from './CardTrueFalse';
 import { CardChoiceAnswer } from './CardChoiceAnswer';
 import { TestWriteCard } from './TestWriteCard';
 import { NavbarTest } from './NavbarTest/NavbarTest';
+import { ResultTestModule } from './ResultTestModule';
 
 export {
   StudyModule,
@@ -63,5 +64,6 @@ export {
   CardTrueFalse,
   CardChoiceAnswer,
   TestWriteCard,
-  NavbarTest
+  NavbarTest,
+  ResultTestModule
 } 

@@ -1,0 +1,173 @@
+.wrapper {
+  color: #ffffff;
+}
+
+.text {
+  color: #F6F7FB;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.body__block {
+  width: 384px;
+}
+
+.button__cards__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.button__cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.body__title {
+  color: #939BB4;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.test__result {
+  display: flex;
+  justify-content: space-between;
+}
+
+.diagram {
+  max-width: 100%;
+  width: 100px;
+  max-height: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.count__answers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 380px;
+  margin-left: 32px;
+}
+
+.correct__answers {
+  display: flex;
+  justify-content: space-between;
+  color: #59E8B5;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 32px;
+
+  .count {
+    padding: 4px 18px;
+    border: 1px solid #59E8B5;
+    border-radius: 15px;
+  }
+}
+
+.incorrect__answers {
+  display: flex;
+  justify-content: space-between;
+  color: #FF983A;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 32px;
+
+  .count {
+    padding: 4px 18px;
+    border: 1px solid #FF983A;
+    border-radius: 15px;
+  }
+}
+
+.card__button {
+  display: flex;
+  background-color: #2E3856;
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 2px solid rgb(24, 24, 24);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid #a8b1ff;
+  }
+}
+
+.card__button__image {
+  width: 64px;
+  height: 64px;
+}
+
+.card__button__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 8px;
+
+  p:first-child {
+    font-size: 16px;
+    color: #A8B1FF;
+    font-weight: bold;
+  }
+
+  p:last-child {
+    font-size: 14px;
+    color: #EDEFF4;
+  }
+}
+
+@media (max-width: 769px) {
+  .body {
+    flex-direction: column;
+  }
+
+  .body__block {
+    margin-bottom: 24px;
+  }
+
+  .button__cards__wrapper {
+    flex-direction: column;
+  }
+
+  .button__cards {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card__button {
+    width: 316px;
+  }
+}
+
+@media (max-width: 620px) {
+  .button__cards {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card__button {
+    width: 100%;
+  }
+
+  .diagram {
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 396px) {
+  .count__answers {
+    width: 100%;
+    margin-left: 16px;
+  }
+
+  .body__block {
+    width: 100%;
+  }
+}
