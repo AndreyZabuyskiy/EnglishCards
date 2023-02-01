@@ -29,7 +29,6 @@
 .content {
   width: 100%;
   border-top: 2px solid #646f90;
-  border-bottom: 2px solid #646f90;
   margin: 20px 0px;
 }
 
@@ -113,6 +112,7 @@
 
 .footer {
   padding-top: 32px;
+  border-top: 2px solid #646f90;
 }
 
 .value {
@@ -141,6 +141,79 @@
   cursor: auto;
 }
 
+.result__card {
+  border-bottom: 1px solid #c5cde2;
+  padding: 48px 0px;
+  width: 100%;
+}
+.result__card .translate {
+  width: 100%;
+}
+
+.user__answer__wrapper p {
+  color: #c34632;
+  margin: 24px 0px 16px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.user__answer__body {
+  display: flex;
+}
+.user__answer__body .incorrect__user__answer {
+  margin-right: 20px;
+}
+
+.correct__user__answer__wrapper {
+  width: 100%;
+}
+.correct__user__answer__wrapper p {
+  color: #19804f;
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.correct__user__answer {
+  width: 100%;
+  height: 60px;
+  background-color: #19804f;
+  color: #d9dde8;
+  padding: 4px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #aae3c8;
+  width: 100%;
+}
+
+.incorrect__user__answer__wrapper {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.incorrect__user__answer {
+  width: 100%;
+  height: 60px;
+  background-color: #2e3856;
+  color: #d9dde8;
+  padding: 4px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #c34632;
+  margin-right: 20px;
+  width: 100%;
+}
+
+.space__empty {
+  width: 32px;
+}
+
 @media (max-width: 620px) {
   .single__card {
     display: flex;
@@ -157,5 +230,15 @@
   }
   .matching {
     width: 100%;
+  }
+  .user__answer__body {
+    display: flex;
+    flex-direction: column;
+  }
+  .incorrect__user__answer {
+    margin-right: 0px;
+  }
+  .correct__user__answer {
+    margin-left: 0px;
   }
 }/*# sourceMappingURL=CardWordsSelection.module.css.map */

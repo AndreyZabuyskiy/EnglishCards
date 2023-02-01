@@ -166,8 +166,19 @@ export function checkTest(moduleId, testModule) {
     const response = await checkTestModuleApi(moduleId, testModule);
     console.log('response -->', response);
 
+    const trueOrFalseCards = response.groups.trueOrFalseCards;
+    const testCards = response.groups.testCards;
+    const joinCards = response.groups.joinCards;
+    const writeCards = response.groups.writeCards;
+    
     dispatch({
-      type: CHECK_TEST_MODULE
+      type: CHECK_TEST_MODULE,
+      payload: {
+        trueOrFalseCards,
+        testCards,
+        joinCards,
+        writeCards
+      }
     });
   }
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { matchingCard, removeMatchingCard } from "../../redux/actions/testModuleAction";
 
-export const CardWordsSelection = ({ cards, values, user, countCards }) => {
+export const CardWordsSelection = ({ cards, values, user, countCards, isShowResult }) => {
   const dispatch = useDispatch();
 
   const [selectIndexCard, setSelectIndexCard] = useState(0);
@@ -86,44 +86,85 @@ export const CardWordsSelection = ({ cards, values, user, countCards }) => {
           const styleMatchingCard = `${style.matching}  ${card.selected ? style.card__selected : ''}`;
 
           return (
-            <div className={style.single__card} key={index}>
-              <div className={style.single__card__body}>
-                <div onClick={() => onClickMatchingButton(index)}
-                  className={`${styleMatchingCard} ${selectIndexCard === index ? style.matching__actual : ''}`}>
-                  {!wasSelectedCard && selectIndexCard === index &&
-                    <span>Выбирите из списка ниже</span>
-                  }
+            <>
+              {!isShowResult
+                ?
+                <div className={style.single__card} key={index}>
+                  <div className={style.single__card__body}>
+                    <div onClick={() => onClickMatchingButton(index)}
+                      className={`${styleMatchingCard} ${selectIndexCard === index ? style.matching__actual : ''}`}>
+                      {!wasSelectedCard && selectIndexCard === index &&
+                        <span>Выбирите из списка ниже</span>
+                      }
 
-                  {card.userAnswer &&
-                    <div className={style.single__card__answer}>
-                      <div>{card.userAnswer}</div>
-                      <button onClick={() => onClickRemoveMatchingCard(index)}>🗙</button>
+                      {card.userAnswer &&
+                        <div className={style.single__card__answer}>
+                          <div>{card.userAnswer}</div>
+                          <button onClick={() => onClickRemoveMatchingCard(index)}>🗙</button>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                  <div className={style.translate}>
+                    <div>{ card.translate }</div>
+                    {imgSrc && <img src={imgSrc} className={style.card__img} alt='' />}
+                  </div>
+                </div>
+                :
+                <div className={style.result__card}>
+                  <div className={style.translate}>
+                    <div>{ card.translate }</div>
+                    {imgSrc && <img src={imgSrc} className={style.card__img} alt='' />}
+                  </div>
+
+                  {card.isCorrectUserAnswered
+                    ?
+                    <div className={style.correct__user__answer__wrapper}>
+                      <p>Отлично!</p>
+                      <div className={style.correct__user__answer}>
+                        <span>{card.userAnswer}</span>
+                      </div>
+                    </div>
+                    :
+                    <div className={style.user__answer__wrapper}>
+                      <p>Неправильный ответ</p>
+                      <div className={style.user__answer__body}>
+                        <div className={style.incorrect__user__answer__wrapper}>
+                        <div className={style.incorrect__user__answer}>
+                          <span>{card.userAnswer}</span>
+                        </div>
+                      </div>
+                      <div className={style.space__empty}></div>
+                      <div className={style.correct__user__answer__wrapper}>
+                        <div className={style.correct__user__answer}>
+                          <span>{card.correctValue}</span>
+                        </div>
+                      </div>
+                      </div>
                     </div>
                   }
                 </div>
-              </div>
-              <div className={style.translate}>
-                <div>{ card.translate }</div>
-                {imgSrc && <img src={imgSrc} className={style.card__img} alt='' />}
-              </div>
-            </div>
+              }
+            </>
           )
         })}
       </div>
-      <div className={style.footer}>
+      {!isShowResult &&
+        <div className={style.footer}>
         {values.map((value, index) => (
           value.selected
             ?
-              <span key={index} className={style.selected__value}>
-                { value.value }
-              </span>
+            <span key={index} className={style.selected__value}>
+              {value.value}
+            </span>
             :
-              <button className={style.value} key={index}
-                onClick={() => onClickValue({ value, index })}>
-                { value.value }
-              </button>
+            <button className={style.value} key={index}
+              onClick={() => onClickValue({ value, index })}>
+              {value.value}
+            </button>
         ))}
-      </div>
+        </div>
+      }
     </div>
   );
 }

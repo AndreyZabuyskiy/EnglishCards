@@ -20,10 +20,17 @@ export const TestModule = () => {
     return authReducer;
   });
 
-  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards, isShowResult } = useSelector(state => {
+  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards,
+    isShowResult } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
   });
+
+  console.log('trueOrFalseCards -->', trueOrFalseCards);
+  console.log('testCards -->', testCards);
+  console.log('joinCards -->', joinCards);
+  console.log('writeCards -->', writeCards);
+  console.log('------------------------------------');
 
   let countUserAnsweredCards = 0;
   countUserAnsweredCards += trueOrFalseCards?.filter(card => card.isUserAnswer).length;
@@ -47,24 +54,28 @@ export const TestModule = () => {
           return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
             isUserAnswer={card.isUserAnswer} userAnswer={card.userAnswer} countCards={countCards}
-            index={card.index} />
+            index={card.index} isShowResult={isShowResult} correctAnswer={card.correctAnswer}
+            correctValue={card.correctValue} isCorrectUserAnswered={card.isCorrectUserAnswered}
+            selected={card.selected} />
         })}
 
         {testCards && testCards.map((card, index) => {
           return <CardChoiceAnswer cardId={card.cardId} translate={card.translate} user={user} key={index}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options}
-            countCards={countCards} index={card.index} />
+            countCards={countCards} index={card.index} isCorrectUserSelected={card.isCorrectUserSelected}
+            isShowResult={isShowResult} />
         })}
 
-        {joinCards && 
+        {joinCards &&
           <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
-            countCards={countCards} />
+            countCards={countCards} isShowResult={isShowResult} />
         }
 
         {writeCards && writeCards.map((card, index) => {
           return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
-            pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index}
-            countCards={countCards} index={card.index} userAnswer={card.userAnswer} />
+            pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index} isShowResult={isShowResult}
+            countCards={countCards} index={card.index} userAnswer={card.userAnswer}
+            isCorrectUserAnswered={card.isCorrectUserAnswered} correctValue={card.correctValue} />
         })}
 
         <div className={style.footer}>

@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 
-export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage,
-  user, isUserAnswer, userAnswer, index, countCards }) => {
+export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered, selected }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -39,15 +38,49 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
         </div>
       </div>
       <div className={style.footer}>
-        <div className={style.text}>Выбирите ответ</div>
-        <div className={style.buttons}>
-          <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
-            : onClickSelectTrueOrFalse(true)}
-            className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>Верно</button>
-          <button onClick={() => isUserAnswer && !userAnswer ? onClickUnselectTrueOrFalse()
-            : onClickSelectTrueOrFalse(false)}
-            className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>Неверно</button>
-        </div>
+        {!isShowResult
+          ?
+          <>
+            <div className={style.text}>Выбирите ответ</div>
+              <div className={style.buttons}>
+                <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
+                  : onClickSelectTrueOrFalse(true)}
+                  className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>Верно</button>
+                <button onClick={() => isUserAnswer && !userAnswer ? onClickUnselectTrueOrFalse()
+                  : onClickSelectTrueOrFalse(false)}
+                  className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>Неверно</button>
+              </div>
+          </>
+          :
+          <div>
+            {isCorrectUserAnswered
+              ? <div className={style.message__correct__answer}>Правильный ответ</div>
+              : <div className={style.message__incorrect__answer}>Неправильный ответ</div>
+            }
+
+            <div className={style.result__buttons}>
+              <div className={`${style.left__button}
+                ${userAnswer && correctAnswer ? style.correct__answer : ''}
+                ${userAnswer && !correctAnswer ? style.incorrect__answer : ''}`}>
+                Верно
+              </div>
+              <div className={`${style.right__button}
+                ${!userAnswer && !correctAnswer ? style.correct__answer : ''}
+                ${!userAnswer && correctAnswer ? style.incorrect__answer : ''}`}>Неверно</div>
+            </div>
+
+            {!correctAnswer &&
+            <>
+              <div className={style.correct__user__answer__wrapper}>
+                <p>Правильный ответ</p>
+                <div className={style.correct__user__answer}>
+                  <span>{correctValue}</span>
+                </div>
+              </div>
+            </>
+            }
+          </div>
+        }
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const initialState = {
   testCards: null,
   joinCards: null,
   writeCards: null,
-  isShowResult: true
+  isShowResult: false
 }
 
 export const testModuleReducer = (state = initialState, action) => {
@@ -82,7 +82,11 @@ export const testModuleReducer = (state = initialState, action) => {
     case CHECK_TEST_MODULE: {
       return {
         ...state,
-        isShowResult: true
+        isShowResult: true,
+        trueOrFalseCards: action.payload.trueOrFalseCards,
+        testCards: action.payload.testCards,
+        joinCards: action.payload.joinCards,
+        writeCards: action.payload.writeCards
       }
     }
     

@@ -188,7 +188,11 @@ class TestModuleService {
       resultTestCards.push(resultCard);
     });
 
-    const resultJoinCards = [];
+    const resultJoinCards = {
+      cards: [],
+      values: []
+    };
+
     joinCards.cards.forEach(joinCard => {
       const card = cards.filter(c => c._id.toString() === joinCard.cardId)[0];
       const isCorrectUserAnswered = joinCard.userAnswer === card.value;
@@ -200,8 +204,9 @@ class TestModuleService {
         correctValue: card.value
       }
       
-      resultJoinCards.push(resultCard);
+      resultJoinCards.cards.push(resultCard);
     });
+    resultJoinCards.values = joinCards.values.slice(0);
 
     const resultWriteCards = [];
     writeCards.forEach(writeCard => {

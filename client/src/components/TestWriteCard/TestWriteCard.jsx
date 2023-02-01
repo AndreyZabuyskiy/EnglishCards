@@ -4,7 +4,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { answerWriteCard } from '../../redux/actions/testModuleAction';
 
 export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user, countCards, index,
-  userAnswer }) => {
+  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -31,11 +31,46 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
       </div>
 
       <div className={style.footer}>
-        <div className={style.text}>Ваш ответ</div>
-        <input type="text" placeholder='Введите ответ' value={userAnswer} onChange={changeInput} />
-        <div className={style.next__button__wrapper}>
-          <button>Далее</button>
-        </div>
+        {isShowResult
+          ?
+          <>
+            {isCorrectUserAnswered
+              ?
+              <>
+                <div className={style.correct__user__answer__wrapper}>
+                  <p>Отлично!</p>
+                  <div className={style.correct__user__answer}>
+                    <span>{userAnswer}</span>
+                  </div>
+                </div>
+              </>
+              :
+              <>
+                <div className={style.incorrect__user__answer__wrapper}>
+                  <p>Неправильный ответ</p>
+                  <div className={style.incorrect__user__answer}>
+                    <span>{userAnswer}</span>
+                  </div>
+                </div>
+                <div className={style.correct__user__answer__wrapper}>
+                  <p>Правильный ответ</p>
+                  <div className={style.correct__user__answer}>
+                    <span>{correctValue}</span>
+                  </div>
+                </div>
+              </>
+            }
+          </>
+          :
+          <>
+            <div className={style.text}>Ваш ответ</div>
+            <input type="text" placeholder='Введите ответ' value={userAnswer} onChange={changeInput}
+              className={style.user__input} />
+            <div className={style.next__button__wrapper}>
+              <button>Далее</button>
+            </div>
+          </>
+        }
       </div>
     </div>
   );
