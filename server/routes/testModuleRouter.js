@@ -5,6 +5,6 @@ import authMiddleware from "../middleware/authMiddleware.js";
 const router = Router();
 
 router.get('/:id', authMiddleware, testModuleController.getTestModule);
-router.post('/', authMiddleware, testModuleController.checkTest);
+router.post('/:id', authMiddleware, testModuleController.checkTest);
 
 export default router;

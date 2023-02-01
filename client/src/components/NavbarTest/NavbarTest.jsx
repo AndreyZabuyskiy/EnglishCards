@@ -3,7 +3,6 @@ import fileImage from '../../assets/file-image.png';
 
 export const NavbarTest = ({ title, countCards, countUserAnsweredCards }) => {
   const widthLine = countUserAnsweredCards / countCards * 100;
-  console.log('NavbarTest widthLine -->', widthLine);
 
   return (
     <div className={style.wrapper}>

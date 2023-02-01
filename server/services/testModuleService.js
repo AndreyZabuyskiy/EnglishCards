@@ -133,8 +133,103 @@ class TestModuleService {
     return testModule;
   }
 
-  async checkTest(userId, module) {
-    return 'OK';
+  async checkTest(moduleId, testModule) {
+    let countCorrectUserAnswer = 0;
+    let countIncorrectUserAnswer = 0;    
+    const trueOrFalseCards = testModule.trueOrFalseCards;
+    const testCards = testModule.testCards;
+    const joinCards = testModule.joinCards;
+    const writeCards = testModule.writeCards;
+
+    const cards = await Card.find({ module: moduleId });
+
+    const resultTrueOrFalseCards = [];
+    trueOrFalseCards.forEach(trueFalseCard => {
+      const card = cards.filter(c => c._id.toString() === trueFalseCard.cardId)[0];
+      const correctAnswer = trueFalseCard.value === card.value;
+      const isCorrectUserAnswered = trueFalseCard.userAnswer === correctAnswer;
+      
+      isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+
+      const resultCard = {
+        ...trueFalseCard,
+        isCorrectUserAnswered,
+        correctAnswer,
+        correctValue: card.value
+      }
+
+      resultTrueOrFalseCards.push(resultCard);
+    });
+
+    const resultTestCards = [];
+    testCards.forEach(testCard => {
+      const card = cards.filter(c => c._id.toString() === testCard.cardId)[0];
+      const resultOptions = [];
+
+      testCard.options.forEach(option => {
+        const isCorrectOption = option.value === card.value;
+        const resultOption = {
+          ...option,
+          isCorrect: isCorrectOption
+        };
+        resultOptions.push(resultOption);
+      });
+      const correctOption = resultOptions.filter(opt => opt.isCorrect)[0];
+      const isCorrectUserSelected = correctOption.selected;
+
+      isCorrectUserSelected ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+
+      const resultCard = {
+        ...testCard,
+        options: resultOptions,
+        isCorrectUserSelected: correctOption.selected
+      }
+
+      resultTestCards.push(resultCard);
+    });
+
+    const resultJoinCards = [];
+    joinCards.cards.forEach(joinCard => {
+      const card = cards.filter(c => c._id.toString() === joinCard.cardId)[0];
+      const isCorrectUserAnswered = joinCard.userAnswer === card.value;
+      isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+
+      const resultCard = {
+        ...joinCard,
+        isCorrectUserAnswered,
+        correctValue: card.value
+      }
+      
+      resultJoinCards.push(resultCard);
+    });
+
+    const resultWriteCards = [];
+    writeCards.forEach(writeCard => {
+      const card = cards.filter(c => c._id.toString() === writeCard.cardId)[0];
+      const isCorrectUserAnswered = writeCard.userAnswer === card.value;
+      isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+
+      const resultCard = {
+        ...writeCard,
+        isCorrectUserAnswered,
+        correctValue: card.value
+      }
+
+      resultWriteCards.push(resultCard);
+    });
+
+    const testResult = {
+      countCorrectUserAnswer,
+      countIncorrectUserAnswer,
+      groups: {
+        trueOrFalseCards: resultTrueOrFalseCards,
+        testCards: resultTestCards,
+        joinCards: resultJoinCards,
+        writeCards: resultWriteCards,
+      }
+    }
+
+    return { ...testResult };
   }
 
   getRandomNumber(min, max) {

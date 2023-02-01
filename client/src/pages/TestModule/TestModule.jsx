@@ -32,7 +32,7 @@ export const TestModule = () => {
   countUserAnsweredCards += writeCards?.filter(card => card.isUserAnswer).length;
 
   const onClickCheckModule = () => {
-    dispatch(checkTest({
+    dispatch(checkTest(id, {
       title, countCards, trueOrFalseCards, testCards, joinCards, writeCards
     }));
   }

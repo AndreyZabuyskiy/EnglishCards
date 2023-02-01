@@ -16,10 +16,10 @@ class TestModuleController {
   }
 
   async checkTest(req, res, next) {
-    const userId = req.user.id;
-    const module = req.body;
+    const { id } = req.params;
+    const testModule = req.body;
     
-    await testModuleService.checkTest(userId, module)
+    await testModuleService.checkTest(id, testModule)
     .then(responseService => {
       res.status(200).json(responseService);
     })

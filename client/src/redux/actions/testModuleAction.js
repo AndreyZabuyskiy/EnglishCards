@@ -161,9 +161,10 @@ export function answerWriteCard(cardId, userAnswer) {
   }
 }
 
-export function checkTest(module) {
+export function checkTest(moduleId, testModule) {
   return async dispatch => {
-    const response = await checkTestModuleApi(module);
+    const response = await checkTestModuleApi(moduleId, testModule);
+    console.log('response -->', response);
 
     dispatch({
       type: CHECK_TEST_MODULE

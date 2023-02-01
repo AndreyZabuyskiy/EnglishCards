@@ -5,7 +5,7 @@ export const fetchTestModuleApi = async (id) => {
   return data;
 }
 
-export const checkTestModuleApi = async (testModule) => {
-  const { data } = await $authHost.post(`http://localhost:5000/api/test-module/`, testModule);
+export const checkTestModuleApi = async (moduleId, testModule) => {
+  const { data } = await $authHost.post(`http://localhost:5000/api/test-module/${moduleId}`, testModule);
   return data;
 }
