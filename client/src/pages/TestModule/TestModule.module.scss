@@ -33,3 +33,44 @@
     padding: 20px 32px;
   }
 }
+
+.list__questions {
+  position: fixed;
+  left: 24px;
+  top: 88px;
+  color: #939BB4;
+
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    width: 100px;
+
+    p {
+      margin-left: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #1a1d28;
+    }
+  }
+
+  .item__correct {
+    color: #19804f;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .item__incorrect {
+    color: #c34632;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 1020px) {
+  .list__questions {
+    display: none;
+  }
+}

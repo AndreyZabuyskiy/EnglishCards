@@ -7,7 +7,10 @@ const initialState = {
   testCards: null,
   joinCards: null,
   writeCards: null,
-  isShowResult: false
+  isShowResult: false,
+  listQuestions: [],
+  countCorrectUserAnswer: 0,
+  countIncorrectUserAnswer: 0
 }
 
 export const testModuleReducer = (state = initialState, action) => {
@@ -86,7 +89,10 @@ export const testModuleReducer = (state = initialState, action) => {
         trueOrFalseCards: action.payload.trueOrFalseCards,
         testCards: action.payload.testCards,
         joinCards: action.payload.joinCards,
-        writeCards: action.payload.writeCards
+        writeCards: action.payload.writeCards,
+        listQuestions: action.payload.listQuestions,
+        countCorrectUserAnswer: action.payload.countCorrectUserAnswer,
+        countIncorrectUserAnswer: action.payload.countIncorrectUserAnswer,
       }
     }
     

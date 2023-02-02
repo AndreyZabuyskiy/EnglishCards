@@ -2,7 +2,7 @@ import style from './ResultTestModule.module.css';
 import diagram from '../../assets/test-result-diagram.webp';
 import fileImage from '../../assets/file-image.png';
 
-export const ResultTestModule = () => {
+export const ResultTestModule = ({countCorrectUserAnswer, countIncorrectUserAnswer}) => {
   return (
     <div className={style.wrapper}>
       <div className={style.text}>Вы делаете успехи!</div>
@@ -15,11 +15,11 @@ export const ResultTestModule = () => {
               <div className={style.count__answers}>
                 <div className={style.correct__answers}>
                   <div>Правильно</div>
-                  <div className={style.count}>5</div>
+                  <div className={style.count}>{countCorrectUserAnswer}</div>
                 </div>
                 <div className={style.incorrect__answers}>
                   <div>Неправильно</div>
-                  <div className={style.count}>5</div>
+                  <div className={style.count}>{countIncorrectUserAnswer}</div>
                 </div>
               </div>
             </div>

@@ -135,7 +135,8 @@ class TestModuleService {
 
   async checkTest(moduleId, testModule) {
     let countCorrectUserAnswer = 0;
-    let countIncorrectUserAnswer = 0;    
+    let countIncorrectUserAnswer = 0;
+    const listQuestions = [];
     const trueOrFalseCards = testModule.trueOrFalseCards;
     const testCards = testModule.testCards;
     const joinCards = testModule.joinCards;
@@ -150,6 +151,7 @@ class TestModuleService {
       const isCorrectUserAnswered = trueFalseCard.userAnswer === correctAnswer;
       
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+      listQuestions.push(isCorrectUserAnswered);
 
       const resultCard = {
         ...trueFalseCard,
@@ -178,6 +180,7 @@ class TestModuleService {
       const isCorrectUserSelected = correctOption.selected;
 
       isCorrectUserSelected ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+      listQuestions.push(isCorrectUserSelected);
 
       const resultCard = {
         ...testCard,
@@ -197,6 +200,7 @@ class TestModuleService {
       const card = cards.filter(c => c._id.toString() === joinCard.cardId)[0];
       const isCorrectUserAnswered = joinCard.userAnswer === card.value;
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+      listQuestions.push(isCorrectUserAnswered);
 
       const resultCard = {
         ...joinCard,
@@ -213,6 +217,7 @@ class TestModuleService {
       const card = cards.filter(c => c._id.toString() === writeCard.cardId)[0];
       const isCorrectUserAnswered = writeCard.userAnswer === card.value;
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
+      listQuestions.push(isCorrectUserAnswered);
 
       const resultCard = {
         ...writeCard,
@@ -231,7 +236,8 @@ class TestModuleService {
         testCards: resultTestCards,
         joinCards: resultJoinCards,
         writeCards: resultWriteCards,
-      }
+      },
+      listQuestions
     }
 
     return { ...testResult };

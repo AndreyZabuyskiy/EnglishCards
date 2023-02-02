@@ -177,7 +177,10 @@ export function checkTest(moduleId, testModule) {
         trueOrFalseCards,
         testCards,
         joinCards,
-        writeCards
+        writeCards,
+        listQuestions: response.listQuestions,
+        countCorrectUserAnswer: response.countCorrectUserAnswer,
+        countIncorrectUserAnswer: response.countIncorrectUserAnswer
       }
     });
   }

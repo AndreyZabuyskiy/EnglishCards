@@ -30,4 +30,40 @@
 }
 .footer button {
   padding: 20px 32px;
+}
+
+.list__questions {
+  position: fixed;
+  left: 24px;
+  top: 88px;
+  color: #939BB4;
+}
+.list__questions .item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  width: 100px;
+}
+.list__questions .item p {
+  margin-left: 16px;
+}
+.list__questions .item:hover {
+  cursor: pointer;
+  background-color: #1a1d28;
+}
+.list__questions .item__correct {
+  color: #19804f;
+  font-size: 18px;
+  font-weight: 700;
+}
+.list__questions .item__incorrect {
+  color: #c34632;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 1020px) {
+  .list__questions {
+    display: none;
+  }
 }/*# sourceMappingURL=TestModule.module.css.map */

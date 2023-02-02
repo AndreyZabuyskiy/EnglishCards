@@ -20,17 +20,11 @@ export const TestModule = () => {
     return authReducer;
   });
 
-  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards,
-    isShowResult } = useSelector(state => {
+  const { title, countCards, trueOrFalseCards, testCards, joinCards, writeCards, isShowResult,
+    listQuestions, countCorrectUserAnswer, countIncorrectUserAnswer } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
   });
-
-  console.log('trueOrFalseCards -->', trueOrFalseCards);
-  console.log('testCards -->', testCards);
-  console.log('joinCards -->', joinCards);
-  console.log('writeCards -->', writeCards);
-  console.log('------------------------------------');
 
   let countUserAnsweredCards = 0;
   countUserAnsweredCards += trueOrFalseCards?.filter(card => card.isUserAnswer).length;
@@ -46,10 +40,27 @@ export const TestModule = () => {
 
   return (
     <div className={style.container}>
-      <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards} />
+      <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards}
+        countCorrectUserAnswer={countCorrectUserAnswer} isShowResult={isShowResult} />
+      
       <div className={style.body}>
-        {isShowResult && <ResultTestModule />}
-
+        {isShowResult &&
+          <>
+            <ResultTestModule countCorrectUserAnswer={countCorrectUserAnswer}
+              countIncorrectUserAnswer={countIncorrectUserAnswer} />
+            <div className={style.list__questions}>
+              {listQuestions.map((question, index) => (
+                <div className={style.item}>
+                  {question
+                    ? <div className={style.item__correct}>✓</div>
+                    : <div className={style.item__incorrect}>✖</div>
+                  }
+                  <p>{index + 1}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        }
         {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
           return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
             pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
@@ -78,11 +89,13 @@ export const TestModule = () => {
             isCorrectUserAnswered={card.isCorrectUserAnswered} correctValue={card.correctValue} />
         })}
 
-        <div className={style.footer}>
-          <img src={testImage} alt='' />
-          <p>Все готово! Отправить тест?</p>
-          <button onClick={onClickCheckModule}>Оправить тест</button>
-        </div>
+        {!isShowResult &&
+          <div className={style.footer}>
+            <img src={testImage} alt='' />
+            <p>Все готово! Отправить тест?</p>
+            <button onClick={onClickCheckModule}>Оправить тест</button>
+          </div>
+        }
       </div>
     </div>
   );
