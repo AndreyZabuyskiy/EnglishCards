@@ -1,69 +1,33 @@
-import { StudyModule } from './StudyModule';
-import { Navbar } from "./Navbar";
-import { NavbarModuleForm } from './NavbarModuleForm';
-import { HeaderModuleForm } from './HeaderModuleForm';
-import { ListCreateCards } from './ListCreateCards';
-import { NavbarScreenCards } from "./NavbarScreenCards";
-import { BigCard } from "./BigCard";
-import { CardWordsSelection } from './CardWordsSelection';
-import { CardItemInner } from './CardItemInner';
-import { CardWriteAnswer } from './CardWriteAnswer';
-import { UIMenuModule } from './UIMenuModule/UIMenuModule';
-import { SetPageInfo } from './SetPageInfo';
-import { ListCardElement } from './ListCardElement';
-import { StudiedCardsLine } from './StudiedCardsLine';
-import { ModeControls } from './ModeControls';
-import { WriteEndView } from './WriteEndView/WriteEndView';
-import { WriteEndViewRound } from './WriteEndViewRound';
-import { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
-import { NavbarLearnModule } from './NavbarLearnModule';
-import { OptionLearnCard } from './OptionLearnCard';
-import { LearnRoundResult } from './LearnRoundResult';
-import { CardResultLearnRound } from './CardResultLearnRound';
-import { FixedBannerLearnModule } from './FixedBannerLearnModule';
-import { LearnCard } from './LearnCard';
-import { LearnTestCard } from './LearnTestCard';
-import { LearnWriteCard } from './LearnWriteCard';
-import { ResultLearnModule } from './ResultLearnModule';
-import { NavbarModules } from './NavbarModulesList/NavbarModules';
-import { CardTrueFalse } from './CardTrueFalse';
-import { CardChoiceAnswer } from './CardChoiceAnswer';
-import { TestWriteCard } from './TestWriteCard';
-import { NavbarTest } from './NavbarTest/NavbarTest';
-import { ResultTestModule } from './ResultTestModule';
-
-export {
-  StudyModule,
-  Navbar,
-  NavbarModuleForm,
-  HeaderModuleForm,
-  ListCreateCards,
-  NavbarScreenCards,
-  BigCard,
-  CardWordsSelection,
-  CardItemInner,
-  CardWriteAnswer,
-  UIMenuModule,
-  SetPageInfo,
-  ListCardElement,
-  StudiedCardsLine,
-  ModeControls,
-  WriteEndView,
-  WriteEndViewRound,
-  FeedbackHeading,
-  NavbarLearnModule,
-  OptionLearnCard,
-  LearnRoundResult,
-  CardResultLearnRound,
-  FixedBannerLearnModule,
-  LearnCard,
-  LearnTestCard,
-  LearnWriteCard,
-  ResultLearnModule,
-  NavbarModules,
-  CardTrueFalse,
-  CardChoiceAnswer,
-  TestWriteCard,
-  NavbarTest,
-  ResultTestModule
-} 
+export { StudyModule } from './StudyModule';
+export { Navbar } from "./Navbar";
+export { NavbarModuleForm } from './NavbarModuleForm';
+export { HeaderModuleForm } from './HeaderModuleForm';
+export { ListCreateCards } from './ListCreateCards';
+export { NavbarScreenCards } from "./NavbarScreenCards";
+export { BigCard } from "./BigCard";
+export { CardWordsSelection } from './CardWordsSelection';
+export { CardItemInner } from './CardItemInner';
+export { CardWriteAnswer } from './CardWriteAnswer';
+export { UIMenuModule } from './UIMenuModule/UIMenuModule';
+export { SetPageInfo } from './SetPageInfo';
+export { ListCardElement } from './ListCardElement';
+export { StudiedCardsLine } from './StudiedCardsLine';
+export { ModeControls } from './ModeControls';
+export { WriteEndView } from './WriteEndView/WriteEndView';
+export { WriteEndViewRound } from './WriteEndViewRound';
+export { FeedbackHeading } from './FeedbackHeading/FeedbackHeading';
+export { NavbarLearnModule } from './NavbarLearnModule';
+export { OptionLearnCard } from './OptionLearnCard';
+export { LearnRoundResult } from './LearnRoundResult';
+export { CardResultLearnRound } from './CardResultLearnRound';
+export { FixedBannerLearnModule } from './FixedBannerLearnModule';
+export { LearnCard } from './LearnCard';
+export { LearnTestCard } from './LearnTestCard';
+export { LearnWriteCard } from './LearnWriteCard';
+export { ResultLearnModule } from './ResultLearnModule';
+export { NavbarModules } from './NavbarModulesList/NavbarModules';
+export { CardTrueFalse } from './CardTrueFalse';
+export { CardChoiceAnswer } from './CardChoiceAnswer';
+export { TestWriteCard } from './TestWriteCard';
+export { NavbarTest } from './NavbarTest/NavbarTest';
+export { ResultTestModule } from './ResultTestModule';

@@ -2,7 +2,8 @@ import style from './ResultTestModule.module.css';
 import diagram from '../../assets/test-result-diagram.webp';
 import fileImage from '../../assets/file-image.png';
 
-export const ResultTestModule = ({countCorrectUserAnswer, countIncorrectUserAnswer}) => {
+export const ResultTestModule = ({ countCorrectUserAnswer, countIncorrectUserAnswer, onClickStartOverTest,
+  onClickMoveLearnModule }) => {
   return (
     <div className={style.wrapper}>
       <div className={style.text}>Вы делаете успехи!</div>
@@ -27,14 +28,14 @@ export const ResultTestModule = ({countCorrectUserAnswer, countIncorrectUserAnsw
           <div className={style.button__cards__wrapper}>
             <div className={style.body__title}>Следующие шаги</div>
             <div className={style.button__cards}>
-              <div className={style.card__button}>
+              <div onClick={onClickMoveLearnModule} className={style.card__button}>
                 <div><img src={fileImage} className={style.card__button__image} alt='' /></div>
                 <div className={style.card__button__body}>
                   <p>Попрактиковать термины</p>
                   <p>Изучите эти термины, чтобы закрепить знания.</p>
                 </div>
               </div>
-              <div className={style.card__button}>
+              <div onClick={onClickStartOverTest} className={style.card__button}>
                 <div><img src={fileImage} className={style.card__button__image} alt='' /></div>
                 <div className={style.card__button__body}>
                   <p>Пройти новый тест</p>

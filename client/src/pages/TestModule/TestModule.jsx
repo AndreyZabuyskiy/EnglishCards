@@ -2,14 +2,16 @@ import style from './TestModule.module.css';
 import { CardTrueFalse } from '../../components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkTest, getTestModule } from '../../redux/actions/testModuleAction';
-import { useParams } from 'react-router-dom';
+import { checkTest, clearTestModule, getTestModule } from '../../redux/actions/testModuleAction';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest, ResultTestModule } from '../../components';
 import testImage from '../../assets/test-image.png'
+import { LEARN_MODULE } from '../../utils/consts';
 
 export const TestModule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTestModule(id));
@@ -38,6 +40,16 @@ export const TestModule = () => {
     }));
   }
 
+  const onClickMoveLearnModule = () => {
+    dispatch(clearTestModule());
+    navigate(`${LEARN_MODULE}/${id}`);
+  }
+
+  const onClickStartOverTest = () => {
+    dispatch(clearTestModule());
+    dispatch(getTestModule(id));
+  }
+
   return (
     <div className={style.container}>
       <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards}
@@ -47,7 +59,8 @@ export const TestModule = () => {
         {isShowResult &&
           <>
             <ResultTestModule countCorrectUserAnswer={countCorrectUserAnswer}
-              countIncorrectUserAnswer={countIncorrectUserAnswer} />
+              countIncorrectUserAnswer={countIncorrectUserAnswer} onClickStartOverTest={onClickStartOverTest}
+              onClickMoveLearnModule={onClickMoveLearnModule} />
             <div className={style.list__questions}>
               {listQuestions.map((question, index) => (
                 <div className={style.item}>

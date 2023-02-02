@@ -1,21 +1,9 @@
-import { AuthForm } from './AuthForm/AuthForm';
-import { Home } from './Home';
-import { LearnModule } from './LearnModule'
-import { ModuleForm } from './ModuleForm';
-import { ScreenCards } from './ScreenCards';
-import { SpellModule } from './SpellModule';
-import { TestModule } from './TestModule';
-import { ViewModule } from './ViewModule';
-import { WriteModule } from './WriteModule';
-
-export {
-  AuthForm,
-  Home,
-  LearnModule,
-  ModuleForm,
-  ScreenCards,
-  SpellModule,
-  TestModule,
-  ViewModule,
-  WriteModule
-}
+export { AuthForm } from './AuthForm/AuthForm';
+export { Home } from './Home';
+export { LearnModule } from './LearnModule'
+export { ModuleForm } from './ModuleForm';
+export { ScreenCards } from './ScreenCards';
+export { SpellModule } from './SpellModule';
+export { TestModule } from './TestModule';
+export { ViewModule } from './ViewModule';
+export { WriteModule } from './WriteModule';
