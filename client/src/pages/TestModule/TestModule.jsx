@@ -1,10 +1,12 @@
 import style from './TestModule.module.css';
 import { CardTrueFalse } from '../../components';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkTest, clearTestModule, getTestModule } from '../../redux/actions/testModuleAction';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest, ResultTestModule } from '../../components';
+import {
+  CardChoiceAnswer, TestWriteCard, CardWordsSelection, NavbarTest, ResultTestModule
+} from '../../components';
 import testImage from '../../assets/test-image.png'
 import { LEARN_MODULE } from '../../utils/consts';
 
@@ -12,6 +14,8 @@ export const TestModule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [isShowModuleNavigate, setIsShowModuleNavigate] = useState(true);
 
   useEffect(() => {
     dispatch(getTestModule(id));
@@ -50,11 +54,17 @@ export const TestModule = () => {
     dispatch(getTestModule(id));
   }
 
+  const onClickForm = () => {
+    console.log('onClickForm')
+    setIsShowModuleNavigate(prev => false);
+  }
+
   return (
-    <div className={style.container}>
-      <NavbarTest title={title} countCards={countCards} countUserAnsweredCards={countUserAnsweredCards}
-        countCorrectUserAnswer={countCorrectUserAnswer} isShowResult={isShowResult} />
-      
+    <div className={style.container} onClick={onClickForm}>
+      <NavbarTest moduleId={id} title={title} countCards={countCards} isShowResult={isShowResult}
+        countUserAnsweredCards={countUserAnsweredCards} countCorrectUserAnswer={countCorrectUserAnswer}
+        isShowModuleNavigate={isShowModuleNavigate} setIsShowModuleNavigate={setIsShowModuleNavigate} />
+
       <div className={style.body}>
         {isShowResult &&
           <>

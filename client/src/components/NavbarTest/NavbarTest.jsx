@@ -1,9 +1,15 @@
 import style from './NavbarTest.module.css';
 import fileImage from '../../assets/file-image.png';
+import { NavbarModuleNavigate } from '../NavbarModuleNavigate';
 
-export const NavbarTest = ({ title, countCards, countUserAnsweredCards, countCorrectUserAnswer,
-  isShowResult }) => {
+export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards, countCorrectUserAnswer,
+  isShowResult, isShowModuleNavigate, setIsShowModuleNavigate }) => {
   const widthLine = countUserAnsweredCards / countCards * 100;
+
+  const onClickButtonNavigate = (e) => {
+    e.stopPropagation();
+    setIsShowModuleNavigate(prev => !prev);
+  }
 
   return (
     <div className={style.wrapper}>
@@ -11,7 +17,14 @@ export const NavbarTest = ({ title, countCards, countUserAnsweredCards, countCor
         <div className={style.img__wrapper}>
           <img className={style.img} src={fileImage} alt=''/>
         </div>
-        <button className={style.button__navigate}>Тест</button>
+        <div className={style.button__navigate__wrapper}>
+          <button className={style.button__navigate} onClick={onClickButtonNavigate}>
+            Тест
+          </button>
+          <div className={style.module__navigate} style={{display: isShowModuleNavigate ? 'block' : 'none' }}>
+            <NavbarModuleNavigate moduleId={moduleId} />
+          </div>
+        </div>
       </div>
       <div className={style.content__center}>
         <p>{!isShowResult ? countUserAnsweredCards : countCorrectUserAnswer} / {countCards}</p>

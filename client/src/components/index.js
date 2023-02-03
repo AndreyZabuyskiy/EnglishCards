@@ -31,3 +31,4 @@ export { CardChoiceAnswer } from './CardChoiceAnswer';
 export { TestWriteCard } from './TestWriteCard';
 export { NavbarTest } from './NavbarTest/NavbarTest';
 export { ResultTestModule } from './ResultTestModule';
+export { NavbarModuleNavigate } from './NavbarModuleNavigate';

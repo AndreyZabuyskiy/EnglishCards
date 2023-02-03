@@ -28,6 +28,16 @@
   height: 32px;
 }
 
+.button__navigate__wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.module__navigate {
+  position: absolute;
+  left: 0;
+}
+
 .button__navigate {
   background-color: #0a092d;
   height: 100%;
