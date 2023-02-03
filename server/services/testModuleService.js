@@ -1,6 +1,7 @@
 import StudyModule from "../models/StudyModule.js";
 import Card from '../models/Card.js';
 import { countGroupsByModuleSize } from '../helpers/countGroupsByModuleSize.js';
+import { mixUpArray, getRandomNumber } from '../helpers/helpers.js';
 
 class TestModuleService {
   async getTestModule(userId, moduleId) {
@@ -33,17 +34,17 @@ class TestModuleService {
       const trueOrFalseCards = [];
 
       for (let i = 0; i < countGroups.TrueOrFalseCard; ++i) {
-        randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+        randomNumberPositionCard = getRandomNumber(0, freeCards.length);
         const card = freeCards[randomNumberPositionCard];
         freeCards.splice(randomNumberPositionCard, 1);
 
-        const isTrueOrFalseRandom = this.getRandomNumber(0, 2);
+        const isTrueOrFalseRandom = getRandomNumber(0, 2);
         let value = '';
 
         if (isTrueOrFalseRandom) {
           value = card.value;
         } else {
-          randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+          randomNumberPositionCard = getRandomNumber(0, freeCards.length);
           const rndCard = freeCards[randomNumberPositionCard];
           value = rndCard.value;
         }
@@ -64,16 +65,18 @@ class TestModuleService {
       const testCards = [];
 
       for (let i = 0; i < countGroups.TestCards; ++i) {
-        randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+        randomNumberPositionCard = getRandomNumber(0, freeCards.length);
         const card = freeCards[randomNumberPositionCard];
         freeCards.splice(randomNumberPositionCard, 1);
 
-        const optionsCard = [card.value];
+        let optionsCard = [card.value];
         for (let j = 0; j < 3; ++j) {
-          randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+          randomNumberPositionCard = getRandomNumber(0, freeCards.length);
           const rndCard = freeCards[randomNumberPositionCard];
           optionsCard.push(rndCard.value);
         }
+
+        optionsCard = mixUpArray(optionsCard);
 
         testCards.push({
           cardId: card._id,
@@ -89,10 +92,10 @@ class TestModuleService {
 
     if (countGroups.JoinCards > 0) {
       const cards = [];
-      const values = [];
+      let values = [];
 
       for (let i = 0; i < countGroups.JoinCards; ++i) {
-        randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+        randomNumberPositionCard = getRandomNumber(0, freeCards.length);
         const card = freeCards[randomNumberPositionCard];
         freeCards.splice(randomNumberPositionCard, 1);
 
@@ -105,6 +108,8 @@ class TestModuleService {
 
         values.push(card.value);
       }
+
+      values = mixUpArray(values);
       
       testModule.groups.joinCards = {
         cards, values
@@ -115,7 +120,7 @@ class TestModuleService {
       const writeCards = [];
 
       for (let i = 0; i < countGroups.WriteCards; ++i) {
-        randomNumberPositionCard = this.getRandomNumber(0, freeCards.length);
+        randomNumberPositionCard = getRandomNumber(0, freeCards.length);
         const card = freeCards[randomNumberPositionCard];
         freeCards.splice(randomNumberPositionCard, 1);
 
@@ -166,7 +171,7 @@ class TestModuleService {
     const resultTestCards = [];
     testCards.forEach(testCard => {
       const card = cards.filter(c => c._id.toString() === testCard.cardId)[0];
-      const resultOptions = [];
+      let resultOptions = [];
 
       testCard.options.forEach(option => {
         const isCorrectOption = option.value === card.value;
@@ -176,6 +181,7 @@ class TestModuleService {
         };
         resultOptions.push(resultOption);
       });
+
       const correctOption = resultOptions.filter(opt => opt.isCorrect)[0];
       const isCorrectUserSelected = correctOption.selected;
 
@@ -241,10 +247,6 @@ class TestModuleService {
     }
 
     return { ...testResult };
-  }
-
-  getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
   }
 }
 

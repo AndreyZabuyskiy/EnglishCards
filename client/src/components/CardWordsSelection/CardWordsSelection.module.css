@@ -166,6 +166,7 @@
 
 .correct__user__answer__wrapper {
   width: 100%;
+  margin-bottom: 32px;
 }
 .correct__user__answer__wrapper p {
   color: #19804f;
