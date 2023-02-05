@@ -21,7 +21,7 @@
 }
 
 .content__translate {
-  width: 60%;
+  width: 70%;
   height: 100%;
   border-right: 2px solid #646f90;
   padding-right: 16px;
@@ -52,9 +52,11 @@
 }
 
 .card__img {
-  width: 104px;
   height: 104px;
-  border-radius: 5px;
+  border-radius: 10px;
+  width: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .buttons {

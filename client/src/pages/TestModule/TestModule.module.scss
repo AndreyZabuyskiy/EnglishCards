@@ -18,8 +18,9 @@
 
   img {
     height: 64px;
+    width: auto;
     margin-bottom: 42px;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   p {

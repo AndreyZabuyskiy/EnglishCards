@@ -37,9 +37,10 @@
 }
 
 .img {
-  width: 104px;
   height: 104px;
   border-radius: 10px;
+  width: auto;
+  object-fit: cover;
 }
 
 .footer {

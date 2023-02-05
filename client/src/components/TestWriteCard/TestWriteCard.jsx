@@ -21,7 +21,7 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
   return (
     <div className={style.card}>
       <div className={style.header}>
-        <div>Определение</div>
+        <div>Definition</div>
         <div>{index} из {countCards}</div>
       </div>
 
@@ -38,7 +38,7 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
               ?
               <>
                 <div className={style.correct__user__answer__wrapper}>
-                  <p>Отлично!</p>
+                  <p>Great!</p>
                   <div className={style.correct__user__answer}>
                     <span>{userAnswer}</span>
                   </div>
@@ -47,13 +47,13 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
               :
               <>
                 <div className={style.incorrect__user__answer__wrapper}>
-                  <p>Неправильный ответ</p>
+                  <p>Incorrect answer</p>
                   <div className={style.incorrect__user__answer}>
                     <span>{userAnswer}</span>
                   </div>
                 </div>
                 <div className={style.correct__user__answer__wrapper}>
-                  <p>Правильный ответ</p>
+                  <p>Correct answer</p>
                   <div className={style.correct__user__answer}>
                     <span>{correctValue}</span>
                   </div>
@@ -63,11 +63,11 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
           </>
           :
           <>
-            <div className={style.text}>Ваш ответ</div>
-            <input type="text" placeholder='Введите ответ' value={userAnswer} onChange={changeInput}
+            <div className={style.text}>Your answer</div>
+            <input type="text" placeholder='Enter your answer' value={userAnswer} onChange={changeInput}
               className={style.user__input} />
             <div className={style.next__button__wrapper}>
-              <button>Далее</button>
+              <button>Next</button>
             </div>
           </>
         }

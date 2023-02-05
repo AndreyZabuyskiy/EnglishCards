@@ -18,9 +18,10 @@
 }
 .footer img {
   height: 64px;
+  width: auto;
   margin-bottom: 42px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .footer p {
   color: #F6F7FB;

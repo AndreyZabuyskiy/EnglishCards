@@ -36,10 +36,11 @@
   margin-bottom: 20px;
 }
 
-img {
-  width: 104px;
+.img {
   height: 104px;
   border-radius: 10px;
+  width: auto;
+  object-fit: cover;
 }
 
 .user__input {

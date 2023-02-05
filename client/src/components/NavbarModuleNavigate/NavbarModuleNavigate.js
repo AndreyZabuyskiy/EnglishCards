@@ -10,15 +10,15 @@ export const NavbarModuleNavigate = ({ moduleId }) => {
     <div className={style.container}>
       <div className={style.item} onClick={() => navigate(`${LEARN_MODULE}/${moduleId}`)}>
         <img src={fileImage} alt='' />
-        <p>Заучивание</p>
+        <p>Learn</p>
       </div>
       <div className={style.item} onClick={() => navigate(`${SCREEN_CARDS}/${moduleId}`)}>
         <img src={fileImage} alt='' />
-        <p>Карточки</p>
+        <p>Cards</p>
       </div>
       <div className={style.item} onClick={() => navigate(`${SCREEN_CARDS}/${moduleId}`)}>
         <img src={fileImage} alt='' />
-        <p>Подбор</p>
+        <p>Match</p>
       </div>
       <div className={style.line}></div>
       <div className={style.item} onClick={() => navigate(`${HOME_ROUTE}`)}>Главная</div>

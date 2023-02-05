@@ -6,40 +6,40 @@ export const ResultTestModule = ({ countCorrectUserAnswer, countIncorrectUserAns
   onClickMoveLearnModule }) => {
   return (
     <div className={style.wrapper}>
-      <div className={style.text}>Вы делаете успехи!</div>
+      <div className={style.text}>You are making progress!</div>
       <div>
         <div className={style.body}>
           <div className={style.body__block}>
-            <div className={style.body__title}>Ваше время: 1 минута</div>
+            <div className={style.body__title}>Your time is 2 minutes</div>
             <div className={style.test__result}>
               <div><img src={diagram} className={style.diagram} alt='' /></div>
               <div className={style.count__answers}>
                 <div className={style.correct__answers}>
-                  <div>Правильно</div>
+                  <div>Correct</div>
                   <div className={style.count}>{countCorrectUserAnswer}</div>
                 </div>
                 <div className={style.incorrect__answers}>
-                  <div>Неправильно</div>
+                  <div>Incorrect</div>
                   <div className={style.count}>{countIncorrectUserAnswer}</div>
                 </div>
               </div>
             </div>
           </div>
           <div className={style.button__cards__wrapper}>
-            <div className={style.body__title}>Следующие шаги</div>
+            <div className={style.body__title}>Next steps</div>
             <div className={style.button__cards}>
               <div onClick={onClickMoveLearnModule} className={style.card__button}>
                 <div><img src={fileImage} className={style.card__button__image} alt='' /></div>
                 <div className={style.card__button__body}>
-                  <p>Попрактиковать термины</p>
-                  <p>Изучите эти термины, чтобы закрепить знания.</p>
+                  <p>Practice terms</p>
+                  <p>Learn these terms to consolidate knowledge.</p>
                 </div>
               </div>
               <div onClick={onClickStartOverTest} className={style.card__button}>
                 <div><img src={fileImage} className={style.card__button__image} alt='' /></div>
                 <div className={style.card__button__body}>
-                  <p>Пройти новый тест</p>
-                  <p>Пройдите еще один тест, чтоб стать уверенее в своих знаниях.</p>
+                  <p>Take a new test</p>
+                  <p>Take another test to become confident in your knowledge.</p>
                 </div>
               </div>
             </div>

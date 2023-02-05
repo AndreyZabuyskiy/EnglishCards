@@ -71,8 +71,8 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
     <div className={style.card}>
       <div className={style.index}>{minIndex}-{maxIndex} из {countCards}</div>
       <div className={style.header}>
-        <div>Вопрос для подбора</div>
-        <div>Нажмите термин, подходящий определению</div>
+        <div>Choice questions</div>
+        <div>Click on a term that matches the definition</div>
       </div>
       <div className={style.content}>
         {cards && cards.map((card, index) => {
@@ -94,7 +94,7 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
                     <div onClick={() => onClickMatchingButton(index)}
                       className={`${styleMatchingCard} ${selectIndexCard === index ? style.matching__actual : ''}`}>
                       {!wasSelectedCard && selectIndexCard === index &&
-                        <span>Выбирите из списка ниже</span>
+                        <span>Select from the list below</span>
                       }
 
                       {card.userAnswer &&
@@ -120,14 +120,14 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
                   {card.isCorrectUserAnswered
                     ?
                     <div className={style.correct__user__answer__wrapper}>
-                      <p>Отлично!</p>
+                      <p>Great!</p>
                       <div className={style.correct__user__answer}>
                         <span>{card.userAnswer}</span>
                       </div>
                     </div>
                     :
                     <div className={style.user__answer__wrapper}>
-                      <p>Неправильный ответ</p>
+                      <p>Incorrect</p>
                       <div className={style.user__answer__body}>
                         <div className={style.incorrect__user__answer__wrapper}>
                         <div className={style.incorrect__user__answer}>

@@ -1,9 +1,13 @@
 import style from './NavbarTest.module.css';
 import fileImage from '../../assets/file-image.png';
 import { NavbarModuleNavigate } from '../NavbarModuleNavigate';
+import { useNavigate } from 'react-router-dom';
+import { HOME_ROUTE } from '../../utils/consts';
 
 export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards, countCorrectUserAnswer,
   isShowResult, isShowModuleNavigate, setIsShowModuleNavigate }) => {
+  const navigate = useNavigate();
+  
   const widthLine = countUserAnsweredCards / countCards * 100;
 
   const onClickButtonNavigate = (e) => {
@@ -31,7 +35,7 @@ export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards
         <p>{ title }</p>
       </div>
       <div className={style.content__right}>
-        <button className={style.button__exit}>
+        <button className={style.button__exit} onClick={() => navigate(`${HOME_ROUTE}/${moduleId}`)}>
           <span>🗙</span>
         </button>
       </div>

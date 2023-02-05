@@ -26,14 +26,14 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
       <div className={style.index}>{index} из {countCards}</div>
       <div className={style.content}>
         <div className={style.content__translate}>
-          <div className={style.content__header}>Определение</div>
+          <div className={style.content__header}>Definition</div>
           <div className={style.translate}>
             <div>{translate}</div>
             {imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' />}
           </div>
         </div>
         <div className={style.content__value}>
-          <div className={style.content__header}>Термин</div>
+          <div className={style.content__header}>Term</div>
           <div className={style.value}>{ value }</div>
         </div>
       </div>
@@ -45,34 +45,38 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
               <div className={style.buttons}>
                 <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
                   : onClickSelectTrueOrFalse(true)}
-                  className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>Верно</button>
+                  className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>
+                  Correct
+                </button>
                 <button onClick={() => isUserAnswer && !userAnswer ? onClickUnselectTrueOrFalse()
                   : onClickSelectTrueOrFalse(false)}
-                  className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>Неверно</button>
+                  className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>
+                  Incorrect
+                </button>
               </div>
           </>
           :
           <div>
             {isCorrectUserAnswered
-              ? <div className={style.message__correct__answer}>Правильный ответ</div>
-              : <div className={style.message__incorrect__answer}>Неправильный ответ</div>
+              ? <div className={style.message__correct__answer}>Correct answer</div>
+              : <div className={style.message__incorrect__answer}>Incorrect answer</div>
             }
 
             <div className={style.result__buttons}>
               <div className={`${style.left__button}
                 ${userAnswer && correctAnswer ? style.correct__answer : ''}
                 ${userAnswer && !correctAnswer ? style.incorrect__answer : ''}`}>
-                Верно
+                Correct
               </div>
               <div className={`${style.right__button}
                 ${!userAnswer && !correctAnswer ? style.correct__answer : ''}
-                ${!userAnswer && correctAnswer ? style.incorrect__answer : ''}`}>Неверно</div>
+                ${!userAnswer && correctAnswer ? style.incorrect__answer : ''}`}>Incorrect</div>
             </div>
 
             {!correctAnswer &&
             <>
               <div className={style.correct__user__answer__wrapper}>
-                <p>Правильный ответ</p>
+                <p>Correct answer</p>
                 <div className={style.correct__user__answer}>
                   <span>{correctValue}</span>
                 </div>

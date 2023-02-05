@@ -18,7 +18,7 @@ export const HeaderModuleForm = props => {
         <div className={style.permissions}>
           <div className={style.permission}>
             <div>
-              <span>Visible everyone</span>
+              <span>Visibility: public</span>
             </div>
             <div>
               <button>Change</button>
@@ -26,7 +26,7 @@ export const HeaderModuleForm = props => {
           </div>
           <div className={style.permission}>
             <div>
-              <span>Edited by me only</span>
+              <span>Who can edit: me only</span>
             </div>
             <div>
               <button>Change</button>

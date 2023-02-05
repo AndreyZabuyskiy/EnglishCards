@@ -15,7 +15,7 @@ export const TestModule = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [isShowModuleNavigate, setIsShowModuleNavigate] = useState(true);
+  const [isShowModuleNavigate, setIsShowModuleNavigate] = useState(false);
 
   useEffect(() => {
     dispatch(getTestModule(id));
@@ -55,7 +55,6 @@ export const TestModule = () => {
   }
 
   const onClickForm = () => {
-    console.log('onClickForm')
     setIsShowModuleNavigate(prev => false);
   }
 
@@ -115,8 +114,8 @@ export const TestModule = () => {
         {!isShowResult &&
           <div className={style.footer}>
             <img src={testImage} alt='' />
-            <p>Все готово! Отправить тест?</p>
-            <button onClick={onClickCheckModule}>Оправить тест</button>
+            <p>All is ready! Submit?</p>
+            <button onClick={onClickCheckModule}>Submit</button>
           </div>
         }
       </div>

@@ -49,7 +49,7 @@ export const Home = () => {
             <div className={style.select__filter} onClick={onClickSelect}>{ option }</div>
             <div className={style.options} style={{display: isShowOptions ? 'block' : 'none'}}>
               <div className={style.option} onClick={() => onClickOption('Created')}>Created</div>
-              <div className={style.option} onClick={() => onClickOption('Viewed')}>Viewed</div>
+              <div className={style.option} onClick={() => onClickOption('Recently viewed')}>Recently viewed</div>
             </div>
           </div>
 

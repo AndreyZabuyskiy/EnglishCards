@@ -66,7 +66,7 @@ export const LearnModule = () => {
   }
 
   const clickForm = () => {
-    setIsShowMenu(false);
+    setIsShowMenu(prev => false);
     setIsShowMenuParam(false);
   }
 

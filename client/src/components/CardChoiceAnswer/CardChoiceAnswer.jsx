@@ -26,7 +26,7 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
     <div className={style.card}>
       <div className={style.index}>{index} из {countCards}</div>
       <div className={style.header}>
-        Определение
+        Definition
       </div>
       <div className={style.content}>
         <div className={style.value}>{ translate }</div>
@@ -38,7 +38,7 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
         {!isShowResult
           ?
           <>
-            <div className={style.text}>Выбирите правильный термин</div>
+            <div className={style.text}>Select the right term</div>
             <div className={style.buttons}>
               <div className={style.buttoms__column__1}>
                 <button className={`${options[0].selected ? style.selected__option : ''}`}
@@ -65,8 +65,8 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
           :
           <>
             {isCorrectUserSelected
-              ? <div className={style.message__correct__answer}>Правильный ответ</div>
-              : <div className={style.message__incorrect__answer}>Неправильный ответ</div>
+              ? <div className={style.message__correct__answer}>Correct answer</div>
+              : <div className={style.message__incorrect__answer}>Incorrect answer</div>
             }
             <div className={style.result__buttons}>
               <div className={style.buttoms__column__1}>

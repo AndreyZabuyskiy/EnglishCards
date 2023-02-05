@@ -35,11 +35,11 @@ export const Navbar = () => {
         <div className={style.container__navbar}>
           <div className={style.content}>
             <div className={style.button__main__wrapper}>
-              <Link className={style.button__main} to={HOME_ROUTE}>Main</Link>
+              <Link className={style.button__main} to={HOME_ROUTE}>Home</Link>
             </div>
             <div className={style.your__library}
               style={{ borderBottom: isShowModules ? '3px solid #a8b1ff' : '' }}>
-              <button onClick={onClickYourLibrary}>Your library</button>
+              <button onClick={onClickYourLibrary}>Modules</button>
               <div className={style.modules__lists__wrapper}
                 style={{ display: isShowModules ? 'block' : 'none' }} >
                 <NavbarModules />

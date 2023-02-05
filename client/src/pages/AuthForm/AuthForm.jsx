@@ -67,7 +67,7 @@ export const AuthForm = () => {
                 <div className={style.error}>{errors.password.message}</div>
               }
             </div>
-            <button className={style.button} disabled={!isValid}>{ isLogin ? 'Login' : 'Register' }</button>
+            <button className={style.button} disabled={!isValid}>{ isLogin ? 'Log in' : 'Register' }</button>
           </form>
         </div>
       </div>
