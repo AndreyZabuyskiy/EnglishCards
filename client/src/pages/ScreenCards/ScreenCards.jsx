@@ -42,7 +42,7 @@ export const ScreenCards = () => {
   }
 
   return (
-    <>
+    <div>
       <NavbarScreenCards
         title={moduleData?.module?.title}
         countCards={moduleData?.cards?.length}
@@ -64,6 +64,6 @@ export const ScreenCards = () => {
           Click ← or → for go forward or backward
         </div>
       </div>
-    </>
+    </div>
   );
 }

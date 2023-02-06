@@ -41,7 +41,7 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
         {!isShowResult
           ?
           <>
-            <div className={style.text}>Выбирите ответ</div>
+            <div className={style.text}>Choose the right option</div>
               <div className={style.buttons}>
                 <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
                   : onClickSelectTrueOrFalse(true)}

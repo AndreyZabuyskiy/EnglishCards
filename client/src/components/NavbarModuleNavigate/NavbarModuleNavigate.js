@@ -21,7 +21,7 @@ export const NavbarModuleNavigate = ({ moduleId }) => {
         <p>Match</p>
       </div>
       <div className={style.line}></div>
-      <div className={style.item} onClick={() => navigate(`${HOME_ROUTE}`)}>Главная</div>
+      <div className={style.item} onClick={() => navigate(`${HOME_ROUTE}`)}>Home</div>
     </div>
   );
 }

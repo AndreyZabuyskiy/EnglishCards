@@ -5,7 +5,7 @@ import { SCREEN_CARDS } from '../../utils/consts';
 import { StudiedCardsLine } from '../StudiedCardsLine';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 
-export const CardItemInner = (props) => {
+export const CardItemInner = ({id, module, cards, user}) => {
   const [cardItemIndex, setCardItemIndex] = useState(0);
   const [isFrontCard, setIsFrontCard] = useState(true);
 
@@ -18,12 +18,11 @@ export const CardItemInner = (props) => {
   }
 
   let imgSrc = '';
-  if (props?.moduleData?.cards[cardItemIndex].pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${props.user.login}/${props?.moduleData?.cards[cardItemIndex].pathToFile}`;
-  } else if (props?.moduleData?.cards[cardItemIndex].urlToImage) {
-    imgSrc = `${props?.moduleData?.cards[cardItemIndex].urlToImage}`;
+  if (cards[cardItemIndex].pathToFile) {
+    imgSrc = `${REACT_APP_API_URL}/${user.login}/${cards[cardItemIndex].pathToFile}`;
+  } else if (cards[cardItemIndex].urlToImage) {
+    imgSrc = `${cards[cardItemIndex].urlToImage}`;
   }
-
 
   const onClickCard = () => {
     if(isFrontCard){
@@ -44,7 +43,7 @@ export const CardItemInner = (props) => {
   }
 
   const clickForward = (e) => {
-    if(cardItemIndex < props.moduleData.cards.length - 1) {
+    if(cardItemIndex < cards.length - 1) {
       setCardItemIndex(cardItemIndex + 1);
     }
     
@@ -53,7 +52,7 @@ export const CardItemInner = (props) => {
 
   return (
     <div className={style.card__item__container}>
-      <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={props?.moduleData?.cards.length} />
+      <StudiedCardsLine cardItemIndex={cardItemIndex} numberCards={cards.length} />
       
       <div className={style.wrapper__card}>
         <div className={cardStyle} onClick={() => onClickCard()}>
@@ -61,7 +60,7 @@ export const CardItemInner = (props) => {
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Word</div>
               <div className={style.card__header__column_2}>
-                { cardItemIndex + 1 }/{ props.moduleData?.cards?.length }
+                { cardItemIndex + 1 }/{ cards?.length }
               </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
@@ -70,7 +69,7 @@ export const CardItemInner = (props) => {
             </div>
 
             <div className={style.card__front__content}>
-              { props?.moduleData?.cards[cardItemIndex].value }
+              { cards[cardItemIndex].value }
             </div>
 
             <div className={style.card__footer}>
@@ -84,7 +83,7 @@ export const CardItemInner = (props) => {
             <div className={style.card__header}>
               <div className={style.card__header__column_1}>Термин</div>
               <div className={style.card__header__column_2}>
-                { cardItemIndex + 1 }/{ props.moduleData?.cards?.length }
+                { cardItemIndex + 1 }/{ cards?.length }
               </div>
               <div className={style.card__header__column_3}>
                 <span className={style.card__edit}>✎</span>
@@ -93,36 +92,20 @@ export const CardItemInner = (props) => {
             </div>
 
             <div className={style.card__back__content}>
-              {props.pathToFile &&
-            <div>
-              <img src={`${REACT_APP_API_URL}/${props.user.login}/${props.pathToFile}`}
-                className={style.card__img} />
-            </div>
-          }
-          {props.urlToImage &&
-            <div>
-              <img src={`${props.urlToImage}`}
-                className={style.card__img} />
-            </div>
-          }
-            {props?.moduleData?.cards[cardItemIndex].pathToFile || props?.moduleData?.cards[cardItemIndex].urlToImage
-              ?
-                <div className={style.card__content__front}>
-                  <div className={style.card__content__left}>
-                    {props?.moduleData?.cards[cardItemIndex].translate}
+              {imgSrc
+                ?
+                  <div className={style.card__content__front}>
+                    <div className={style.card__content__left}>
+                      {cards[cardItemIndex].translate}
+                    </div>
+                    <div className={style.card__content__right}>
+                      { imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' /> }
+                    </div>
                   </div>
-                  <div className={style.card__content__right}>
-                    {imgSrc &&
-                      <div>
-                        <img src={`${imgSrc}`} className={style.card__img} />
-                      </div>
-                    }
+                :
+                  <div className={style.card__content__text}>
+                    {cards[cardItemIndex].translate}
                   </div>
-                </div>
-              :
-                <div className={style.card__content__text}>        
-                  {props?.moduleData?.cards[cardItemIndex].translate}
-                </div>
               }
             </div>
 
@@ -137,10 +120,10 @@ export const CardItemInner = (props) => {
 
       <div className={style.cards__items__buttons}>
         <Link
-          to={`${SCREEN_CARDS}/${props.id}`}
+          to={`${SCREEN_CARDS}/${id}`}
           className={style.link__screen__cards}
-          moduleData={props.moduleData}
-          user={props.user}>
+          moduleData={{ module, cards }}
+          user={user}>
           🔗
         </Link>
       </div>

@@ -83,38 +83,29 @@ export const TestModule = () => {
             </div>
           </>
         }
-        {trueOrFalseCards && trueOrFalseCards.map((card, index) => {
-          return <CardTrueFalse cardId={card.cardId} translate={card.translate} value={card.value}
-            pathToFile={card.pathToFile} urlToImage={card.urlToImage} user={user} key={index}
-            isUserAnswer={card.isUserAnswer} userAnswer={card.userAnswer} countCards={countCards}
-            index={card.index} isShowResult={isShowResult} correctAnswer={card.correctAnswer}
-            correctValue={card.correctValue} isCorrectUserAnswered={card.isCorrectUserAnswered}
-            selected={card.selected} />
-        })}
-
-        {testCards && testCards.map((card, index) => {
-          return <CardChoiceAnswer cardId={card.cardId} translate={card.translate} user={user} key={index}
-            pathToFile={card.pathToFile} urlToImage={card.urlToImage} options={card.options}
-            countCards={countCards} index={card.index} isCorrectUserSelected={card.isCorrectUserSelected}
+        {trueOrFalseCards && trueOrFalseCards.map((card) => (
+          <CardTrueFalse {...card} user={user} key={card.cardId} countCards={countCards}
             isShowResult={isShowResult} />
-        })}
+        ))}
+
+        {testCards && testCards.map((card) => (
+          <CardChoiceAnswer {...card} user={user} key={card.cardId} countCards={countCards}
+            isShowResult={isShowResult} />
+        ))}
 
         {joinCards &&
           <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
             countCards={countCards} isShowResult={isShowResult} />
         }
 
-        {writeCards && writeCards.map((card, index) => {
-          return <TestWriteCard cardId={card.cardId} translate={card.translate} user={user}
-            pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={index} isShowResult={isShowResult}
-            countCards={countCards} index={card.index} userAnswer={card.userAnswer}
-            isCorrectUserAnswered={card.isCorrectUserAnswered} correctValue={card.correctValue} />
-        })}
+        {writeCards && writeCards.map((card) => (
+          <TestWriteCard {...card} user={user} key={card.cardId} isShowResult={isShowResult}
+            countCards={countCards} />
+        ))}
 
         {!isShowResult &&
           <div className={style.footer}>
             <img src={testImage} alt='' />
-            <p>All is ready! Submit?</p>
             <button onClick={onClickCheckModule}>Submit</button>
           </div>
         }

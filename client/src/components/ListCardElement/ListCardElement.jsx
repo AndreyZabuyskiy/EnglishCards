@@ -1,18 +1,16 @@
 import style from './ListCardElement.module.css';
 import { CardElement } from "../CardElement";
 
-export const ListCardElement = (props) => {
+export const ListCardElement = ({ moduleData, user }) => {
   return (
     <>
       <div className={style.count__cards}>
-        Terms in the module ({ props?.moduleData?.cards.length })
+        Terms in the module ({ moduleData?.cards.length })
       </div>
 
         <div>
-          {props?.moduleData?.cards.map((card, index) => {
-            return <CardElement key={index} value={card.value}
-              translate={card.translate} pathToFile={card.pathToFile}
-              urlToImage={card.urlToImage} user={props.user} />
+          {moduleData?.cards.map((card, index) => {
+            return <CardElement key={index} {...card} user={user} />
           })}
         </div>
     </>

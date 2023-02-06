@@ -7,6 +7,8 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
   user, countCards, index, isCorrectUserSelected }) => {
   const dispatch = useDispatch();
 
+  console.log('cardId -->', cardId);
+
   let imgSrc = '';
   if (pathToFile) {
     imgSrc = `${REACT_APP_API_URL}/${user.login}/${pathToFile}`;

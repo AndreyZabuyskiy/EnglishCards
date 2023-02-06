@@ -23,7 +23,7 @@ export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards
         </div>
         <div className={style.button__navigate__wrapper}>
           <button className={style.button__navigate} onClick={onClickButtonNavigate}>
-            Тест
+            Test
           </button>
           <div className={style.module__navigate} style={{display: isShowModuleNavigate ? 'block' : 'none' }}>
             <NavbarModuleNavigate moduleId={moduleId} />

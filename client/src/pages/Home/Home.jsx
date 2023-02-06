@@ -43,41 +43,41 @@ export const Home = () => {
         <Navbar />
       </div>
 
-      <div className={style.content}>
-        <div className={style.filter__inputs}>
-          <div className={style.filter}>
-            <div className={style.select__filter} onClick={onClickSelect}>{ option }</div>
-            <div className={style.options} style={{display: isShowOptions ? 'block' : 'none'}}>
-              <div className={style.option} onClick={() => onClickOption('Created')}>Created</div>
-              <div className={style.option} onClick={() => onClickOption('Recently viewed')}>Recently viewed</div>
+      {modules &&
+        <div className={style.content}>
+          <div className={style.filter__inputs}>
+            <div className={style.filter}>
+              <div className={style.select__filter} onClick={onClickSelect}>{option}</div>
+              <div className={style.options} style={{ display: isShowOptions ? 'block' : 'none' }}>
+                <div className={style.option} onClick={() => onClickOption('Created')}>Created</div>
+                <div className={style.option} onClick={() => onClickOption('Recently viewed')}>Recently viewed</div>
+              </div>
             </div>
+
+            <input className={style.input} type="text" placeholder="search modules..." />
           </div>
 
-          <input className={style.input} type="text" placeholder="search modules..." />
+          {modules?.map((item, index) => (
+            <>
+              {item.data.length !== 0 &&
+                <>
+                  <div className={style.dashboard__feed__group}>
+                    <p>{item.title}</p>
+                    <div className={style.line}></div>
+                  </div>
+                  {item.data.map((module) => (
+                    <StudyModule
+                      key={index}
+                      login={user.login}
+                      {...module}
+                    />
+                  ))}
+                </>
+              }
+            </>
+          ))}
         </div>
-
-        {modules?.map((item, index) => (
-          <>
-            {item.data.length !== 0 && 
-              <>
-                <div className={style.dashboard__feed__group}>
-                  <p>{item.title}</p>
-                  <div className={style.line}></div>
-                </div>
-                {item.data.map((module, idx) => (
-                  <StudyModule
-                    key={index}
-                    title={module.title}
-                    countWords={module.countWords}
-                    login={user.login}
-                    id={module._id}
-                  />
-                ))}
-              </>
-            }
-          </>
-        ))}
-      </div>
+      }
     </div>
   );
 }

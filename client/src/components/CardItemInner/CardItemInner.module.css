@@ -52,6 +52,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px 0px;
+}
+.card__back__content div img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 0px;
 }
 
 .card__header {
@@ -218,7 +225,7 @@
     margin-bottom: 20px;
   }
   .card__back {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .card__back div {
     width: 100%;
@@ -226,6 +233,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .card__back div .card__content__front {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .card__img {
     height: 80%;

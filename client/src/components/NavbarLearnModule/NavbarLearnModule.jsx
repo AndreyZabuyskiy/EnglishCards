@@ -22,25 +22,24 @@ export const NavbarLearnModule = ({ round, totalNumberCards, passedCards, onClic
       <div className={style.NavbarLearnModule}>
         <div className={style.item__left}>
           <div className={style.menu__memorization} onClick={onClickMenu}>
-            <p>Заучивание ↓</p>
+            <p>Learn ↓</p>
           </div>
           <ul className={style.menu__list} style={{ display: isShowMenu ? 'block' : 'none'}}>
-            <li><span>🗎</span> Карточки</li>
-            <li><span>🗎</span> Тест</li>
-            <li><span>🗎</span> Подбор</li>
+            <li><span>🗎</span> Cards</li>
+            <li><span>🗎</span> Test</li>
+            <li><span>🗎</span> Match</li>
             <div className={style.menu__line}></div>
-            <li>Главная</li>
-            <li>Поиск</li>
+            <li>Home</li>
           </ul>
         </div>
         <div>
           <button className={style.button__level} onClick={onClickExit}>
-            Этап {round}
+            Level {round}
           </button>
         </div>
         <div className={style.item__right}>
           <div className={style.menu__params__wrapper} onClick={onClickMenuParam}>
-            <span>Параметры</span>
+            <span>Options</span>
             <ul className={style.menu__list__param} style={{ display: isShowMenuParam ? 'block' : 'none'}}>
               <li>Learn</li>
               <li>Write</li>

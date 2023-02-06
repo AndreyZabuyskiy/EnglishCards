@@ -22,7 +22,7 @@ export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectA
         <div className={style.container}>
           <div className={style.header}>
             <div>
-              <span>Определения</span>
+              <span>Definition</span>
               <button className={style.button__sound}>🔈</button>
             </div>
             <div>⚑</div>
@@ -36,7 +36,7 @@ export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectA
             }
           </div>
           <div className={style.footer}>
-            <div className={style.footer__text}>Выбирите правильный термин</div>
+            <div className={style.footer__text}>Choose the right term</div>
             {options &&
               <div className={style.options}>
                 <div className={style.row__options}>
