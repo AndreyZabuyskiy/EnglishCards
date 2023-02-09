@@ -53,8 +53,8 @@
 
 .card__img {
   height: 104px;
+  width: 104px;
   border-radius: 10px;
-  width: auto;
   -o-object-fit: cover;
      object-fit: cover;
 }

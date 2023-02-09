@@ -3,6 +3,7 @@ import { REACT_APP_API_URL } from "../../http/baseUrl";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { matchingCard, removeMatchingCard } from "../../redux/actions/testModuleAction";
+import classNames from 'classnames';
 
 export const CardWordsSelection = ({ cards, values, user, countCards, isShowResult }) => {
   const dispatch = useDispatch();
@@ -83,8 +84,6 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
             imgSrc = `${card.urlToImage}`;
           }
 
-          const styleMatchingCard = `${style.matching}  ${card.selected ? style.card__selected : ''}`;
-
           return (
             <>
               {!isShowResult
@@ -92,7 +91,15 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
                 <div className={style.single__card} key={index}>
                   <div className={style.single__card__body}>
                     <div onClick={() => onClickMatchingButton(index)}
-                      className={`${styleMatchingCard} ${selectIndexCard === index ? style.matching__actual : ''}`}>
+                      className={classNames(`${style.matching}`,
+                        {
+                          [`${style.card__selected}`]: card.selected
+                        },
+                        {
+                          [`${style.matching__actual}`]: selectIndexCard === index
+                        }
+                      )}
+                    >
                       {!wasSelectedCard && selectIndexCard === index &&
                         <span>Select from the list below</span>
                       }

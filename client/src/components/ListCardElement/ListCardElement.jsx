@@ -9,9 +9,9 @@ export const ListCardElement = ({ moduleData, user }) => {
       </div>
 
         <div>
-          {moduleData?.cards.map((card, index) => {
-            return <CardElement key={index} {...card} user={user} />
-          })}
+          {moduleData?.cards.map((card, index) =>
+            <CardElement key={index} {...card} user={user} />
+          )}
         </div>
     </>
   );

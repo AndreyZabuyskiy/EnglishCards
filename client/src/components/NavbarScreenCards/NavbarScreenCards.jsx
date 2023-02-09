@@ -10,7 +10,7 @@ export const NavbarScreenCards = (props) => {
     <div className={style.container}>
       <div className={style.content}>
         <div>Cards</div>
-        <div >
+        <div>
           <div className={style.count__cards}>{props.currentCard + 1}/{props.countCards}</div>
           <div>{props.title}</div>
         </div>

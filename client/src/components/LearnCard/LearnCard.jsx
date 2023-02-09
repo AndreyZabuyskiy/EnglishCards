@@ -9,8 +9,7 @@ export const LearnCard = ({ roundId, card, options, user, isIncorrectAnswer, isC
         <div className={style.container}>
           {
             card.status === 0 
-            ?
-              <LearnTestCard roundId={roundId} card={card} user={user} options={options}
+            ? <LearnTestCard roundId={roundId} card={card} user={user} options={options}
                 isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                 optionSelectedUser={optionSelectedUser} onClickOption={onClickOption} />
             : <LearnWriteCard card={card} user={user} onClickCheckAnswer={onClickCheckAnswer}

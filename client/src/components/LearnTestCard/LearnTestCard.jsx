@@ -29,11 +29,7 @@ export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectA
           </div>
           <div className={style.content}>
             <div>{card.translate}</div>
-            {imgSrc &&
-              <div>
-                <img src={`${imgSrc}`} className={style.image} />
-              </div>
-            }
+            { imgSrc && <img src={`${imgSrc}`} className={style.image} alt='' /> }
           </div>
           <div className={style.footer}>
             <div className={style.footer__text}>Choose the right term</div>

@@ -4,18 +4,15 @@ import { Link } from 'react-router-dom';
 import { SCREEN_CARDS } from '../../utils/consts';
 import { StudiedCardsLine } from '../StudiedCardsLine';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
+import classNames from 'classnames';
 
 export const CardItemInner = ({id, module, cards, user}) => {
   const [cardItemIndex, setCardItemIndex] = useState(0);
   const [isFrontCard, setIsFrontCard] = useState(true);
 
-  let cardStyle = undefined;
-
-  if(isFrontCard){
-    cardStyle = `${style.card}`;
-  } else {
-    cardStyle = `${style.card} ${style.card__click}`;
-  }
+  let cardStyle = classNames(`${style.card}`, {
+    [`${style.card__click}`]: isFrontCard
+  });
 
   let imgSrc = '';
   if (cards[cardItemIndex].pathToFile) {
@@ -25,11 +22,9 @@ export const CardItemInner = ({id, module, cards, user}) => {
   }
 
   const onClickCard = () => {
-    if(isFrontCard){
-      cardStyle = `${style.card}`;
-    } else {
-      cardStyle = `${style.card} ${style.card__click}`;
-    }
+    cardStyle = classNames(`${style.card}`, {
+      [`${style.card__click}`]: isFrontCard
+    });
 
     setIsFrontCard(!isFrontCard);
   }
@@ -74,7 +69,12 @@ export const CardItemInner = ({id, module, cards, user}) => {
 
             <div className={style.card__footer}>
               <div onClick={(e) => clickBack(e)}
-                className={cardItemIndex === 0 ? `${style.card__footer__left} ${style.disabled}` : `${style.card__footer__left}`}>←</div>
+                className={classNames(`${style.card__footer__left}`, {
+                  [`${style.disabled}`]: cardItemIndex === 0
+                })}
+              >
+                ←
+              </div>
               <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>→</div>
             </div>
           </div>
@@ -111,7 +111,12 @@ export const CardItemInner = ({id, module, cards, user}) => {
 
             <div className={style.card__footer}>
               <div onClick={(e) => clickBack(e)}
-                className={cardItemIndex === 0 ? `${style.card__footer__left} ${style.disabled}` : `${style.card__footer__left}`}>←</div>
+                className={classNames(`${style.card__footer__left}`, {
+                  [`${style.disabled}`]: cardItemIndex === 0
+                })}
+              >
+                ←
+              </div>
               <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>→</div>
             </div>
           </div>

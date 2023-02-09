@@ -20,9 +20,7 @@ export const WriteModule = () => {
     isFinish, isCurrentAnswer, currentUserAnswer } = useSelector(state => {
     const { writeModuleReducer } = state;
     return writeModuleReducer;
-    });
-  
-  console.log('cards -->', cards);
+  });
   
   useEffect(() => {
     dispatch(fetchWriteModule(id));

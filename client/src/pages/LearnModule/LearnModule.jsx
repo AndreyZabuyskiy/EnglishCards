@@ -84,19 +84,16 @@ export const LearnModule = () => {
             {!isLearnModuleDone
               ?
                 !isLearnRoundDone
-                  ?
-                    <LearnCard roundId={round._id} card={card} user={user} options={options}
+                  ? <LearnCard roundId={round._id} card={card} user={user} options={options}
                       isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                       optionSelectedUser={optionSelectedUser} onClickOption={onClickOption}
                       onClickCheckAnswer={onClickCheckAnswer} correctAnswer={correctAnswer}
                       userAnswer={userAnswer} clickUnknowAnswer={clickUnknowAnswer}
                       isUnknowAnswer={isUnknowAnswer} />
-                  :
-                    <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
+                  : <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
                       lengthModuleCards={resultRound.lengthModuleCards}
                       countLearnedCards={resultRound.countLearnedCards} />
-              :
-                <ResultLearnModule onClickStartOverLearnModule={onClickStartOverLearnModule} />
+              : <ResultLearnModule onClickStartOverLearnModule={onClickStartOverLearnModule} />
             }
           </div>
           

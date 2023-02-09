@@ -20,7 +20,7 @@ export const CardWriteAnswer = (props) => {
         </div>
         {imgSrc &&
           <div className={style.img__container}>
-            <img className={style.card__img} src={`${imgSrc}`} />
+            <img className={style.card__img} src={`${imgSrc}`} alt='' />
           </div>
         }
       </div>

@@ -286,7 +286,7 @@ export const CardForm = (props) => {
               {_images.map(img => (
                 <div>
                   <button className={style.button__img} onClick={() => onClickImage(img)}>
-                    <img src={img} alt="image"></img>
+                    <img src={img} alt="image" />
                   </button>
                 </div>
               ))}

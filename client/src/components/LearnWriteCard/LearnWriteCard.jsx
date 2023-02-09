@@ -34,7 +34,7 @@ export const LearnWriteCard = ({ card, user, onClickCheckAnswer, isIncorrectAnsw
       </div>
       <div className={style.content}>
         <p>{card.translate}</p>
-        {imgSrc && <img src={`${imgSrc}`} className={style.image} /> }
+        {imgSrc && <img src={`${imgSrc}`} className={style.image} alt='' /> }
       </div>
       <div className={style.footer}>
         {isIncorrectAnswer || isCorrectAnswer || isUnknowAnswer

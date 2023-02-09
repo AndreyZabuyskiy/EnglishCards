@@ -5,7 +5,7 @@ export const SetPageInfo = (props) => {
   return (
     <div className={ style.page__information }>
       <div className={ style.user__info }>
-        <div> Автор </div>
+        <div>Автор</div>
         <div className={style.login}>{ props.user?.login }</div>
       </div>
 

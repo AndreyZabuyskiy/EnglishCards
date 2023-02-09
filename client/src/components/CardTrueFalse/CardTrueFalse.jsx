@@ -2,6 +2,7 @@ import style from './CardTrueFalse.module.css';
 import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
+import classNames from 'classnames';
 
 export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered, selected }) => {
   const dispatch = useDispatch();
@@ -43,14 +44,22 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
           <>
             <div className={style.text}>Choose the right option</div>
               <div className={style.buttons}>
-                <button onClick={() => isUserAnswer && userAnswer ? onClickUnselectTrueOrFalse()
+                <button onClick={() => isUserAnswer && userAnswer
+                  ? onClickUnselectTrueOrFalse()
                   : onClickSelectTrueOrFalse(true)}
-                  className={`${style.left__button} ${isUserAnswer && userAnswer ? style.selected : ''}`}>
+                  className={classNames(`${style.left__button}`, {
+                    [`${style.selected}`]: isUserAnswer && userAnswer
+                  })}
+                >
                   Correct
                 </button>
-                <button onClick={() => isUserAnswer && !userAnswer ? onClickUnselectTrueOrFalse()
+                <button onClick={() => isUserAnswer && !userAnswer
+                  ? onClickUnselectTrueOrFalse()
                   : onClickSelectTrueOrFalse(false)}
-                  className={`${style.right__button} ${isUserAnswer && !userAnswer ? style.selected : ''}`}>
+                  className={classNames(`${style.right__button}`, {
+                    [`${style.selected}`]: isUserAnswer && !userAnswer
+                  })}
+                >
                   Incorrect
                 </button>
               </div>
@@ -63,14 +72,26 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
             }
 
             <div className={style.result__buttons}>
-              <div className={`${style.left__button}
-                ${userAnswer && correctAnswer ? style.correct__answer : ''}
-                ${userAnswer && !correctAnswer ? style.incorrect__answer : ''}`}>
+              <div className={classNames(`${style.left__button}`,
+                {
+                  [`${style.correct__answer}`]: userAnswer && correctAnswer
+                },
+                {
+                  [`${style.incorrect__answer}`]: userAnswer && !correctAnswer
+                })}
+              >
                 Correct
               </div>
-              <div className={`${style.right__button}
-                ${!userAnswer && !correctAnswer ? style.correct__answer : ''}
-                ${!userAnswer && correctAnswer ? style.incorrect__answer : ''}`}>Incorrect</div>
+              <div className={classNames(`${style.right__button}`,
+                {
+                  [`${style.correct__answer}`]: !userAnswer && !correctAnswer
+                },
+                {
+                  [`${style.incorrect__answer}`]: !userAnswer && correctAnswer
+                })}
+              >
+                Incorrect
+              </div>
             </div>
 
             {!correctAnswer &&

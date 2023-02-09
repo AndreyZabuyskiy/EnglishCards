@@ -15,9 +15,7 @@ export const CardElement = (props) => {
         <div className={style.value}>{props.value}</div>
         <div className={style.card__translate}>
           <div className={style.translate}>{props.translate}</div>
-          {imgSrc &&
-            <div> <img src={`${imgSrc}`} className={style.card__img} /> </div>
-          }
+          {imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' />}
         </div>
       </div>
       <div className={style.actions__container}>

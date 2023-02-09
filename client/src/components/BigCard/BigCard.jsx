@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './BigCard.module.css';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
+import classNames from 'classnames';
 
 export const BigCard = (props) => {
   const [isFrontCard, setIsFrontCard] = useState(true);
@@ -12,20 +13,14 @@ export const BigCard = (props) => {
     imgSrc = `${props.urlToImage}`;
   }
 
-  let cardStyle = undefined;
-
-  if(isFrontCard){
-    cardStyle = `${style.card}`;
-  } else {
-    cardStyle = `${style.card} ${style.card__click}`;
-  }
+  let cardStyle = classNames(`${style.card}`, {
+    [`${style.card__click}`]: isFrontCard
+  });
 
   const onClickCard = () => {
-    if(isFrontCard){
-      cardStyle = `${style.card}`;
-    } else {
-      cardStyle = `${style.card} ${style.card__click}`;
-    }
+    cardStyle = classNames(`${style.card}`, {
+      [`${style.card__click}`]: isFrontCard
+    });
 
     setIsFrontCard(!isFrontCard);
   }
@@ -39,17 +34,16 @@ export const BigCard = (props) => {
             <div className={style.card__header__right}>Header content</div>
           </div>
 
-          {imgSrc ?
-          <div className={style.card__content__front}>
-            <div className={style.card__content__left}> { props.translate } </div>
-            <div className={style.card__content__right}>
-              <img src={`${imgSrc}`} className={style.card__img} />
-            </div>
-          </div>
-          :
-          <div className={style.card__content__text}>
-            { props.translate }
-          </div>
+          {imgSrc
+            ? <div className={style.card__content__front}>
+                <div className={style.card__content__left}> { props.translate } </div>
+                <div className={style.card__content__right}>
+                  <img src={`${imgSrc}`} className={style.card__img} alt='' />
+                </div>
+              </div>
+            : <div className={style.card__content__text}>
+                { props.translate }
+              </div>
           }
 
           <div className={style.card__footer}>

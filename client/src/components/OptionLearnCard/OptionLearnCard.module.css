@@ -13,6 +13,11 @@
   cursor: pointer;
 }
 
+.option__not__selected {
+  border: 2px solid #2c344e;
+  color: #6b7288;
+}
+
 .option__correct {
   background-color: #19804f;
   border: 2px solid #c8ecdb;
@@ -20,11 +25,6 @@
 
 .option__incorrect {
   border: 2px solid #c34632;
-}
-
-.option__not__selected {
-  border: 2px solid #2c344e;
-  color: #6b7288;
 }
 
 .option__number {
