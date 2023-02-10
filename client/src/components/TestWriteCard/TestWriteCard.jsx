@@ -2,9 +2,10 @@ import style from './TestWriteCard.module.css';
 import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { answerWriteCard } from '../../redux/actions/testModuleAction';
+import propTypes from 'prop-types';
 
 export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user, countCards, index,
-  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {
+  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {  
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -74,4 +75,17 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
       </div>
     </div>
   );
+}
+
+TestWriteCard.propTypes = {
+  cardId: propTypes.string,
+  translate: propTypes.string,
+  pathToFile: propTypes.string,
+  urlToImage: propTypes.string,
+  user: propTypes.object,
+  countCards: propTypes.number,
+  index: propTypes.number,
+  userAnswer: propTypes.string,
+  isShowResult: propTypes.bool,
+  correctValue: propTypes.string
 }

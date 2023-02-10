@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 import classNames from 'classnames';
+import propTypes from 'prop-types';
 
-export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered, selected }) => {
+export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -109,4 +110,21 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
       </div>
     </div>
   );
+}
+
+CardTrueFalse.propTypes = {
+  cardId: propTypes.string,
+  translate: propTypes.string,
+  value: propTypes.string,
+  pathToFile: propTypes.string,
+  urlToImage: propTypes.string,
+  user: propTypes.object,
+  isUserAnswer: propTypes.bool,
+  userAnswer: propTypes.bool,
+  index: propTypes.number,
+  countCards: propTypes.number,
+  isShowResult: propTypes.bool,
+  correctAnswer: propTypes.bool,
+  correctValue: propTypes.string,
+  isCorrectUserAnswered: propTypes.bool
 }

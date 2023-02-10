@@ -3,6 +3,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectOption, testUnselectOption } from '../../redux/actions/testModuleAction';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
+import propTypes from 'prop-types';
 
 export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlToImage, isShowResult,
   user, countCards, index, isCorrectUserSelected }) => {
@@ -124,4 +125,17 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
       </div>
     </div>
   );
+}
+
+CardChoiceAnswer.propTypes = {
+  cardId: propTypes.string,
+  translate: propTypes.string,
+  options: propTypes.array,
+  pathToFile: propTypes.string,
+  urlToImage: propTypes.string,
+  isShowResult: propTypes.bool,
+  user: propTypes.object,
+  countCards: propTypes.number,
+  index: propTypes.number,
+  isCorrectUserSelected: propTypes.bool
 }

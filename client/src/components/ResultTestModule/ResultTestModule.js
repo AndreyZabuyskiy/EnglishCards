@@ -1,9 +1,10 @@
 import style from './ResultTestModule.module.css';
 import diagram from '../../assets/test-result-diagram.webp';
 import fileImage from '../../assets/file-image.png';
+import propTypes from 'prop-types';
 
 export const ResultTestModule = ({ countCorrectUserAnswer, countIncorrectUserAnswer, onClickStartOverTest,
-  onClickMoveLearnModule }) => {
+  onClickMoveLearnModule }) => {  
   return (
     <div className={style.wrapper}>
       <div className={style.text}>You are making progress!</div>
@@ -49,3 +50,10 @@ export const ResultTestModule = ({ countCorrectUserAnswer, countIncorrectUserAns
     </div>
   );
 }
+
+ResultTestModule.propTypes = {
+  countCorrectUserAnswer: propTypes.number,
+  countIncorrectUserAnswer: propTypes.number,
+  onClickStartOverTest: propTypes.func,
+  onClickMoveLearnModule: propTypes.func
+};

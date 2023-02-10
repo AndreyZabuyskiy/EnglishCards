@@ -4,8 +4,15 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { matchingCard, removeMatchingCard } from "../../redux/actions/testModuleAction";
 import classNames from 'classnames';
+import propTypes from 'prop-types';
 
 export const CardWordsSelection = ({ cards, values, user, countCards, isShowResult }) => {
+  console.log('CardWordsSelection cards -->', cards);
+  console.log('CardWordsSelection values -->', values);
+  console.log('CardWordsSelection user -->', user);
+  console.log('CardWordsSelection countCards -->', countCards);
+  console.log('CardWordsSelection isShowResult -->', isShowResult);
+
   const dispatch = useDispatch();
 
   const [selectIndexCard, setSelectIndexCard] = useState(0);
@@ -174,4 +181,12 @@ export const CardWordsSelection = ({ cards, values, user, countCards, isShowResu
       }
     </div>
   );
+}
+
+CardWordsSelection.propTypes = {
+  cards: propTypes.array,
+  values: propTypes.array,
+  user: propTypes.object,
+  countCards: propTypes.number,
+  isShowResult: propTypes.bool
 }

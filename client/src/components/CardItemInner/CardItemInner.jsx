@@ -5,6 +5,7 @@ import { SCREEN_CARDS } from '../../utils/consts';
 import { StudiedCardsLine } from '../StudiedCardsLine';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import classNames from 'classnames';
+import propTypes from 'prop-types';
 
 export const CardItemInner = ({id, module, cards, user}) => {
   const [cardItemIndex, setCardItemIndex] = useState(0);
@@ -117,7 +118,9 @@ export const CardItemInner = ({id, module, cards, user}) => {
               >
                 ←
               </div>
-              <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>→</div>
+              <div onClick={(e) => clickForward(e)} className={`${style.card__footer__right}`}>
+                →
+              </div>
             </div>
           </div>
         </div>
@@ -136,4 +139,11 @@ export const CardItemInner = ({id, module, cards, user}) => {
       <div className={style.line}></div>
     </div>
   );
+}
+
+CardItemInner.propTypes = {
+  id: propTypes.string,
+  module: propTypes.object,
+  cards: propTypes.array,
+  user: propTypes.object
 }

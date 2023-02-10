@@ -3,6 +3,7 @@ import fileImage from '../../assets/file-image.png';
 import { NavbarModuleNavigate } from '../NavbarModuleNavigate';
 import { useNavigate } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
+import propTypes from 'prop-types';
 
 export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards, countCorrectUserAnswer,
   isShowResult, isShowModuleNavigate, setIsShowModuleNavigate }) => {
@@ -42,4 +43,15 @@ export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards
       {!isShowResult && <div className={style.line} style={{ width: `${widthLine}%` }}></div>}
     </div>
   );
+}
+
+NavbarTest.propTypes = {
+  moduleId: propTypes.string,
+  title: propTypes.string,
+  countCards: propTypes.number,
+  countUserAnsweredCards: propTypes.number,
+  countCorrectUserAnswer: propTypes.number,
+  isShowResult: propTypes.bool,
+  isShowModuleNavigate: propTypes.bool,
+  setIsShowModuleNavigate: propTypes.func
 }
