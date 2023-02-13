@@ -1,16 +1,17 @@
+import React from 'react';
 import style from './HeaderModuleForm.module.css';
 
-export const HeaderModuleForm = props => {
+export const HeaderModuleForm = React.memo(({ title, setTitle, description, setDescription }) => {
   return (
     <>
       <div className={style.header__content}>
         <input id="title" className={style.text__input}
           type="text" placeholder='Enter the title...'
-          value={props.title} onChange={props.setTitle} />
+          value={title} onChange={setTitle} />
         <label htmlFor="title" className={style.label}>Title</label>
         <input id={"description"} className={style.text__input}
           type="text" placeholder='Add description...'
-          value={props.description} onChange={props.setDescription} />
+          value={description} onChange={setDescription} />
         <label htmlFor="description" className={style.label}>Description</label>
       </div>
 
@@ -39,4 +40,4 @@ export const HeaderModuleForm = props => {
       </div>
     </>
   );
-}
+});

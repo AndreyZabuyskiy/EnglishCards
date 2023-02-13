@@ -4,8 +4,9 @@ import { testSelectOption, testUnselectOption } from '../../redux/actions/testMo
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
+import React from 'react';
 
-export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlToImage, isShowResult,
+export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathToFile, urlToImage, isShowResult,
   user, countCards, index, isCorrectUserSelected }) => {
   const dispatch = useDispatch();
 
@@ -125,7 +126,7 @@ export const CardChoiceAnswer = ({ cardId, translate, options, pathToFile, urlTo
       </div>
     </div>
   );
-}
+})
 
 CardChoiceAnswer.propTypes = {
   cardId: propTypes.string,

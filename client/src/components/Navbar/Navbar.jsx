@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { logout } from '../../redux/actions/authAction';
 import { NavbarModules } from '../';
+import React from 'react';
 
-export const Navbar = () => {
+export const Navbar = React.memo(() => {
   const [isShowModules, setIsShowModules] = useState();
 
   const user = useSelector(state => {
@@ -70,4 +71,4 @@ export const Navbar = () => {
       }
     </>
   );
-}
+});

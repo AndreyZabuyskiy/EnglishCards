@@ -22,7 +22,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(fetchModules());
-  }, []);
+  }, [dispatch]);
 
   const onClickForm = () => {
     setIsShowOptions(false);

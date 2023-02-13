@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { answerWriteCard } from '../../redux/actions/testModuleAction';
 import propTypes from 'prop-types';
+import React from 'react';
 
-export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user, countCards, index,
-  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {  
+export const TestWriteCard = React.memo(({ cardId, translate, pathToFile, urlToImage, user, countCards, index,
+  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -75,7 +76,7 @@ export const TestWriteCard = ({ cardId, translate, pathToFile, urlToImage, user,
       </div>
     </div>
   );
-}
+})
 
 TestWriteCard.propTypes = {
   cardId: propTypes.string,

@@ -4,8 +4,9 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 import { testSelectTrueOrFalseCard, testUnselectTrueOrFalseCard } from '../../redux/actions/testModuleAction';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
+import React from 'react';
 
-export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered }) => {
+export const CardTrueFalse = React.memo(({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -36,7 +37,7 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
         </div>
         <div className={style.content__value}>
           <div className={style.content__header}>Term</div>
-          <div className={style.value}>{ value }</div>
+          <div className={style.value}>{value}</div>
         </div>
       </div>
       <div className={style.footer}>
@@ -44,26 +45,26 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
           ?
           <>
             <div className={style.text}>Choose the right option</div>
-              <div className={style.buttons}>
-                <button onClick={() => isUserAnswer && userAnswer
-                  ? onClickUnselectTrueOrFalse()
-                  : onClickSelectTrueOrFalse(true)}
-                  className={classNames(`${style.left__button}`, {
-                    [`${style.selected}`]: isUserAnswer && userAnswer
-                  })}
-                >
-                  Correct
-                </button>
-                <button onClick={() => isUserAnswer && !userAnswer
-                  ? onClickUnselectTrueOrFalse()
-                  : onClickSelectTrueOrFalse(false)}
-                  className={classNames(`${style.right__button}`, {
-                    [`${style.selected}`]: isUserAnswer && !userAnswer
-                  })}
-                >
-                  Incorrect
-                </button>
-              </div>
+            <div className={style.buttons}>
+              <button onClick={() => isUserAnswer && userAnswer
+                ? onClickUnselectTrueOrFalse()
+                : onClickSelectTrueOrFalse(true)}
+                className={classNames(`${style.left__button}`, {
+                  [`${style.selected}`]: isUserAnswer && userAnswer
+                })}
+              >
+                Correct
+              </button>
+              <button onClick={() => isUserAnswer && !userAnswer
+                ? onClickUnselectTrueOrFalse()
+                : onClickSelectTrueOrFalse(false)}
+                className={classNames(`${style.right__button}`, {
+                  [`${style.selected}`]: isUserAnswer && !userAnswer
+                })}
+              >
+                Incorrect
+              </button>
+            </div>
           </>
           :
           <div>
@@ -96,21 +97,21 @@ export const CardTrueFalse = ({ cardId, translate, value, pathToFile, urlToImage
             </div>
 
             {!correctAnswer &&
-            <>
-              <div className={style.correct__user__answer__wrapper}>
-                <p>Correct answer</p>
-                <div className={style.correct__user__answer}>
-                  <span>{correctValue}</span>
+              <>
+                <div className={style.correct__user__answer__wrapper}>
+                  <p>Correct answer</p>
+                  <div className={style.correct__user__answer}>
+                    <span>{correctValue}</span>
+                  </div>
                 </div>
-              </div>
-            </>
+              </>
             }
           </div>
         }
       </div>
     </div>
   );
-}
+})
 
 CardTrueFalse.propTypes = {
   cardId: propTypes.string,

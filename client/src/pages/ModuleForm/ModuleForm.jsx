@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import style from './ModuleForm.module.css';
 import { Navbar, NavbarModuleForm, HeaderModuleForm, ListCreateCards } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -96,13 +96,13 @@ export const ModuleForm = () => {
     fetchModuleState();
   }, []);
 
-  const handleChangeTitle = e => {
+  const handleChangeTitle = React.useCallback((e) => {
     setTitle(e.target.value);
-  }
+  }, [])
 
-  const handleChangeDescription = e => {
+  const handleChangeDescription = React.useCallback(e => {
     setDescription(e.target.value);
-  }
+  }, []);
 
   const clickCreateModule = e => {
     if (isCreateModule) {

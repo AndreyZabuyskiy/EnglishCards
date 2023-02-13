@@ -1,6 +1,7 @@
 import style from './NavbarModuleForm.module.css';
+import React from 'react';
 
-export const NavbarModuleForm = () => {
+export const NavbarModuleForm = React.memo(() => {
   return (
     <div className={style.navbar}>
       <div className={style.container}>
@@ -9,4 +10,4 @@ export const NavbarModuleForm = () => {
       </div>
     </div>
   );
-}
+});
