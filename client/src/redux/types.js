@@ -5,7 +5,11 @@ export const LOGIN = 'LOGIN';
 export const LOADER_LOGIN_ON = 'LOADER_LOGIN_ON';
 export const LOADER_LOGIN_OFF = 'LOADER_LOGIN_OFF';
 export const CHECK_AUTH = 'CHECK_AUTH';
+
 export const FETCH_MODULES = 'FETCH_MODULES';
+export const FETCH_MODULES_ON = 'FETCH_MODULES_ON';
+export const FETCH_MODULES_OFF = 'FETCH_MODULES_OFF';
+
 export const FETCH_MODULE = 'FETCH_MODULE';
 export const CREATE_MODULE = 'CREATE_MODULE';
 export const UPDATE_MODULE = 'UPDATE_MODULE';

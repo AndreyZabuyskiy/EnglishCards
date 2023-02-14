@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StudyModule, Navbar } from "../../components";
+import { Navbar, HomeLoaderModules, HomeModules } from "../../components";
 import { fetchModules } from "../../redux/actions/modulesAction";
 import style from './Home.module.css';
 
@@ -15,9 +15,9 @@ export const Home = () => {
     return authReducer.user;
   });
 
-  const modules = useSelector(state => {
+  const { modules, isLoadModules } = useSelector(state => {
     const { modulesReducer } = state;
-    return modulesReducer.modules;
+    return modulesReducer;
   });
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export const Home = () => {
         <Navbar />
       </div>
 
-      {modules &&
         <div className={style.content}>
           <div className={style.filter__inputs}>
             <div className={style.filter}>
@@ -58,28 +57,11 @@ export const Home = () => {
 
             <input className={style.input} type="text" placeholder="search modules..." />
           </div>
-
-          {modules?.map((item, index) => (
-            <>
-              {item.data.length !== 0 &&
-                <>
-                  <div className={style.dashboard__feed__group}>
-                    <p>{item.title}</p>
-                    <div className={style.line}></div>
-                  </div>
-                  {item.data.map((module) => (
-                    <StudyModule
-                      key={index}
-                      login={user.login}
-                      {...module}
-                    />
-                  ))}
-                </>
-              }
-            </>
-          ))}
+        
+          {isLoadModules
+            ? <HomeModules modules={modules} user={user} />
+            : <HomeLoaderModules />}
         </div>
-      }
     </div>
   );
 }

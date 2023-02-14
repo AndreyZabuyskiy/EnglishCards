@@ -1,7 +1,9 @@
-import { FETCH_MODULES } from "../types";
+import { FETCH_MODULES, FETCH_MODULES_ON, FETCH_MODULES_OFF } from "../types";
 
 const initialState = {
-  modules: [],
+  modules: null,
+  isLoadModules: false,
+  messageErrorLoad: null,
   isCreateModule: false
 }
 
@@ -10,7 +12,22 @@ export const modulesReducer = (state = initialState, action) => {
     case FETCH_MODULES:
       return {
         ...state,
-        modules: action.data
+        isLoadModules: false,
+      }
+    
+    case FETCH_MODULES_ON:
+      return {
+        ...state,
+        modules: action.payload,
+        isLoadModules: true
+      }
+    
+    case FETCH_MODULES_OFF:
+      return {
+        ...state,
+        modules: null,
+        isLoadModules: true,
+        messageErrorLoad: action.payload
       }
     
     default:
