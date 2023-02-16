@@ -31,7 +31,8 @@ export const CardItemInner = ({id, module, cards, user}) => {
   }
 
   const clickBack = (e) => {
-    if(cardItemIndex > 0) { 
+    if (cardItemIndex > 0) { 
+      setIsFrontCard(false);
       setCardItemIndex(cardItemIndex - 1);
     }
     
@@ -39,7 +40,8 @@ export const CardItemInner = ({id, module, cards, user}) => {
   }
 
   const clickForward = (e) => {
-    if(cardItemIndex < cards.length - 1) {
+    if(cardItemIndex < cards.length - 1) { 
+      setIsFrontCard(false);
       setCardItemIndex(cardItemIndex + 1);
     }
     
