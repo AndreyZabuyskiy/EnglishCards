@@ -2,28 +2,33 @@ import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from 'config';
+import { v4 } from 'uuid';
+import mailService from './mailService.js';
+import tokenService from './tokenService.js';
 
-const generateJwt = (id, login) => {
+const generateJwt = (id, email) => {
   return jwt.sign(
-    { id, login },
+    { id, email },
     config.get('seckretKey'),
     {expiresIn: '24h'}
   );
 }
 
 class UserService {
-  async register (login, password) {
-    const candidate = await User.findOne({ login });
+  async register (email, password) {
+    const candidate = await User.findOne({ email });
     if(candidate) {
-      throw new Error(`User ${ login } is exists`);
+      throw new Error(`User ${ email } is exists`);
     }
 
     const hashPassword = await bcrypt.hash(password, 12);
-    const user = new User({ login, password: hashPassword });
+    const activationLink = v4();
+    const user = new User({ email, password: hashPassword, activationLink });
     await user.save();
+    await mailService.sendActivationMail(email, activationLink);
 
-    const token = generateJwt(user._id, login);
-    return token;
+    const tokens = tokenService.generateTokens(user._id, email);
+    return tokens;
   }
 
   async login (login, password) {

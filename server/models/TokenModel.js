@@ -1,7 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   refreshToken: { type: String, required: true }
 }, {
   timestamps: true
