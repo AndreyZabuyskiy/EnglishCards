@@ -10,11 +10,18 @@ class UserController {
         return next(ApiError.badRequest("Incorrect login or password"));
       }
   
-      const { login, password } = req.body;
-      const token = await userService.register(login, password);
-      res.status(201).json({ token });
-    } catch (e) {
-      next(ApiError.badRequest(e.message));
+      const { email, password } = req.body;
+      const userData = await userService.register(email, password);
+      res.cookie('refreshToken', userData.refreshToken,
+      {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
+      
+      res.status(201).json(userData);
+    } catch (err) {
+      console.log('error -->', err);
+      next(ApiError.badRequest(err));
     }
   }
 

@@ -1,13 +1,9 @@
-class UserDto {
-  email;
-  id;
-  isActivated;
+export class UserDto {
+  email; id; isActivated;
 
-  constructor(model) {
-    this.email = model.email;
-    this.id = model._id;
-    this.isActivated = model.isActivated;
+  constructor(email, _id, isActivated) {
+    this.email = email;
+    this.id = _id;
+    this.isActivated = isActivated;
   }
 }
-
-export default new UserDto;
