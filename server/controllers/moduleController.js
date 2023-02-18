@@ -69,6 +69,10 @@ class ModuleController {
       return next(ApiError.badRequest("Not valid data"));
     }
 
+    //console.log('<-- createModule -->');
+    //const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+    //console.log('userData -->', userData);
+
     const { title, description, cards } = req.body;
     const userId = req.user.id;
         

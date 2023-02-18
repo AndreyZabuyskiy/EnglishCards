@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", authMiddleware, moduleController.getModules);
 router.get("/:id", authMiddleware, moduleController.viewModule);
 
-router.post("/", authMiddleware, moduleValidation, moduleController.createModule);
+router.post("/", authMiddleware, moduleController.createModule);
 router.post("/upload-image", authMiddleware, moduleController.uploadImage);
 router.post("/visited-modules", authMiddleware, moduleController.getVisitedModules);
 
