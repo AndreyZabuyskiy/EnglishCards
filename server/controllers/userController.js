@@ -40,6 +40,18 @@ class UserController {
     }
   }
 
+  async activate(req, res, next) {
+    const activationLink = req.params.link;
+
+    await userService.activate(activationLink)
+    .then(responseService => {
+      res.redirect(progress.env.API_URL);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
   async check(req, res, next) {
     try {
       const { id, login } = req.user;
