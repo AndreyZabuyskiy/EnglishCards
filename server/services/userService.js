@@ -37,19 +37,22 @@ class UserService {
     return { ...tokens, user: userDto };
   }
 
-  async login (login, password) {
-    const user = await User.findOne({ login });
+  async login (email, password) {
+    const user = await User.findOne({ email });
     if (!user) {
-      throw new Error(`Invalid login or password`);
+      throw new Error(`Invalid email or password`);
     }
 
     let comparePassword = bcrypt.compareSync(password, user.password);
     if(!comparePassword) {
-      throw new Error(`Invalid login or password`);
+      throw new Error(`Invalid email or password`);
     }
 
-    const token = generateJwt(user._id, login);
-    return token;
+    const userDto = new UserDto(user.email, user._id, user.isActivated);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return { ...tokens, user: userDto };
   }
 
   async activate(activationLink) {

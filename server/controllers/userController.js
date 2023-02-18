@@ -32,8 +32,9 @@ class UserController {
         return next(ApiError.badRequest("Incorrect login or password"));
       }
       
-      const { login, password } = req.body;
-      const token = await userService.login(login, password);
+      const { email, password } = req.body;
+      const token = await userService.login(email, password);
+
       res.status(200).json({ token }); 
     } catch (e) {
       next(ApiError.badRequest(e.message));
@@ -44,7 +45,7 @@ class UserController {
     const activationLink = req.params.link;
 
     await userService.activate(activationLink)
-    .then(responseService => {
+    .then(_ => {
       res.redirect(progress.env.API_URL);
     })
     .catch(e => {
