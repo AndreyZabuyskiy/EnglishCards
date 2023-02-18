@@ -6,6 +6,7 @@ import { v4 } from 'uuid';
 import mailService from './mailService.js';
 import tokenService from './tokenService.js';
 import { UserDto } from "../dtos/UserDto.js";
+import ApiError from '../error/ApiError.js';
 
 const generateJwt = (id, email) => {
   return jwt.sign(
@@ -74,6 +75,26 @@ class UserService {
   async check (id, login) {
     const token = generateJwt(id, login);
     return token;
+  }
+
+  async refresh(refreshToken) {
+    if (!refreshToken) {
+      throw ApiError.badRequest();
+    }
+
+    const userData = tokenService.validateRefreshToken(refreshToken);
+    const tokenFromDb = await tokenService.findToken(refreshToken);
+
+    if (!userData || tokenFromDb) {
+      throw ApiError.badRequest();
+    }
+
+    const user = await User.findById(userData.id);
+    const userDto = new UserDto(user.email, user._id, user.isActivated);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return { ...tokens, user: userDto };
   }
 }
 

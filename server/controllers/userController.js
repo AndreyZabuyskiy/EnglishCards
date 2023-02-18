@@ -72,6 +72,23 @@ class UserController {
     });
   }
 
+  async refresh(req, res, next) {
+    const { refreshToken } = req.body;
+    
+    await userService.refresh(refreshToken)
+    .then(responseService => {
+      const userData = responseService;
+      res.cookie('refreshToken', userData.refreshToken,
+      {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
   async check(req, res, next) {
     try {
       const { id, login } = req.user;
