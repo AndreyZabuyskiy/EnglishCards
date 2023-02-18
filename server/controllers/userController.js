@@ -33,9 +33,14 @@ class UserController {
       }
       
       const { email, password } = req.body;
-      const token = await userService.login(email, password);
+      const userData = await userService.login(email, password);
+      res.cookie('refreshToken', userData.refreshToken,
+      {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
 
-      res.status(200).json({ token }); 
+      res.status(200).json(userData); 
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -47,6 +52,20 @@ class UserController {
     await userService.activate(activationLink)
     .then(_ => {
       res.redirect(progress.env.API_URL);
+    })
+    .catch(e => {
+      next(ApiError.badRequest(e.message));
+    });
+  }
+
+  async logout(req, res, next) {
+    const { refreshToken } = req.cookies;
+
+    await userService.logout(refreshToken)
+    .then(responseService => {
+      const token = responseService;
+      res.clearCookie('refreshToken');
+      return res.json(token);
     })
     .catch(e => {
       next(ApiError.badRequest(e.message));

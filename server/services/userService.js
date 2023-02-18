@@ -66,6 +66,11 @@ class UserService {
     await user.save();
   }
 
+  async logout(refreshToken) {
+    const token = await tokenService.removeToken(refreshToken);
+    return token;
+  }
+
   async check (id, login) {
     const token = generateJwt(id, login);
     return token;
