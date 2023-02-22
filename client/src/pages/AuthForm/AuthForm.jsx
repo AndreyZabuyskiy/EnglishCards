@@ -18,11 +18,11 @@ export const AuthForm = () => {
 
   const onSubmit = (data) => {
     if (isLogin) {
-      dispatch(loginAction(data.login, data.password));
+      dispatch(loginAction(data.email, data.password));
+      navigate(`${HOME_ROUTE}`);
     } else {
-      dispatch(registerAction(data.login, data.password));
+      dispatch(registerAction(data.email, data.password));
     }
-    navigate(`${HOME_ROUTE}`);
   }
   
   return (
@@ -36,21 +36,21 @@ export const AuthForm = () => {
           <img src={userProfileImage} alt="" className={style.img} />
         
           <div className={style.title}>
-            {isLogin ? "User log in" : "User registeration"}
+            {isLogin ? "User log in" : "User registration"}
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.input__container}>
-              <input className={style.input} type="text" name="login" placeholder='login...'
-                {...register('login', {
+              <input className={style.input} type="text" name="email" placeholder='email...'
+                {...register('email', {
                   required: '*required field',
                   minLength: {
                     value: 4,
-                    message: 'Login must be at least 4 characters long'
+                    message: 'Email must be at least 4 characters long'
                   }
                 })}
               />
-              {errors.login &&
-                <div className={style.error}>{errors.login.message}</div>
+              {errors.email &&
+                <div className={style.error}>{errors.email.message}</div>
               }
             </div>
             <div className={style.input__container}>

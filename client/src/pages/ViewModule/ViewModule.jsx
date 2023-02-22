@@ -26,6 +26,8 @@ export const ViewModule = () => {
     return authReducer.user;
   });
 
+  console.log('ViewModule user -->', user);
+
   return (
     <>
       <Navbar />

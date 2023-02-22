@@ -5,11 +5,10 @@ import { registerValidation, loginValidation } from '../validations/auth.js';
 
 const router = new Router();
 
+router.get("/activate/:link", userController.activate);
+router.get("/refresh", userController.refresh);
 router.post("/registration", registerValidation, userController.register);
 router.post("/login", loginValidation, userController.login);
 router.post("/logout", userController.logout);
-router.get("/auth", authMiddleware, userController.check);
-router.get("/activate/:link", userController.activate);
-router.get("/refresh", userController.refresh);
 
 export default router;

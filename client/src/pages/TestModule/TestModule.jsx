@@ -58,6 +58,11 @@ export const TestModule = () => {
     setIsShowModuleNavigate(prev => false);
   }
 
+  console.log('trueOrFalseCards', trueOrFalseCards);
+  console.log('testCards', testCards);
+  console.log('joinCards', joinCards);
+  console.log('writeCards', writeCards);
+
   return (
     <div className={style.container} onClick={onClickForm}>
       <NavbarTest moduleId={id} title={title} countCards={countCards} isShowResult={isShowResult}

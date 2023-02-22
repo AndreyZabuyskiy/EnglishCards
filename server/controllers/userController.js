@@ -7,7 +7,7 @@ class UserController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()){
-        return next(ApiError.badRequest("Incorrect login or password"));
+        return next(ApiError.badRequest("Incorrect email or password"));
       }
   
       const { email, password } = req.body;
@@ -51,7 +51,7 @@ class UserController {
 
     await userService.activate(activationLink)
     .then(_ => {
-      res.redirect(progress.env.API_URL);
+      res.redirect('http://localhost:3000/home');
     })
     .catch(e => {
       next(ApiError.badRequest(e.message));
@@ -73,29 +73,20 @@ class UserController {
   }
 
   async refresh(req, res, next) {
-    const { refreshToken } = req.body;
-    
-    await userService.refresh(refreshToken)
-    .then(responseService => {
-      const userData = responseService;
+    try {
+      const { refreshToken } = req.cookies;
+      
+      const userData = await userService.refresh(refreshToken);
+
       res.cookie('refreshToken', userData.refreshToken,
       {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true
       });
-    })
-    .catch(e => {
-      next(ApiError.badRequest(e.message));
-    });
-  }
-
-  async check(req, res, next) {
-    try {
-      const { id, login } = req.user;
-      const token = await userService.check(id, login);
-      return res.status(200).json({ token });
+      
+      return res.json(userData);
     } catch (e) {
-      next(ApiError.badRequest(e.message));
+      next(e);
     }
   }
 }

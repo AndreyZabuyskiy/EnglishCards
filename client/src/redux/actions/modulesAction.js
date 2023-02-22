@@ -9,7 +9,6 @@ export function fetchModules() {
       });
 
       const response = await fetchModulesApi();
-
       dispatch({
         type: FETCH_MODULES_ON,
         payload: response

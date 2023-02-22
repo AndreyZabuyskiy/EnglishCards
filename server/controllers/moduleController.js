@@ -5,30 +5,14 @@ import { validationResult } from 'express-validator';
 import config from 'config';
 
 class ModuleController {
-  async getModules (req, res, next) {
-    const userId = req.user.id;
-
-    await moduleService.getModulesByUser(userId)
-    .then(serviceResponse => {
-      /*const _modules = modules.map(item => {
-        return {
-          module: item,
-          request: {
-            type: "GET",
-            url: `http://localhost:${config.get('port')}/api/module/`
-          }
-        }
-      })*/
-      
-      /*const response = {
-        count: modules.length,
-        modules: _modules
-      }*/
-      res.status(200).json(serviceResponse);
-    })
-    .catch(e => {
-      next(ApiError.badRequest(e.message));
-    });
+  async getModules(req, res, next) {
+    try {
+      const userId = req.user.id;
+      const modules = await moduleService.getModulesByUser(userId);
+      res.status(200).json(modules);
+    } catch (e) {
+      next(e);
+    }
   }
 
   async viewModule(req, res, next) {
@@ -51,15 +35,13 @@ class ModuleController {
   }
 
   async getVisitedModules(req, res, next) {
-    const userId = req.user.id;
-
-    await moduleService.getVisitedModules(userId)
-      .then((responseService) => {
-        res.status(200).json(responseService);
-      })
-      .catch(e => {
-        next(ApiError.badRequest(e.message));
-      });
+    try {
+      const userId = req.user.id;
+      const modules = await moduleService.getVisitedModules(userId);
+      res.status(200).json(modules);
+    } catch (e) {
+      next(e);
+    }
   }
 
   async createModule (req, res, next) {
@@ -68,11 +50,7 @@ class ModuleController {
       console.log('errors --> ', errors);
       return next(ApiError.badRequest("Not valid data"));
     }
-
-    //console.log('<-- createModule -->');
-    //const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-    //console.log('userData -->', userData);
-
+    
     const { title, description, cards } = req.body;
     const userId = req.user.id;
         

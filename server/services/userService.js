@@ -83,10 +83,9 @@ class UserService {
     }
 
     const userData = tokenService.validateRefreshToken(refreshToken);
-    const tokenFromDb = await tokenService.findToken(refreshToken);
 
-    if (!userData || tokenFromDb) {
-      throw ApiError.badRequest();
+    if (!userData) {
+      throw ApiError.unautharized();
     }
 
     const user = await User.findById(userData.id);

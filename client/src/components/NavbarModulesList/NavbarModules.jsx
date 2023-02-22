@@ -20,7 +20,7 @@ export const NavbarModules = () => {
   return (
     <div className={style.container}>
       <div className={style.modules}>
-        {modules && modules.map((_module, index) => (
+        {modules && modules.length > 0 && modules.map((_module, index) => (
           <Link to={`${HOME_ROUTE}/${_module?.module?._id}`}
             className={style.module} key={index}>
             <div>{ _module?.module?.title }</div>

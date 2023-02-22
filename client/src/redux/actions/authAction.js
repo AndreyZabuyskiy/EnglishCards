@@ -1,10 +1,10 @@
 import { REGISTER, LOGIN, CHECK_AUTH, LOGOUT } from '../types';
-import { registerApi, loginApi, checkApi } from "../../http/userApi";
-import Cookies from "js-cookie";
+import { registerApi, loginApi, checkApi, logoutApi } from "../../http/userApi";
 
-export function registerAction(login, password) {
+export function registerAction(email, password) {
   return async dispatch => {
-    const response = await registerApi(login, password);
+    const response = await registerApi(email, password);
+
     dispatch({
       type: REGISTER,
       data: response
@@ -22,22 +22,24 @@ export function loginAction(login, password) {
   }
 }
 
-export function checkAuth() {
+export function logout() {
   return async dispatch => {
-    const response = await checkApi();
+    await logoutApi();
+    localStorage.removeItem('token');
+
     dispatch({
-      type: CHECK_AUTH,
-      data: response
+      type: LOGOUT
     });
   }
 }
 
-export function logout() {
+export function checkAuth() {
   return async dispatch => {
-    Cookies.remove('token');
+    const user = await checkApi();
 
     dispatch({
-      type: LOGOUT
+      type: CHECK_AUTH,
+      data: user
     });
   }
 }

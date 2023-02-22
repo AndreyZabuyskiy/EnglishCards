@@ -7,21 +7,24 @@ import { checkAuth } from '../redux/actions/authAction';
 import { authRoutes, publicRoutes } from '../routers';
 
 const AppRouter = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector(state => {
     const { authReducer } = state;
     return authReducer.user;
   });
 
-  const defaultPage = user !== undefined ? <Home /> : <AuthForm />;
-  const dispatch = useDispatch();
+  const defaultPage = user && user?.isActivated ? <Home /> : <AuthForm />;
   
   useEffect(() => {
-    dispatch(checkAuth());
-  }, []);
+    if (localStorage.getItem('token')) {
+      dispatch(checkAuth());
+    }
+  }, [dispatch]);
 
   return (
     <Routes>
-      {user && authRoutes.map(({ path, Component }) => 
+      {user && user?.isActivated && authRoutes.map(({ path, Component }) => 
         <Route key={ path } path={ path } element={<Component />} />
       )}
 

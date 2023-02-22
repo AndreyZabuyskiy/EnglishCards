@@ -13,7 +13,7 @@ export const HomeModules = ({ modules, user }) => {
                 <div className={style.line}></div>
               </div>
               {item.data.map((module) => (
-                <StudyModule key={index} login={user.login} {...module} />
+                <StudyModule key={index} email={user.email} {...module} />
               ))}
             </>
           }

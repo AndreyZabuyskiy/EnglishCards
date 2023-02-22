@@ -17,7 +17,7 @@ export const CardItemInner = ({id, module, cards, user}) => {
 
   let imgSrc = '';
   if (cards[cardItemIndex].pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${user.login}/${cards[cardItemIndex].pathToFile}`;
+    imgSrc = `${REACT_APP_API_URL}/${user.email}/${cards[cardItemIndex].pathToFile}`;
   } else if (cards[cardItemIndex].urlToImage) {
     imgSrc = `${cards[cardItemIndex].urlToImage}`;
   }
