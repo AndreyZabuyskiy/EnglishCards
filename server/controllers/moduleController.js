@@ -79,6 +79,10 @@ class ModuleController {
     const { title, description, cards } = req.body;
     const userId = req.user.id;
 
+    console.log('ModuleController updateModule title -->', title);
+    console.log('ModuleController updateModule description -->', description);
+    console.log('ModuleController updateModule cards -->', cards);
+
     await moduleService.updateModule(userId, id, title, description, cards)
       .then(studyModule => {
         return res.status(200).json({

@@ -87,9 +87,9 @@ export const ModuleForm = () => {
     async function fetchModuleState() {
       if (!isCreateModule) {
         const response = await fetchModuleByIdApi(params.id);
-        setCards(response.cards);
-        setTitle(response.module.title);
-        setDescription(response.module.description);
+        setCards(response.data.cards);
+        setTitle(response.data.module.title);
+        setDescription(response.data.module.description);
       }
     }
 

@@ -20,13 +20,13 @@ export const ViewModule = () => {
     const { moduleReducer } = state;
     return moduleReducer.module;
   });
+  
+  console.log('ViewModule moduleData -->', moduleData);
 
   const user = useSelector(state => {
     const { authReducer } = state;
     return authReducer.user;
   });
-
-  console.log('ViewModule user -->', user);
 
   return (
     <>

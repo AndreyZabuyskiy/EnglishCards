@@ -132,7 +132,6 @@ class ModuleService {
   async viewModule (userId, moduleId) {
     const module = await StudyModule.findById({ _id: moduleId });
     const cards = await Card.find({ module: moduleId });
-
     await this.addOrUpdateUserVisitedModule(userId, moduleId);
     return { module, cards };
   }
@@ -197,16 +196,17 @@ class ModuleService {
     const findCards = await Card.find({ module: moduleId });
     findCards.map(async (card) => await Card.findByIdAndDelete(card._id));
 
-    cards.map(async card => {
+    await Promise.all(cards.map(async card => {
       const cardDoc = new Card({
         value: card.value,
         translate: card.translate,
-        imgUrl: card.imgUrl,
+        pathToFile: card.pathToFile,
+        urlToImage: card.urlToImage,
         module: moduleId
       });
 
       await cardDoc.save();
-    });
+    }));
 
     return { module: updateModule, cards };
   }

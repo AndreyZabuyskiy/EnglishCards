@@ -20,5 +20,6 @@ export const moduleValidation = [
     .notEmpty().withMessage('Translate cannot be empty')
     .isString().withMessage('Translate must be a string')
     .isLength({ max: 30 }).withMessage('Translate must be no more than 30 characters'),
-  body('cards.*.pathToFile').optional()
+  body('cards.*.pathToFile').optional(),
+  body('cards.*.urlToImage').optional()
 ]

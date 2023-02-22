@@ -14,7 +14,7 @@ export function createModule(module) {
         urlToImage: module.cards[card].urlToImage
       });
     }
-    
+
     const createdModule = {
       title: module.title,
       description: module.description,
@@ -45,7 +45,9 @@ export function updateModule(id, module) {
       cards.push({
         value: module.cards[card].value,
         translate: module.cards[card].translate,
-        imgUrl: module.cards[card].imgUrl
+        pathToFile: module.cards[card].pathToFile,
+        isUrlImage: module.cards[card].isUrlImage,
+        urlToImage: module.cards[card].urlToImage
       });
     }
     
@@ -56,9 +58,11 @@ export function updateModule(id, module) {
     }
 
     const response = await updateModuleApi(id, createdModule);
+    console.log('updateModule response -->', response);
+
     dispatch({
       type: UPDATE_MODULE,
-      data: response
+      data: response.data.module._id
     });
   }
 }
