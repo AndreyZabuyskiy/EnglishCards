@@ -30,7 +30,7 @@ export const TestModule = () => {
     listQuestions, countCorrectUserAnswer, countIncorrectUserAnswer } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
-  });
+    });
 
   let countUserAnsweredCards = 0;
   countUserAnsweredCards += trueOrFalseCards?.filter(card => card.isUserAnswer).length;
@@ -99,7 +99,7 @@ export const TestModule = () => {
             isShowResult={isShowResult} />
         ))}
 
-        {joinCards &&
+        {joinCards && joinCards.values.length > 0 && joinCards.cards.length > 0 &&
           <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
             countCards={countCards} isShowResult={isShowResult} />
         }

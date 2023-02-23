@@ -7,7 +7,7 @@ export function getTestModule(moduleId) {
     let index = 1;
 
     const trueOrFalseCards = [];
-    response.groups.trueOrFalseCards.forEach(card => {
+    response.groups?.trueOrFalseCards.forEach(card => {
       trueOrFalseCards.push({
         ...card,
         index: index++,
@@ -17,7 +17,7 @@ export function getTestModule(moduleId) {
     });
 
     const testCards = [];
-    response.groups.testCards.forEach(card => {
+    response.groups?.testCards.forEach(card => {
       const options = [];
       card.options.forEach(option => {
         options.push({
@@ -40,26 +40,28 @@ export function getTestModule(moduleId) {
       values: []
     }
 
-    response.groups.joinCards.cards.forEach(card => {
-      joinCards.cards.push({
-        cardId: card.cardId,
-        translate: card.translate,
-        pathToFile: card.pathToFile,
-        urlToImage: card.urlToImage,
-        selected: false,
-        userAnswer: '',
-        indexValue: null,
-        index: index++,
-        isUserAnswer: false
+    if(response.groups.joinCards.length > 0) {
+      response.groups.joinCards.cards.forEach(card => {
+        joinCards.cards.push({
+          cardId: card.cardId,
+          translate: card.translate,
+          pathToFile: card.pathToFile,
+          urlToImage: card.urlToImage,
+          selected: false,
+          userAnswer: '',
+          indexValue: null,
+          index: index++,
+          isUserAnswer: false
+        });
       });
-    });
 
-    response.groups.joinCards.values.forEach(value => {
-      joinCards.values.push({
-        value: value,
-        selected: false
+      response.groups.joinCards.values.forEach(value => {
+        joinCards.values.push({
+          value: value,
+          selected: false
+        });
       });
-    });
+    }
 
     const writeCards = [];
     response.groups.writeCards.forEach(card => {
