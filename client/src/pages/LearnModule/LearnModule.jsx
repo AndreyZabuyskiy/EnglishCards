@@ -13,9 +13,6 @@ export const LearnModule = () => {
   const navigate = useNavigate()
   const { id } = useParams();
 
-  const [isShowMenu, setIsShowMenu] = useState(false);
-  const [isShowMenuParam, setIsShowMenuParam] = useState(false);
-
   useEffect(() => {
     dispatch(fetchLearnModule(id));
   }, []);
@@ -65,20 +62,13 @@ export const LearnModule = () => {
     dispatch(unknowAnswer(cardId));
   }
 
-  const clickForm = () => {
-    setIsShowMenu(prev => false);
-    setIsShowMenuParam(false);
-  }
-
   return (
     <>
       {round &&
-        <div className={style.container} onClick={clickForm}>
+        <div className={style.container}>
           <NavbarLearnModule round={round.round} totalNumberCards={round.totalNumberCards}
             passedCards={round.passedCards} onClickExit={onClickExit}
-            isLearnRoundDone={isLearnRoundDone} isLearnModuleDone={isLearnModuleDone}
-            isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu}
-            isShowMenuParam={isShowMenuParam} setIsShowMenuParam={setIsShowMenuParam} />
+            isLearnRoundDone={isLearnRoundDone} isLearnModuleDone={isLearnModuleDone} />
 
           <div className={style.content}>
             {!isLearnModuleDone

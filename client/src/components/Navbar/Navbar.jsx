@@ -2,32 +2,43 @@ import { Link, useNavigate } from 'react-router-dom';
 import style from './Navbar.module.css';
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, CREATE_MODULE } from '../../utils/consts';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { logout } from '../../redux/actions/authAction';
 import { NavbarModules } from '../';
 import React from 'react';
 
 export const Navbar = React.memo(() => {
-  const [isShowModules, setIsShowModules] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const modulesRef = useRef();
+
+  const [visibleModules, setVisibleModules] = useState(false);
 
   const user = useSelector(state => {
     const { authReducer } = state;
     return authReducer.user;
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const clickLogout = () => {
     dispatch(logout());
     navigate(LOGIN_ROUTE);
   }
 
-  useEffect(() => { }, [user]);
+  const handleOutsideModules = (e) => {
+    const path = e.composedPath();
 
-  const onClickYourLibrary = () => {
-    setIsShowModules(prev => !prev);
+    if (!path.includes(modulesRef.current)) {
+      setVisibleModules(false);
+    } else {
+      setVisibleModules(prev => !prev);
+    }
   }
+
+  useEffect(() => {
+    document.body.addEventListener('click', handleOutsideModules);
+  }, []);
+
+  useEffect(() => { }, [user]);
 
   return (
     <>
@@ -39,10 +50,10 @@ export const Navbar = React.memo(() => {
               <Link className={style.button__main} to={HOME_ROUTE}>Home</Link>
             </div>
             <div className={style.your__library}
-              style={{ borderBottom: isShowModules ? '3px solid #a8b1ff' : '' }}>
-              <button onClick={onClickYourLibrary}>Modules</button>
+              style={{ borderBottom: visibleModules ? '3px solid #a8b1ff' : '' }}>
+              <button ref={modulesRef}>Modules</button>
               <div className={style.modules__lists__wrapper}
-                style={{ display: isShowModules ? 'block' : 'none' }} >
+                style={{ display: visibleModules ? 'block' : 'none' }} >
                 <NavbarModules />
               </div>
             </div>

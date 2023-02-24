@@ -4,17 +4,30 @@ import { NavbarModuleNavigate } from '../NavbarModuleNavigate';
 import { useNavigate } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
 import propTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 
 export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards, countCorrectUserAnswer,
-  isShowResult, isShowModuleNavigate, setIsShowModuleNavigate }) => {
-  const navigate = useNavigate();
-  
+  isShowResult }) => {
   const widthLine = countUserAnsweredCards / countCards * 100;
+  
+  const navigate = useNavigate();
+  const navigateRef = useRef();
 
-  const onClickButtonNavigate = (e) => {
-    e.stopPropagation();
-    setIsShowModuleNavigate(prev => !prev);
+  const [visibleNavigate, setVisibleNavigate] = useState(false);
+
+  const handleOutsideClickNavigate = (e) => {
+    const path = e.composedPath();
+
+    if (!path.includes(navigateRef.current)) {
+      setVisibleNavigate(false);
+    } else {
+      setVisibleNavigate(prev => !prev);
+    }
   }
+  
+  useEffect(() => {
+    document.body.addEventListener('click', handleOutsideClickNavigate);
+  }, []);
 
   return (
     <div className={style.wrapper}>
@@ -23,10 +36,10 @@ export const NavbarTest = ({ moduleId, title, countCards, countUserAnsweredCards
           <img className={style.img} src={fileImage} alt=''/>
         </div>
         <div className={style.button__navigate__wrapper}>
-          <button className={style.button__navigate} onClick={onClickButtonNavigate}>
+          <button ref={navigateRef} className={style.button__navigate}>
             Test
           </button>
-          <div className={style.module__navigate} style={{display: isShowModuleNavigate ? 'block' : 'none' }}>
+          <div className={style.module__navigate} style={{display: visibleNavigate ? 'block' : 'none' }}>
             <NavbarModuleNavigate moduleId={moduleId} />
           </div>
         </div>

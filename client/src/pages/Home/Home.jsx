@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, HomeLoaderModules, HomeModules } from "../../components";
 import { fetchModules } from "../../redux/actions/modulesAction";
@@ -6,8 +6,9 @@ import style from './Home.module.css';
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const optionsRef = useRef();
 
-  const [isShowOptions, setIsShowOptions] = useState(false);
+  const [visibleOptions, setVisibleOptions] = useState(false);
   const [option, setOption] = useState('Created');
 
   const user = useSelector(state => {
@@ -20,25 +21,27 @@ export const Home = () => {
     return modulesReducer;
   });
 
-  useEffect(() => {
-    dispatch(fetchModules());
-  }, [dispatch]);
+  const handleOutsideOptions = (e) => {
+    const path = e.composedPath();
 
-  const onClickForm = () => {
-    setIsShowOptions(false);
-  }
-
-  const onClickSelect = (e) => {
-    e.stopPropagation();
-    setIsShowOptions(prev => !prev);
+    if (!path.includes(optionsRef.current)) {
+      setVisibleOptions(false);
+    } else {
+      setVisibleOptions(prev => !prev);
+    }
   }
 
   const onClickOption = (opt) => {
     setOption(opt);
   }
 
+  useEffect(() => {
+    document.body.addEventListener('click', handleOutsideOptions);
+    dispatch(fetchModules());
+  }, [dispatch]);
+
   return (
-    <div className={style.container} onClick={onClickForm}>
+    <div className={style.container}>
       <div className={style.container__navbar}>
         <Navbar />
       </div>
@@ -46,8 +49,8 @@ export const Home = () => {
         <div className={style.content}>
           <div className={style.filter__inputs}>
             <div className={style.filter}>
-              <div className={style.select__filter} onClick={onClickSelect}>{option}</div>
-              <div className={style.options} style={{ display: isShowOptions ? 'block' : 'none' }}>
+              <div ref={optionsRef} className={style.select__filter}>{option}</div>
+              <div className={style.options} style={{ display: visibleOptions ? 'block' : 'none' }}>
                 <div className={style.option} onClick={() => onClickOption('Created')}>Created</div>
                 <div className={style.option} onClick={() => onClickOption('Recently viewed')}>
                   Recently viewed

@@ -15,8 +15,6 @@ export const TestModule = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [isShowModuleNavigate, setIsShowModuleNavigate] = useState(false);
-
   useEffect(() => {
     dispatch(getTestModule(id));
   }, []);
@@ -54,20 +52,10 @@ export const TestModule = () => {
     dispatch(getTestModule(id));
   }
 
-  const onClickForm = () => {
-    setIsShowModuleNavigate(prev => false);
-  }
-
-  console.log('trueOrFalseCards', trueOrFalseCards);
-  console.log('testCards', testCards);
-  console.log('joinCards', joinCards);
-  console.log('writeCards', writeCards);
-
   return (
-    <div className={style.container} onClick={onClickForm}>
+    <div className={style.container}>
       <NavbarTest moduleId={id} title={title} countCards={countCards} isShowResult={isShowResult}
-        countUserAnsweredCards={countUserAnsweredCards} countCorrectUserAnswer={countCorrectUserAnswer}
-        isShowModuleNavigate={isShowModuleNavigate} setIsShowModuleNavigate={setIsShowModuleNavigate} />
+        countUserAnsweredCards={countUserAnsweredCards} countCorrectUserAnswer={countCorrectUserAnswer} />
 
       <div className={style.body}>
         {isShowResult &&

@@ -165,10 +165,10 @@ class ModuleService {
       description,
       user: userId
     });
-  
+
     const newModule = await moduleDoc.save();
-    
-    cards.map(async (card) => {
+
+    await Promise.all(cards.map(async (card) => {
       const cardDoc = new Card({
         value: card.value,
         translate: card.translate,
@@ -176,9 +176,9 @@ class ModuleService {
         urlToImage: card.urlToImage,
         module: newModule._id
       });
-  
+
       await cardDoc.save();
-    });
+    }));
 
     return { module: newModule, cards };
   }
