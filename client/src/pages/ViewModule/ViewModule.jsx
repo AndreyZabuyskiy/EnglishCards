@@ -20,8 +20,6 @@ export const ViewModule = () => {
     const { moduleReducer } = state;
     return moduleReducer.module;
   });
-  
-  console.log('ViewModule moduleData -->', moduleData);
 
   const user = useSelector(state => {
     const { authReducer } = state;

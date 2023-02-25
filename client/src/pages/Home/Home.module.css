@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  background-color: #0a092d;
+  background-color: #e5e0dd;
 }
 
 .container__navbar {
@@ -16,7 +16,7 @@
   min-height: 94vh;
   margin-top: 6vh;
   padding: 40px 0px;
-  background-color: #0a092d;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,11 +37,11 @@
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  padding: 8px 16px;
-  color: #f6f7fb;
+  padding: 5px 16px;
+  color: #1F2B43;
   font-size: 18px;
-  background-color: #0a092d;
-  border: 2px solid #d9dde8;
+  background-color: #FAFAFA;
+  border: 2px solid #1F2B43;
   border-radius: 10px;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -49,7 +49,7 @@
           user-select: none;
 }
 .select__filter:hover {
-  background-color: #282e3e;
+  background-color: #eeeeee;
   cursor: pointer;
 }
 
@@ -79,13 +79,14 @@
 
 .input {
   width: 50%;
-  max-width: 430px;
-  height: 40px;
-  background-color: #2e3856;
-  color: #d9dde8;
-  padding: 4px 16px;
+  max-width: 300px;
+  height: 30px;
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #1F2B43;
+  color: #AEAEAE;
+  padding: 0px 8px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .input::-moz-placeholder {
@@ -98,11 +99,6 @@
 
 .input::placeholder {
   color: #d9dde8;
-}
-
-.input:focus {
-  border-bottom: 2px solid white;
-  padding: 18px 16px 16px 16px;
 }
 
 @media (min-width: 1200px) {

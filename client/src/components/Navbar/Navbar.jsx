@@ -54,7 +54,7 @@ export const Navbar = React.memo(() => {
               <button ref={modulesRef}>Modules</button>
               <div className={style.modules__lists__wrapper}
                 style={{ display: visibleModules ? 'block' : 'none' }} >
-                <NavbarModules />
+                <NavbarModules visibleModules={visibleModules} />
               </div>
             </div>
             <div className={style.create__button__wrapper}>

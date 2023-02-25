@@ -5,12 +5,14 @@ import { fetchVisitedModules } from '../../redux/actions/modulesAction';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
 
-export const NavbarModules = () => {
+export const NavbarModules = ({ visibleModules }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchVisitedModules());
-  }, []);
+    if (visibleModules) {
+      dispatch(fetchVisitedModules());
+    }
+  }, [visibleModules]);
 
   const { modules } = useSelector(state => {
     const { visitedModulesReducer } = state;
@@ -23,8 +25,8 @@ export const NavbarModules = () => {
         {modules && modules.length > 0 && modules.map((_module, index) => (
           <Link to={`${HOME_ROUTE}/${_module?.module?._id}`}
             className={style.module} key={index}>
-            <div>{ _module?.module?.title }</div>
-            <div>{ _module?.user?.login }</div>
+            <div className={style.title}>{ _module?.module?.title }</div>
+            <div className={style.email}>{ _module?.user?.email }</div>
           </Link>
         ))}
       </div>

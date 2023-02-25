@@ -1,5 +1,5 @@
 .module {
-  background-color: #2e3856;
+  background-color: #1A4C98;
   padding: 12px 20px;
   border-radius: 5px;
   margin-top: 20px;
@@ -8,6 +8,13 @@
 .module:hover {
   border-bottom: 5px solid #cedaf3;
   padding: 12px 20px 7px 20px;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .count__words {
@@ -29,4 +36,9 @@
 }
 .title:hover {
   color: #ffcd1f;
+}
+
+.btn__remove {
+  background-color: #1A4C98;
+  color: #ffffff;
 }/*# sourceMappingURL=StudyModule.module.css.map */

@@ -17,11 +17,19 @@
 .module {
   display: block;
   padding: 10px 20px;
-  color: #ffffff;
 }
 .module:hover {
   background-color: #282e3e;
   cursor: pointer;
+}
+.module .title {
+  color: #d0d2db;
+  font-size: 18px;
+  font-weight: bold;
+}
+.module .email {
+  color: #8f97b0;
+  font-size: 14px;
 }
 
 .footer {
