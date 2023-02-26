@@ -2,10 +2,10 @@ import style from './StudyModule.module.css';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '../../utils/consts';
 
-export const StudyModule = ({ _id, countWords, email, title }) => {
+export const StudyModule = ({ _id, countWords, email, title, deleteModule }) => {
   const onClickRemoveModule = (e) => {
     e.preventDefault();
-    alert('onClickRemoveModule');
+    deleteModule(_id);
   }
 
   return (

@@ -1,6 +1,7 @@
 import StudyModule from "../models/StudyModule.js";
 import Card from '../models/Card.js';
 import User from "../models/User.js";
+import learnModuleService from '../services/learnModuleService.js';
 import UserVisitedModule from "../models/UserVisitedModule.js";
 
 class ModuleService {
@@ -158,6 +159,13 @@ class ModuleService {
 
     return modules;
   }
+  
+  async deleteVisitedModuleById(moduleId) {
+    const modules = await UserVisitedModule.find({ module: moduleId });
+    await Promise.all(modules.map(async module => {
+      await UserVisitedModule.findByIdAndDelete(module._id);
+    }));
+  }
 
   async createModule(userId, title, description, cards) {
     const moduleDoc = new StudyModule({
@@ -211,13 +219,16 @@ class ModuleService {
     return { module: updateModule, cards };
   }
 
-  async deleteModule (moduleId) {
+  async deleteModule(moduleId) {
     const deletedModule = await StudyModule.findByIdAndDelete(moduleId);
     
     const cards = await Card.find({ module: moduleId });
-    cards.map(async card => {
+    await Promise.all(cards.map(async card => {
       await Card.findByIdAndDelete(card._id);
-    });
+    }));
+
+    await learnModuleService.deleteModuleById(moduleId);
+    await this.deleteVisitedModuleById(moduleId);
 
     return deletedModule;
   }

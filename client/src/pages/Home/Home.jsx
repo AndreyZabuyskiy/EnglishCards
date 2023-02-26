@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, HomeLoaderModules, HomeModules } from "../../components";
-import { fetchModules } from "../../redux/actions/modulesAction";
+import { fetchModules, deleteModuleById } from "../../redux/actions/modulesAction";
 import style from './Home.module.css';
 
 export const Home = () => {
@@ -35,6 +35,10 @@ export const Home = () => {
     setOption(opt);
   }
 
+  const deleteModule = (id) => {
+    dispatch(deleteModuleById(id));
+  }
+
   useEffect(() => {
     document.body.addEventListener('click', handleOutsideOptions);
     dispatch(fetchModules());
@@ -62,7 +66,7 @@ export const Home = () => {
           </div>
         
           {isLoadModules
-            ? <HomeModules modules={modules} user={user} />
+            ? <HomeModules modules={modules} user={user} deleteModule={deleteModule} />
             : <HomeLoaderModules />}
         </div>
     </div>

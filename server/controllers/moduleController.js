@@ -94,22 +94,21 @@ class ModuleController {
       });
   }
 
-  async deleteModule (req, res, next) {
+  async deleteModule(req, res, next) {
     const { id } = req.params;
 
-    await moduleService.deleteModule(id)
-      .then(deletedModule => {
-        res.status(200).json({
-          data: deletedModule,
-          request: {
-            type: "GET",
-            url: `http://localhost:${config.get('port')}/api/module/`
-          }
-        });
-      })
-      .catch(e => {
-        next(ApiError.badRequest(e.message));
+    try {
+      const deletedModule = await moduleService.deleteModule(id);
+      res.status(200).json({
+        data: deletedModule,
+        request: {
+          type: "GET",
+          url: `http://localhost:${config.get('port')}/api/module/`
+        }
       });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    };
   }
 
   async uploadImage (req, res, next) {

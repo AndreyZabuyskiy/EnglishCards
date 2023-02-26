@@ -9,6 +9,7 @@ export const CHECK_AUTH = 'CHECK_AUTH';
 export const FETCH_MODULES = 'FETCH_MODULES';
 export const FETCH_MODULES_ON = 'FETCH_MODULES_ON';
 export const FETCH_MODULES_OFF = 'FETCH_MODULES_OFF';
+export const DELETE_MODULE = 'DELETE_MODULE';
 
 export const FETCH_MODULE = 'FETCH_MODULE';
 export const CREATE_MODULE = 'CREATE_MODULE';

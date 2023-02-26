@@ -1,7 +1,7 @@
 import style from './HomeModules.module.css';
 import { StudyModule } from "../StudyModule";
 
-export const HomeModules = ({ modules, user }) => {
+export const HomeModules = ({ modules, user, deleteModule }) => {
   return (
     <>
       {modules?.map((item, index) => (
@@ -13,7 +13,7 @@ export const HomeModules = ({ modules, user }) => {
                 <div className={style.line}></div>
               </div>
               {item.data.map((module) => (
-                <StudyModule key={index} email={user.email} {...module} />
+                <StudyModule key={index} email={user.email} {...module} deleteModule={deleteModule} />
               ))}
             </>
           }
