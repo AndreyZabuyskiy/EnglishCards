@@ -3,6 +3,7 @@ import Card from '../models/Card.js';
 import User from "../models/User.js";
 import learnModuleService from '../services/learnModuleService.js';
 import UserVisitedModule from "../models/UserVisitedModule.js";
+import { VisitedModuleDto } from "../dtos/VisitedModulesDto.js";
 
 class ModuleService {
   async getModulesByUser(userId) {
@@ -140,7 +141,17 @@ class ModuleService {
   async getVisitedModules(userId) {
     const visitedModules = await UserVisitedModule.find({ user: userId });
 
-    visitedModules.sort((a, b) => {
+    const modules = [];
+    await Promise.all(visitedModules.map(async _visitedModule => {
+      const module = await StudyModule.findById(_visitedModule.module);
+      const user = await User.findById(_visitedModule.user);
+      const visitedModule = new VisitedModuleDto(module._id, user.email, module.title,
+        _visitedModule.viewingTime);
+      
+      modules.push(visitedModule);
+    }));
+
+    modules.sort((a, b) => {
       if (a.viewingTime > b.viewingTime) {
         return -1;
       } else if (a.visitedModules < b.visitedModules) {
@@ -149,13 +160,6 @@ class ModuleService {
 
       return 0;
     });
-
-    const modules = [];
-    await Promise.all(visitedModules.map(async _visitedModule => {
-      const module = await StudyModule.findById(_visitedModule.module);
-      const user = await User.findById(_visitedModule.user);
-      modules.push({ module, user });
-    }));
 
     return modules;
   }

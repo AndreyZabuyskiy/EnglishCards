@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navbar, HomeLoaderModules, HomeModules } from "../../components";
+import { Navbar, HomeLoaderModules, HomeModules, LearnWords } from "../../components";
 import { fetchModules, deleteModuleById } from "../../redux/actions/modulesAction";
 import style from './Home.module.css';
 
@@ -64,6 +64,8 @@ export const Home = () => {
 
             <input className={style.input} type="text" placeholder="search modules..." />
           </div>
+        
+          <LearnWords />
         
           {isLoadModules
             ? <HomeModules modules={modules} user={user} deleteModule={deleteModule} />

@@ -23,10 +23,10 @@ export const NavbarModules = ({ visibleModules }) => {
     <div className={style.container}>
       <div className={style.modules}>
         {modules && modules.length > 0 && modules.map((_module, index) => (
-          <Link to={`${HOME_ROUTE}/${_module?.module?._id}`}
+          <Link to={`${HOME_ROUTE}/${_module?.id}`}
             className={style.module} key={index}>
-            <div className={style.title}>{ _module?.module?.title }</div>
-            <div className={style.email}>{ _module?.user?.email }</div>
+            <div className={style.title}>{ _module?.title }</div>
+            <div className={style.email}>{ _module?.email }</div>
           </Link>
         ))}
       </div>
