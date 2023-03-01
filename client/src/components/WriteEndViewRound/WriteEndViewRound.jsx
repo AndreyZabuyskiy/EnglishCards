@@ -36,7 +36,7 @@ export const WriteEndViewRound = (props) => {
           <div className={style.UIIcon__answer}>
             {card.status === 1 ? "✓" : "❌"}
           </div>
-          <div className={style.value}>{ card.card.value }</div>
+          <div className={style.value}>{ card.card.term }</div>
           <div className={style.translate}>{ card.card.translate }</div>
         </div>
       ))}

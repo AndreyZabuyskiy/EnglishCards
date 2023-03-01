@@ -1,4 +1,3 @@
-import StudyModule from '../models/StudyModule.js';
 import Card from '../models/Card.js';
 import WriteModule from '../models/WriteModule.js';
 import WriteCard from '../models/WriteCard.js';
@@ -18,7 +17,7 @@ class WriteModuleService {
   async checkAnswer(cardId, answer) {
     const writeCard = await WriteCard.findById(cardId);
     const card = await Card.findById(writeCard.card);    
-    let isCorrectAnswer = card.value.toLowerCase() === answer.toLowerCase();
+    let isCorrectAnswer = card.term.toLowerCase() === answer.toLowerCase();
 
     const _writeCard = {
       _id: writeCard._id,

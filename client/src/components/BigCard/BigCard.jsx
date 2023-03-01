@@ -36,13 +36,13 @@ export const BigCard = (props) => {
 
           {imgSrc
             ? <div className={style.card__content__front}>
-                <div className={style.card__content__left}> { props.translate } </div>
+                <div className={style.card__content__left}> { props.definition } </div>
                 <div className={style.card__content__right}>
                   <img src={`${imgSrc}`} className={style.card__img} alt='' />
                 </div>
               </div>
             : <div className={style.card__content__text}>
-                { props.translate }
+                { props.definition }
               </div>
           }
 
@@ -59,7 +59,7 @@ export const BigCard = (props) => {
           </div>
 
           <div className={style.card__content__text}>        
-            { props.value }
+            { props.term }
           </div>
 
           <div className={style.card__footer}>

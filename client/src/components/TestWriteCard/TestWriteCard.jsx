@@ -5,13 +5,13 @@ import { answerWriteCard } from '../../redux/actions/testModuleAction';
 import propTypes from 'prop-types';
 import React from 'react';
 
-export const TestWriteCard = React.memo(({ cardId, translate, pathToFile, urlToImage, user, countCards, index,
-  userAnswer, isShowResult, isCorrectUserAnswered, correctValue }) => {
+export const TestWriteCard = React.memo(({ cardId, definition, pathToFile, urlToImage, user, countCards, index,
+  userAnswer, isShowResult, isCorrectUserAnswered, correctTerm }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
   if (pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${user.login}/${pathToFile}`;
+    imgSrc = `${REACT_APP_API_URL}/${user.email}/${pathToFile}`;
   } else if (urlToImage) {
     imgSrc = `${urlToImage}`;
   }
@@ -28,7 +28,7 @@ export const TestWriteCard = React.memo(({ cardId, translate, pathToFile, urlToI
       </div>
 
       <div className={style.content}>
-        <div className={style.value}>{ translate }</div>
+        <div className={style.value}>{ definition }</div>
         {imgSrc && <img src={`${imgSrc}`} className={style.img} alt='' />}
       </div>
 
@@ -57,7 +57,7 @@ export const TestWriteCard = React.memo(({ cardId, translate, pathToFile, urlToI
                 <div className={style.correct__user__answer__wrapper}>
                   <p>Correct answer</p>
                   <div className={style.correct__user__answer}>
-                    <span>{correctValue}</span>
+                    <span>{correctTerm}</span>
                   </div>
                 </div>
               </>
@@ -80,7 +80,7 @@ export const TestWriteCard = React.memo(({ cardId, translate, pathToFile, urlToI
 
 TestWriteCard.propTypes = {
   cardId: propTypes.string,
-  translate: propTypes.string,
+  definition: propTypes.string,
   pathToFile: propTypes.string,
   urlToImage: propTypes.string,
   user: propTypes.object,
@@ -88,5 +88,5 @@ TestWriteCard.propTypes = {
   index: propTypes.number,
   userAnswer: propTypes.string,
   isShowResult: propTypes.bool,
-  correctValue: propTypes.string
+  correctTerm: propTypes.string
 }

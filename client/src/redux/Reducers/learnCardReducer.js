@@ -1,4 +1,6 @@
-import { CLEAR_LEARN_CARD, CORRECT_LEARN_CARD_ANSWER, FETCH_LEARN_CARD, INCORRECT_LEARN_CARD_ANSWER, LOAD_CORRECT_ANSWER, USER_SELECTED_OPTION, CORRECT_LEARN_WRITE_CARD_ANSWER, INCORRECT_LEARN_WRITE_CARD_ANSWER, UNKNOW_LEARN_CARD } from "../types";
+import {
+  CLEAR_LEARN_CARD, CORRECT_LEARN_CARD_ANSWER, FETCH_LEARN_CARD, INCORRECT_LEARN_CARD_ANSWER, LOAD_CORRECT_ANSWER, USER_SELECTED_OPTION, CORRECT_LEARN_WRITE_CARD_ANSWER, INCORRECT_LEARN_WRITE_CARD_ANSWER
+} from "../types";
 
 const initialState = {
   card: null,
@@ -18,7 +20,7 @@ export const learnCardReducer = (state = initialState, action) => {
         ...state,
         card: action.data.card,
         options: action.data.options,
-        correctAnswer: action.data.value,
+        correctAnswer: action.data.term,
         optionSelectedUser: null,
         isCorrectAnswer: false,
         isIncorrectAnswer: false,
@@ -70,13 +72,6 @@ export const learnCardReducer = (state = initialState, action) => {
         correctAnswer: action.data.correctAnswer,
         userAnswer: action.data.userAnswer
       }
-    
-    case UNKNOW_LEARN_CARD: {
-      return {
-        ...state,
-        isUnknowAnswer: true
-      }
-    }
     
     default:
       return state;

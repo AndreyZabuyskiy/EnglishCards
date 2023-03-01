@@ -6,7 +6,7 @@ const schema = mongoose.Schema({
     ref: 'LearnModuleCard',
     require: true
   },
-  value: {
+  term: {
     type: String
   },
   isRight: {

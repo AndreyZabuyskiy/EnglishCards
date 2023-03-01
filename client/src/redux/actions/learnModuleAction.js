@@ -1,11 +1,9 @@
 import { FETCH_LEARN_CARD, USER_SELECTED_OPTION, CORRECT_LEARN_CARD_ANSWER, INCORRECT_LEARN_CARD_ANSWER,
   FETCH_LEARN_ROUND, LEARN_MODULE_DONE, LEARN_ROUND_DONE, CORRECT_LEARN_WRITE_CARD_ANSWER, CLEAR_LEARN_CARD,
-  INCORRECT_LEARN_WRITE_CARD_ANSWER, START_OVER_LEARN_MODULE, FETCH_LEARN_MODULE, UNKNOW_LEARN_CARD
-} from "../types";
+  INCORRECT_LEARN_WRITE_CARD_ANSWER, START_OVER_LEARN_MODULE, FETCH_LEARN_MODULE } from "../types";
 import { fetchLearnCardApi, checkTestCardApi, fetchLearnRoundById, completionCheckModuleApi, getResultRoundApi,
   createLearnRoundApi, checkLearnWriteCardApi, deleteLearnModuleByIdApi, fetchLearnModuleApi,
-  fetchLearnRoundByModuleIddApi
-} from "../../http/learnModuleApi";
+  fetchLearnRoundByModuleIddApi } from "../../http/learnModuleApi";
   
 export function fetchLearnModule(id) {
   return async dispatch => {
@@ -37,11 +35,11 @@ export function fetchLearnModule(id) {
           data: {
             card: learnCard,
             options: options,
-            value: learnCard.value
+            term: learnCard.term
           }
         });
       } catch (exp) {
-        console.log('fetchLearnModule exp.message', exp.message);
+        console.log('fetchLearnModule exp.message -->', exp.message);
       }
     }
   }
@@ -56,7 +54,7 @@ export function fetchLearnCard(id) {
       data: {
         card: learnCard,
         options: options,
-        value: learnCard.value
+        term: learnCard.term
       }
     });
   }
@@ -113,7 +111,7 @@ export function checkTestCard(cardId, option, roundId, learnModuleId) {
           data: {
             card: learnCard,
             options: options,
-            value: learnCard.value
+            term: learnCard.term
           }
         });
       }
@@ -172,7 +170,7 @@ export function checkLearnWriteCard(answer, correctAnswer, cardId, roundId, lear
           data: {
             card: learnCard,
             options: options,
-            value: learnCard.value
+            term: learnCard.term
           }
         });
       }
@@ -220,7 +218,7 @@ export function nextLearnQuestion(roundId, learnModuleId) {
         data: {
           card: learnCard,
           options: options,
-          value: learnCard.value
+          term: learnCard.term
         }
       });
     }
@@ -252,18 +250,8 @@ export function startOverLearnModule(moduleId) {
       data: {
         card: learnCard,
         options: options,
-        value: learnCard.value
+        term: learnCard.term
       }
     });
-  }
-}
-
-export function unknowAnswer(cardId) {
-  return async dispatch => {
-    dispatch({
-      type: UNKNOW_LEARN_CARD
-    });
-
-    await checkLearnWriteCardApi(cardId, false);
   }
 }

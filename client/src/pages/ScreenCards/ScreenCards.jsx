@@ -51,8 +51,8 @@ export const ScreenCards = () => {
 
       <div className={style.container__content}>
         <BigCard
-          value={moduleData?.cards?.[cardIndex].value}
-          translate={moduleData?.cards?.[cardIndex].translate}
+          term={moduleData?.cards?.[cardIndex].term}
+          definition={moduleData?.cards?.[cardIndex].definition}
           pathToFile={moduleData?.cards?.[cardIndex]?.pathToFile}
           urlToImage={moduleData?.cards?.[cardIndex]?.urlToImage}
           user={user}

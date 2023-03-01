@@ -15,7 +15,7 @@ export const OptionLearnCard = ({ serialNumber, option, onClickOption, isIncorre
       {option &&
         <div onClick={() => onClickOption(card._id, option)} className={cardStyle}>
           <div className={style.option__number}>{ serialNumber }</div>
-          <span>{ option.value }</span>
+          <span>{ option.term }</span>
         </div>
       }
     </>

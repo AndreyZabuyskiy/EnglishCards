@@ -16,8 +16,8 @@ export const ModuleForm = () => {
   let moduleState = [
     {
       _id: 0,
-      value: '',
-      translate: '',
+      term: '',
+      definition: '',
       isViewUploadImage: false,
       searchQuery: '',
       pathToFile: '',
@@ -26,8 +26,8 @@ export const ModuleForm = () => {
     },
     {
       _id: 1,
-      value: '',
-      translate: '',
+      term: '',
+      definition: '',
       isViewUploadImage: false,
       searchQuery: '',
       pathToFile: '',
@@ -36,8 +36,8 @@ export const ModuleForm = () => {
     },
     {
       _id: 2,
-      value: '',
-      translate: '',
+      term: '',
+      definition: '',
       isViewUploadImage: false,
       searchQuery: '',
       pathToFile: '',
@@ -46,8 +46,8 @@ export const ModuleForm = () => {
     },
     {
       _id: 3,
-      value: '',
-      translate: '',
+      term: '',
+      definition: '',
       isViewUploadImage: false,
       searchQuery: '',
       pathToFile: '',
@@ -56,8 +56,8 @@ export const ModuleForm = () => {
     },
     {
       _id: 4,
-      value: '',
-      translate: '',
+      term: '',
+      definition: '',
       isViewUploadImage: false,
       searchQuery: '',
       pathToFile: '',

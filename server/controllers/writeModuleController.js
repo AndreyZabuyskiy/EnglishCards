@@ -8,7 +8,6 @@ class WriteModuleController {
 
     await writeService.getWriteModule(userId, moduleId)
       .then(responseService => {
-      console.log('responsiveService -->', responseService);
       res.status(200).json(responseService);
     })
     .catch(e => {

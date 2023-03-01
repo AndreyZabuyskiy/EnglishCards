@@ -18,14 +18,14 @@ class TestModuleController {
   async checkTest(req, res, next) {
     const { id } = req.params;
     const testModule = req.body;
-    
-    await testModuleService.checkTest(id, testModule)
-    .then(responseService => {
-      res.status(200).json(responseService);
-    })
-    .catch(e => {
-      next(ApiError.badRequest(e.message));
-    });
+
+    try {
+      const result = await testModuleService.checkTest(id, testModule);
+      console.log('checkTest result -->', result);
+      res.status(200).json(result);
+    } catch (err) {
+      next(ApiError.badRequest(err.message));
+    }
   }
 }
 

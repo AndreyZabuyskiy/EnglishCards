@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import propTypes from 'prop-types';
 import React from "react";
 
-export const CardWordsSelection = React.memo(({ cards, values, user, countCards, isShowResult }) => {
+export const CardWordsSelection = React.memo(({ cards, terms, user, countCards, isShowResult }) => {
   const dispatch = useDispatch();
 
   const [selectIndexCard, setSelectIndexCard] = useState(0);
@@ -20,15 +20,15 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
     setSelectIndexCard(indexCard);
   }
 
-  const onClickValue = (selectValue) => {
-    dispatch(matchingCard(selectValue, selectIndexCard));
+  const onClickTerm = (selectTerm) => {
+    dispatch(matchingCard(selectTerm, selectIndexCard));
     setWasSelectedCard(true);
 
     let newSelectIndexCard = selectIndexCard + 1;
     let isFreeCards = false;
 
-    for (let i = 0; i < values.length - 1; ++i) {
-      if (newSelectIndexCard >= values.length) {
+    for (let i = 0; i < terms.length - 1; ++i) {
+      if (newSelectIndexCard >= terms.length) {
         newSelectIndexCard = 0;
       }
 
@@ -55,7 +55,7 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
     let iterator = indexCard + 1;
 
     for (let i = 0; i < cards.length - 1; ++i) {
-      if (iterator >= values.length) {
+      if (iterator >= terms.length) {
         iterator = 0;
       }
 
@@ -81,7 +81,7 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
         {cards && cards.map((card, index) => {
           let imgSrc = '';
           if (card.pathToFile) {
-            imgSrc = `${REACT_APP_API_URL}/${user.login}/${card.pathToFile}`;
+            imgSrc = `${REACT_APP_API_URL}/${user.email}/${card.pathToFile}`;
           } else if (card.urlToImage) {
             imgSrc = `${card.urlToImage}`;
           }
@@ -115,7 +115,7 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
                     </div>
                   </div>
                   <div className={style.translate}>
-                    <div>{ card.translate }</div>
+                    <div>{ card.definition }</div>
                     {imgSrc && <img src={imgSrc} className={style.card__img} alt='' />}
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
                       <div className={style.space__empty}></div>
                       <div className={style.correct__user__answer__wrapper}>
                         <div className={style.correct__user__answer}>
-                          <span>{card.correctValue}</span>
+                          <span>{card.correctTerm}</span>
                         </div>
                       </div>
                       </div>
@@ -160,16 +160,16 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
       </div>
       {!isShowResult &&
         <div className={style.footer}>
-        {values.map((value, index) => (
-          value.selected
+        {terms.map((term, index) => (
+          term.selected
             ?
             <span key={index} className={style.selected__value}>
-              {value.value}
+              {term.term}
             </span>
             :
             <button className={style.value} key={index}
-              onClick={() => onClickValue({ value, index })}>
-              {value.value}
+              onClick={() => onClickTerm({ term, index })}>
+              {term.term}
             </button>
         ))}
         </div>
@@ -180,7 +180,7 @@ export const CardWordsSelection = React.memo(({ cards, values, user, countCards,
 
 CardWordsSelection.propTypes = {
   cards: propTypes.array,
-  values: propTypes.array,
+  terms: propTypes.array,
   user: propTypes.object,
   countCards: propTypes.number,
   isShowResult: propTypes.bool

@@ -39,20 +39,20 @@ class TestModuleService {
         freeCards.splice(randomNumberPositionCard, 1);
 
         const isTrueOrFalseRandom = getRandomNumber(0, 2);
-        let value = '';
+        let term = '';
 
         if (isTrueOrFalseRandom) {
-          value = card.value;
+          term = card.term;
         } else {
           randomNumberPositionCard = getRandomNumber(0, freeCards.length);
           const rndCard = freeCards[randomNumberPositionCard];
-          value = rndCard.value;
+          term = rndCard.term;
         }
 
         trueOrFalseCards.push({
           cardId: card._id,
-          translate: card.translate,
-          value: value,
+          definition: card.definition,
+          term: term,
           pathToFile: card.pathToFile,
           urlToImage: card.urlToImage
         });
@@ -69,18 +69,18 @@ class TestModuleService {
         const card = freeCards[randomNumberPositionCard];
         freeCards.splice(randomNumberPositionCard, 1);
 
-        let optionsCard = [card.value];
+        let optionsCard = [card.term];
         for (let j = 0; j < 3; ++j) {
           randomNumberPositionCard = getRandomNumber(0, freeCards.length);
           const rndCard = freeCards[randomNumberPositionCard];
-          optionsCard.push(rndCard.value);
+          optionsCard.push(rndCard.term);
         }
 
         optionsCard = mixUpArray(optionsCard);
 
         testCards.push({
           cardId: card._id,
-          translate: card.translate,
+          definition: card.definition,
           pathToFile: card.pathToFile,
           urlToImage: card.urlToImage,
           options: optionsCard
@@ -92,7 +92,7 @@ class TestModuleService {
 
     if (countGroups.JoinCards > 0) {
       const cards = [];
-      let values = [];
+      let terms = [];
 
       for (let i = 0; i < countGroups.JoinCards; ++i) {
         randomNumberPositionCard = getRandomNumber(0, freeCards.length);
@@ -101,18 +101,18 @@ class TestModuleService {
 
         cards.push({
           cardId: card._id,
-          translate: card.translate,
+          definition: card.definition,
           pathToFile: card.pathToFile,
           urlToImage: card.urlToImage
         });
 
-        values.push(card.value);
+        terms.push(card.term);
       }
 
-      values = mixUpArray(values);
+      terms = mixUpArray(terms);
       
       testModule.groups.joinCards = {
-        cards, values
+        cards, terms
       };
     }
 
@@ -126,7 +126,7 @@ class TestModuleService {
 
         writeCards.push({
           cardId: card._id,
-          translate: card.translate,
+          definition: card.definition,
           pathToFile: card.pathToFile,
           urlToImage: card.urlToImage
         });
@@ -139,6 +139,7 @@ class TestModuleService {
   }
 
   async checkTest(moduleId, testModule) {
+    console.log('<-- checkTest -->');
     let countCorrectUserAnswer = 0;
     let countIncorrectUserAnswer = 0;
     const listQuestions = [];
@@ -152,7 +153,7 @@ class TestModuleService {
     const resultTrueOrFalseCards = [];
     trueOrFalseCards.forEach(trueFalseCard => {
       const card = cards.filter(c => c._id.toString() === trueFalseCard.cardId)[0];
-      const correctAnswer = trueFalseCard.value === card.value;
+      const correctAnswer = trueFalseCard.term === card.term;
       const isCorrectUserAnswered = trueFalseCard.userAnswer === correctAnswer;
       
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
@@ -162,7 +163,7 @@ class TestModuleService {
         ...trueFalseCard,
         isCorrectUserAnswered,
         correctAnswer,
-        correctValue: card.value
+        correctTerm: card.term
       }
 
       resultTrueOrFalseCards.push(resultCard);
@@ -174,7 +175,7 @@ class TestModuleService {
       let resultOptions = [];
 
       testCard.options.forEach(option => {
-        const isCorrectOption = option.value === card.value;
+        const isCorrectOption = option.term === card.term;
         const resultOption = {
           ...option,
           isCorrect: isCorrectOption
@@ -199,36 +200,36 @@ class TestModuleService {
 
     const resultJoinCards = {
       cards: [],
-      values: []
+      terms: []
     };
 
     joinCards.cards.forEach(joinCard => {
       const card = cards.filter(c => c._id.toString() === joinCard.cardId)[0];
-      const isCorrectUserAnswered = joinCard.userAnswer === card.value;
+      const isCorrectUserAnswered = joinCard.userAnswer === card.term;
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
       listQuestions.push(isCorrectUserAnswered);
 
       const resultCard = {
         ...joinCard,
         isCorrectUserAnswered,
-        correctValue: card.value
+        correctTerm: card.term
       }
       
       resultJoinCards.cards.push(resultCard);
     });
-    resultJoinCards.values = joinCards.values.slice(0);
+    resultJoinCards.terms = joinCards.terms.slice(0);
 
     const resultWriteCards = [];
     writeCards.forEach(writeCard => {
       const card = cards.filter(c => c._id.toString() === writeCard.cardId)[0];
-      const isCorrectUserAnswered = writeCard.userAnswer === card.value;
+      const isCorrectUserAnswered = writeCard.userAnswer === card.term;
       isCorrectUserAnswered ? countCorrectUserAnswer++ : countIncorrectUserAnswer++;
       listQuestions.push(isCorrectUserAnswered);
 
       const resultCard = {
         ...writeCard,
         isCorrectUserAnswered,
-        correctValue: card.value
+        correctTerm: card.term
       }
 
       resultWriteCards.push(resultCard);

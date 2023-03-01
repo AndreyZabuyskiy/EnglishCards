@@ -7,8 +7,8 @@ export function createModule(module) {
 
     for(let card in module.cards) {
       cards.push({
-        value: module.cards[card].value,
-        translate: module.cards[card].translate,
+        term: module.cards[card].term,
+        definition: module.cards[card].definition,
         pathToFile: module.cards[card].pathToFile,
         isUrlImage: module.cards[card].isUrlImage,
         urlToImage: module.cards[card].urlToImage
@@ -43,8 +43,8 @@ export function updateModule(id, module) {
 
     for(let card in module.cards) {
       cards.push({
-        value: module.cards[card].value,
-        translate: module.cards[card].translate,
+        term: module.cards[card].term,
+        definition: module.cards[card].definition,
         pathToFile: module.cards[card].pathToFile,
         isUrlImage: module.cards[card].isUrlImage,
         urlToImage: module.cards[card].urlToImage
@@ -58,7 +58,6 @@ export function updateModule(id, module) {
     }
 
     const response = await updateModuleApi(id, createdModule);
-    console.log('updateModule response -->', response);
 
     dispatch({
       type: UPDATE_MODULE,

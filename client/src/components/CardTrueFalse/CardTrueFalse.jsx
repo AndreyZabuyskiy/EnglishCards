@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import propTypes from 'prop-types';
 import React from 'react';
 
-export const CardTrueFalse = React.memo(({ cardId, translate, value, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered }) => {
+export const CardTrueFalse = React.memo(({ cardId, definition, term, pathToFile, urlToImage, user, isUserAnswer, userAnswer, index, countCards, isShowResult, correctAnswer, correctValue, isCorrectUserAnswered }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
@@ -31,13 +31,13 @@ export const CardTrueFalse = React.memo(({ cardId, translate, value, pathToFile,
         <div className={style.content__translate}>
           <div className={style.content__header}>Definition</div>
           <div className={style.translate}>
-            <div>{translate}</div>
+            <div>{ definition }</div>
             {imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' />}
           </div>
         </div>
         <div className={style.content__value}>
           <div className={style.content__header}>Term</div>
-          <div className={style.value}>{value}</div>
+          <div className={style.value}>{term}</div>
         </div>
       </div>
       <div className={style.footer}>
@@ -115,8 +115,8 @@ export const CardTrueFalse = React.memo(({ cardId, translate, value, pathToFile,
 
 CardTrueFalse.propTypes = {
   cardId: propTypes.string,
-  translate: propTypes.string,
-  value: propTypes.string,
+  definition: propTypes.string,
+  term: propTypes.string,
   pathToFile: propTypes.string,
   urlToImage: propTypes.string,
   user: propTypes.object,

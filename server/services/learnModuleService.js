@@ -44,8 +44,8 @@ class LearnModuleService {
 
     const learnCard = {
       _id: findCard._id,
-      value: card.value,
-      translate: card.translate,
+      term: card.term,
+      definition: card.definition,
       pathToFile: card.pathToFile,
       urlToImage: card.urlToImage,
       round: findCard.round,
@@ -61,7 +61,7 @@ class LearnModuleService {
         options.push({
           _id: findOptions[i]._id,
           card: findOptions[i].card._id,
-          value: findOptions[i].value,
+          term: findOptions[i].term,
           isRight: findOptions[i].isRight
         });
       }
@@ -114,7 +114,7 @@ class LearnModuleService {
 
           const optionDoc = new LearnCardOption({
             card: learnCard,
-            value: card.value,
+            term: card.term,
             isRight: isRightCard
           });
 
@@ -128,7 +128,7 @@ class LearnModuleService {
 
           const optionDoc = new LearnCardOption({
             card: learnCard,
-            value: card.value,
+            term: card.term,
             isRight: isRightCard
           });
 
@@ -300,8 +300,8 @@ class LearnModuleService {
     const cards = [];
     await Promise.all(roundCards.map(async (_card) => {
       const card = await Card.findById(_card.card);
-      const { _id, value, translate, pathToFile, urlToImage } = card;
-      cards.push({_id, value, translate, pathToFile, urlToImage});
+      const { _id, term, definition, pathToFile, urlToImage } = card;
+      cards.push({_id, term, definition, pathToFile, urlToImage});
     }));
     
     return { round, lengthModuleCards, countLearnedCards: learnedCards.length, cards };

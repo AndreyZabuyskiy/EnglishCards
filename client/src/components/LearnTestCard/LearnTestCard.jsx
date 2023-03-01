@@ -11,7 +11,7 @@ export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectA
 
   let imgSrc = '';
   if (card?.pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${user.login}/${card.pathToFile}`;
+    imgSrc = `${REACT_APP_API_URL}/${user.email}/${card.pathToFile}`;
   } else if (card?.urlToImage) {
     imgSrc = `${card.urlToImage}`;
   }
@@ -28,7 +28,7 @@ export const LearnTestCard = ({ roundId, card, user, onClickOption, isIncorrectA
             <div>⚑</div>
           </div>
           <div className={style.content}>
-            <div>{card.translate}</div>
+            <div>{card.definition}</div>
             { imgSrc && <img src={`${imgSrc}`} className={style.image} alt='' /> }
           </div>
           <div className={style.footer}>

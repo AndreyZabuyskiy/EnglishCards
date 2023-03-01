@@ -26,7 +26,7 @@ export const FeedbackHeading = (props) => {
 
         <div className={style.feedbackItem}>
           <div className={style.UIItemSix}>Corrent answer</div>
-          <div className={`${style.UIItemValue} ${style.rightAnswer}`}>{props.value}</div>
+          <div className={`${style.UIItemValue} ${style.rightAnswer}`}>{props.term}</div>
         </div>
       </div>
       <div className={style.fixedContinueButton}>

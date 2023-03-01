@@ -7,8 +7,8 @@ export const AddCardButton = React.memo(({ index, setCards }) => {
       const cards = prev.slice(0);
       cards.push({
         _id: cards.length,
-        value: '',
-        translate: '',
+        term: '',
+        definition: '',
         isViewUploadImage: false,
         searchQuery: '',
         pathToFile: '',

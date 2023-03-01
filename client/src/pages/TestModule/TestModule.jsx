@@ -1,6 +1,6 @@
 import style from './TestModule.module.css';
 import { CardTrueFalse } from '../../components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkTest, clearTestModule, getTestModule } from '../../redux/actions/testModuleAction';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ export const TestModule = () => {
     listQuestions, countCorrectUserAnswer, countIncorrectUserAnswer } = useSelector(state => {
     const { testModuleReducer } = state;
     return testModuleReducer;
-    });
+  });
 
   let countUserAnsweredCards = 0;
   countUserAnsweredCards += trueOrFalseCards?.filter(card => card.isUserAnswer).length;
@@ -87,8 +87,8 @@ export const TestModule = () => {
             isShowResult={isShowResult} />
         ))}
 
-        {joinCards && joinCards.values.length > 0 && joinCards.cards.length > 0 &&
-          <CardWordsSelection cards={joinCards.cards} values={joinCards.values} user={user}
+        {joinCards && joinCards.terms.length > 0 && joinCards.cards.length > 0 &&
+          <CardWordsSelection cards={joinCards.cards} terms={joinCards.terms} user={user}
             countCards={countCards} isShowResult={isShowResult} />
         }
 

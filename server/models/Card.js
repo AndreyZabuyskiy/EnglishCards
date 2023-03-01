@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  value: {
+  term: {
     type: String,
     required: true
   },
-  translate: {
+  definition: {
     type: String
   },
   pathToFile: {

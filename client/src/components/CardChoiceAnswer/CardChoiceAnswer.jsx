@@ -6,13 +6,13 @@ import classNames from 'classnames';
 import propTypes from 'prop-types';
 import React from 'react';
 
-export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathToFile, urlToImage, isShowResult,
+export const CardChoiceAnswer = React.memo(({ cardId, definition, options, pathToFile, urlToImage, isShowResult,
   user, countCards, index, isCorrectUserSelected }) => {
   const dispatch = useDispatch();
 
   let imgSrc = '';
   if (pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${user.login}/${pathToFile}`;
+    imgSrc = `${REACT_APP_API_URL}/${user.email}/${pathToFile}`;
   } else if (urlToImage) {
     imgSrc = `${urlToImage}`;
   }
@@ -32,7 +32,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
         Definition
       </div>
       <div className={style.content}>
-        <div className={style.value}>{ translate }</div>
+        <div className={style.value}>{ definition }</div>
         <div>
           {imgSrc && <img src={`${imgSrc}`} className={style.img} alt='' />}
         </div>
@@ -46,21 +46,21 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
               <div className={style.buttoms__column__1}>
                 <button className={classNames({[`${style.selected__option}`]: options[0].selected})}
                   onClick={() => options[0].selected ? onClickUnselectOption(0) : onClickSelectOption(0)}>
-                  {options[0].value}
+                  {options[0].term}
                 </button>
                 <button className={classNames({[`${style.selected__option}`]: options[1].selected})}
                   onClick={() => options[1].selected ? onClickUnselectOption(1) : onClickSelectOption(1)}>
-                  {options[1].value}
+                  {options[1].term}
                 </button>
               </div>
               <div className={style.buttoms__column__2}>
                 <button className={classNames({[`${style.selected__option}`]: options[2].selected})}
                   onClick={() => options[2].selected ? onClickUnselectOption(2) : onClickSelectOption(2)}>
-                  {options[2].value}
+                  {options[2].term}
                 </button>
                 <button className={classNames({[`${style.selected__option}`]: options[3].selected})}
                   onClick={() => options[3].selected ? onClickUnselectOption(3) : onClickSelectOption(3)}>
-                  {options[3].value}
+                  {options[3].term}
                 </button>
               </div>
             </div>
@@ -82,7 +82,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
                     }
                   )}
                 >
-                  {options[0].value}
+                  {options[0].term}
                 </button>
                 <button className={classNames(
                     {
@@ -93,7 +93,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
                     }
                   )}
                 >
-                  {options[1].value}
+                  {options[1].term}
                 </button>
               </div>
               <div className={style.buttoms__column__2}>
@@ -106,7 +106,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
                     }
                   )}
                 >
-                  {options[2].value}
+                  {options[2].term}
                 </button>
                 <button className={classNames(
                     {
@@ -117,7 +117,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
                     }
                   )}
                 >
-                  {options[3].value}
+                  {options[3].term}
                 </button>
               </div>
             </div>
@@ -130,7 +130,7 @@ export const CardChoiceAnswer = React.memo(({ cardId, translate, options, pathTo
 
 CardChoiceAnswer.propTypes = {
   cardId: propTypes.string,
-  translate: propTypes.string,
+  definition: propTypes.string,
   options: propTypes.array,
   pathToFile: propTypes.string,
   urlToImage: propTypes.string,

@@ -4,7 +4,7 @@ import { REACT_APP_API_URL } from '../../http/baseUrl';
 export const CardWriteAnswer = (props) => {
   let imgSrc = '';
   if (props.pathToFile) {
-    imgSrc = `${REACT_APP_API_URL}/${props.user.login}/${props.pathToFile}`;
+    imgSrc = `${REACT_APP_API_URL}/${props.user.email}/${props.pathToFile}`;
   } else if (props.urlToImage) {
     imgSrc = `${props.urlToImage}`;
   }

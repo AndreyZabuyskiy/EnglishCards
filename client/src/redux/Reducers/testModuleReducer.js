@@ -27,7 +27,7 @@ export const testModuleReducer = (state = initialState, action) => {
       }
     
     case MATCHING_CARD: {
-      const joinCards = matchingCard(state.joinCards, action.payload.selectValue, action.payload.indexCard);
+      const joinCards = matchingCard(state.joinCards, action.payload.selectTerm, action.payload.indexCard);
       return {
         ...state,
         joinCards: joinCards
@@ -126,63 +126,62 @@ export const testModuleReducer = (state = initialState, action) => {
   }
 }
 
-function matchingCard(joinCards, selectValue, indexCard) {
-  let values = joinCards.values;
+function matchingCard(joinCards, selectTerm, indexCard) {
+  let terms = joinCards.terms;
   const card = joinCards.cards[indexCard];
 
   if (card.selected) {
-    const value = values[card.indexValue];
+    const term = terms[card.indexTerm];
     const matchedValue = {
-      value: value.value,
+      value: term.term,
       selected: false
     }
-    const valuesOne = values.slice(0, card.indexValue);
-    const valuesTwo = values.slice(card.indexValue + 1);
-    values = [...valuesOne, matchedValue, ...valuesTwo];
+    const termsOne = terms.slice(0, card.indexValue);
+    const termsTwo = terms.slice(card.indexValue + 1);
+    terms = [...termsOne, matchedValue, ...termsTwo];
   }
 
   const matchedCard = {
     ...card,
     selected: true,
-    userAnswer: selectValue.value.value,
-    indexValue: selectValue.index,
+    userAnswer: selectTerm.term.term,
+    indexTerm: selectTerm.index,
     isUserAnswer: true
   };
+
   const cardsOne = joinCards.cards.slice(0, indexCard);
   const cardsTwo = joinCards.cards.slice(indexCard + 1);
   const cards = [...cardsOne, matchedCard, ...cardsTwo];
   
-  const valuesOne = values.slice(0, selectValue.index);
-  const valuesTwo = values.slice(selectValue.index + 1);
+  const valuesOne = terms.slice(0, selectTerm.index);
+  const valuesTwo = terms.slice(selectTerm.index + 1);
   const matchedValue = {
-    value: selectValue.value.value,
+    term: selectTerm.term.term,
     selected: true
   };
-  values = [...valuesOne, matchedValue, ...valuesTwo];
+  terms = [...valuesOne, matchedValue, ...valuesTwo];
   
-  return {
-    cards,
-    values
-  }
+  return { cards, terms }
 }
 
 function removeMatchingCard(joinCards, indexCard) {
   const card = joinCards.cards[indexCard];
 
-  const value = joinCards.values[card.indexValue];
+  const term = joinCards.terms[card.indexTerm];
   const matchedValue = {
-    value: value.value,
+    term: term.term,
     selected: false
   }
 
-  const valuesOne = joinCards.values.slice(0, card.indexValue);
-  const valuesTwo = joinCards.values.slice(card.indexValue + 1);
-  const values = [...valuesOne, matchedValue, ...valuesTwo];
+  const termsOne = joinCards.terms.slice(0, card.indexTerm);
+  const termsTwo = joinCards.terms.slice(card.indexTerm + 1);
+  const terms = [...termsOne, matchedValue, ...termsTwo];
+
   const matchedCard = {
     ...card,
     selected: false,
     userAnswer: '',
-    indexValue: null,
+    indexTerm: null,
     isUserAnswer: false
   }
 
@@ -190,10 +189,7 @@ function removeMatchingCard(joinCards, indexCard) {
   const cardsTwo = joinCards.cards.slice(indexCard + 1);
   const cards = [...cardsOne, matchedCard, ...cardsTwo];
 
-  return {
-    cards,
-    values
-  }
+  return { cards, terms }
 }
 
 function selectOption(testCards, cardId, indexOption) {
@@ -204,12 +200,12 @@ function selectOption(testCards, cardId, indexOption) {
   card.options.forEach((option, index) => {
     if (index === indexOption) {
       options.push({
-        value: option.value,
+        term: option.term,
         selected: true
       });
     } else {
       options.push({
-        value: option.value,
+        term: option.term,
         selected: false
       });
     }
@@ -217,7 +213,7 @@ function selectOption(testCards, cardId, indexOption) {
 
   const updatedCard = {
     ...card,
-    userAnswer: card.options[indexOption].value,
+    userAnswer: card.options[indexOption].term,
     options,
     isUserAnswer: true
   }

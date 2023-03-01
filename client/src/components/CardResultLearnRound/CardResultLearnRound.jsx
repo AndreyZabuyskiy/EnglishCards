@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { REACT_APP_API_URL } from "../../http/baseUrl";
 import style from './CardResultLearnRound.module.css';
 
-export const CardResultLearnRound = ({ value, translate, pathToFile, urlToImage }) => {
+export const CardResultLearnRound = ({ term, definition, pathToFile, urlToImage }) => {
   const { user } = useSelector(state => {
     const { authReducer } = state;
     return authReducer;
@@ -19,11 +19,11 @@ export const CardResultLearnRound = ({ value, translate, pathToFile, urlToImage 
     <div className={style.container}>
       <div className={style.content}>
         <div className={style.value__wrapper}>
-          <div>{ value }</div>
+          <div>{ term }</div>
         </div>
         <div className={style.translate__wrapper}>
-          <div className={style.translate}>{ translate }</div>
-          {imgSrc && <img className={style.image} src={`${imgSrc}`} />}
+          <div className={style.translate}>{ definition }</div>
+          {imgSrc && <img className={style.image} src={`${imgSrc}`} alt='' />}
         </div>
       </div>
       <div className={style.sound__action}>

@@ -21,7 +21,7 @@ export function getTestModule(moduleId) {
       const options = [];
       card.options.forEach(option => {
         options.push({
-          value: option,
+          term: option,
           selected: false
         });
       });
@@ -37,27 +37,27 @@ export function getTestModule(moduleId) {
 
     const joinCards = {
       cards: [],
-      values: []
+      terms: []
     }
 
-    if(response.groups.joinCards.length > 0) {
+    if(response.groups.joinCards.cards.length > 0 && response.groups.joinCards.terms.length > 0) {
       response.groups.joinCards.cards.forEach(card => {
         joinCards.cards.push({
           cardId: card.cardId,
-          translate: card.translate,
+          definition: card.definition,
           pathToFile: card.pathToFile,
           urlToImage: card.urlToImage,
           selected: false,
           userAnswer: '',
-          indexValue: null,
+          indexTerm: null,
           index: index++,
           isUserAnswer: false
         });
       });
 
-      response.groups.joinCards.values.forEach(value => {
-        joinCards.values.push({
-          value: value,
+      response.groups.joinCards.terms.forEach(term => {
+        joinCards.terms.push({
+          term: term,
           selected: false
         });
       });
@@ -89,12 +89,12 @@ export function getTestModule(moduleId) {
   }
 }
 
-export function matchingCard(selectValue, indexCard) {
+export function matchingCard(selectTerm, indexCard) {
   return async dispatch => {
     dispatch({
       type: MATCHING_CARD,
       payload: {
-        selectValue,
+        selectTerm,
         indexCard
       }
     });

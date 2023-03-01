@@ -57,8 +57,8 @@ export const WriteModule = () => {
                 isCurrentAnswer
                 ?
                   <CardWriteAnswer user={user}
-                    value={cards[index].card.value}
-                    translate={cards[index].card.translate}
+                    term={cards[index].card.term}
+                    definition={cards[index].card.definition}
                     pathToFile={cards[index].card.pathToFile}
                     urlToImage={cards[index].card.urlToImage}
                     userAnswer={userAnswer}
@@ -66,8 +66,8 @@ export const WriteModule = () => {
                     onClickAnswer={onClickAnswer} />
                 :
                   <FeedbackHeading
-                    translate={cards[index].card.translate}
-                    value={cards[index].card.value}
+                    term={cards[index].card.term}
+                    definition={cards[index].card.definition}
                     userAnswer={currentUserAnswer}
                     onClickNextQuestion={onClickNextQuestion} />
               :

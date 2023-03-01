@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { uploadFileApi, removeFileApi } from '../../http/moduleApi';
 import { clearImages, fetchImages } from '../../redux/actions/moduleFormAction';
 
-export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, searchQuery, urlToImage,
+export const CardForm = React.memo(({ index, _id, term, definition, pathToFile, searchQuery, urlToImage,
   isViewUploadImage, setCards }) => {
   const dispatch = useDispatch();
   const inputFileRef = useRef(null);
-  const [searchQueryError, setSearchQueryError] = useState(value);
+  const [searchQueryError, setSearchQueryError] = useState(term);
 
   const user = useSelector(state => {
     const { authReducer } = state;
@@ -41,14 +41,14 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
     };
   }
 
-  const handleChangeValue = (e) => {
+  const handleChangeTerm = (e) => {
     setCards(prev => {
       const indexCard = prev.findIndex(card => card._id === _id);
       const card = prev[indexCard];
 
       const updatedCard = {
         ...card,
-        value: e.target.value
+        term: e.target.value
       }
 
       const cardsOne = prev.slice(0, indexCard);
@@ -59,14 +59,14 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
     })
   }
 
-  const handleChangeTranslate = (e) => {
+  const handleChangeDefinition = (e) => {
     setCards(prev => {
       const indexCard = prev.findIndex(card => card._id === _id);
       const card = prev[indexCard];
 
       const updatedCard = {
         ...card,
-        translate: e.target.value
+        definition: e.target.value
       }
 
       const cardsOne = prev.slice(0, indexCard);
@@ -171,7 +171,7 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
           changedCards.push({
             ...card,
             isViewUploadImage: !card.isViewUploadImage,
-            searchQuery: card.value,
+            searchQuery: card.term,
             pathToFile: '',
             isUrlImage: true,
             urlToImage: _urlToImage
@@ -180,7 +180,7 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
           changedCards.push({
             ...card,
             isViewUploadImage: false,
-            searchQuery: card.value,
+            searchQuery: card.term,
             pathToFile: ''
           });
         }
@@ -198,7 +198,7 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
       const card = prev[cardIndex];
       
       if (!card.isViewUploadImage) {
-        dispatch(fetchImages(card.value));
+        dispatch(fetchImages(card.term));
       } else {
         dispatch(clearImages());
       }
@@ -209,7 +209,7 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
           changedCards.push({
             ...card,
             isViewUploadImage: !card.isViewUploadImage,
-            searchQuery: card.value
+            searchQuery: card.term
           });
         } else {
           changedCards.push({
@@ -223,7 +223,7 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
       return changedCards;
     });
 
-    setSearchQueryError(value);
+    setSearchQueryError(term);
   }
 
   const onClickEnter = (e) => {
@@ -247,13 +247,13 @@ export const CardForm = React.memo(({ index, _id, value, translate, pathToFile, 
         </div>
         <div className={style.inputs}>
           <div className={style.input__value}>
-            <input type="text" value={value}
-              onChange={handleChangeValue} />
+            <input type="text" value={term}
+              onChange={handleChangeTerm} />
             <p>Term</p>
           </div>
           <div className={style.input__translate}>
-            <input type="text" value={translate}
-              onChange={handleChangeTranslate} />
+            <input type="text" value={definition}
+              onChange={handleChangeDefinition} />
             <p>Definition</p>
           </div>
           {pathToFile || urlToImage

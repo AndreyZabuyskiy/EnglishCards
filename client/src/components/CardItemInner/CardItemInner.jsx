@@ -67,7 +67,7 @@ export const CardItemInner = ({id, module, cards, user}) => {
             </div>
 
             <div className={style.card__front__content}>
-              { cards[cardItemIndex].value }
+              { cards[cardItemIndex].term }
             </div>
 
             <div className={style.card__footer}>
@@ -99,7 +99,7 @@ export const CardItemInner = ({id, module, cards, user}) => {
                 ?
                   <div className={style.card__content__front}>
                     <div className={style.card__content__left}>
-                      {cards[cardItemIndex].translate}
+                      {cards[cardItemIndex].definition}
                     </div>
                     <div className={style.card__content__right}>
                       { imgSrc && <img src={`${imgSrc}`} className={style.card__img} alt='' /> }
@@ -107,7 +107,7 @@ export const CardItemInner = ({id, module, cards, user}) => {
                   </div>
                 :
                   <div className={style.card__content__text}>
-                    {cards[cardItemIndex].translate}
+                    {cards[cardItemIndex].definition}
                   </div>
               }
             </div>

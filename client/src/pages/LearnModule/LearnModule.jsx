@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { FixedBannerLearnModule, LearnCard, LearnRoundResult, NavbarLearnModule, ResultLearnModule } from '../../components';
 import { fetchLearnModule, checkTestCard, checkLearnWriteCard, clearLearnCard, nextLearnQuestion,
-  startOverLearnModule, unknowAnswer} from '../../redux/actions/learnModuleAction';
+  startOverLearnModule } from '../../redux/actions/learnModuleAction';
 import { HOME_ROUTE } from '../../utils/consts';
 import style from './LearnModule.module.css';
 
@@ -23,7 +22,7 @@ export const LearnModule = () => {
   });
 
   const { card, options, isIncorrectAnswer, isCorrectAnswer, optionSelectedUser,
-    correctAnswer, userAnswer, isUnknowAnswer } = useSelector(state => {
+    correctAnswer, userAnswer } = useSelector(state => {
     const { learnCardReducer } = state;
     return learnCardReducer;
   });
@@ -58,10 +57,6 @@ export const LearnModule = () => {
     navigate(`${HOME_ROUTE}/${id}`);
   }
 
-  const clickUnknowAnswer = (cardId) => {
-    dispatch(unknowAnswer(cardId));
-  }
-
   return (
     <>
       {round &&
@@ -78,8 +73,7 @@ export const LearnModule = () => {
                       isIncorrectAnswer={isIncorrectAnswer} isCorrectAnswer={isCorrectAnswer}
                       optionSelectedUser={optionSelectedUser} onClickOption={onClickOption}
                       onClickCheckAnswer={onClickCheckAnswer} correctAnswer={correctAnswer}
-                      userAnswer={userAnswer} clickUnknowAnswer={clickUnknowAnswer}
-                      isUnknowAnswer={isUnknowAnswer} />
+                      userAnswer={userAnswer} />
                   : <LearnRoundResult round={resultRound.round} cards={resultRound.cards}
                       lengthModuleCards={resultRound.lengthModuleCards}
                       countLearnedCards={resultRound.countLearnedCards} />
@@ -88,11 +82,6 @@ export const LearnModule = () => {
           </div>
           
           {isIncorrectAnswer &&
-            <FixedBannerLearnModule buttonMessage={'Continue'}
-              onClickButton={onClickContinue} />
-          }
-
-          {isUnknowAnswer &&
             <FixedBannerLearnModule buttonMessage={'Continue'}
               onClickButton={onClickContinue} />
           }

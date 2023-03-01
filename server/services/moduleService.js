@@ -182,8 +182,8 @@ class ModuleService {
 
     await Promise.all(cards.map(async (card) => {
       const cardDoc = new Card({
-        value: card.value,
-        translate: card.translate,
+        term: card.term,
+        definition: card.definition,
         pathToFile: card.pathToFile,
         urlToImage: card.urlToImage,
         module: newModule._id
@@ -210,8 +210,8 @@ class ModuleService {
 
     await Promise.all(cards.map(async card => {
       const cardDoc = new Card({
-        value: card.value,
-        translate: card.translate,
+        term: card.term,
+        definition: card.definition,
         pathToFile: card.pathToFile,
         urlToImage: card.urlToImage,
         module: moduleId

@@ -12,14 +12,14 @@ export const moduleValidation = [
   body('cards').notEmpty()
     .withMessage('Cards cannot be empty')
     .isArray({min: 2, max: 100}).withMessage('Cards must be a list'),
-  body('cards.*.value')
-    .notEmpty().withMessage('Value cannot be empty')
-    .isString().withMessage('Value must be a string')
-    .isLength({ max: 30 }).withMessage('Value must be no more than 30 characters'),
-  body('cards.*.translate')
-    .notEmpty().withMessage('Translate cannot be empty')
-    .isString().withMessage('Translate must be a string')
-    .isLength({ max: 30 }).withMessage('Translate must be no more than 30 characters'),
+  body('cards.*.term')
+    .notEmpty().withMessage('Term cannot be empty')
+    .isString().withMessage('Term must be a string')
+    .isLength({ max: 30 }).withMessage('Term must be no more than 30 characters'),
+  body('cards.*.definition')
+    .notEmpty().withMessage('Definition cannot be empty')
+    .isString().withMessage('Definition must be a string')
+    .isLength({ max: 30 }).withMessage('Definition must be no more than 30 characters'),
   body('cards.*.pathToFile').optional(),
   body('cards.*.urlToImage').optional()
 ]

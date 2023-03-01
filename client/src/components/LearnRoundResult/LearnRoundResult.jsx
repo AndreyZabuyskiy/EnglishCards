@@ -21,7 +21,7 @@ export const LearnRoundResult = ({ round, cards, lengthModuleCards, countLearned
         <div className={style.cards}>
           <span>The list of learned words</span>
           {
-            cards.map(card => <CardResultLearnRound value={card.value} translate={card.translate}
+            cards.map(card => <CardResultLearnRound term={card.term} definition={card.definition}
               pathToFile={card.pathToFile} urlToImage={card.urlToImage} key={card._id} />)
           }
         </div>
