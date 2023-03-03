@@ -13,7 +13,8 @@ export const AddCardButton = React.memo(({ index, setCards }) => {
         searchQuery: '',
         pathToFile: '',
         isUrlImage: false,
-        urlToImage: ''
+        urlToImage: '',
+        position: cards.length
       });
 
       return cards;

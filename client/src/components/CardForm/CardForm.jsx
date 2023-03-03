@@ -83,7 +83,14 @@ export const CardForm = React.memo(({ index, _id, term, definition, pathToFile, 
 
       const cardsOne = prev.slice(0, indexCard);
       const cardsTwo = prev.slice(indexCard + 1);
-      const newCards = [...cardsOne, ...cardsTwo];
+      const cards = [...cardsOne, ...cardsTwo];
+
+      const newCards = cards.map((card, index) => {
+        return {
+          ...card,
+          position: index
+        }
+      });
 
       return newCards;
     });

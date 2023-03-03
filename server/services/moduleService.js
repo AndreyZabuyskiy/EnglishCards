@@ -134,6 +134,17 @@ class ModuleService {
   async viewModule (userId, moduleId) {
     const module = await StudyModule.findById({ _id: moduleId });
     const cards = await Card.find({ module: moduleId });
+    
+    cards.sort((a, b) => {
+      if (a.position < b.position) {
+        return -1;
+      } else if (a.position > b.position) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     await this.addOrUpdateUserVisitedModule(userId, moduleId);
     return { module, cards };
   }
@@ -186,6 +197,7 @@ class ModuleService {
         definition: card.definition,
         pathToFile: card.pathToFile,
         urlToImage: card.urlToImage,
+        position: card.position,
         module: newModule._id
       });
 
@@ -214,6 +226,7 @@ class ModuleService {
         definition: card.definition,
         pathToFile: card.pathToFile,
         urlToImage: card.urlToImage,
+        position: card.position,
         module: moduleId
       });
 

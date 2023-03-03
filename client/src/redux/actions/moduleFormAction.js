@@ -11,7 +11,8 @@ export function createModule(module) {
         definition: module.cards[card].definition,
         pathToFile: module.cards[card].pathToFile,
         isUrlImage: module.cards[card].isUrlImage,
-        urlToImage: module.cards[card].urlToImage
+        urlToImage: module.cards[card].urlToImage,
+        position: module.cards[card].position
       });
     }
 
@@ -47,7 +48,8 @@ export function updateModule(id, module) {
         definition: module.cards[card].definition,
         pathToFile: module.cards[card].pathToFile,
         isUrlImage: module.cards[card].isUrlImage,
-        urlToImage: module.cards[card].urlToImage
+        urlToImage: module.cards[card].urlToImage,
+        position: module.cards[card].position
       });
     }
     

@@ -22,7 +22,8 @@ export const ModuleForm = () => {
       searchQuery: '',
       pathToFile: '',
       isUrlImage: false,
-      urlToImage: ''
+      urlToImage: '',
+      position: 0
     },
     {
       _id: 1,
@@ -32,7 +33,8 @@ export const ModuleForm = () => {
       searchQuery: '',
       pathToFile: '',
       isUrlImage: false,
-      urlToImage: ''
+      urlToImage: '',
+      position: 1
     },
     {
       _id: 2,
@@ -42,7 +44,8 @@ export const ModuleForm = () => {
       searchQuery: '',
       pathToFile: '',
       isUrlImage: false,
-      urlToImage: ''
+      urlToImage: '',
+      position: 2
     },
     {
       _id: 3,
@@ -52,7 +55,8 @@ export const ModuleForm = () => {
       searchQuery: '',
       pathToFile: '',
       isUrlImage: false,
-      urlToImage: ''
+      urlToImage: '',
+      position: 3
     },
     {
       _id: 4,
@@ -62,7 +66,8 @@ export const ModuleForm = () => {
       searchQuery: '',
       pathToFile: '',
       isUrlImage: false,
-      urlToImage: ''
+      urlToImage: '',
+      position: 4
     }
   ];
 

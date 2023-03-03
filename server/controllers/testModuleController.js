@@ -21,7 +21,6 @@ class TestModuleController {
 
     try {
       const result = await testModuleService.checkTest(id, testModule);
-      console.log('checkTest result -->', result);
       res.status(200).json(result);
     } catch (err) {
       next(ApiError.badRequest(err.message));

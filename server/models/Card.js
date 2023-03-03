@@ -14,6 +14,9 @@ const schema = new mongoose.Schema({
   urlToImage: {
     type: String
   },
+  position: {
+    type: Number
+  },
   module: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudyModule',
