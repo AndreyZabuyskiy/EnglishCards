@@ -1,5 +1,5 @@
 .container__navbar {
-  background-color: #234D7D;
+  background-color: #1f2b43;
   height: 6vh;
   display: flex;
   justify-content: space-between;
@@ -19,7 +19,7 @@
 }
 
 .logout {
-  background-color: #234D7D;
+  background-color: #1f2b43;
   color: #ffffff;
 }
 
@@ -44,7 +44,7 @@
   padding-top: 3px;
 }
 .your__library button {
-  background-color: #234D7D;
+  background-color: #1f2b43;
   color: #ffffff;
 }
 

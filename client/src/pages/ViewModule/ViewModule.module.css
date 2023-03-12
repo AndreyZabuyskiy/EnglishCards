@@ -1,5 +1,11 @@
+.wrapper {
+  width: 100%;
+  background-color: #E5E0DD;
+}
+
 .container {
   width: 100%;
+  max-width: 1200px;
   min-height: 94vh;
   margin: 0 auto;
   display: flex;
@@ -7,7 +13,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: #0a092d;
+  background-color: #ffffff;
 }
 
 .container__column {
@@ -20,7 +26,7 @@
   width: 100%;
   max-width: 814px;
   font-size: 32px;
-  color: #f6f7fb;
+  color: #1F2B43;
   margin: 30px 0px 20px;
   align-items: left;
   padding: 0px 0px 0px 20px;

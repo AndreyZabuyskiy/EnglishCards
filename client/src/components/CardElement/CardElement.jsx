@@ -21,7 +21,11 @@ export const CardElement = (props) => {
       <div className={style.actions__container}>
         <div className={style.actions}>
           <div className={style.action}>✰</div>
-          <div className={style.middle__action}>🔈</div>
+          <a className={style.middle__action}
+            href={`https://dictionary.cambridge.org/dictionary/english/${props.term}`}
+            target={"_blank"} rel="noopener noreferrer">
+            🔈
+          </a>
           <div className={style.action}>✎</div>
         </div>
       </div>
