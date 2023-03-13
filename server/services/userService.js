@@ -7,6 +7,7 @@ import mailService from './mailService.js';
 import tokenService from './tokenService.js';
 import { UserDto } from "../dtos/UserDto.js";
 import ApiError from '../error/ApiError.js';
+import MemorizationService from "./memorizationService.js";
 
 const generateJwt = (id, email) => {
   return jwt.sign(
@@ -34,6 +35,8 @@ class UserService {
     const userDto = new UserDto(user.email, user._id, user.isActivated);
     const tokens = tokenService.generateTokens({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    await MemorizationService.createModulesByUserId(user._id);
 
     return { ...tokens, user: userDto };
   }

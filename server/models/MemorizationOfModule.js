@@ -7,7 +7,8 @@ const schema = new mongoose.Schema({
     require: true
   },
   status: {
-    type: string,
+    type: String,
+    require: true
   }
 }, {
   timestamps: true

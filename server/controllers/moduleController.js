@@ -6,13 +6,14 @@ import config from 'config';
 
 class ModuleController {
   async getModules(req, res, next) {
-    try {
+    //try {
       const userId = req.user.id;
       const modules = await moduleService.getModulesByUser(userId);
+      console.log('modules -->', modules);
       res.status(200).json(modules);
-    } catch (e) {
-      next(e);
-    }
+    //} catch (e) {
+      //next(e);
+    //}
   }
 
   async viewModule(req, res, next) {

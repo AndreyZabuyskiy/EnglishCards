@@ -4,6 +4,7 @@ import User from "../models/User.js";
 import learnModuleService from '../services/learnModuleService.js';
 import UserVisitedModule from "../models/UserVisitedModule.js";
 import { VisitedModuleDto } from "../dtos/VisitedModulesDto.js";
+import memorizationService from "./memorizationService.js";
 
 class ModuleService {
   async getModulesByUser(userId) {
@@ -128,6 +129,10 @@ class ModuleService {
       data: _modules
     });
 
+    const memoModules = await memorizationService.getModulesByUserId(userId);
+    console.log('memoModules -->', memoModules);
+
+    //const response = 
     return dataModules;
   }
 
