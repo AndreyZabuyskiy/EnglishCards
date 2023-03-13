@@ -27,11 +27,11 @@ export const ViewModule = () => {
   });
 
   return (
-    <div className={`${style.wrapper}`}>
+    <div>
       <Navbar />
 
       {moduleData &&
-        <div className={`${style.container}`}>
+        <div className={style.container}>
           <h1 className={style.title}> {moduleData?.module?.title} </h1>
 
           <div className={`${style.header} ${style.container__column}`}>
@@ -41,7 +41,7 @@ export const ViewModule = () => {
 
           <NavbarViewModule title={moduleData?.module?.title} />
 
-          <div className={`${style.container__column}`}>
+          <div className={style.container__column}>
             <SetPageInfo user={user} />
             <ListCardElement moduleData={moduleData} user={user} />
           </div>

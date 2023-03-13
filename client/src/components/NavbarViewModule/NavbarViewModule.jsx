@@ -1,11 +1,11 @@
 import style from './NavbarViewModule.module.scss';
 
-export const NavbarViewModule = (props) => {
+export const NavbarViewModule = ({title}) => {
   return (
     <div className={style.container}>
       <div className={style.container__content}>
         <div className={style.title}>
-          {props.title}
+          {title}
         </div>
         
         <div className={style.button__edit__module}>
